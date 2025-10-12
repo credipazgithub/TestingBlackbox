@@ -1,0 +1,479 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{198A1670-634D-44FA-A1ED-C9996F177BB0}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NeodataNet</RootNamespace>
+    <AssemblyName>NeodataNet</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mobile">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favico.ico" />
+    <Content Include="icons\favico.ico" />
+    <Content Include="icons\icon-128x128.png" />
+    <Content Include="icons\icon-144x144.png" />
+    <Content Include="icons\icon-152x152.png" />
+    <Content Include="icons\icon-192x192.png" />
+    <Content Include="icons\icon-36x36.png" />
+    <Content Include="icons\icon-384x384.png" />
+    <Content Include="icons\icon-48x48.png" />
+    <Content Include="icons\icon-512x512.png" />
+    <Content Include="icons\icon-72x72.png" />
+    <Content Include="icons\icon-96x96.png" />
+    <Content Include="img\background.jpg" />
+    <Content Include="img\favico.ico" />
+    <Content Include="img\powered.png" />
+    <Content Include="js\global\neoLibrary.js" />
+    <Content Include="js\global\NEOVIDEO-jvideo1.js" />
+    <Content Include="js\vendor\blockui.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-grid.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-grid.min.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-reboot.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-reboot.min.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-select.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap.min.css" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap-select.min.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.bundle.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.bundle.min.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.min.js" />
+    <Content Include="js\vendor\material-5-dist\css\mdb.min.css" />
+    <Content Include="js\vendor\material-5-dist\js\mdb.min.js" />
+    <Content Include="js\vendor\velocity.min.js" />
+    <Content Include="MercadoPago.php" />
+    <Content Include="noserver.html" />
+    <Content Include="request.html" />
+    <Content Include="thanks.html" />
+    <Content Include="thanks.jpg" />
+    <Content Include="vendor\autoload.php" />
+    <Content Include="vendor\composer\autoload_classmap.php" />
+    <Content Include="vendor\composer\autoload_namespaces.php" />
+    <Content Include="vendor\composer\autoload_psr4.php" />
+    <Content Include="vendor\composer\autoload_real.php" />
+    <Content Include="vendor\composer\autoload_static.php" />
+    <Content Include="vendor\composer\ClassLoader.php" />
+    <Content Include="vendor\composer\installed.php" />
+    <Content Include="vendor\composer\InstalledVersions.php" />
+    <Content Include="vendor\composer\platform_check.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\AnnotationException.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\AnnotationReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\AnnotationRegistry.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\Attribute.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\Attributes.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\Enum.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\IgnoreAnnotation.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\NamedArgumentConstructor.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\Required.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Annotation\Target.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\CachedReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\DocLexer.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\DocParser.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\FileCacheReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\ImplicitlyIgnoredAnnotationNames.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\IndexedReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\NamedArgumentConstructorAnnotation.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\PhpParser.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\PsrCachedReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\Reader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\SimpleAnnotationReader.php" />
+    <Content Include="vendor\doctrine\annotations\lib\Doctrine\Common\Annotations\TokenParser.php" />
+    <Content Include="vendor\doctrine\annotations\psalm.xml" />
+    <Content Include="vendor\doctrine\common\psalm.xml" />
+    <Content Include="vendor\doctrine\common\src\ClassLoader.php" />
+    <Content Include="vendor\doctrine\common\src\CommonException.php" />
+    <Content Include="vendor\doctrine\common\src\Comparable.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\AbstractProxyFactory.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Autoloader.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Exception\InvalidArgumentException.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Exception\OutOfBoundsException.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Exception\ProxyException.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Exception\UnexpectedValueException.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\Proxy.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\ProxyDefinition.php" />
+    <Content Include="vendor\doctrine\common\src\Proxy\ProxyGenerator.php" />
+    <Content Include="vendor\doctrine\common\src\Util\ClassUtils.php" />
+    <Content Include="vendor\doctrine\common\src\Util\Debug.php" />
+    <Content Include="vendor\doctrine\deprecations\lib\Doctrine\Deprecations\Deprecation.php" />
+    <Content Include="vendor\doctrine\deprecations\lib\Doctrine\Deprecations\PHPUnit\VerifyDeprecations.php" />
+    <Content Include="vendor\doctrine\deprecations\phpcs.xml" />
+    <Content Include="vendor\doctrine\event-manager\psalm.xml" />
+    <Content Include="vendor\doctrine\event-manager\src\EventArgs.php" />
+    <Content Include="vendor\doctrine\event-manager\src\EventManager.php" />
+    <Content Include="vendor\doctrine\event-manager\src\EventSubscriber.php" />
+    <Content Include="vendor\doctrine\lexer\lib\Doctrine\Common\Lexer\AbstractLexer.php" />
+    <Content Include="vendor\doctrine\lexer\psalm.xml" />
+    <Content Include="vendor\doctrine\persistence\psalm-baseline.xml" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\AbstractManagerRegistry.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\ConnectionRegistry.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Event\LifecycleEventArgs.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Event\LoadClassMetadataEventArgs.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Event\ManagerEventArgs.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Event\OnClearEventArgs.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Event\PreUpdateEventArgs.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\ManagerRegistry.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\AbstractClassMetadataFactory.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\ClassMetadata.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\ClassMetadataFactory.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\ColocatedMappingDriver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\DefaultFileLocator.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\FileDriver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\FileLocator.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\MappingDriver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\MappingDriverChain.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\PHPDriver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\StaticPHPDriver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\Driver\SymfonyFileLocator.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\MappingException.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\ProxyClassNameResolver.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\ReflectionService.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\RuntimeReflectionService.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Mapping\StaticReflectionService.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\NotifyPropertyChanged.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\ObjectManager.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\ObjectManagerDecorator.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\ObjectRepository.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\PropertyChangedListener.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Proxy.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Reflection\EnumReflectionProperty.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Reflection\RuntimePublicReflectionProperty.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Reflection\TypedNoDefaultReflectionProperty.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Reflection\TypedNoDefaultReflectionPropertyBase.php" />
+    <Content Include="vendor\doctrine\persistence\src\Persistence\Reflection\TypedNoDefaultRuntimePublicReflectionProperty.php" />
+    <Content Include="vendor\mercadopago\dx-php\.gitignore" />
+    <Content Include="vendor\mercadopago\dx-php\img\demo.svg" />
+    <Content Include="vendor\mercadopago\dx-php\img\ezgif-2-f98e8701825e.gif" />
+    <Content Include="vendor\mercadopago\dx-php\phpunit.xml" />
+    <Content Include="vendor\mercadopago\dx-php\samples\checkout-buttons\basic-preference\button.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\checkout-buttons\full-preference\button.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\customer-and-cards\customer\create.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\customer-and-cards\customer\remove.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\index.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\payment\minimal\create.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\payment\minimal\refund.php" />
+    <Content Include="vendor\mercadopago\dx-php\samples\suscriptions\basic-suscription.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Annotation\Attribute.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Annotation\DenyDynamicAttribute.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Annotation\RequestParam.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Annotation\RestMethod.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Config.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Config\AbstractConfig.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Config\Json.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Config\ParserInterface.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Config\Yaml.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\AdvancedPayments\AdvancedPayment.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\AdvancedPayments\DisbursementRefund.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\AdvancedPayments\Refund.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\AuthorizedPayment.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Card.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\CardToken.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Chargeback.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Customer.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\DiscountCampaign.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\InstoreOrder.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Invoice.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\MerchantOrder.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\OAuth.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Plan.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\POS.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Preapproval.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Preference.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Refund.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Documentation.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Item.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Payer.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Payment.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\PaymentMethod.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Tax.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\Track.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shared\TrackValues.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Shipments.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entities\Subscription.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Entity.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Generic\ErrorCause.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Generic\RecuperableError.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Generic\SearchResultsArray.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Http\CurlRequest.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Http\HttpRequest.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Manager.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\MetaDataReader.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\RestClient.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\SDK.php" />
+    <Content Include="vendor\mercadopago\dx-php\src\MercadoPago\Version.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\DummyEntity.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\FakeApiHub.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\MercadoPagoSdkTest.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\resources\PaymentTest.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\resources\PreferenceTest.php" />
+    <Content Include="vendor\mercadopago\dx-php\tests\SDKTest.php" />
+    <Content Include="vendor\psr\cache\LICENSE.txt" />
+    <Content Include="vendor\psr\cache\src\CacheException.php" />
+    <Content Include="vendor\psr\cache\src\CacheItemInterface.php" />
+    <Content Include="vendor\psr\cache\src\CacheItemPoolInterface.php" />
+    <Content Include="vendor\psr\cache\src\InvalidArgumentException.php" />
+    <Content Include="verificationQR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="worker.js" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-grid.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-grid.min.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-reboot.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-reboot.min.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap.min.css.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.bundle.js.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.bundle.min.js.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.js.map" />
+    <Content Include="js\vendor\bootstrap-4.5.3-dist\js\bootstrap.min.js.map" />
+    <Content Include="js\vendor\material-5-dist\css\mdb.min.css.map" />
+    <Content Include="js\vendor\material-5-dist\js\mdb.min.js.map" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="vendor\composer\installed.json" />
+    <Content Include="vendor\composer\LICENSE" />
+    <Content Include="vendor\doctrine\annotations\composer.json" />
+    <Content Include="vendor\doctrine\annotations\docs\en\annotations.rst" />
+    <Content Include="vendor\doctrine\annotations\docs\en\custom.rst" />
+    <Content Include="vendor\doctrine\annotations\docs\en\index.rst" />
+    <Content Include="vendor\doctrine\annotations\docs\en\sidebar.rst" />
+    <Content Include="vendor\doctrine\annotations\LICENSE" />
+    <Content Include="vendor\doctrine\annotations\README.md" />
+    <Content Include="vendor\doctrine\common\.doctrine-project.json" />
+    <Content Include="vendor\doctrine\common\composer.json" />
+    <Content Include="vendor\doctrine\common\docs\en\index.rst" />
+    <Content Include="vendor\doctrine\common\docs\en\reference\class-loading.rst" />
+    <Content Include="vendor\doctrine\common\LICENSE" />
+    <Content Include="vendor\doctrine\common\phpstan.neon.dist" />
+    <Content Include="vendor\doctrine\common\README.md" />
+    <Content Include="vendor\doctrine\common\UPGRADE_TO_2_1" />
+    <Content Include="vendor\doctrine\common\UPGRADE_TO_2_2" />
+    <Content Include="vendor\doctrine\deprecations\composer.json" />
+    <Content Include="vendor\doctrine\deprecations\LICENSE" />
+    <Content Include="vendor\doctrine\deprecations\README.md" />
+    <Content Include="vendor\doctrine\event-manager\composer.json" />
+    <Content Include="vendor\doctrine\event-manager\LICENSE" />
+    <Content Include="vendor\doctrine\event-manager\phpstan.neon.dist" />
+    <Content Include="vendor\doctrine\event-manager\README.md" />
+    <Content Include="vendor\doctrine\event-manager\UPGRADE.md" />
+    <Content Include="vendor\doctrine\lexer\composer.json" />
+    <Content Include="vendor\doctrine\lexer\LICENSE" />
+    <Content Include="vendor\doctrine\lexer\README.md" />
+    <Content Include="vendor\doctrine\persistence\composer.json" />
+    <Content Include="vendor\doctrine\persistence\CONTRIBUTING.md" />
+    <Content Include="vendor\doctrine\persistence\LICENSE" />
+    <Content Include="vendor\doctrine\persistence\psalm.phpstub" />
+    <Content Include="vendor\doctrine\persistence\README.md" />
+    <Content Include="vendor\doctrine\persistence\UPGRADE.md" />
+    <Content Include="vendor\mercadopago\dx-php\.github\ISSUE_TEMPLATE\bug_report.md" />
+    <Content Include="vendor\mercadopago\dx-php\.github\ISSUE_TEMPLATE\feature_request.md" />
+    <Content Include="vendor\mercadopago\dx-php\.github\workflows\php.yml" />
+    <Content Include="vendor\mercadopago\dx-php\.travis.yml" />
+    <Content Include="vendor\mercadopago\dx-php\composer.json" />
+    <Content Include="vendor\mercadopago\dx-php\LICENSE" />
+    <Content Include="vendor\mercadopago\dx-php\phpunit.phar" />
+    <Content Include="vendor\mercadopago\dx-php\README.md" />
+    <Content Include="vendor\mercadopago\dx-php\samples\composer.json" />
+    <Content Include="vendor\mercadopago\dx-php\samples\composer.lock" />
+    <Content Include="vendor\mercadopago\dx-php\tests\config_files\settings.ini" />
+    <Content Include="vendor\mercadopago\dx-php\tests\config_files\settings.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\config_files\settings.yml" />
+    <Content Include="vendor\mercadopago\dx-php\tests\config_files\settings_broken.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\config_files\settings_broken.yml" />
+    <Content Include="vendor\mercadopago\dx-php\tests\json_files\authorization.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\json_files\customer_search.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\json_files\dummies.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\json_files\dummy.json" />
+    <Content Include="vendor\mercadopago\dx-php\tests\json_files\payment.json" />
+    <Content Include="vendor\psr\cache\CHANGELOG.md" />
+    <Content Include="vendor\psr\cache\composer.json" />
+    <Content Include="vendor\psr\cache\README.md" />
+    <Content Include="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Recursos\configServers.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="manifest.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="configuration.js" />
+    <Content Include="css\index.css" />
+    <Content Include="css\material.css" />
+    <Content Include="img\logo.png" />
+    <Content Include="img\search.gif" />
+    <Content Include="img\wait.gif" />
+    <Content Include="index.html" />
+    <Content Include="js\global\AJAX.js" />
+    <Content Include="js\global\API.js" />
+    <Content Include="js\global\NMF.js" />
+    <Content Include="js\global\TOOLS.js" />
+    <Content Include="js\pages\app-home.js" />
+    <Content Include="js\pages\app-intro.js" />
+    <Content Include="pages\app-home.html" />
+    <Content Include="pages\app-intro.html" />
+    <Content Include="pages\partials\part-alert.html" />
+    <Content Include="web.config" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50481/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

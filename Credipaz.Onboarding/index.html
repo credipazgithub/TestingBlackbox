@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<!--#include virtual="head.html" -->
+
+<body>
+    <input type="file" accept="image/*" capture id="camera" class="camera" />
+    <div class="render d-none"></div>
+    <div class="app container-full"></div>
+    <div class="d-flex justify-content-center">
+        <div id="qrcode" class="p-3 d-none qrcode" style="border:double 4px;color:black;border-radius:25px;"></div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="p-3 d-none terminar"></div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var today = (new Date().getTime() / 1000);
+        $.getScript("js/global/TOOLS.js?" + today.toString()).done(function (script, textStatus) {
+            var _tk = _TOOLS.UUID();
+            $.getScript("js/global/NMF.js?x" + _tk).done(function (script, textStatus) {
+                $.getScript("js/global/AJAX.js?" + _tk).done(function (script, textStatus) {
+                    $.getScript("js/global/API.js?" + _tk).done(function (script, textStatus) {
+                        $.getScript("js/global/INDEX.js?" + _tk).done(function (script, textStatus) {
+                            $.getScript("js/global/CONDITIONAL.js?" + _tk).done(function (script, textStatus) {
+                                $.getScript("configuration.js?" + _tk).done(function (script, textStatus) { });
+                                    _NMF.onGetLocation().then(function (data) {
+                                        _AJAX._BPAM["lat"] = data.latitude;
+                                        _AJAX._BPAM["lng"] = data.longitude;
+                                        _AJAX._BPAM["latitude"] = data.latitude;
+                                        _AJAX._BPAM["longitude"] = data.longitude;
+                                    }).catch(function () {
+                                        _AJAX._BPAM["lat"] = 0;
+                                        _AJAX._BPAM["lng"] = 0;
+                                        _AJAX._BPAM["latitude"] = 0;
+                                        _AJAX._BPAM["longitude"] = 0;
+                                    });
+                            });
+                        });
+                    });
+                });
+            });
+        });
+    });
+</script>

@@ -1,0 +1,22 @@
+<div class="app-pagos container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="row no-gutters px-1 mt-2">
+        <div class="col-12 m-0 p-0 text-center">
+            <iframe id="ifPago" border="0" src="" style="width:100%;height:100vh;border:solid 0px white;display:none;"></iframe>
+        </div>
+    </div>
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "BOTÓN DE PAGO", "./img/Comun/h_pagos.png?nocache1", _NMF._default_page,false);
+
+    setTimeout(function () {
+        if (!_NMF._logged) {
+            _NMF.onModalAlert("Alerta", "Por favor, inicie sesión para solicitar servicios", "warning");
+        } else {
+            _NMF.onResizeInner();
+            var _url = (_HTTPREQUEST.server + "pagos-fiserv-pwacr/" + _TOOLS.utf8_to_b64(_NMF._auth_user_data.dni));
+            $("#ifPago").attr("src", _url).show();
+        }
+    }, 250);
+</script>

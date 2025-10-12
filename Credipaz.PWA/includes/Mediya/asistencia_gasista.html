@@ -1,0 +1,20 @@
+<div class="app-asistencia-gasista container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+    <div class="row no-gutters px-3">
+        <div class="col-12 mensaje-asistencia pt-1 text-left mt-1 d-none"></div>
+    </div>
+    <div class="col-12 msj-request text-center" style="margin-top:5px;">
+        <a class="btn-solicitar text-center asistencia_hogar">SOLICITAR ASISTENCIA</a>
+    </div>
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "ASISTENCIAS<br/>Gasista", "./img/Mediya/h_asistencia_hogar.png", ("./includes/Mediya/asistencia_hogar.html"), false);
+    _NMF.onResizeInner();
+    $(".asistencia_hogar").attr("href", "tel:+541137542479");
+    _API.UiGetWebPosts({ "id": 98 })
+        .then(function (data) {
+            $(".mensaje-asistencia").html(data.data[0].body_post).removeClass("d-none");
+        })
+        .catch(function (err) { console.log(err); });
+</script>
+

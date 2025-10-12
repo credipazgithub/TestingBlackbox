@@ -1,0 +1,172 @@
+.row-magenta-top {
+    border-top: solid 2px rgb(235, 0, 139);
+}
+.title-box {
+    font-size: 0.80rem;
+}
+
+.monto-box {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+
+.title-box-medium {
+    font-size: 0.85rem;
+    font-weight: bold;
+}
+
+.title-box-big {
+    font-size: 0.95rem;
+    font-weight: bold;
+}
+
+.monto-box-big {
+    font-size: 1.25px;
+    font-weight: bold;
+}
+
+.fecha-box {
+    font-size: 1.25rem;
+    font-weight: bold;
+}
+.tarjeta-numero {
+    font-size: 0.80rem;
+}
+.lblSubTitle {
+    color: black;
+}
+
+.btn-menu-comun {
+    text-align: center;
+    text-transform: uppercase;
+    height: 35px;
+    color: grey;
+    font-size: 1.05em;
+    font-weight: bold;
+    text-decoration: none;
+    background: transparent;
+    width: 100%;
+    border-width: 0px;
+    border-bottom: solid 1px rgb(235, 0, 139) !important;
+    border-radius: 0px !important;
+    margin-bottom:25px;
+}
+
+.imgSocial {
+    height: 24px;
+    width: 24px;
+}
+.displayUserdata {
+    font-size: 0.8rem;
+    color: white;
+    opacity: 0;
+    font-weight:bold;
+}
+
+.colorBack {
+    background-color: rgb(235, 0, 139);
+}
+
+.dyn-title {
+    color: black;
+    font-size: 1em;
+    margin-left:-25px;
+}
+
+.app-page {
+    background-image: url(../img/Credipaz/portada_app.jpg);
+    background-size:cover;
+    width: 100%;
+    height: 100%;
+}
+.app-header {
+    background-color: rgb(235, 0, 139);
+}
+
+.app-000 {
+    background-color: rgb(235, 0, 139);
+    width: 100%;
+    height: 100vh;
+    position: absolute;
+}
+.app-login {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+}
+.app-forget {
+    position: absolute;
+    top: 60px;
+    left: 0px;
+}
+
+.btn-magenta-menu {
+    height: 40px;
+    margin-top: 15px;
+    margin-bottom: 25px;
+    text-align: left;
+    border-radius: 10px;
+    color: rgb(235, 0, 139);
+    border: solid 1px rgb(235, 0, 139);
+    background-color: rgba(255, 255, 255,0.5);
+    font-size: 25px;
+    text-decoration: none;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+    .btn-magenta-menu:hover {
+        border-radius: 10px;
+        color: rgb(253, 232, 1);
+        background-color: rgb(235, 0, 139);
+        text-decoration: none;
+    }
+
+    .btn-magenta-menu:focus {
+        border-radius: 10px;
+        color: rgb(253, 232, 1);
+        background-color: rgb(235, 0, 139);
+        text-decoration: none;
+    }
+
+    .btn-magenta-menu:active {
+        border-radius: 10px;
+        color: rgb(253, 232, 1);
+        background-color: rgb(235, 0, 139);
+        text-decoration: none;
+    }
+.img-menu {
+    width:64px;
+    height: 60px;
+    margin-left: 5px;
+    margin-top: -10px;
+}
+.txt-menu {
+    position:relative;
+    top: -5px;
+    display: inline-block;
+    font-weight: bold;
+    font-size: 18px;
+}
+.form-control {
+    background-color: white !important;
+    border-radius: 25px !important;
+    border: solid 1px grey !important;
+    right: 15px;
+    height: 34px !important;
+    color: #131230;
+}
+
+    .form-control::-webkit-input-placeholder {
+        font-size: 0.9em !important;
+        font-weight: bold;
+        color: #131230;
+        line-height: 1;
+    }
+
+    .form-control::-moz-placeholder {
+        font-size: 0.9em !important;
+        font-weight: bold;
+        color: #131230;
+        line-height: 1;
+    }

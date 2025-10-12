@@ -1,0 +1,100 @@
+<div class="app-page app-tarjeta container-full m-0 pt-1 px-3 text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="container mt-2 infoTarjeta d-none">
+        <div class="row row-magenta-top">
+            <div class="col-12 text-center" style="padding:5px;">
+                <a href="tel:08103339009" id="btnPedirTarjeta" class="btn btn-sm btn-info mt-1">¡Pedila ya!</a>
+            </div>
+        </div>
+
+    </div>
+
+    <div class="container mt-2 dataTarjeta d-none">
+        <div class="row row-magenta-top ofrecer-adelantotarjeta">
+            <div class="col-12" style="padding:5px;">
+                <div class="text-center title-box">Convertí tu tarjeta en efectivo</div>
+                <div class="text-center monto-box MontoAdelantoTarjeta">$--.---</div>
+                <div style="padding-left:10px;padding-right:10px;">
+                    <a href="tel:08103339009" id="btnPedirAdelanto" class="btn btn-sm btn-info mt-1">¡Pedilo ahora!</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="row" style="border-top:solid 2px rgb(235, 0, 139);">
+            <div class="col-12 text-center" style="padding:5px;">
+                <img src="./img/Credipaz/tarjeta_credipaz.png" style="width:100%;" />
+                <a href="#" class="btn btn-sm btn-dark btnVerPANCABAL mt-1">Ver datos</a>
+                <div class="PANCABAL" style="padding-left:30px;position:absolute;left:0px;top:110px;width:100%;text-align:left;color:black;font-size:26px;font-weight:bold;"></div>
+            </div>
+        </div>
+
+        <div class="row" style="border-top:solid 2px rgb(235, 0, 139);">
+            <div class="col-6" style="padding:5px;border-right:solid 1px rgb(235, 0, 139);">
+                <div class="text-center title-box">Pago mínimo</div>
+                <div class="text-center monto-box PagoMinimo">$-.---</div>
+            </div>
+            <div class="col-6" style="padding:5px;border-left:solid 1px rgb(235, 0, 139);">
+                <div class="text-center title-box">Pago total</div>
+                <div class="text-center monto-box PagoTotalResumen">$-.---</div>
+            </div>
+        </div>
+
+        <div class="row" style="border-top:solid 2px rgb(235, 0, 139);border-bottom:solid 2px rgb(235, 0, 139);">
+            <div class="col-6" style="padding:5px;border-right:solid 1px rgb(235, 0, 139);">
+                <div class="text-center title-box">Vencimiento</div>
+                <div class="text-center fecha-box FechaVtoPagoMinimo">--/--/----</div>
+            </div>
+            <div class="col-6" style="padding:5px;border-left:solid 1px rgb(235, 0, 139);">
+                <div class="text-center title-box">Próximo cierre</div>
+                <div class="text-center fecha-box FechaCierre">--/--/----</div>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-12 text-center" style="padding:5px;">
+                <div class="text-center title-box">Disponible Compra</div>
+                <div class="text-center monto-box MontoDisponibleCompra">$--.---</div>
+            </div>
+        </div>
+
+        <div class="row row-magenta-top my-1"></div>
+        <div class="col-12">
+            <a href="#" class="btn btn-sm btn-danger btnResumen" target="_blank">Último resumen</a>
+            <a href="#" class="linkContrato btn btn-sm btn-info" target="_blank">Contrato de tarjeta</a>
+        </div>
+
+        <div class="row row-magenta-top my-1"></div>
+    </div>
+</div>
+    <script>
+        $(".linkContrato").attr("href", _HTTPREQUEST.server + "downloadContratoTarjeta / contratoemisiontarjeta.pdf");
+        _NMF.onPageHeader(".inner-title", "", "./img/Credipaz/tarjeta.png", "./includes/Credipaz/home.html", false);
+        _NMF.onResizeInner();
+        $(".linkPago").attr("href", _NMF.urlPago);
+        $(".btnResumen").attr("href", _NMF.urlResumen);
+        $(".infoTarjeta").removeClass("d-none");
+        $(".dataTarjeta").addClass("d-none");
+        if (_NMF._session_data != null) {
+            if (parseInt(_NMF._session_data.MontoAdelantoTarjeta) <= 0) { $(".ofrecer-adelantotarjeta").remove(); }
+            $.each(_NMF._session_data.Tarjeta, function (i, obj) {
+                _NMF._session_data.lastPANCABAL = ("****    ****    ****    " + _NMF._session_data.PANCABAL.slice(_NMF._session_data.PANCABAL.length - 4));
+                _NMF.onVerPanCabal(null, false);
+                $(".infoTarjeta").addClass("d-none");
+                $(".dataTarjeta").removeClass("d-none");
+                $(".MontoDisponibleCompra").html("$" + parseFloat(obj.DisponibleCompra).toLocaleString())
+                $(".tarjeta-numero").html("");
+                if (obj.FechaCierre == undefined) {
+                    obj.FechaCierre = "  /  /    ";
+                    $(".FechaCierre").html("  /  /    ");
+                } else {
+                    $(".btnTarjeta").removeClass("hidden");
+                    $(".FechaCierre").html(_TOOLS.toDDMMYY(obj.FechaCierre, "-"));
+                }
+                $(".PagoMinimo").html("$" + parseFloat(obj.PagoMinimo).toLocaleString());
+                $(".PagoTotalResumen").html("$" + parseFloat(obj.PagoTotalResumen).toLocaleString());
+                $(".FechaVtoPagoMinimo").html(_TOOLS.toDDMMYY(obj.FechaVtoPagoMinimo, "-"));
+            });
+        }
+    </script>
+

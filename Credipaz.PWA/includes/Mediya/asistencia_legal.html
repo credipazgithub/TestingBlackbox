@@ -1,0 +1,22 @@
+<div class="app-asistencia-legal container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+    <div class="row px-3">
+        <div class="col-12 mensaje-asistencia pt-1 text-left mt-1 d-none"></div>
+    </div>
+    <div class="row px-3 pt-2">
+        <div class="col-12 msg-legales-with p-1 text-center mt-1 d-none"></div>
+        <div class="col-12 msj-request text-center" style="margin-top:5px;">
+            <a class="btn-solicitar text-center btn-generate-paycode-legal">SOLICITAR ASESORÍA</a>
+        </div>
+    </div>
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "ASESORÍA LEGAL", "./img/Mediya/h_asistencia_legal.png", _NMF._default_page, false);
+    _NMF.onResizeInner();
+    _API.UiGetWebPosts({ "id": 109 })
+        .then(function (data) {
+            $(".mensaje-asistencia").html(data.data[0].body_post).removeClass("d-none");
+        })
+        .catch(function (err) { console.log(err); });
+</script>
+

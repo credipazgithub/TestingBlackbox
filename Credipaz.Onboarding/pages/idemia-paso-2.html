@@ -1,0 +1,26 @@
+<div class="page idemia-paso-2 py-4 px-0 d-flex justify-content-center">
+    <!--#include virtual="./pages/includes/header.html" -->
+    <div class="container-full text-center" style="background-color:white;">
+        <h2 class="mt-5 msg-1">Verificación de identidad</h2>
+        <h4 class="my-2 msg-2">Aguarde unos instantes, el proceso comenzará en unos segundos...</h4>
+        <div class="card card-1">
+            <div class="card-body text-center">
+                <!--
+                <form id="idemia" action="https://admin.4i4id.com:3443/inscrdpztst/home-high" method="post" target="_top">
+                -->
+                <form id="idemia" action="https://services.4i4id.com:6443/inscredpaz/home-high" method="post" target="_top">
+                    <input type="hidden" name="idapp" value="Credipaz" />
+                    <input type="hidden" id="seckey" name="seckey" value="" />
+                    <input type="hidden" name="country" value="ARG" />
+                    <input type="hidden" name="idmaqc_service" value="ONBOARDING_DIGITALPLATFORM" />
+                    <input type="hidden" name="profile_services" value="ONBOARDING_DIGITALPLATFORM" />
+                    <input type="hidden" name="services" value="ONBOARDING_DIGITALPLATFORM" />
+                    <input type="hidden" id="externaltxid" name="externaltxid" value="" />
+                    <input type="hidden" name="citizenid" value="" />
+                    <input type="hidden" id="dni" name="dni" value="" />
+                    <input type="hidden" id="sexo" name="sexo" value="" />
+                </form>
+            </div>
+        </div>
+    </div>
+</div>

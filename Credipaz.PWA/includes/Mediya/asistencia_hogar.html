@@ -1,0 +1,55 @@
+<div class="app-asistencia-hogar container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+    <div class="row no-gutters px-3">
+        <div class="col-6 p-2 text-center menu-categoria-beneficios">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/Mediya/asistencia_plomeria.html">
+                <img src="./img/Comun/plomeria.png" style="width:100%;" alt="Plomería" />
+            </a>
+        </div>
+        <div class="col-6 p-2 text-center">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/Mediya/asistencia_electricidad.html">
+                <img src="./img/Comun/electricidad.png" style="width:100%;" alt="Electricidad" />
+            </a>
+        </div>
+        <div class="col-6 p-2 text-center">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/Mediya/asistencia_gasista.html">
+                <img src="./img/Comun/gasista.png" style="width:100%;" alt="Gasista" />
+            </a>
+        </div>
+        <div class="col-6 p-2 text-center">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/Mediya/asistencia_cerrajeria.html">
+                <img src="./img/Comun/cerrajeria.png" style="width:100%;" alt="Cerrajería" />
+            </a>
+        </div>
+        <div class="col-6 p-2 text-center">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/Mediya/asistencia_vidrieria.html">
+                <img src="./img/Comun/vidrieria.png" style="width:100%;" alt="Vidriería" />
+            </a>
+        </div>
+    </div>
+    <!--
+        <div class="row px-3">
+            <div class="col-12 mensaje-asistencia pt-1 text-left mt-1 d-none"></div>
+            <div class="col-12 msj-request text-center" style="margin-top:5px;">
+                <a class="btn-solicitar text-center asistencia_hogar">SOLICITAR ASISTENCIA AL HOGAR</a>
+            </div>
+        </div>
+        <div class="row px-3 pt-2">
+            <div class="col-12 msg-legales-with p-1 text-center mt-1 d-none"></div>
+            <div class="col-12 msj-request text-center" style="margin-top:5px;">
+                <a class="btn-solicitar text-center btn-generate-paycode-legal">SOLICITAR ASISTENCIA LEGAL</a>
+            </div>
+        </div>
+        -->
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "ASISTENCIA AL HOGAR", "./img/Mediya/h_asistencia_hogar.png", _NMF._default_page, false);
+    _NMF.onResizeInner();
+    $(".asistencia_hogar").attr("href", "tel:+541137542479");
+    _API.UiGetWebPosts({ "id": 98 })
+        .then(function (data) {
+            $(".mensaje-asistencia").html(data.data[0].body_post).removeClass("d-none");
+        })
+        .catch(function (err) { console.log(err); });
+</script>
+

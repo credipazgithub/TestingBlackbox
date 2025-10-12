@@ -1,0 +1,36 @@
+<div class="app-especialidades container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="res-result"></div>
+    <div class='row no-gutters px-3 menu-categoria-medicina'></div>
+</div>
+
+<script>
+    _NMF.onPageHeader(".inner-title", "ESPECIALIDADES MÉDICAS", "./img/MediYa/h_especialidades.png?nocache1", _NMF._default_page, false);
+    _NMF.onResizeInner();
+
+    var _target = ".menu-categoria-medicina";
+    var _back = "./includes/MediYa/especialidades.html";
+    var _scope = "MediYa";
+
+    _NMF.onCategoriaMedicina(_scope, _target, "332", "Odontología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "333", "Pediatría", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "334", "Cardiología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "323", "Oftalmología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "337", "Clínica Médica", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "336", "Ginecología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "325", "Urología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "335", "Traumatología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "324", "Otorrino", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "326", "Neurología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "327", "Neumonología", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "328", "Alergia", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "329", "Anatomía patológica", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "330", "Endoc.y nutrición", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "331", "Rehabilitación médica", "", _back);
+    //$(_target).append("<div class='col-12 p-1 text-center'><button class='px-4 btn-data-page btn-menu-intermedio' data-direction='normal' data-href='./includes/MediYa/coberturas.html' style='width:90%;'>Coberturas de salud</button></div>");
+
+    _NMF.id_category = "332,333,334,323,337,336,325,335,324,326,327,328,329,330,331";
+    $(".searcher").attr("data-category", _NMF.id_category);
+</script>
+

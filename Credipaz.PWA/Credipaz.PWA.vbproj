@@ -1,0 +1,286 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74030524-DE27-4A73-91E5-F694395D5C55}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NeodataNet</RootNamespace>
+    <AssemblyName>NeodataNet</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mobile">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.js.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="web.config" />
+    <Content Include="Recursos\configServers.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <Content Include="website-movil-credipaz-manifest.json" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="assets\bootstrap-material-design\css\bootstrap-material-design.css" />
+    <Content Include="assets\bootstrap-material-design\css\bootstrap-material-design.min.css" />
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.js" />
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.min.js" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-select.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\js\bootstrap-select.min.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="css\fonts.css" />
+    <Content Include="css\index-credipaz.css" />
+    <Content Include="css\index.css" />
+    <Content Include="icons\Credipaz\favico.ico" />
+    <Content Include="icons\Credipaz\maskable_icon_x128.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x1280.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x192.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x36.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x384.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x48.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x512.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x72.png" />
+    <Content Include="icons\Credipaz\maskable_icon_x96.png" />
+    <Content Include="img\Comun\facebook.png" />
+    <Content Include="img\Comun\hamburg.png" />
+    <Content Include="img\Comun\instagram.png" />
+    <Content Include="img\Comun\lnk.png" />
+    <Content Include="img\Comun\ytb.png" />
+    <Content Include="img\Credipaz\0800.png" />
+    <Content Include="img\Credipaz\credipaz.png" />
+    <Content Include="img\Credipaz\efectivo.png" />
+    <Content Include="img\Credipaz\fajo.png" />
+    <Content Include="img\Credipaz\home.png" />
+    <Content Include="img\Credipaz\logo.png" />
+    <Content Include="img\Credipaz\portada_app.jpg" />
+    <Content Include="img\Credipaz\tarjeta.png" />
+    <Content Include="img\Credipaz\tarjeta_credipaz.png" />
+    <Content Include="includes\Comun\credencialclubredondo.html" />
+    <Content Include="includes\Comun\credencialgerdanna.html" />
+    <Content Include="includes\Comun\credencialswiss.html" />
+    <Content Include="includes\Comun\dynamic.html" />
+    <Content Include="includes\Comun\exit.html" />
+    <Content Include="includes\Comun\forget.html" />
+    <Content Include="includes\Comun\login.html" />
+    <Content Include="includes\Comun\logout.html" />
+    <Content Include="includes\Comun\searchResult.html" />
+    <Content Include="includes\Credipaz\efectivo.html" />
+    <Content Include="includes\Credipaz\exit.html" />
+    <Content Include="includes\Credipaz\forget.html" />
+    <Content Include="includes\Credipaz\home.html" />
+    <Content Include="includes\Credipaz\login.html" />
+    <Content Include="includes\Credipaz\logout.html" />
+    <Content Include="includes\Credipaz\tarjeta.html" />
+    <Content Include="includes\Mediya\000.html" />
+    <Content Include="includes\Mediya\asistencia_cerrajeria.html" />
+    <Content Include="includes\Mediya\asistencia_electricidad.html" />
+    <Content Include="includes\Mediya\asistencia_gasista.html" />
+    <Content Include="includes\Mediya\asistencia_hogar.html" />
+    <Content Include="includes\Mediya\asistencia_legal.html" />
+    <Content Include="includes\Mediya\asistencia_plomeria.html" />
+    <Content Include="includes\Mediya\asistencia_vidrieria.html" />
+    <Content Include="includes\Mediya\asociarme.html" />
+    <Content Include="includes\Mediya\beneficios.html" />
+    <Content Include="includes\Mediya\coberturas.html" />
+    <Content Include="includes\Mediya\especialidades.html" />
+    <Content Include="includes\Mediya\farmacias.html" />
+    <Content Include="includes\Mediya\footer.html" />
+    <Content Include="includes\Mediya\header.html" />
+    <Content Include="includes\Mediya\home.html" />
+    <Content Include="includes\Mediya\invitar.html" />
+    <Content Include="includes\Mediya\laboratorios.html" />
+    <Content Include="includes\Mediya\miscomprobantes.html" />
+    <Content Include="includes\Mediya\miscupones.html" />
+    <Content Include="includes\Mediya\misrecetas.html" />
+    <Content Include="includes\Mediya\pagos.html" />
+    <Content Include="includes\Mediya\sidebar.html" />
+    <Content Include="includes\Mediya\telemedicina.html" />
+    <Content Include="index-credipaz.html" />
+    <Content Include="index.html" />
+    <Content Include="js\API.js" />
+    <Content Include="js\INDEX.js" />
+    <Content Include="js\NMF.js" />
+    <Content Include="verificationQR.png" />
+    <Content Include="website-movil-credipaz-configuration.js" />
+    <Content Include="website-movil-worker.js" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="pdf\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50481/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

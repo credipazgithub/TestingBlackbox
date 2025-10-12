@@ -1,0 +1,117 @@
+* {
+    overscroll-behavior: none;
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 5px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    background: silver;
+    border-radius: 10px;
+}
+
+    /* Handle on hover */
+    ::-webkit-scrollbar-thumb:hover {
+        background: grey;
+    }
+body {
+    overscroll-behavior: none;
+    -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+    -webkit-user-select: text; /* prevent copy paste, to allow, change 'none' to 'text' */
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 12px;
+    height: 100vh;
+    min-height: 100vh;
+    margin: 0px;
+    padding: 0px;
+    /* Padding to avoid the "unsafe" areas behind notches in the screen */
+    padding: env(safe-area-inset-top, 0px) env(safe-area-inset-right, 0px) env(safe-area-inset-bottom, 0px) env(safe-area-inset-left, 0px);
+    width: 100vw;
+    min-width: 100vw;
+    overflow: auto;
+}
+.app {
+    overscroll-behavior: none;
+    min-width: 300px;
+}
+.imgBack {
+    overscroll-behavior: none;
+    background-image: url(../img/background.jpg);
+    background-size: cover;
+    -webkit-box-pack: center;
+    justify-content: center;
+    -webkit-box-align: center;
+    align-items: center;
+    background-position: center center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    height: 100vh;
+    padding: 0px;
+}
+
+.area-received {
+    overscroll-behavior: none;
+    background-color: transparent;
+    position: absolute !important;
+    left: 0px;
+    bottom: 115px;
+    height: 175px !important;
+    width: 100vw !important;
+    z-index: 999999 !important;
+}
+
+.btn-shoppingcart {
+    position: absolute;
+    left: 0px;
+    bottom: 0px;
+    z-index: 999999;
+    border-radius: 50px;
+    width: 40px;
+}
+
+.badge-shoppingcart {
+    position: absolute;
+    right: -10px;
+    top: 0px;
+    font-size: 0.7rem !important;
+    border-radius: 50px !important;
+}
+
+
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app-intro {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}

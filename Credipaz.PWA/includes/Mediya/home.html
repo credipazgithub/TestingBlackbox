@@ -1,0 +1,60 @@
+<div class="app-beneficios container-full text-center inner-page">
+    <div class="row p-0 m-0 mt-3">
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/MediYa/telemedicina.html">
+                <img src='./img/Mediya/telemedicina.png?nocache1' style="width:90%;" alt="Telemedicina" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/farmacias.html">
+                <img src='./img/Mediya/farmacia.png?nocache1' style="width: 90%;" alt="Farmacia" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2">
+            <a href='tel:08002221441'>
+                <img src='img/Mediya/urgencias.png?nocache1' style="width: 90%;" alt="Urgencias" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/especialidades.html">
+                <img src='./img/Mediya/especialidades.png?nocache1' style="width: 90%;" alt="Especialidades médicas y odontológicas" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/laboratorios.html">
+                <img src='./img/Mediya/laboratorios.png?nocache1' style="width: 90%;" alt="Laboratorio e imágenes" />
+            </a>
+        </div>
+    </div>
+    <div class="row m-0 p-0 loged d-none title-rCredencial px-2">
+        <div class="col-12 m-0 p-0 text-left title-credencial" style="display: none; font-family: Roboto-regular; font-size: 0.75em; color: grey;">
+            Mis Credenciales
+        </div>
+    </div>
+
+    <div class="row m-0 p-0 mb-5 loged d-none rCredencial px-2 area-credenciales pb-5">
+        <div class="col-6 p-0 m-0 text-center area-swiss skeleton card-loader"></div>
+        <div class="col-6 p-0 m-0 text-center area-gerdanna skeleton card-loader"></div>
+    </div>
+</div>
+<script>
+    _NMF.onToggleVisibilityByStatus();
+    _NMF.onResizeInner();
+    if (_NMF._logged) {
+        if (!_NMF._credentialsReady) {
+            _API.UiGetCredenciales({ "Tipo": "SWISS", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                _NMF._dataSwiss = datajson;
+                _NMF.drawCredentialSwiss(_NMF._dataSwiss);
+            }).catch(function (error) { });
+            _API.UiGetCredenciales({ "Tipo": "GERDANNA", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                _NMF._dataGerdanna = datajson;
+                _NMF.drawCredentialGerdanna(_NMF._dataGerdanna);
+            }).catch(function (error) { });
+        } else {
+            _NMF.drawCredentialSwiss(_NMF._dataSwiss);
+            _NMF.drawCredentialGerdanna(_NMF._dataGerdanna);
+        }
+    }
+    _NMF.id_category = "-125,332,333,334,323,337,336,325,335,324,326,327,328,329,330,331,338,339,340";
+    $(".searcher").attr("data-category", _NMF.id_category);
+</script>

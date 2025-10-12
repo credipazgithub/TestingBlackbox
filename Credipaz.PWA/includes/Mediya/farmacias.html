@@ -1,0 +1,21 @@
+<div class="app-farmacias container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="results p-1 m-1" style="z-index:9999;overflow-y:auto;overflow-x:hidden;"></div>
+    <div class="row no-gutters msj-credenciales p-1"></div>
+    <div class="maparea d-none" style="z-index:9999;"></div>
+</div>
+<script>
+    $(".msj-credenciales").html($(".title-rCredencial").html());
+    $(".msj-credenciales").append($(".rCredencial").html());
+    _NMF.onPageHeader(".inner-title", "FARMACIAS", "./img/MediYa/h_farmacia.png?nocache1", _NMF._default_page,true);
+    _NMF.onResizeInner();
+    setTimeout(function () {
+        $(".res-result").html("").hide();
+        _NMF.onGoForBeneficios("categoria", _NMF.id_category, "", 0);
+        var _h = ($(".app-farmacias").height() - $(".inner-title").height() - $(".msj-credenciales").height());
+        $(".results").css("height", (_h + "px"));
+    }, 250);
+    _NMF.id_category = "-125";
+    $(".searcher").attr("data-category", _NMF.id_category);
+</script>

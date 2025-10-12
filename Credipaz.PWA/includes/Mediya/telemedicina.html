@@ -1,0 +1,109 @@
+<div class="app-telemedicina container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="row no-gutters px-2 mt-1">
+        <div class="col-12 msj-request text-center pt-0 mt-0">
+            <div class="active-paycode d-none" style="margin-top:5px;display:inline;color:grey;font-weight:bold;">
+                <table style="width:100%;">
+                    <tr>
+                        <td style="width:20%;"><div class="active-paycode text-center verification-code paycode"></div></td>
+                        <td align="left" style="padding-left:3px;font-weight:normal;font-size:0.8rem;" class="paycode-message"></td>
+                    </tr>
+                </table>
+                <div id="player_telemedicina" class="d-none" style="height:320px;width:100%;"></div>
+            </div>
+        </div>
+        <div class="col-12 msj-status text-center pt-1 mt-2 d-none"></div>
+        <div class="col-12 take-picture text-center pt-1 mt-2 d-none">
+            <a href="#" data-action="camera" class="btn btn-primary btn-raised btn-block btn-take-picture" data-source="1">
+                <i class="material-icons">add_a_photo</i> Sacar foto y enviarla al doctor
+            </a>
+        </div>
+        <div class="col-12 msj-detalles text-left m-0 p-0 pt-1" style="font-size:0.8rem;color:grey;font-weight:bold;"></div>
+        <div class="col-12 text-center mt-1" style="font-size:1rem;">
+            <div class="inactive-paycode text-center generate-paycode" style="margin-top:5px;">
+                <a class='btn-generate-paycode text-center btn-solicitar'>SOLICITAR VIDEOCONSULTA</a>
+            </div>
+        </div>
+        <div class="col-12 text-center mt-2">
+            <button class="model-by-id back-sidebar" data-id="97" data-accept="" data-reject="" style="color:black;">VER CONDICIONES</button>
+        </div>
+        <div class="col-12 active-paycode d-none text-center p-2">
+            <button class="btnShowVideo btn btn-success">Mostrar la llamada activa</button>
+        </div>
+    </div>
+    <div class="row no-gutters msj-credenciales p-1"></div>
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "TELEMEDICINA", "./img/MediYa/h_telemedicina.png?nocache1", _NMF._default_page, false);
+    _NMF.onResizeInner();
+    try {
+        var _x = _PHOTO;
+    } catch (err) {
+        $.getScript((_NMF._cdn_server+"payments/PAY.js"), function () {
+            $.getScript(_NMF._cdn_server + "photo/PHOTO.js", function () {
+
+            });
+        });
+    }
+    _API.UiGetWebPosts({ "id": 96 })
+        .then(function (data) {
+            $(".msj-detalles").html(data.data[0].body_post).removeClass("d-none");
+        })
+        .catch(function (err) { console.log(err); });
+    $(".msj-credenciales").html($(".title-rCredencial").html());
+    $(".msj-credenciales").append($(".rCredencial").html());
+
+    var _videoServer = "https://localhost:44315/neovideo.v1/";
+    var _authenticationServer = "https://localhost:44315/neoauthentication.v1/";
+
+    //if (window.location.hostname != "localhost") {
+    _videoServer = "https://api.gruponeodata.com/neovideo.v1/";
+    _authenticationServer = "https://api.gruponeodata.com/neoauthentication.v1/";
+    //}
+    $("body").off("click", ".btnShowVideo").on("click", ".btnShowVideo", function () {
+        $('[name ^= "jitsiConferenceFrame"]').css({ "height": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height, "width": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width });
+        $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).fadeIn("slow");
+        $(".app-footer").addClass("d-none");
+    });
+    
+    $.getScript("https://jvideo1.gruponeodata.com/external_api.js").done(function (script, textStatus) {
+        $.getScript(_NMF.cdn_server + "authentication/NEOAUTHENTICATION.js?" + _TOOLS.UUID()).done(function (script, textStatus) {
+            $.getScript(_NMF.cdn_server + "video/NEOVIDEO-jvideo1.js?" + _TOOLS.UUID()).done(function (script, textStatus) {
+                $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).html("");
+                _NEOAUTHENTICATION._SERVER = _authenticationServer;
+                _NEOVIDEO._SERVER = _videoServer;
+                _NEOVIDEO._id_application = 6;
+                _NEOVIDEO._username = "credipaz";
+                _NEOVIDEO._password = "08.!Rcp#@80";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target = "#meet";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.caller = "telemedicina-paciente";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.roomname = "NEOVIDEO";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.fullname = " ";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.alias = " ";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width = "100vw";
+                _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height = "100vh";
+                _NEOVIDEO._INTERFACE_CONFIG_OVERWRITE.TOOLBAR_BUTTONS = ['microphone', 'camera'];
+
+                /*Defines behavior when close video*/
+                _NEOVIDEO.onDisconnect = function () {
+                    $(".app-footer").removeClass("d-none");
+                    $("#meet").fadeOut("fast");
+                };
+                _NEOVIDEO.onParticipantLeft = function (data) {
+                    $(".app-footer").removeClass("d-none");
+                    $("#meet").fadeOut("fast");
+                    $(".close-sidebar").click()
+                };
+                _NEOVIDEO.onParticipantJoined = function (data) {
+                    $('[name ^= "jitsiConferenceFrame"]').css({ "height": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height, "width": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width });
+                    $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).fadeIn("slow");
+                    $(".app-footer").addClass("d-none");
+                };
+
+                _NEOVIDEO.onTurnOffVideo({});
+                _NMF.onEvalCallStatus(null);
+            });
+        });
+    });
+</script>
