@@ -1,0 +1,172 @@
+<!--
+    SERVER:                   https://api.credipaz.com/
+    ENDPOINT AUTENTICACION:   api.v1/authenticate
+    METHOD:                   post
+    HEADERS:                  application/x-www-form-urlencoded
+    DATA:                     { "username": "inconcert", "password": "qPQhSsgUZ#2^%iB" }
+    RESPUESTA:                json, utilizar solamente los nodos 'id' y 'token_authentication'
+
+    ENDPOINT CONSULTA CLIENTE:api.v1/EsCliente
+    METHOD:                   post
+    HEADERS:                  application/x-www-form-urlencoded
+    DATA:                     {
+                                "Documento": "[STRING]",
+                                "Sexo": "[STRING] (M o F)",
+                                "id_user_active": [INT] (Se debe asignar el valor 'id' devuelto en la autenticación.)
+                                "token_authentication": [STRING] (Se debe asignar el valor 'token_authentication' devuelto en la autenticación.)
+                              }
+    RESPUESTA:                json, utilizar valores del nodo 'data'
+
+    ENDPOINT CONSULTA DEUDA:  api.v1/ObtenerDeuda
+    METHOD:                   post
+    HEADERS:                  application/x-www-form-urlencoded
+    DATA:                     {
+                                "Documento": "[STRING]",
+                                "Deuda": "[STRING] (TAR o CRE)",
+                                "id_user_active": [INT] (Se debe asignar el valor 'id' devuelto en la autenticación.)
+                                "token_authentication": [STRING] (Se debe asignar el valor 'token_authentication' devuelto en la autenticación.)
+                              }
+    RESPUESTA:                json, utilizar valores del nodo 'data'
+-->
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Credipaz Inconcert</title>
+
+    <!-- Dependencias: Jquery +3 -->
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div>
+        <h2>Ejemplo consulta "Es Cliente"</h2>
+        <table>
+            <tr>
+                <td><label>DNI</label></td>
+                <td><input id="DocumentoC" name="DocumentoC" type="number" placeholder="DNI" value="" /></td>
+            </tr>
+            <tr>
+                <td><label>Sexo</label></td>
+                <td>
+                    <select id="Sexo" name="Sexo">
+                        <option selected value="M">Masculino</option>
+                        <option value="F">Femenino</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="2"><button href="#" class="btnExec-C">Consultar</button></td>
+            </tr>
+        </table>
+        <br />
+
+        <div id="dataResponse-C" style="background-color:ivory;"></div>
+    </div>
+    <div>
+        <h2>Ejemplo consulta "Obtener Deuda"</h2>
+        <table>
+            <tr>
+                <td><label>DNI</label></td>
+                <td><input id="DocumentoD" name="DocumentoD" type="number" placeholder="DNI" value="" /></td>
+            </tr>
+            <tr>
+                <td><label>Tipo de deuda</label></td>
+                <td>
+                    <select id="Deuda" name="Deuda">
+                        <option selected value="TAR">Tarjeta</option>
+                        <option value="CRE">Crédito</option>
+                    </select>
+                </td>
+            </tr>
+            <tr>
+                <td align="right" colspan="2"><button href="#" class="btnExec-D">Consultar</button></td>
+            </tr>
+        </table>
+        <br />
+
+        <div id="dataResponse-D" style="background-color:ivory;"></div>
+    </div>
+</body>
+</html>
+<script>
+    $(document).ready(function () {
+        var _server = "https://api.credipaz.com/api.v1";
+        //var _server = "http://localhost:1100/api.v1";
+
+        var _settings_autenticacion = {
+            "url": _server + "/authenticate",              // Endpoint de autenticación
+            "method": "POST",                                                   // La llamada debe ser POST
+            "timeout": 0,
+            "headers": { "Content-Type": "application/x-www-form-urlencoded" }, // El content-type debe ser el aquí indicado
+            "data": { "username": "inconcert", "password": "qPQhSsgUZ#2^%iB" }  // Las credenciales del cliente son las aquí indicadas
+        };
+
+        $("body").off("click", ".btnExec-C").on("click", ".btnExec-C", function () {
+            if ($("#DocumentoC").val() == "") { alert("El DNI es un dato requerido"); return false; }
+            /* Parámetros de configuración para llamada de autenticación */
+            var _settings = {
+                "url": _server + "/EsCliente",                 // Endpoint para consultar deuda
+                "method": "POST",                                                   // La llamada debe ser POST
+                "timeout": 0,
+                "headers": { "Content-Type": "application/x-www-form-urlencoded" }, // El content-type debe ser el aquí indicado
+                "data": {                                                           // El nodo 'data' debe completarse luego de la autenticación
+                    "Documento": $("#DocumentoC").val(),                             // 'Documento' es requerido
+                    "Sexo": $("#Sexo").val()                                        // 'Sexo' es requerido y puede ser 'M' o 'F'
+                }
+            };
+
+            /*Paso 1 - Autenticación*/
+            $.ajax(_settings_autenticacion).done(function (auth) {
+                if (auth.status == "OK") {
+                    /* Si la autenticación es correcta, se dede completar el nodo 'data' con los datos de id usuario y token
+                       Esto es fundamental para poder completar la llamada */
+                    _settings["data"]["id_user_active"] = auth.data.id;
+                    _settings["data"]["token_authentication"] = auth.data.token_authentication;
+                    $.ajax(_settings).done(function (res) {
+                        if (res.status == "OK") {
+                            $("#dataResponse-C").html("<h4>Consulta 'Es Cliente' - Respuesta</h4><pre>" + JSON.stringify(res.data, null, 3) + "</pre>");
+                        } else {
+                            $("#dataResponse-C").html("<h4>Consulta 'Es Cliente' - ERROR</h4><pre>" + JSON.stringify(res.message, null, 3) + "</pre>");
+                        }
+                    });
+                } else {
+                    $("#dataResponse-C").html("<h4>Autenticación - ERROR</h4><pre>" + JSON.stringify(auth.message, null, 3) + "</pre>");
+                }
+            });
+        });
+        $("body").off("click", ".btnExec-D").on("click", ".btnExec-D", function () {
+            if ($("#DocumentoD").val() == "") { alert("El DNI es un dato requerido"); return false; }
+            var _settings = {
+                "url": _server + "/ObtenerDeuda",              // Endpoint para consultar deuda
+                "method": "POST",                                                   // La llamada debe ser POST
+                "timeout": 0,
+                "headers": { "Content-Type": "application/x-www-form-urlencoded" }, // El content-type debe ser el aquí indicado
+                "data": {                                                           // El nodo 'data' debe completarse luego de la autenticación
+                    "Documento": $("#DocumentoD").val(),                            // 'Documento' es requerido
+                    "Deuda": $("#Deuda").val()                                      // 'Deuda' es requerido y puede ser 'TAR' o 'CRE'
+                }
+            };
+
+            /*Paso 1 - Autenticación*/
+            $.ajax(_settings_autenticacion).done(function (auth) {
+                if (auth.status == "OK") {
+                    /* Si la autenticación es correcta, se dede completar el nodo 'data' con los datos de id usuario y token
+                       Esto es fundamental para poder completar la llamada */
+                    _settings["data"]["id_user_active"] = auth.data.id;
+                    _settings["data"]["token_authentication"] = auth.data.token_authentication;
+
+                    $.ajax(_settings).done(function (res) {
+                        if (res.status == "OK") {
+                            $("#dataResponse-D").html("<h4>Consulta 'Obtener Deuda' - Respuesta</h4><pre>" + JSON.stringify(res.data, null, 3) + "</pre>");
+                        } else {
+                            $("#dataResponse-D").html("<h4>Consulta 'Obtener Deuda' - ERROR</h4><pre>" + JSON.stringify(res.message, null, 3) + "</pre>");
+                        }
+                    });
+                } else {
+                    $("#dataResponse-D").html("<h4>Autenticación - ERROR</h4><pre>" + JSON.stringify(auth.message, null, 3) + "</pre>");
+                }
+            });
+        });
+    });
+</script>

@@ -1,0 +1,36 @@
+<head>
+<script
+  src="https://code.jquery.com/jquery-3.7.1.min.js"
+  integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+  crossorigin="anonymous"></script>
+  
+</head>
+
+<body>
+   <img id='img' src="" style='width:100vw;height:100vh;'>
+</body>
+
+<script>
+const username = 'admin';
+const password = 'credipaz2022';
+const url = 'https://camara22.credipaz.com/cgi-bin/mjpg/video.cgi?subtype=1'; // Replace with your target URL
+const credentials = btoa('${username}:${password}');
+
+fetch(url, {
+  method: 'GET',
+  mode: 'no-cors',
+  headers: {
+    'Authorization': 'Basic ${credentials}'
+  },
+  credentials: 'include'
+})
+.then(response => {
+  console.log('Response received (opaque):', response);
+  $("#img").attr("src","https://camara22.credipaz.com/cgi-bin/mjpg/video.cgi?subtype=1");
+  
+})
+.catch(error => {
+  console.error('Error during fetch:', error);
+});
+
+</script>

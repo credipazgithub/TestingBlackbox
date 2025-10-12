@@ -1,0 +1,842 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{66EE2700-5396-4AF4-873B-60B5AFAE9557}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NeodataNet</RootNamespace>
+    <AssemblyName>NeodataNet</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mobile">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="application\config\autoload.php" />
+    <Content Include="application\config\config.php" />
+    <Content Include="application\config\constants.php" />
+    <Content Include="application\config\database.php" />
+    <Content Include="application\config\doctypes.php" />
+    <Content Include="application\config\foreign_chars.php" />
+    <Content Include="application\config\hooks.php" />
+    <Content Include="application\config\index.html" />
+    <Content Include="application\config\memcached.php" />
+    <Content Include="application\config\migration.php" />
+    <Content Include="application\config\mimes.php" />
+    <Content Include="application\config\profiler.php" />
+    <Content Include="application\config\routes.php" />
+    <Content Include="application\config\smileys.php" />
+    <Content Include="application\config\user_agents.php" />
+    <Content Include="application\controllers\Backend.php" />
+    <Content Include="application\controllers\Club_redondo.php" />
+    <Content Include="application\controllers\index.html" />
+    <Content Include="application\controllers\Mobile.php" />
+    <Content Include="application\controllers\Pwa.php" />
+    <Content Include="application\controllers\Export.php" />
+    <Content Include="application\controllers\Testing.php" />
+    <Content Include="application\core\index.html" />
+    <Content Include="application\core\My_Controller.php" />
+    <Content Include="application\core\My_Model.php" />
+    <Content Include="application\helpers\builder_helper.php" />
+    <Content Include="application\helpers\global_helper.php" />
+    <Content Include="application\helpers\index.html" />
+    <Content Include="application\helpers\ldap_helper.php" />
+    <Content Include="application\helpers\mod_aproval_helper.php" />
+    <Content Include="application\helpers\mod_backend_helper.php" />
+    <Content Include="application\helpers\mod_direct_sale_helper.php" />
+    <Content Include="application\helpers\mod_follow_helper.php" />
+    <Content Include="application\helpers\mod_folders_helper.php" />
+    <Content Include="application\helpers\mod_legal_helper.php" />
+    <Content Include="application\helpers\mod_payments_helper.php" />
+    <Content Include="application\helpers\mod_places_helper.php" />
+    <Content Include="application\helpers\mod_providers_helper.php" />
+    <Content Include="application\helpers\mod_onboarding_helper.php" />
+    <Content Include="application\helpers\mod_push_helper.php" />
+    <Content Include="application\helpers\mod_telemedicina_helper.php" />
+    <Content Include="application\helpers\mod_web_posts_helper.php" />
+    <Content Include="application\hooks\index.html" />
+    <Content Include="application\index.html" />
+    <Content Include="application\language\es-ar\buttons_lang.php" />
+    <Content Include="application\language\es-ar\db_lang.php" />
+    <Content Include="application\language\es-ar\email_lang.php" />
+    <Content Include="application\language\es-ar\errors_lang.php" />
+    <Content Include="application\language\es-ar\fields_lang.php" />
+    <Content Include="application\language\es-ar\index.html" />
+    <Content Include="application\language\es-ar\menu_lang.php" />
+    <Content Include="application\language\es-ar\messages_lang.php" />
+    <Content Include="application\language\es-ar\profiler_lang.php" />
+    <Content Include="application\language\index.html" />
+    <Content Include="application\models\index.html" />
+    <Content Include="application\models\mod_backend\Alert_control.php" />
+    <Content Include="application\models\mod_backend\Applications.php" />
+    <Content Include="application\models\mod_backend\Channels.php" />
+    <Content Include="application\models\mod_backend\Crypto.php" />
+    <Content Include="application\models\mod_backend\Currencies.php" />
+    <Content Include="application\models\mod_backend\Directions_cache.php" />
+    <Content Include="application\models\mod_backend\External.php" />
+    <Content Include="application\models\mod_backend\Files_base64.php" />
+    <Content Include="application\models\mod_backend\Files_attached.php" />
+    <Content Include="application\models\mod_backend\Functions.php" />
+    <Content Include="application\models\mod_backend\Groups.php" />
+    <Content Include="application\models\mod_backend\Load_medias.php" />
+    <Content Include="application\models\mod_backend\Log_credolab.php" />
+    <Content Include="application\models\mod_backend\Log_general.php" />
+    <Content Include="application\models\mod_backend\Masters.php" />
+    <Content Include="application\models\mod_backend\Messages_attached.php" />
+    <Content Include="application\models\mod_backend\Messages_attached_log.php" />
+    <Content Include="application\models\mod_backend\ReceiverBase64.php" />
+    <Content Include="application\models\mod_backend\Rel_channels_users.php" />
+    <Content Include="application\models\mod_backend\Rel_functions_applications.php" />
+    <Content Include="application\models\mod_backend\Rel_groups_functions.php" />
+    <Content Include="application\models\mod_backend\Rel_users_applications.php" />
+    <Content Include="application\models\mod_backend\Rel_users_preferences.php" />
+    <Content Include="application\models\mod_backend\Rel_users_groups.php" />
+    <Content Include="application\models\mod_backend\Sandbox_operations.php" />
+    <Content Include="application\models\mod_backend\Telemetry.php" />
+    <Content Include="application\models\mod_backend\Tickets.php" />
+    <Content Include="application\models\mod_backend\Type_load_medias.php" />
+    <Content Include="application\models\mod_backend\Type_controls.php" />
+    <Content Include="application\models\mod_backend\Preferences.php" />
+    <Content Include="application\models\mod_backend\Type_plans.php" />
+    <Content Include="application\models\mod_backend\Consents.php" />
+    <Content Include="application\models\mod_backend\Type_users.php" />
+    <Content Include="application\models\mod_backend\Users.php" />
+    <Content Include="application\models\__mod_channels\Blacklist.php" />
+    <Content Include="application\models\__mod_channels\Buffer_in.php" />
+    <Content Include="application\models\__mod_channels\Contact_channels.php" />
+    <Content Include="application\models\__mod_channels\Rel_threads_contact_channels.php" />
+    <Content Include="application\models\__mod_channels\Rel_threads_targets_contact_channels.php" />
+    <Content Include="application\models\__mod_channels\Threads.php" />
+    <Content Include="application\models\__mod_channels\Threads_conditions.php" />
+    <Content Include="application\models\__mod_channels\Threads_targets.php" />
+    <Content Include="application\models\__mod_channels\Threads_universe.php" />
+    <Content Include="application\models\__mod_channels\Type_contact_channels.php" />
+    <Content Include="application\models\__mod_channels\Type_threads.php" />
+    <Content Include="application\models\mod_club_redondo\Adherir.php" />
+    <Content Include="application\models\mod_club_redondo\Beneficios.php" />
+    <Content Include="application\models\mod_club_redondo\Beneficios_fields.php" />
+    <Content Include="application\models\mod_club_redondo\Beneficios_locations.php" />
+    <Content Include="application\models\mod_club_redondo\Beneficio_farmacia.php" />
+    <Content Include="application\models\mod_club_redondo\Canjes.php" />
+    <Content Include="application\models\mod_club_redondo\Presentar.php" />
+    <Content Include="application\models\mod_club_redondo\Rel_beneficios_type_categories.php" />
+    <Content Include="application\models\mod_club_redondo\Sorteos.php" />
+    <Content Include="application\models\mod_club_redondo\Sorteos_ranges.php" />
+    <Content Include="application\models\mod_club_redondo\Type_beneficios.php" />
+    <Content Include="application\models\mod_club_redondo\Type_categories.php" />
+    <Content Include="application\models\mod_club_redondo\Type_executions.php" />
+    <Content Include="application\models\mod_club_redondo\Sync_log.php" />
+    <Content Include="application\models\mod_club_redondo\Type_products.php" />
+    <Content Include="application\models\mod_club_redondo\Type_status_canjes.php" />
+    <Content Include="application\models\__mod_crm\Club_redondo.php" />
+    <Content Include="application\models\__mod_crm\Credito.php" />
+    <Content Include="application\models\__mod_crm\Mil.php" />
+    <Content Include="application\models\__mod_crm\Myd.php" />
+    <Content Include="application\models\__mod_crm\Operators_tasks.php" />
+    <Content Include="application\models\__mod_crm\Otros.php" />
+    <Content Include="application\models\__mod_crm\Reports_crm.php" />
+    <Content Include="application\models\__mod_crm\Tarjeta.php" />
+    <Content Include="application\models\__mod_crm\Type_tasks_close.php" />
+    <Content Include="application\models\__mod_dbcentral\Ingresos.php" />
+    <Content Include="application\models\__mod_dbcentral\Mediya.php" />
+    <Content Include="application\models\__mod_dbcentral\Comercializador.php" />
+    <Content Include="application\models\__mod_dbcentral\CR_Vendedor.php" />
+    <Content Include="application\models\__mod_dbcentral\EmpresaComercializadora.php" />
+    <Content Include="application\models\__mod_dbcentral\Empresa.php" />
+    <Content Include="application\models\__mod_dbcentral\filesystem.php" />
+    <Content Include="application\models\__mod_dbcentral\logCargaVirtual.php" />
+    <Content Include="application\models\__mod_dbcentral\consulta.php" />
+    <Content Include="application\models\__mod_dbcentral\stdUsuario.php" />
+    <Content Include="application\models\__mod_dbcentral\prospecto.php" />
+    <Content Include="application\models\__mod_dbcentral\tarGestionBaja.php" />
+    <Content Include="application\models\__mod_dbcentral\tarMovimiento.php" />
+    <Content Include="application\models\__mod_dbcentral\wrkRequerimiento.php" />
+    <Content Include="application\models\__mod_dbcentral\wrkRequerimiento_userview.php" />
+    <Content Include="application\models\mod_direct_sale\Products.php" />
+    <Content Include="application\models\mod_direct_sale\Devices.php" />
+    <Content Include="application\models\mod_direct_sale\Type_actions.php" />
+    <Content Include="application\models\mod_direct_sale\Cameras.php" />
+    <Content Include="application\models\mod_email\Email.php" />
+    <Content Include="application\models\mod_direct_sale\Operators_tasks.php" />
+    <Content Include="application\models\mod_direct_sale\Type_status.php" />
+    <Content Include="application\models\mod_direct_sale\Type_tasks_close.php" />
+    <Content Include="application\models\mod_external\Mercado_pago.php" />
+    <Content Include="application\models\mod_external\Farmalink.php" />
+    <Content Include="application\models\mod_external\NetCoreCPFinancial.php" />
+    <Content Include="application\models\mod_external\NeoTransactions.php" />
+    <Content Include="application\models\mod_legal\Operators_tasks_items.php" />
+    <Content Include="application\models\mod_onboarding\Requests_Core.php" />
+    <Content Include="application\models\mod_payments\Payments_fiserv.php" />
+    <Content Include="application\models\mod_payments\Transactions.php" />
+    <Content Include="application\models\mod_payments\Type_items.php" />
+    <Content Include="application\models\mod_payments\Type_channels.php" />
+    <Content Include="application\models\mod_providers\Rel_type_limits_aprovals_groups.php" />
+    <Content Include="application\models\mod_providers\Type_status_contables.php" />
+    <Content Include="application\models\mod_providers\Type_pay_conditions.php" />
+    <Content Include="application\models\mod_sms\SMS.php" />
+    <Content Include="application\models\mod_external\NeoSignature.php" />
+    <Content Include="application\models\mod_external\External_forms.php" />
+    <Content Include="application\models\mod_external\ClubRedondoWS.php" />
+    <Content Include="application\models\mod_external\RtCargaVirtual.php" />
+    <Content Include="application\models\mod_external\Reorganizer.php" />
+    <Content Include="application\models\mod_folders\Folders.php" />
+    <Content Include="application\models\mod_folders\Folders_log.php" />
+    <Content Include="application\models\mod_folders\Folders_userview.php" />
+    <Content Include="application\models\mod_folders\Folder_items.php" />
+    <Content Include="application\models\mod_folders\Folder_items_log.php" />
+    <Content Include="application\models\mod_folders\Rel_folders_groups.php" />
+    <Content Include="application\models\mod_folders\Type_control_points.php" />
+    <Content Include="application\models\mod_folders\Type_folders.php" />
+    <Content Include="application\models\mod_folders\Type_folder_items.php" />
+    <Content Include="application\models\mod_follow\Discharges.php" />
+    <Content Include="application\models\mod_follow\Questions.php" />
+    <Content Include="application\models\mod_follow\Sinisters_admin.php" />
+    <Content Include="application\models\mod_follow\Sinisters.php" />
+    <Content Include="application\models\mod_follow\Rel_sinisters_questions.php" />
+    <Content Include="application\models\mod_follow\Type_contingency.php" />
+    <Content Include="application\models\mod_follow\Type_arts.php" />
+    <Content Include="application\models\mod_follow\Type_priorities.php" />
+    <Content Include="application\models\mod_follow\Type_cancelations.php" />
+    <Content Include="application\models\mod_follow\Sinisters_sends.php" />
+    <Content Include="application\models\mod_follow\Type_status.php" />
+    <Content Include="application\models\mod_follow\Type_segments.php" />
+    <Content Include="application\models\mod_follow\Type_protocols.php" />
+    <Content Include="application\models\mod_intranet\Home.php" />
+    <Content Include="application\models\mod_legal\Charges_codes.php" />
+    <Content Include="application\models\mod_legal\Charges_codes_access.php" />
+    <Content Include="application\models\mod_legal\Lawyers.php" />
+    <Content Include="application\models\mod_legal\Operators_tasks.php" />
+    <Content Include="application\models\mod_legal\Type_directions.php" />
+    <Content Include="application\models\mod_legal\Type_instance.php" />
+    <Content Include="application\models\mod_legal\Type_items.php" />
+    <Content Include="application\models\mod_onboarding\Type_shortcuts.php" />
+    <Content Include="application\models\mod_onboarding\Type_rejects.php" />
+    <Content Include="application\models\mod_legal\Type_status.php" />
+    <Content Include="application\models\mod_legal\Type_tasks_close.php" />
+    <Content Include="application\models\mod_mobile_apps\Club_redondo.php" />
+    <Content Include="application\models\mod_mobile_apps\Credipaz.php" />
+    <Content Include="application\models\mod_mobile_apps\Intranet.php" />
+    <Content Include="application\models\mod_mobile_apps\Notifier.php" />
+    <Content Include="application\models\mod_legal\Type_request.php" />
+    <Content Include="application\models\mod_onboarding\Type_status.php" />
+    <Content Include="application\models\mod_payments\Agreements.php" />
+    <Content Include="application\models\mod_places\Sucursales.php" />
+    <Content Include="application\models\mod_places\Places.php" />
+    <Content Include="application\models\mod_places\Type_places.php" />
+    <Content Include="application\models\mod_providers\Companies.php" />
+    <Content Include="application\models\mod_providers\Folders.php" />
+    <Content Include="application\models\mod_providers\Folders_log.php" />
+    <Content Include="application\models\mod_providers\Folders_tesoreria.php" />
+    <Content Include="application\models\mod_providers\Folders_userview.php" />
+    <Content Include="application\models\mod_providers\Folder_items.php" />
+    <Content Include="application\models\mod_providers\Folder_items_log.php" />
+    <Content Include="application\models\mod_providers\Providers.php" />
+    <Content Include="application\models\mod_providers\Rel_folders_groups.php" />
+    <Content Include="application\models\mod_providers\Rel_folders_type_sectors.php" />
+    <Content Include="application\models\mod_providers\Rel_providers_type_sectors.php" />
+    <Content Include="application\models\mod_providers\Rel_type_sectors_groups.php" />
+    <Content Include="application\models\mod_providers\Type_control_points.php" />
+    <Content Include="application\models\mod_providers\Type_folders.php" />
+    <Content Include="application\models\mod_providers\Type_folder_items.php" />
+    <Content Include="application\models\mod_providers\Type_limits_aprovals.php" />
+    <Content Include="application\models\mod_providers\Type_sectors.php" />
+    <Content Include="application\models\mod_push\Push_out.php" />
+    <Content Include="application\models\mod_push\Type_commands.php" />
+    <Content Include="application\models\mod_push\Type_subscriptions.php" />
+    <Content Include="application\models\mod_push\Type_targets.php" />
+    <Content Include="application\models\mod_telemedicina\Audit.php" />
+    <Content Include="application\models\mod_telemedicina\Charges_codes.php" />
+    <Content Include="application\models\mod_telemedicina\Charges_codes_access.php" />
+    <Content Include="application\models\mod_telemedicina\Doctors.php" />
+    <Content Include="application\models\mod_telemedicina\Laboratories.php" />
+    <Content Include="application\models\mod_telemedicina\Log_actions.php" />
+    <Content Include="application\models\mod_telemedicina\Messages.php" />
+    <Content Include="application\models\mod_telemedicina\Operators_tasks.php" />
+    <Content Include="application\models\mod_telemedicina\Rel_persona_adicionales.php" />
+    <Content Include="application\models\mod_telemedicina\Type_emergency.php" />
+    <Content Include="application\models\mod_telemedicina\Type_families.php" />
+    <Content Include="application\models\mod_telemedicina\Type_monodrugs.php" />
+    <Content Include="application\models\mod_backend\Polls.php" />
+    <Content Include="application\models\mod_telemedicina\Type_vademecum.php" />
+    <Content Include="application\models\mod_telemedicina\Type_tasks_close.php" />
+    <Content Include="application\models\mod_telemedicina\Vademecum.php" />
+    <Content Include="application\models\__mod_telephony\Consolidated_sip.php" />
+    <Content Include="application\models\__mod_telephony\Imported_logs.php" />
+    <Content Include="application\models\__mod_telephony\Log_sip.php" />
+    <Content Include="application\models\__mod_telephony\Reports_sip.php" />
+    <Content Include="application\models\__mod_telephony\Telephony.php" />
+    <Content Include="application\models\__mod_telephony\Type_pause.php" />
+    <Content Include="application\models\__mod_telephony\Users_sip.php" />
+    <Content Include="application\models\mod_validate_cbu\Validate_cbu.php" />
+    <Content Include="application\models\mod_web_posts\Rel_web_posts_groups.php" />
+    <Content Include="application\models\mod_web_posts\Rel_web_posts_sections.php" />
+    <Content Include="application\models\mod_web_posts\Sections.php" />
+    <Content Include="application\models\mod_web_posts\Type_posts.php" />
+    <Content Include="application\models\mod_web_posts\Web_posts.php" />
+    <Content Include="application\models\mod_web_posts\Web_posts_items.php" />
+    <Content Include="application\third_party\index.html" />
+    <Content Include="application\views\loggedMediYa.php" />
+    <Content Include="application\views\loggedTiendaMil.php" />
+    <Content Include="application\views\mod_external\cesiones\form.js" />
+    <Content Include="application\views\mod_external\external_forms\tarjeta.js" />
+    <Content Include="application\views\mod_club_redondo\arrepentimiento\form.js" />
+    <Content Include="application\views\mod_club_redondo\arrepentimiento\form.php" />
+    <Content Include="application\views\mod_club_redondo\legales\form.js" />
+    <Content Include="application\views\mod_club_redondo\legales\form.php" />
+    <Content Include="application\views\mod_club_redondo\baja\form.js" />
+    <Content Include="application\views\mod_club_redondo\baja\form.php" />
+    <Content Include="application\views\__mod_dbcentral\ingresos\consulta.js" />
+    <Content Include="application\views\__mod_dbcentral\ingresos\consulta.php" />
+    <Content Include="application\views\mod_direct_sale\operators_tasks\form.js" />
+    <Content Include="application\views\mod_direct_sale\operators_tasks\form.php" />
+    <Content Include="application\views\mod_direct_sale\products\abm.php" />
+    <Content Include="application\views\mod_email\templates\alertCheckIntranet.php" />
+    <Content Include="application\views\mod_email\templates\bajaClubRedondo.php" />
+    <Content Include="application\views\mod_email\templates\arrepentimientoClubRedondo.php" />
+    <Content Include="application\views\__mod_dbcentral\mediya\subdiario.js" />
+    <Content Include="application\views\__mod_dbcentral\mediya\subdiario.php" />
+    <Content Include="application\views\mod_email\templates\notifyEmailPriority.php" />
+    <Content Include="application\views\mod_marketing\transactions_mediya\form.js" />
+    <Content Include="application\views\mod_marketing\transactions_credipaz\form.js" />
+    <Content Include="application\views\mod_onboarding\requests_core\form.php" />
+    <Content Include="application\views\mod_onboarding\informes\form.js" />
+    <Content Include="application\views\mod_payments\payments\fiserv-ok-test.php" />
+    <Content Include="application\views\mod_payments\payments\full.php" />
+    <Content Include="application\views\mod_payments\payments\fiserv-error.php" />
+    <Content Include="application\views\mod_payments\payments\fiserv-notify.php" />
+    <Content Include="application\views\mod_payments\payments\fiserv-ok.php" />
+    <Content Include="application\views\mod_payments\payments\full.js" />
+    <Content Include="application\views\mod_payments\payments\fiserv.php" />
+    <Content Include="application\views\mod_payments\transactions\form.js" />
+    <Content Include="application\views\mod_payments\transactions\form.php" />
+    <Content Include="application\views\mod_telemedicina\operators_tasks\abm.js" />
+    <Content Include="assets\bootstrap-material-design\css\bootstrap-material-design.css" />
+    <Content Include="assets\bootstrap-material-design\css\bootstrap-material-design.min.css" />
+    <Content Include="assets\bootstrap-material-design\css\__bootstrap-material-design.css" />
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.js" />
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.min.js" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css" />
+    <Content Include="assets\bootstrap\css\bootstrap-select.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.css" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css" />
+    <Content Include="assets\bootstrap\js\bootstrap-select.min.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.js" />
+    <Content Include="assets\bootstrap\js\bootstrap.min.js" />
+    <Content Include="assets\credipaz\img\gerdanna.png" />
+    <Content Include="assets\credipaz\img\swiss.png" />
+    <Content Include="assets\css\croppie.css" />
+    <Content Include="assets\css\Glyphter.svg" />
+    <Content Include="assets\css\material.css" />
+    <Content Include="assets\css\neotransac.css" />
+    <Content Include="assets\css\website.css" />
+    <Content Include="assets\img\mediya.png" />
+    <Content Include="assets\js\AJAX.js" />
+    <Content Include="assets\js\FUNCTIONS.js" />
+    <Content Include="assets\js\landing\_INIT_EVENTS.js" />
+    <Content Include="assets\js\MEDIA.js" />
+    <Content Include="assets\js\NEOVIDEO-jvideo1.js" />
+    <Content Include="assets\js\PAYMENT.js" />
+    <Content Include="assets\js\TOOLS.js" />
+    <Content Include="assets\js\VIDEOCHAT.js" />
+    <Content Include="assets\js\WEBSOCKET.js" />
+    <Content Include="assets\js\_INIT_EVENTS.js" />
+    <Content Include="application\views\abm.php" />
+    <Content Include="application\views\brow.php" />
+    <Content Include="application\views\common\_external_footer.php" />
+    <Content Include="application\views\common\_external_header.php" />
+    <Content Include="application\views\common\_error.php" />
+    <Content Include="application\views\common\_footer.php" />
+    <Content Include="application\views\common\_header.php" />
+    <Content Include="application\views\errors\cli\error_404.php" />
+    <Content Include="application\views\errors\cli\error_db.php" />
+    <Content Include="application\views\errors\cli\error_exception.php" />
+    <Content Include="application\views\errors\cli\error_general.php" />
+    <Content Include="application\views\errors\cli\error_php.php" />
+    <Content Include="application\views\errors\cli\index.html" />
+    <Content Include="application\views\errors\html\error_404.php" />
+    <Content Include="application\views\errors\html\error_db.php" />
+    <Content Include="application\views\errors\html\error_exception.php" />
+    <Content Include="application\views\errors\html\error_general.php" />
+    <Content Include="application\views\errors\html\error_php.php" />
+    <Content Include="application\views\errors\html\index.html" />
+    <Content Include="application\views\errors\index.html" />
+    <Content Include="application\views\excel.php" />
+    <Content Include="application\views\index.html" />
+    <Content Include="application\views\landing\_error.php" />
+    <Content Include="application\views\landing\_footer.php" />
+    <Content Include="application\views\landing\_header.php" />
+    <Content Include="application\views\landing\_navbar.php" />
+    <Content Include="application\views\landing\_navbar_logged.php" />
+    <Content Include="application\views\logged.php" />
+    <Content Include="application\views\login.php" />
+    <Content Include="application\views\mod_backend\applications\abm.php" />
+    <Content Include="application\views\mod_backend\external\mobile_action.php" />
+    <Content Include="application\views\mod_backend\functions\abm.php" />
+    <Content Include="application\views\mod_backend\functions\form.js" />
+    <Content Include="application\views\mod_backend\functions\form.php" />
+    <Content Include="application\views\mod_backend\groups\abm.php" />
+    <Content Include="application\views\mod_backend\log_general\abm.php" />
+    <Content Include="application\views\mod_backend\masters\abm.php" />
+    <Content Include="application\views\mod_backend\upload\form.js" />
+    <Content Include="application\views\mod_backend\upload\form.php" />
+    <Content Include="application\views\mod_backend\users\abm.php" />
+    <Content Include="application\views\mod_backend\users\reset.php" />
+    <Content Include="application\views\__mod_channels\contact_channels\abm.php" />
+    <Content Include="application\views\__mod_channels\threads\abm.php" />
+    <Content Include="application\views\__mod_channels\type_contact_channels\abm.php" />
+    <Content Include="application\views\__mod_channels\type_threads\abm.php" />
+    <Content Include="application\views\__mod_dbcentral\Comercializador\abm.php" />
+    <Content Include="application\views\__mod_dbcentral\CR_Vendedor\abm.php" />
+    <Content Include="application\views\__mod_dbcentral\EmpresaComercializadora\abm.php" />
+    <Content Include="application\views\__mod_dbcentral\Empresa\abm.php" />
+    <Content Include="application\views\mod_direct_sale\devices\form_device.js" />
+    <Content Include="application\views\mod_direct_sale\devices\form_device.php" />
+    <Content Include="application\views\mod_direct_sale\devices\form_vendor.js" />
+    <Content Include="application\views\mod_direct_sale\devices\form_vendor.php" />
+    <Content Include="application\views\mod_email\templates\alertCloseOnBoarding.php" />
+    <Content Include="application\views\mod_email\templates\forPayedEmail.php" />
+    <Content Include="application\views\mod_email\templates\legalRequestNew.php" />
+    <Content Include="application\views\mod_email\templates\legalRequestFirst.php" />
+    <Content Include="application\views\mod_email\templates\legalRequestNoContact.php" />
+    <Content Include="application\views\mod_email\templates\verificacionOnBoarding.php" />
+    <Content Include="application\views\mod_email\templates\landingsWebsiteGeneral.php" />
+    <Content Include="application\views\mod_email\templates\autorizacionesSucursalesComercios.php" />
+    <Content Include="application\views\mod_club_redondo\beneficios\abm.php" />
+    <Content Include="application\views\mod_club_redondo\beneficio_farmacia\abm.php" />
+    <Content Include="application\views\mod_club_redondo\presentar\form.js" />
+    <Content Include="application\views\mod_club_redondo\presentar\form.php" />
+    <Content Include="application\views\mod_club_redondo\sorteos_ranges\abm.php" />
+    <Content Include="application\views\mod_club_redondo\type_categories\abm.php" />
+    <Content Include="application\views\mod_club_redondo\type_products\abm.php" />
+    <Content Include="application\views\__mod_crm\common\error.php" />
+    <Content Include="application\views\__mod_crm\common\general_result.php" />
+    <Content Include="application\views\__mod_crm\operators_tasks\abm.php" />
+    <Content Include="application\views\__mod_crm\reports_crm\form.js" />
+    <Content Include="application\views\__mod_crm\reports_crm\form.php" />
+    <Content Include="application\views\__mod_crm\type_tasks_close\abm.php" />
+    <Content Include="application\views\__mod_dbcentral\wrkRequerimiento\abm.php" />
+    <Content Include="application\views\mod_email\templates\alertDelayTelemedicina.php" />
+    <Content Include="application\views\mod_email\templates\alertNoAuditingTelemedicina.php" />
+    <Content Include="application\views\mod_email\templates\autorizacionesSucursales.php" />
+    <Content Include="application\views\mod_email\templates\finishDelayTelemedicina.php" />
+    <Content Include="application\views\mod_email\templates\forAprovalEmail.php" />
+    <Content Include="application\views\mod_email\templates\forAprovedEmail.php" />
+    <Content Include="application\views\mod_email\templates\forPublishEmail.php" />
+    <Content Include="application\views\mod_email\templates\forRevisedEmail.php" />
+    <Content Include="application\views\mod_email\templates\forRevisionEmail.php" />
+    <Content Include="application\views\mod_email\templates\notifyEmail.php" />
+    <Content Include="application\views\mod_email\templates\welcomeClubRedondo.php" />
+    <Content Include="application\views\mod_filesystem\apks\form.php" />
+    <Content Include="application\views\mod_folders\folders\abm.php" />
+    <Content Include="application\views\mod_folders\folders\abm_userview.php" />
+    <Content Include="application\views\mod_folders\type_folders\abm.php" />
+    <Content Include="application\views\mod_folders\folder_items\form.php" />
+    <Content Include="application\views\mod_folders\folder_items_log\form.js" />
+    <Content Include="application\views\mod_folders\folder_items_log\form.php" />
+    <Content Include="application\views\mod_folders\type_control_points\abm.php" />
+    <Content Include="application\views\mod_follow\sinisters\form.js" />
+    <Content Include="application\views\mod_follow\sinisters\form.php" />
+    <Content Include="application\views\mod_follow\sinisters\follow.php" />
+    <Content Include="application\views\mod_follow\sinisters\abm.php" />
+    <Content Include="application\views\mod_follow\questions\abm.php" />
+    <Content Include="application\views\mod_follow\type_protocols\abm.php" />
+    <Content Include="application\views\mod_follow\type_priorities\abm.php" />
+    <Content Include="application\views\mod_follow\type_segments\abm.php" />
+    <Content Include="application\views\mod_intranet\home\form.php" />
+    <Content Include="application\views\mod_direct_sale\operators_tasks\abm.php" />
+    <Content Include="application\views\mod_places\places\abm.php" />
+    <Content Include="application\views\mod_providers\folders\abm.php" />
+    <Content Include="application\views\mod_providers\folders\abm_userview.php" />
+    <Content Include="application\views\mod_providers\folder_items\form.php" />
+    <Content Include="application\views\mod_providers\folder_items_log\form.js" />
+    <Content Include="application\views\mod_providers\folder_items_log\form.php" />
+    <Content Include="application\views\mod_providers\providers\abm.php" />
+    <Content Include="application\views\mod_providers\type_control_points\abm.php" />
+    <Content Include="application\views\mod_providers\type_limits_aprovals\abm.php" />
+    <Content Include="application\views\mod_providers\type_sectors\abm.php" />
+    <Content Include="application\views\mod_push\push_out\abm.php" />
+    <Content Include="application\views\mod_push\type_subscriptions\abm.php" />
+    <Content Include="application\views\mod_legal\lawyers\abm.php" />
+    <Content Include="application\views\mod_legal\operators_tasks\abm.php" />
+    <Content Include="application\views\mod_telemedicina\audit\form.js" />
+    <Content Include="application\views\mod_telemedicina\audit\form.php" />
+    <Content Include="application\views\mod_telemedicina\doctors\abm.php" />
+    <Content Include="application\views\mod_telemedicina\operators_tasks\abm.php" />
+    <Content Include="application\views\mod_telemedicina\type_tasks_close\abm.php" />
+    <Content Include="application\views\mod_telemedicina\videochat\form.php" />
+    <Content Include="application\views\__mod_telephony\common\error.php" />
+    <Content Include="application\views\__mod_telephony\common\general_result.php" />
+    <Content Include="application\views\__mod_telephony\consolidated_sip\form.js" />
+    <Content Include="application\views\__mod_telephony\consolidated_sip\form.php" />
+    <Content Include="application\views\__mod_telephony\reports_sip\common.php" />
+    <Content Include="application\views\__mod_telephony\reports_sip\form.js" />
+    <Content Include="application\views\__mod_telephony\reports_sip\form.php" />
+    <Content Include="application\views\__mod_telephony\reports_sip\inout.php" />
+    <Content Include="application\views\__mod_telephony\users_sip\form.js" />
+    <Content Include="application\views\__mod_telephony\users_sip\form.php" />
+    <Content Include="application\views\mod_validate_cbu\validate_cbu\form.js" />
+    <Content Include="application\views\mod_validate_cbu\validate_cbu\form.php" />
+    <Content Include="application\views\mod_web_posts\web_posts\abm.php" />
+    <Content Include="application\views\mod_web_posts\web_posts\credipaz-dev-support.php" />
+    <Content Include="application\views\mod_web_posts\web_posts\credipaz-privacy-policy.php" />
+    <Content Include="application\views\pdf.php" />
+    <Content Include="assets\js\FISERV.js" />
+    <Content Include="application\views\loggedIntegracion.php" />
+    <Content Include="application\models\mod_backend\Log_links.php" />
+    <Content Include="application\controllers\ApiRestfulAsesores.php" />
+    <Content Include="application\models\mod_api_asesores\Asesores.php" />
+    <Content Include="application\models\mod_api_asesores\Socios.php" />
+    <Content Include="application\controllers\ApiRestfulSocios.php" />
+    <Content Include="application\helpers\mod_api_helper.php" />
+    <Content Include="application\controllers\ApiRestfulMediyaLookups.php" />
+    <Content Include="application\models\mod_api_lookups\Lookups.php" />
+    <Content Include="application\controllers\ApiRestfulSociosAdicionales.php" />
+    <Content Include="application\models\mod_api_asesores\SociosAdicionales.php" />
+    <Content Include="application\controllers\ApiRestfulWebsites.php" />
+    <Content Include="application\models\mod_api_websites\Websites.php" />
+    <Content Include="application\controllers\ApiRestfulWebsitesLookups.php" />
+    <Content Include="application\controllers\Landing.php" />
+    <Content Include="application\models\mod_onboarding\Informes.php" />
+    <Content Include="application\controllers\ApiRestfulCredipaz.php" />
+    <Content Include="application\controllers\ApiRestfulCredipazLookups.php" />
+    <Content Include="application\models\mod_api_credipaz\Credipaz.php" />
+    <Content Include="application\models\mod_external\Cesiones.php" />
+    <Content Include="application\models\mod_push\Telegram.php" />
+    <Content Include="application\helpers\mod_channels_helper.php" />
+    <Content Include="application\helpers\mod_club_redondo_helper.php" />
+    <Content Include="application\helpers\mod_crm_helper.php" />
+    <Content Include="application\helpers\mod_dbcentral_helper.php" />
+    <Content Include="application\controllers\Webhooks.php" />
+    <Content Include="application\controllers\Verify.php" />
+    <None Include="application\views\mod_backend\apirestful\form.php" />
+    <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
+    <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
+    <Content Include="documentacion\credipaz\auxiliares\ocupaciones.html" />
+    <Content Include="documentacion\credipaz\auxiliares\empresas.html" />
+    <Content Include="documentacion\credipaz\auxiliares\provincias.html" />
+    <Content Include="documentacion\credipaz\auxiliares\sexos.html" />
+    <Content Include="documentacion\credipaz\auxiliares\productos.html" />
+    <Content Include="documentacion\credipaz\auxiliares\sucursales.html" />
+    <Content Include="documentacion\credipaz\archivo.html" />
+    <Content Include="documentacion\credipaz\cedidos.html" />
+    <Content Include="documentacion\credipaz\infoCreditoDeuda.html" />
+    <Content Include="documentacion\credipaz\infoCreditoCuotas.html" />
+    <Content Include="documentacion\credipaz\infoCredito.html" />
+    <Content Include="documentacion\credipaz\infoCabalAdicional.html" />
+    <Content Include="documentacion\credipaz\infoCreditoPagoLink.html" />
+    <Content Include="documentacion\credipaz\infoCabalPagosPeriodo.html" />
+    <Content Include="documentacion\credipaz\infoCabalFechasImportantes.html" />
+    <Content Include="documentacion\credipaz\infoCabalPagoLink.html" />
+    <Content Include="documentacion\credipaz\infoCabalUltimosConsumos.html" />
+    <Content Include="documentacion\credipaz\infoCabalSaldos.html" />
+    <Content Include="documentacion\credipaz\infoCabalLimites.html" />
+    <Content Include="documentacion\credipaz\infoCabalTracking.html" />
+    <Content Include="documentacion\credipaz\infoCabalTitular.html" />
+    <Content Include="documentacion\credipaz\resumenTarjeta.html" />
+    <Content Include="documentacion\mediya\asesores\modificar.html" />
+    <Content Include="documentacion\mediya\asesores\listar.html" />
+    <Content Include="documentacion\mediya\asesores\habilitar.html" />
+    <Content Include="documentacion\mediya\asesores\deshabilitar.html" />
+    <Content Include="documentacion\mediya\asesores\alta.html" />
+    <Content Include="documentacion\mediya\comercializadoras.html" />
+    <Content Include="documentacion\mediya\planes.html" />
+    <Content Include="documentacion\mediya\socios\infoMediyaPagoLink.html" />
+    <Content Include="documentacion\mediya\tiposDeCentros.html" />
+    <Content Include="documentacion\mediya\centros.html" />
+    <Content Include="documentacion\mediya\parentescos.html" />
+    <Content Include="documentacion\mediya\socios\adicionales\alta.html" />
+    <Content Include="documentacion\mediya\socios\adicionales\listar.html" />
+    <Content Include="documentacion\mediya\socios\profile.html" />
+    <Content Include="documentacion\mediya\socios\modificar.html" />
+    <Content Include="documentacion\mediya\socios\listar.html" />
+    <Content Include="documentacion\mediya\socios\candidatos.html" />
+    <Content Include="documentacion\mediya\socios\caidos.html" />
+    <Content Include="documentacion\mediya\socios\activos.html" />
+    <Content Include="documentacion\mediya\socios\pendientes.html" />
+    <Content Include="documentacion\mediya\socios\alta.html" />
+    <Content Include="documentacion\mediya\farmacias.html" />
+    <Content Include="documentacion\mediya\tiposDeAdicionales.html" />
+    <Content Include="documentacion\mediya\tarjetasHabilitadas.html" />
+    <Content Include="documentacion\mediya\modosDePago.html" />
+    <Content Include="documentacion\mediya\ocupaciones.html" />
+    <Content Include="documentacion\mediya\estadosCiviles.html" />
+    <Content Include="documentacion\mediya\nacionalidades.html" />
+    <Content Include="documentacion\seguridad\autenticar.html" />
+    <Content Include="documentacion\websites\canalesDeAcciones.html" />
+    <Content Include="documentacion\websites\canalesDeLandings.html" />
+    <Content Include="documentacion\websites\acciones.html" />
+    <Content Include="documentacion\websites\landing.html" />
+    <Content Include="documentacion\websites\sucursales.html" />
+    <Content Include="index.php" />
+    <Content Include="verificationQR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Web.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="application\.htaccess" />
+    <Content Include="application\config\appcrypto.key" />
+    <Content Include="application\config\credipaz-club-redondo-firebase-adminsdk-6wi9f-331a12014e.json" />
+    <Content Include="application\config\credipaz-servicios-financieros-firebase-adminsdk-7b1ba-114df7b6d0.json" />
+    <Content Include="application\config\notifier-credipaz-firebase-adminsdk-5gv2b-e3cfc8395a.json" />
+    <Content Include="application\config\openssl.cnf" />
+    <Content Include="application\config\private_key.pem" />
+    <Content Include="application\config\public_key.pem" />
+    <Content Include="application\config\CredipazBase64.cer" />
+    <Content Include="application\config\CredipazBase64.pem" />
+    <Content Include="application\config\NeodataBase64.cer" />
+    <Content Include="application\config\NeodataBase64.pem" />
+    <Content Include="assets\css\Glyphter.eot" />
+    <Content Include="assets\css\Glyphter.ttf" />
+    <Content Include="assets\css\Glyphter.woff" />
+    <Content Include="assets\css\MaterialIcons-Regular.codepoints" />
+    <Content Include="assets\css\MaterialIcons-Regular.ttf" />
+    <Content Include="assets\css\MaterialIconsOutlined-Regular.codepoints" />
+    <Content Include="assets\css\MaterialIconsOutlined-Regular.otf" />
+    <Content Include="assets\css\MaterialIconsRound-Regular.codepoints" />
+    <Content Include="assets\css\MaterialIconsRound-Regular.otf" />
+    <Content Include="assets\css\MaterialIconsSharp-Regular.codepoints" />
+    <Content Include="assets\css\MaterialIconsSharp-Regular.otf" />
+    <Content Include="assets\css\MaterialIconsTwoTone-Regular.codepoints" />
+    <Content Include="assets\css\MaterialIconsTwoTone-Regular.otf" />
+    <Content Include="assets\css\Nunito-Black.ttf" />
+    <Content Include="assets\css\Nunito-BlackItalic.ttf" />
+    <Content Include="assets\css\Nunito-Bold.ttf" />
+    <Content Include="assets\css\Nunito-BoldItalic.ttf" />
+    <Content Include="assets\css\Nunito-ExtraBold.ttf" />
+    <Content Include="assets\css\Nunito-ExtraBoldItalic.ttf" />
+    <Content Include="assets\css\Nunito-ExtraLight.ttf" />
+    <Content Include="assets\css\Nunito-ExtraLightItalic.ttf" />
+    <Content Include="assets\css\Nunito-Italic.ttf" />
+    <Content Include="assets\css\Nunito-Light.ttf" />
+    <Content Include="assets\css\Nunito-LightItalic.ttf" />
+    <Content Include="assets\css\Nunito-Regular.ttf" />
+    <Content Include="assets\css\Nunito-SemiBold.ttf" />
+    <Content Include="assets\css\Nunito-SemiBoldItalic.ttf" />
+    <Content Include="assets\css\Poppins-Black.ttf" />
+    <Content Include="assets\css\Poppins-BlackItalic.ttf" />
+    <Content Include="assets\css\Poppins-Bold.ttf" />
+    <Content Include="assets\css\Poppins-BoldItalic.ttf" />
+    <Content Include="assets\css\Poppins-ExtraBold.ttf" />
+    <Content Include="assets\css\Poppins-ExtraBoldItalic.ttf" />
+    <Content Include="assets\css\Poppins-ExtraLight.ttf" />
+    <Content Include="assets\css\Poppins-ExtraLightItalic.ttf" />
+    <Content Include="assets\css\Poppins-Italic.ttf" />
+    <Content Include="assets\css\Poppins-Light.ttf" />
+    <Content Include="assets\css\Poppins-LightItalic.ttf" />
+    <Content Include="assets\css\Poppins-Medium.ttf" />
+    <Content Include="assets\css\Poppins-MediumItalic.ttf" />
+    <Content Include="assets\css\Poppins-Regular.ttf" />
+    <Content Include="assets\css\Poppins-SemiBold.ttf" />
+    <Content Include="assets\css\Poppins-SemiBoldItalic.ttf" />
+    <Content Include="assets\css\Poppins-Thin.ttf" />
+    <Content Include="assets\css\Poppins-ThinItalic.ttf" />
+    <Content Include="application\models\mod_club_redondo\Rel_modulos.php" />
+    <Content Include="application\models\mod_external\Iframes.php" />
+    <Content Include="application\views\mod_external\iframe\form.php" />
+    <Content Include="application\views\mod_marketing\transactions_credipaz\form.php" />
+    <Content Include="application\models\mod_marketing\Transactions_credipaz.php" />
+    <Content Include="application\models\mod_marketing\Transactions_mediya.php" />
+    <Content Include="application\views\mod_marketing\transactions_mediya\form.php" />
+    <Content Include="application\models\__mod_dbcentral\Mstfraude.php" />
+    <Content Include="application\views\__mod_dbcentral\Mstfraude\abm.php" />
+    <Content Include="application\views\mod_external\external_forms\tarjeta.php" />
+    <Content Include="application\controllers\ApiRestful.php" />
+    <Content Include="application\models\mod_backend\ApiRestful.php" />
+    <Content Include="application\views\mod_onboarding\informes\form.php" />
+    <Content Include="assets\bootstrap-material-design\js\bootstrap-material-design.js.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-grid.min.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap-reboot.min.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap.css.map" />
+    <Content Include="assets\bootstrap\css\bootstrap.min.css.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.js.map" />
+    <Content Include="assets\bootstrap\js\bootstrap.min.js.map" />
+    <Content Include="application\views\mod_external\cesiones\form.php" />
+    <Content Include="application\views\mod_push\type_actions\abm.php" />
+    <Content Include="application\views\mod_email\templates\verificacionEmail.php" />
+    <Content Include="application\views\mod_external\formVerify.php" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="Roboto-Black.ttf" />
+    <Content Include="Roboto-BlackItalic.ttf" />
+    <Content Include="Roboto-Bold.ttf" />
+    <Content Include="Roboto-BoldItalic.ttf" />
+    <Content Include="Roboto-Italic.ttf" />
+    <Content Include="Roboto-Light.ttf" />
+    <Content Include="Roboto-LightItalic.ttf" />
+    <Content Include="Roboto-Medium.ttf" />
+    <Content Include="Roboto-MediumItalic.ttf" />
+    <Content Include="Roboto-Regular.ttf" />
+    <Content Include="Roboto-Thin.ttf" />
+    <Content Include="Roboto-ThinItalic.ttf" />
+    <Content Include="README.md">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="application\session\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50481/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

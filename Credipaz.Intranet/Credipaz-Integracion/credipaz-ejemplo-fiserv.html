@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8" />
+	<title>Credipaz Pagos Fiserv</title>
+
+	<!-- Dependencias: Jquery +3 -->
+	<script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
+	<!-- Script a incluir con la funcionalidad a implementar -->
+	<script src="https://intranet.credipaz.com/assets/js/FISERV.js"></script>
+	</head>
+	<body>
+		<div>
+				<!-- Estructura para ejemplo de datos variables !-->
+	<h1>Ejemplo</h1>
+	<label>DNI</label>
+	<input id="dni" name="dni" type="number" placeholder="DNI" value="11111" />
+	<br />
+	<label>Moneda</label>
+	<input id="currency" name="currency" type="text" placeholder="Moneda" value="032" />
+	<br />
+	<label>Total</label>
+	<input id="total" name="total" type="number" placeholder="Total" value="10" />
+	<br />
+	<label>Cuotas</label>
+	<input id="installments" name="installments" type="number" placeholder="Cuotas" value="1" />
+	<br />
+	<label>Descripción</label>
+	<input id="description" name="description" type="text" placeholder="Descripción" value="Datos del producto" />
+	<br />
+	<a href="#" class="btn btn-primary btnExec">Ir a pagos</a>
+
+	<!-- Estructura requerida!-->
+	<div id="dataPayment"></div>
+	<div id="dataIframe"></div>
+	</div>
+	</body>
+</html>
+<script>
+	$(document).ready(function () {
+		$("body").off("click", ".btnExec").on("click", ".btnExec", function () {
+			/*
+			 * Código para obtener el form pre armado a enviar a Fiserv con el botón "Pagar", que aparece en el form.
+			 */
+			var _json = {
+				"formContainer":"dataPayment",
+				"iframeContainer":"dataIframe",
+				"responseFailURL": "",// url para notificacion de falla en el pago
+				"responseSuccessURL": "",// url para notificacion de pago ok
+				"type": "TAR", // Valor fijo
+				"visible": 0, // Si se envia 0 no muestra el form intermedio
+				//"styleButton": "padding:10px;color:white;border:solid 1px black !important;background-color:grey !important;", // style para override boton "Pagar"
+				"dni": $("#dni").val(), // según ejemplo
+				"currency": $("#currency").val(), // según ejemplo
+				"total": $("#total").val(), // según ejemplo
+				"installments": $("#installments").val(), // según ejemplo
+				"description": $("#description").val(), // según ejemplo
+				"paymentMethod": "",// cadena vacia, fuerza a seleccionar al usuario o pueden enviarse la tarjeta a utilizar: 
+				                    // V = visa
+				                    // M = master
+				                    // NARANJA = Naranja
+				                    // CABAL_ARGENTINA = Cabal
+				"sandbox": 1,
+				"targetFrame": "_blank", // nuevo!
+                //"parentUri": "https://[url donde está puesto el iframe]"
+			};
+			_FISERV.onPayFiserv(_json).then(function (data) {
+				$(".btn-seltc").remove();
+				$(".btn-all").show();
+				//$(".tbl-fiserv").hide();
+				/*
+				 * Código posterior a la inserción del form y previo al botón "Pagar"
+				 * Este botón, efectivamente comienza el proceso de pago en Fiserv
+				 */
+			});
+		});
+	});
+</script>
