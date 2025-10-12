@@ -2,36 +2,6 @@
 # Este archivo .gitignore ha sido creado automáticamente por Microsoft(R) Visual Studio.
 ################################################################################
 
-/.vs/Externos/v17
-/.vs/publicar/config
-/.vs/publicar/FileContentIndex
-/bin
 /.vs
-/Credipaz.WebSocketServer
-/Credipaz.WebSocketServer.ReverseProxy
-/CredipazClubRedondo.wsMil
-/Credipaz.SIA
-/Mediya.PWA/Recursos
-/Credipaz.TiendaMil/Recursos
-/Credipaz.PWA/Recursos
-/Credipaz.Onboarding/Recursos
-/Credipaz.Intranet/.git
-/Credipaz.Intranet/.vs
-/Credipaz.Intranet/assets
-/Credipaz.Intranet/attached
-/Credipaz.Intranet/bin
-/Credipaz.Intranet/captures
-/Credipaz.Intranet/csv
-/Credipaz.Intranet/intrcambio
-/Credipaz.Intranet/local
-/Credipaz.Intranet/obj
-/Credipaz.Intranet/system
-/Credipaz.Intranet/vendor
-/Credipaz.Intranet/videoe
-/Credipaz.Intranet/webrtc
-/Credipaz.Intranet/application/cache
-/Credipaz.Intranet/application/config
-/Credipaz.Intranet/application/logs
-/Credipaz.Intranet/application/session
-/Credipaz.Intranet/application/thrid_party
+/bin
 /obj/Debug
