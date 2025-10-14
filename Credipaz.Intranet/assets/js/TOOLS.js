@@ -652,3 +652,4 @@ var _TOOLS = {
 		//_this.val(_this.val().replace(/[^0-9]/g, ''));
 	},
 };
+

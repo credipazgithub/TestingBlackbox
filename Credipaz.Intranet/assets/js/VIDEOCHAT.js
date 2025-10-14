@@ -141,3 +141,4 @@ $("body").off("click", ".btn-record-play").on("click", ".btn-record-play", () =>
 	playback.src = (_AJAX.server + "api.v1.files?file=/datos/telemedicina/" + _id_charge_code + ".webm");
 	playback.play();
 });
+
