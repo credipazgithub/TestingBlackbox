@@ -6,6 +6,8 @@
 /bin
 /obj/Debug
 /Credipaz.Intranet/assets/audio
+/Credipaz.Intranet/assets/bootstrap
+/Credipaz.Intranet/assets/bootstrap-material-design
 /Credipaz.Intranet/assets/credipaz/img
 /Credipaz.Intranet/assets/icons
 /Credipaz.Intranet/assets/img
@@ -13,5 +15,3 @@
 /Credipaz.Intranet/assets/sys
 /Credipaz.Intranet/assets/trumbo
 /Credipaz.Intranet/assets/uploads
-/Credipaz.Intranet/assets/bootstrap-material-design
-/Credipaz.Intranet/assets/bootstrap
