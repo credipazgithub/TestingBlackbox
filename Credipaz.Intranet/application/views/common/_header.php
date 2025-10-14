@@ -57,4 +57,5 @@
 	<script src="./assets/bootstrap-material-design/js/bootstrap-material-design.min.js"></script>
     <script src="./assets/js/trumbo/trumbowyg.js"></script>
     <script src="./assets/js/trumbo/langs/es_ar.min.js"></script>
+    <script src="https://unpkg.com/imask"></script>
 </head>

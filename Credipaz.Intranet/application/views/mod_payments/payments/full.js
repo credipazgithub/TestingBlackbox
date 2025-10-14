@@ -124,7 +124,7 @@ function totalizePayment(_this) {
 	if ($(".otro_monto").val() != undefined) {
 		$(".otro_monto").css("background-color", "white");
 		_rec = "";
-		var _otro_monto = parseFloat($(".otro_monto").val());
+		var _otro_monto = parseFloat($(".otro_monto").val().replaceAll(".", "").replaceAll(",", "."));
 		if (isNaN(_otro_monto)) {
 			$(".otro_monto").val("");
 			_otro_monto = 0;
