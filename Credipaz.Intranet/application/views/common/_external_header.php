@@ -36,5 +36,6 @@
         <script type="text/javascript" src="../<?php echo $pre;?>assets/js/AJAX.js?<?php echo date("Y-m-d H:i:s");?>"></script>
         <script type="text/javascript" src="../<?php echo $pre;?>assets/js/TOOLS.js?<?php echo date("Y-m-d H:i:s");?>"></script>
         <script type="text/javascript" src="../<?php echo $pre;?>assets/js/FUNCTIONS.js?<?php echo date("Y-m-d H:i:s");?>"></script>
+		<script src="https://unpkg.com/imask"></script>
 	</head>
     <body style="border-radius:15px;background-color:rgba(250, 250, 250,0.5) !important;">
