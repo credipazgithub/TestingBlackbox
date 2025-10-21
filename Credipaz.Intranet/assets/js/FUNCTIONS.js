@@ -2938,19 +2938,21 @@ _FUNCTIONS = {
 					$(".datos-informados").html(_FUNCTIONS.onBuildPaymentsByForm(data, _importe_forzado)).removeClass("d-none");
 
 					const element = document.getElementById('otro_monto');
-					const maskOptions = {
-						mask: Number,
-						scale: 2,
-						thousandsSeparator: '.',
-						padFractionalZeros: true,
-						normalizeZeros: true,
-						radix: ',',
-						mapToRadix: ['.'],
-						min: 0,
-						max: 999999999,
-						autofix: true,
-					};
-					const mask = IMask(element, maskOptions);
+					if (element != null) {
+						const maskOptions = {
+							mask: Number,
+							scale: 2,
+							thousandsSeparator: '.',
+							padFractionalZeros: true,
+							normalizeZeros: true,
+							radix: ',',
+							mapToRadix: ['.'],
+							min: 0,
+							max: 999999999,
+							autofix: true,
+						};
+						const mask = IMask(element, maskOptions);
+					}
 
 					if ($(".samImporte").val() != undefined) { totalizePayment($(".samImporte")); }
 					if ($(".moraImporte").val() != undefined) { totalizePayment($(".moraImporte")); }
