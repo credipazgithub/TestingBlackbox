@@ -140,8 +140,8 @@ $lang['error_9999'] = "Nada se ha ejecutado";
 
 $lang['error_10000'] = "Se ha rechazado la solicitud";
 $lang['error_10001'] = "Imposible autenticar plataforma de firma externa";
-$lang['error_10002'] = "No se ha podido emitir el crédito.  No puede identificarse al usuario como cliente.";
-$lang['error_10003'] = "No se ha podido emitir el crédito.  ";
+$lang['error_10002'] = "No se ha podido emitir el producto.  No puede identificarse al usuario como cliente.";
+$lang['error_10003'] = "No se ha podido emitir el producto.  ";
 $lang['error_10004'] = "El sexo y/o documento verificado, no corresponde con los datos provistos en la verificación inicial.  ";
 
 

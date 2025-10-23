@@ -598,7 +598,7 @@ var _NMF = {
 
     onEmitirProducto: function (_img_additional) {
         /*Final call for close process and create request for credit*/
-        _NMF.onModalInfo("Emisión de crédito", "Por favor, aguarde que el proceso finalice.  Puede demorar unos minutos, no salga de esta página.", "info"); 
+        _NMF.onModalInfo("Emisión de producto", "Por favor, aguarde que el proceso finalice.  Puede demorar unos minutos, no salga de esta página.", "info"); 
         _NMF.onSolicitudBuilder().then(function () {
             _API.UiOnboardingFinalRequest({ "pdf_solicitud": _NMF._ClientData._solicitudData.pdf_solicitud, "img_additional": _img_additional, "id": _AJAX._KEY, "lat": _AJAX._BPAM["latitude"], "lng": _AJAX._BPAM["longitude"] }).then(function (data) {
                 _NMF._CreditData = data.data.message;

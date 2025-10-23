@@ -32,6 +32,8 @@ oAppFirmaCreditos.onShow = function () {
                             $(".CBUArea").removeClass("d-none");
                             break;
                     }
+                case 351: // Tarjeta titular
+                case 451: // Tarjeta adicional
                     const canvas = document.querySelector('#sketchpad');
                     const sketchpad = new Atrament(canvas, { width: 250, height: 200, color: 'black' });
                     sketchpad.clear();
