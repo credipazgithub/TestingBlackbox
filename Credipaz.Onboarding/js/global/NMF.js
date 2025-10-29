@@ -623,6 +623,13 @@ var _NMF = {
     onBuildFirmaDocumento: function (data, segmento_carpeta_digital, sufijo, pageToAlter, x, y) {
         _AJAX._BPAM["documento"] = _TOOLS.b64_to_utf8(data.message.mensaje);
         _AJAX._BPAM["segmento_carpeta_digital"] = segmento_carpeta_digital;
+        /*Override de posiciones de firma */
+        switch (_AJAX._BPAM["Formulario"]) {
+            case "adhesionmediya":
+                y = 420;
+                break;
+        }
+
         _AJAX._BPAM["pageToAlter"] = pageToAlter;
         _AJAX._BPAM["x"] = x;
         _AJAX._BPAM["y"] = y;
@@ -653,8 +660,8 @@ var _NMF = {
             $(".firmado").removeClass("d-none");
             /*Enviar info para firma!*/
             _API.UiFirmarFormulario(_AJAX._BPAM).then(function (ret) {
-                _AJAX._BPAM["link_extract"] = ret.message.records[0].link_extract;
-                _AJAX._BPAM["link_certificate"] = ret.message.records[0].link_certificate;
+                _NMF._ClientData.link_extract = ret.message.records[0].link_extract;
+                _NMF._ClientData.link_certificate = ret.message.records[0].link_certificate;
                 $(".hFirmado").addClass("d-none");
                 _AJAX._responseTitle = "";
                 _AJAX._responseMessage = "Se ha registrado la firma correctamente";

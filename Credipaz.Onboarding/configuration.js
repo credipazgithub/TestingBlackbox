@@ -68,12 +68,18 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
             /*------------------------------------------------------------------------------------------------------*/
             /* Asignacion de pagina a navegar, configuracion de valores y comportamiento e indicacion de solo firma */
             /*------------------------------------------------------------------------------------------------------*/
-            switch (_parameters.monopage) {
+            switch (_parameters.monopage.toLowerCase()) {
                 case "firma-creditos":
                     break;
                 case "cambiolimitecredito": //formulario de cambio de limite de credito
                     _AJAX._formularioFirma = _parameters.monopage;
                     _AJAX._formularioPrefijoCarpetaDigital = "CLC";
+                    _AJAX._justSign = true;
+                    _AJAX._init_page = "get-firmar";
+                    break;
+                case "adhesionmediya": //formulario
+                    _AJAX._formularioFirma = _parameters.monopage;
+                    _AJAX._formularioPrefijoCarpetaDigital = "MEDIYA";
                     _AJAX._justSign = true;
                     _AJAX._init_page = "get-firmar";
                     break;
@@ -172,4 +178,8 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
             _NMF.onTryPage(null, "msg-error");
         });
     }
+    if (_AJAX._KEY != 0 && _AJAX._justSign) {
+        _NMF.onTryPage(null, _AJAX._init_page);
+    }
+
 });
