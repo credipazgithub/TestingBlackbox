@@ -31,6 +31,11 @@ $("body").off("keyup", ".dni").on("keyup", ".dni", function (e) {
 	}, 500);
 });
 
+$("body").off("change", ".cboCesion").on("change", ".cboCesion", function (e) {
+	$(".dni").val("");
+	FillGrid("", false);
+});
+
 function FillGrid(_dni, _download) {
 	try {
 		var _interno = $(".interno").val();
@@ -41,7 +46,8 @@ function FillGrid(_dni, _download) {
 			"id_app": _AJAX._id_app,
 			"NroDocumento": _dni,
 			"interno": _interno,
-			"download": _download
+			"download": _download,
+			"FechaCesion": $(".cboCesion").val()
 		}
 		if (_download) {
 			if (!confirm("Está a punto de ejecutar un proceso potencialmente largo, que puede tardar varios minutos.\n¡Por favor, no cierre el navegador, el archivo se descargará automáticamente al concluir!")) { return false; };
@@ -53,15 +59,22 @@ function FillGrid(_dni, _download) {
 				_html += "         <div class='col-1'><b>Fecha</b></div>";
 				_html += "         <div class='col-2'><b>DNI</b></div>";
 				_html += "         <div class='col-3'><b>Titular</b></div>";
-				if (_interno == "S") { _html += "<div class='col-1'></div>"; }
+				_html += "         <div class='col-1'></div>"; 
 				_html += "         <div class='col-4'></div>";
 				_html += "      </div>";
 				$.each(data.data, function (i, item) {
+					console.log(item);
 					_html += "<div class='row p-1 rLine c-" + item.NroDocumento + "'>";
 					_html += "   <div class='col-1'>" + item.fFecha + "</div>";
 					_html += "   <div class='col-2'>" + item.NroDocumento + " " + item.Sexo + "</div>";
 					_html += "   <div class='col-3'>" + item.Nombre + "</div>";
-					if (_interno == "S") { _html += "<div class='col-1'>" + item.Cedida1 + "</div>"; }
+					_html += "   <div class='col-1'>";
+					if (item.FechaCedido != "") {
+						_html += "<span class='badge badge-success'>Cedido: " + item.FechaCedido + "</span>";
+					} else {
+						_html += "<span class='badge badge-danger'>Aún no cedido</span>";
+					}
+					_html += "</div>";
 					if (_dni == "") {
 						_html += "<div class='col-4'><a href='#' class='btn btn-primary btn-informes' data-dni='" + item.NroDocumento + "'>Informes</a></div>";
 					} else {

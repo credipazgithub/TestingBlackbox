@@ -312,6 +312,30 @@ class Pwa extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
+    public function directEmail()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'directEmail';
+            $_POST['module'] = MOD_EMAIL;
+            $_POST['model'] = 'Email';
+            $_POST['table'] = 'Email';
+            $_POST["from"] = "intranet@mediya.com.ar";
+            $_POST["alias_from"] = "intranet@mediya.com.ar";
+            //$_POST["email"] = "daniel@neodata.com.ar";
+            //$_POST["subject"] = "Solicitud de baja Mediya";
+            //$_POST["body"] = "test";
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+
     public function alertaDinamica($page){
         try {
             $raw=$this->rawInput();

@@ -25,6 +25,9 @@ if ($interno == "S") {$hide = "d-none";}
                     <button type="button" class="btn-raised btn btn-md btn-danger btn-informes" data-dni=""><i class="material-icons">west</i>Volver</button>
                 </div>
                 <div class="col-2 pt-2 search">
+                    <select id="cboCesion" name="cboCesion" class="from-control cboCesion"></select>
+                </div>
+                <div class="col-2 pt-2 search">
                     <input type="number" class="number form-control dni" id="dni" name="dni" placeholder="Buscar DNI" />
                 </div>
                 <div class="col-2 pt-2 search">
@@ -36,7 +39,13 @@ if ($interno == "S") {$hide = "d-none";}
     </div>
 </div>
 <script>
-    $.getScript('./application/views/mod_external/cesiones/form.js', function() {
-        FillGrid("", false);
+    $.getScript('./application/views/mod_external/cesiones/form.js', function () {
+        _AJAX.docUiExecute(_AJAX.server + "credipaz/cesiones", { "id_user_active": _AJAX._id_user_active }).then(function (data) {
+            $.each(data.data, function (i, item) {
+                $(".cboCesion").append('<option selected value="' + item.FechaCesion+ '">' + item.Descripcion + '</option>');
+            })
+            $(".cboCesion").val("ALL");
+            FillGrid("", false);
+        });
 	});
 </script>

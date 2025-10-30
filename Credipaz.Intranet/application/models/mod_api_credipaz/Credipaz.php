@@ -57,7 +57,8 @@ class Credipaz extends MY_Model {
                 "Sexo" => $values["Sexo"],
                 "Id_user" => $values["id_user_active"],
                 "Interno" => $values["interno"],
-                "Download" => ($values["download"]=="true")
+                "Download" => ($values["download"]=="true"),
+                "FechaCesion" => $values["FechaCesion"]
             );
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
             $ret = API_callAPI("/Credito/GetCedido/", $headers, json_encode($fields));
@@ -96,6 +97,25 @@ class Credipaz extends MY_Model {
                     $i++;
                 }
             }
+            $merged["link"] = $ret["mensaje"];
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function cesiones($values)
+    {
+        try {
+            $fields = array("Id_user" => $values["id_user_active"]);
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $ret = API_callAPI("/Credito/GetCesiones/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
             $merged["link"] = $ret["mensaje"];
             $merged["code"] = "200";
             $merged["error"] = "";

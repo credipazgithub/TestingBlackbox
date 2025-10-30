@@ -12,6 +12,7 @@ class Cesiones extends MY_Model {
     public function form($values)
     {
         try {
+            $profile=getUserProfile($this,$values["id_user_active"]);
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_" . $values["model"]));
             $data["interno"] = "S";
