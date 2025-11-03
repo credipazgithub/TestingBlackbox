@@ -43,6 +43,7 @@ class Credipaz extends MY_Model {
     }
     public function cedidos($values)
     {
+        log_message("error", "RELATED vamoooo " . json_encode($values, JSON_PRETTY_PRINT));
         try {
             $NroDocumento = null;
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
@@ -60,6 +61,8 @@ class Credipaz extends MY_Model {
                 "Download" => ($values["download"]=="true"),
                 "FechaCesion" => $values["FechaCesion"]
             );
+
+
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
             $ret = API_callAPI("/Credito/GetCedido/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);

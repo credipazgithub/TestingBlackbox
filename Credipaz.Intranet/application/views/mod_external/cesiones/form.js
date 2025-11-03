@@ -42,7 +42,7 @@ function FillGrid(_dni, _download) {
 		$.blockUI({ message: '<img src="https://intranet.credipaz.com/assets/img/wait.gif" />', css: { border: 'none', backgroundColor: 'transparent', opacity: 1, color: 'transparent' } });
 		var _json = {
 			"token_authentication": _AJAX._token_authentication,
-			"id_user_active": _AJAX._id_user_active,
+			"id_user_active": $(".cboBanco").val(),
 			"id_app": _AJAX._id_app,
 			"NroDocumento": _dni,
 			"interno": _interno,

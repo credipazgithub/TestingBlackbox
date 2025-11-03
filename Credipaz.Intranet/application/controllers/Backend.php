@@ -1139,6 +1139,7 @@ class Backend extends MY_Controller {
             $data["title"] = TITLE_GENERAL;
             $data["language"] = $this->language;
             $data["interno"] = "N";
+            $data["id_user_active"] = $_POST["id_user_active"];
             $html = $this->load->view("mod_external/cesiones/form", $data, true);
             $return = array(
                 "code" => "2000",

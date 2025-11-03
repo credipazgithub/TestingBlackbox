@@ -16,6 +16,8 @@ class Cesiones extends MY_Model {
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_" . $values["model"]));
             $data["interno"] = "S";
+            $sql = "SELECT * FROM DBCentral.dbo.NS_vw_descuentoCarteraBanco ORDER BY Nombre ASC";
+            $data["bancos"] = $this->getRecordsAdHoc($sql);
             $html = $this->load->view("mod_external/cesiones/form", $data, true);
             logGeneral($this, $values, __METHOD__);
             return array(
