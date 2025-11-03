@@ -63,7 +63,6 @@ function FillGrid(_dni, _download) {
 				_html += "         <div class='col-4'></div>";
 				_html += "      </div>";
 				$.each(data.data, function (i, item) {
-					console.log(item);
 					_html += "<div class='row p-1 rLine c-" + item.NroDocumento + "'>";
 					_html += "   <div class='col-1'>" + item.fFecha + "</div>";
 					_html += "   <div class='col-2'>" + item.NroDocumento + " " + item.Sexo + "</div>";
@@ -119,6 +118,10 @@ function FillGrid(_dni, _download) {
 				setTimeout(function () { $('#aDownload').remove(); }, 250);
 			}
 			$.unblockUI();
+		}).catch(function (err) {
+			console.log("err");
+			console.log(err);
+
 		});
 	}
 	catch (rex) {

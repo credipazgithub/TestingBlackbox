@@ -43,7 +43,6 @@ class Credipaz extends MY_Model {
     }
     public function cedidos($values)
     {
-        log_message("error", "RELATED vamoooo " . json_encode($values, JSON_PRETTY_PRINT));
         try {
             $NroDocumento = null;
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");

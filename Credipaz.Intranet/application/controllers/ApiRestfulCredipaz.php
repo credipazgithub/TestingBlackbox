@@ -35,6 +35,7 @@ class ApiRestfulCredipaz extends MY_Controller {
                 throw new Exception($raw);
             }
             $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'cedidos';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
