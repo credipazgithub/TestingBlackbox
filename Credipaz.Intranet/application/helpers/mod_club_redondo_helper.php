@@ -70,21 +70,22 @@ function getUserClubRedondo($obj,$id){
         if(isset($persona[0]["IdPersona"])){
             //$REL_PERSONA_ADICIONALES=$obj->createModel(MOD_TELEMEDICINA,"Rel_persona_adicionales","Rel_persona_adicionales");
             //$rel=$REL_PERSONA_ADICIONALES->get(array("page"=>1,"where"=>"idPersona=".$persona[0]["IdPersona"]));
-            $retTel = $persona[0]["Telefono"];
             /**
              * Resolver que telefono se muestra!
              */
             $sql = "SELECT TOP 1 * FROM DBClub.dbo.SocioTelefono WHERE Red='TLM' AND IdSocio=" . $socio[0]["IdSocio"] . " ORDER BY 1 ASC";
             $telefonos = $obj->getRecordsAdHoc($sql);
-            foreach ($telefonos as $record) {$retTel = ($record[0]["CodigoArea"]. $record[0]["Numero"]);}
+            foreach ($telefonos as $record) {
+                $retTel = ($record["CodigoArea"]. $record["Numero"]);
+            }
             if ($retTel == "") {
                 $sql = "SELECT TOP 1 * FROM DBClub.dbo.SocioTelefono WHERE IdSocio=" . $socio[0]["IdSocio"] . " ORDER BY 1 ASC";
                 $telefonos = $obj->getRecordsAdHoc($sql);
-                foreach ($telefonos as $record) {$retTel = ($record[0]["CodigoArea"] . $record[0]["Numero"]);}
+                foreach ($telefonos as $record) {
+                    $retTel = ($record["CodigoArea"] . $record["Numero"]);
+                }
             }
             if ($retTel == "") {$retTel = $persona[0]["Telefono"];}
-
-
             $result["obra_social"]="";
             $result["obra_social_plan"]="";
             $result["nro_obra_social"]="";
@@ -105,7 +106,7 @@ function getUserClubRedondo($obj,$id){
             $result["CUIL"]=$persona[0]["CUIL"];
             $result["Sexo"]=$persona[0]["Sexo"];
             $result["Email"]=$persona[0]["Email"];
-            $result["Telefono"]=$persona[0]["Telefono"];
+            $result["Telefono"]= $retTel;
             $result["FechaAlta"]=explode('T', $socio[0]["FechaAlta"])[0];
             $result["FechaNacimiento"]=explode('T', $persona[0]["FechaNacimiento"])[0];
             $result["Empresa"]=(int)$socio[0]["Empresa"];
