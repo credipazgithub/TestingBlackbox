@@ -71,7 +71,6 @@ function getUserClubRedondo($obj,$id){
             //$REL_PERSONA_ADICIONALES=$obj->createModel(MOD_TELEMEDICINA,"Rel_persona_adicionales","Rel_persona_adicionales");
             //$rel=$REL_PERSONA_ADICIONALES->get(array("page"=>1,"where"=>"idPersona=".$persona[0]["IdPersona"]));
             $retTel = $persona[0]["Telefono"];
-
             /**
              * Resolver que telefono se muestra!
              */

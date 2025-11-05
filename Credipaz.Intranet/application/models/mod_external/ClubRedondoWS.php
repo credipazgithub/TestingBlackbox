@@ -38,11 +38,9 @@ class ClubRedondoWS extends MY_Model {
     public function getUserInformation($values,$scope){
         $sql="";
         if (strpos($values["dni"], "@") !== false) {$values["dni"] = explode("@", $values["dni"])[0];}
-
         switch($scope){
            case "CP":
               $sql=(string)"EXEC DBCentral.dbo.NS_Clientes_Datos_Generales_JSON @xmlData='<Consulta><Documento>".$values["dni"]."</Documento><Sexo>".$values["sex"]."</Sexo></Consulta>'";
-
               $result=$this->getRecordsAdHoc($sql);
               $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");

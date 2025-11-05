@@ -288,7 +288,7 @@ class Beneficios extends MY_Model {
 				$coords=(string)$values["coords"];
 				if ($coords!=""){$values["search"]=$coords;}
                 $kmW = "DEGREES(ACOS(COS(RADIANS(".$values["lat"].")) * COS(RADIANS(lat)) * COS(RADIANS(".$values["lng"]." - lng)) + SIN(RADIANS(".$values["lat"].")) * SIN(RADIANS(lat)))) * 111.045";
-				$values["fields"]="domicilio, localidad, ciudad, provincia, description,phone,cellphone,email,sinopsys,legales,lat,lng,image,image_apaisada,amount,address,neighborhood,".$kmW." as kms";
+				$values["fields"]="id, domicilio, localidad, ciudad, provincia, description,phone,cellphone,email,sinopsys,legales,lat,lng,image,image_apaisada,amount,address,neighborhood,".$kmW." as kms";
 				$whereGeo="offline IS null AND (DEGREES(ACOS(COS(RADIANS(".$values["lat"].")) * COS(RADIANS(lat)) * COS(RADIANS(".$values["lng"]." - lng)) + SIN(RADIANS(".$values["lat"].")) * SIN(RADIANS(lat)))) * 111.045 < ".$values["radio"].")";
 				$whereSearch="offline IS null AND (neighborhood LIKE '%".$values["search"]."%' OR address LIKE '%".$values["search"]."%' OR description LIKE '%".$values["search"]."%')";
 
@@ -328,7 +328,7 @@ class Beneficios extends MY_Model {
 				}
 				//$values["where"].=" AND id_type_beneficio IN (1,4,5) ";//"AND getdate()>=date_from AND getdate()<=date_to";// SOLO LOS TIPOS ACTIVOS ACTUALMENTE!
 				if ($values["id_type_vademecum"]!=-1) {$values["where"].=(" AND id_type_vademecum=".$values["id_type_vademecum"]);}
-				$values["order"]=" domicilio ASC,description ASC";
+				$values["order"]=$kmW." ASC, domicilio ASC,description ASC";
 			break;
         }
         if(!isset($values["page"])){$values["page"]=1;}
