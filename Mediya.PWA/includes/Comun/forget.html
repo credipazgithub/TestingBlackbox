@@ -1,0 +1,41 @@
+<div class="app-forget container-full text-left" style="position:absolute;top:70px;left:0px;">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="row mt-2 text-left">
+        <div class="col-12 px-5">
+            <p style="font-size:0.85rem;">
+                Si no recordás tu contraseña, ingresá tu DNI y presione "Enviar".  Se te solicitará nuevamente la información de registro.
+            </p>
+        </div>
+        <div class="col-12 px-5">
+            <p style="font-size:0.85rem;">
+                Volveremos a enviarte un código de verificación al finalizar el proceso.
+            </p>
+        </div>
+    </div>
+    <div class="row mt-3 text-left">
+        <div class="col-12 px-5">
+            <input type="text" class="form-control dni validateForget" id="dni" name="dni" placeholder="DNI" style="border:solid 1px grey !important;" />
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-6 text-center">
+            <button class="btn-back-sidebar back-sidebar pull-left"> VOLVER </button>
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn-action-forget pull-right"> ENVIAR </button>
+        </div>
+    </div>
+    <div class="row mt-3">
+        <div class="col-12 text-center">
+            <button class="necesitoAyuda" style="border: solid 1px #003F5B;">
+                <a href="tel:+5491161602919" style="color: #003F5B;">NECESITO AYUDA</a>
+            </button>
+        </div>
+    </div>
+</div>
+
+<script>
+    _NMF.onPageHeader(".inner-title", "Recuperá tu contraseña", "", "./includes/Credipaz/login.html",false);
+    $(".page-footer").addClass("d-none");
+</script>

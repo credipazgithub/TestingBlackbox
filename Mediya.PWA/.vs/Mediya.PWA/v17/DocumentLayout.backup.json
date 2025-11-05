@@ -1,0 +1,184 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\contacto.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\contacto.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 17,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:128:0:{13b12e3e-c1b4-4539-9371-4fe9a0d523fc}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:129:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:134:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:135:0:{1fc202d4-d401-403c-9834-5b218574bb67}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:133:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{6d4078d1-5951-4ed1-ac0e-0a8099c1cce5}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:130:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:131:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "especialidades.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\especialidades.html",
+              "RelativeDocumentMoniker": "includes\\Mediya\\especialidades.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\especialidades.html",
+              "RelativeToolTip": "includes\\Mediya\\especialidades.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-05T17:12:44.679Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "farmacias.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\farmacias.html",
+              "RelativeDocumentMoniker": "includes\\Mediya\\farmacias.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\farmacias.html",
+              "RelativeToolTip": "includes\\Mediya\\farmacias.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-05T17:12:32.392Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "laboratorios.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\laboratorios.html",
+              "RelativeDocumentMoniker": "includes\\Mediya\\laboratorios.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\laboratorios.html",
+              "RelativeToolTip": "includes\\Mediya\\laboratorios.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-05T17:11:40.431Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "INDEX.js",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\INDEX.js",
+              "RelativeDocumentMoniker": "js\\INDEX.js",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\INDEX.js",
+              "RelativeToolTip": "js\\INDEX.js",
+              "ViewState": "AgIAAGoAAAAAAAAAAADwv3oAAAADAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-05T17:07:51.591Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "contacto.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\contacto.html",
+              "RelativeDocumentMoniker": "includes\\Mediya\\contacto.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\contacto.html",
+              "RelativeToolTip": "includes\\Mediya\\contacto.html",
+              "ViewState": "AgIAACAAAAAAAAAAAAAAwCoAAAASAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-05T16:35:34.519Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "index-mediya.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html",
+              "RelativeDocumentMoniker": "index-mediya.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html",
+              "RelativeToolTip": "index-mediya.html",
+              "ViewState": "AgIAAEUAAAAAAAAAAAAAAE8AAAAOAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-05T16:33:49.362Z",
+              "EditorCaption": ""
+            }
+          ]
+        },
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": -1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,81 @@
+<div class="app-beneficios container-full text-center inner-page">
+    <div class="row p-0 m-0 mt-3">
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2 botonTelemedicina" style="display:none;">
+            <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/MediYa/telemedicina.html">
+                <img src='./img/Mediya/telemedicina.png' class="imgHome" alt="Telemedicina" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2 botonFarmacias" style="display:none;">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/farmacias.html">
+                <img src='./img/Mediya/farmacia.png' class="imgHome" alt="Farmacia" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2 botonUrgencias" style="display:none;">
+            <a href='tel:08002221441'>
+                <img src='img/Mediya/urgencias.png' class="imgHome" alt="Urgencias" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2 botonEspecialidades" style="display:none;">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/especialidades.html">
+                <img src='./img/Mediya/especialidades.png' class="imgHome" alt="Especialidades médicas y odontológicas" />
+            </a>
+        </div>
+        <div class="col-12 m-0 p-0 text-center px-4 mb-2 botonLaboratorios" style="display:none;">
+            <a href="#" class="btn-data-page" data-id="-125" data-direction="normal" data-href="./includes/MediYa/laboratorios.html">
+                <img src='./img/Mediya/laboratorios.png' class="imgHome" alt="Laboratorio e imágenes" />
+            </a>
+        </div>
+    </div>
+    <div class="row m-0 p-0 loged d-none title-rCredencial px-2">
+    </div>
+
+    <div class="row m-0 p-0 mb-5 loged d-none rCredencial px-2 area-credenciales pb-5">
+        <div class="col-6 p-0 m-0 text-center area-swiss skeleton card-loader"></div>
+        <div class="col-6 p-0 m-0 text-center area-gerdanna skeleton card-loader"></div>
+    </div>
+</div>
+<script>
+    _NMF.onToggleVisibilityByStatus();
+    _NMF.onResizeInner();
+    setTimeout(function () {
+        if (parseInt(_NMF._session_data.IdSocio) != 0) {
+            $(".botonTelemedicina").hide();
+            $(".botonFarmacias").hide();
+            $(".botonUrgencias").hide();
+            $(".botonEspecialidades").hide();
+            $(".botonLaboratorios").hide();
+            if (_NMF._session_data.botonTelemedicina == 1) { $(".botonTelemedicina").fadeIn("slow"); }
+            if (_NMF._session_data.botonFarmacias == 1) { $(".botonFarmacias").fadeIn("slow"); }
+            if (_NMF._session_data.botonUrgencias == 1) { $(".botonUrgencias").fadeIn("slow"); }
+            if (_NMF._session_data.botonEspecialidades == 1) { $(".botonEspecialidades").fadeIn("slow"); }
+            if (_NMF._session_data.botonLaboratorios == 1) { $(".botonLaboratorios").fadeIn("slow"); }
+        } else {
+            $(".botonTelemedicina").show();
+            $(".botonFarmacias").show();
+            $(".botonUrgencias").show();
+            $(".botonEspecialidades").show();
+            $(".botonLaboratorios").show();
+        }
+    }, 100);
+    if (_NMF._logged) {
+        if (!_NMF._credentialsReady) {
+            setTimeout(function () {
+                _API.UiGetCredenciales({ "Tipo": "SWISS", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                    _NMF._dataSwiss = datajson;
+                    _NMF.drawCredentialSwiss(_NMF._dataSwiss);
+                }).catch(function (error) { });
+                _API.UiGetCredenciales({ "Tipo": "GERDANNA", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                    _NMF._dataGerdanna = datajson;
+                    _NMF.drawCredentialGerdanna(_NMF._dataGerdanna);
+                }).catch(function (error) { });
+            }, 3000);
+        } else {
+            _NMF.drawCredentialSwiss(_NMF._dataSwiss);
+            _NMF.drawCredentialGerdanna(_NMF._dataGerdanna);
+        }
+    }
+    _NMF.id_category = "-125,332,333,334,323,337,336,325,335,324,326,327,328,329,330,331,338,339,340";
+    $(".searcher").attr("data-category", _NMF.id_category);
+    $(".icontact").attr("src","./img/Mediya/0800.png");
+    $(".fcontact").style({ "color": "white" });
+</script>

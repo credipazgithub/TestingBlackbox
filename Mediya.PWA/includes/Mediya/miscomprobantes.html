@@ -1,0 +1,21 @@
+<div class="app-miscomprobantes container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="row no-gutters px-3 mt-2">
+        <div class="col-6 mt-1 pt-1 text-center">
+            <a class="btn btn-sm btn-raised btn-primary btn-comprobantes" data-mode="recibos">Recibos</a>
+        </div>
+        <div class="col-6 mt-1 pt-1 text-center">
+            <a class="btn btn-sm btn-raised btn-secondary btn-comprobantes" data-mode="facturas">Facturas</a>
+        </div>
+        <div class="col-12 mt-1 pt-1 text-center">
+            <div class="mis-comprobantes mis-recibos d-none"></div>
+            <div class="mis-comprobantes mis-facturas d-none"></div>
+        </div>
+    </div>
+</div>
+<script>
+    _NMF.onPageHeader(".inner-title", "MIS COMPROBANTES", "./img/Comun/h_miscomprobantes.png", _NMF._default_page,false);
+    _NMF.onResizeInner();
+    _NMF.onMisComprobantes(null);
+</script>

@@ -1,0 +1,24 @@
+<div class="app-laboratorios container-full text-center inner-page">
+    <div class="row no-gutters align-items-center inner-title"></div>
+
+    <div class="res-result"></div>
+    <div class='row no-gutters px-3 menu-categoria-laboratorio'></div>
+</div>
+
+<script>
+    _NMF.onPageHeader(".inner-title", "LABORATORIO E IMÁGENES", "./img/MediYa/h_laboratorios.png", _NMF._default_page, false);
+    _NMF.onResizeInner();
+
+    var _target = ".menu-categoria-laboratorio";
+    var _back = "./includes/MediYa/laboratorios.html";
+    var _scope = "MediYa";
+
+    _NMF.onCategoriaMedicina(_scope, _target, "338", "Análisis clínicos", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "339", "Radiografías", "", _back);
+    _NMF.onCategoriaMedicina(_scope, _target, "340", "Imágenes", "", _back);
+
+    _NMF.id_category = "338,339,340";
+    _NMF.showLinkAutorizaciones = true;
+    $(".searcher").attr("data-category", _NMF.id_category);
+</script>
+

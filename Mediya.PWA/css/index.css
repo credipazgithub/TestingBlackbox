@@ -1,0 +1,384 @@
+.btn-general {
+    font-size: 0.80em;
+    border: solid 1px #FF9800;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+}
+
+body {
+    font-family: 'Roboto-light' !important;
+    min-width: 320px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+.imgHome {
+    width: 300px;
+    height: 68px;
+}
+
+a {
+    text-decoration: none;
+    color: rgb(0,71,186);
+}
+    a:hover {
+        text-decoration: none;
+        color: rgb(0,71,186);
+    }
+    a:hover {
+        text-decoration: none;
+        color: rgb(0,71,186);
+    }
+    a:checked {
+        text-decoration: none;
+        color: rgb(0,71,186);
+    }
+    a:focus {
+        text-decoration: none;
+        color: rgb(0,71,186);
+    }
+ul {
+    list-style: none; /* Remove default bullets */
+}
+    ul li::before {
+        content: "\2022"; /* Add content: \2022 is the CSS Code/unicode for a bullet */
+        font-size: 1.5em;
+        color: rgb(250 15 132); /* Change the color */
+        font-weight: bold; /* If you want it to be bold */
+        display: inline-block; /* Needed to add space between the bullet and the text */
+        width: 1em; /* Also needed for space (tweak if needed) */
+        margin-left: -1em; /* Also needed for space (tweak if needed) */
+    }
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    -moz-appearance: textfield;
+    margin: 0;
+}
+::-webkit-input-placeholder {
+    text-align: left;
+    padding-left: 10px;
+}
+:-moz-placeholder {
+    text-align: left;
+}
+::-moz-placeholder {
+    text-align: center;
+}
+:-ms-input-placeholder {
+    text-align: left;
+}
+.bodyMain {
+    overflow: hidden;
+    width: 100%;
+    height: 100%;
+}
+.form-control {
+    background-color: white !important;
+    border-radius: 25px !important;
+    border: solid 0px white !important;
+    padding-left: 15px;
+    right: 15px;
+    height: 34px !important;
+    color: #131230;
+}
+    .form-control::-webkit-input-placeholder {
+        font-size: 0.9em !important;
+        font-weight:bold;
+        color: #131230;
+        line-height: 1;
+    }
+
+    .form-control::-moz-placeholder {
+        font-size: 0.9em !important;
+        font-weight: bold;
+        color: #131230;
+        line-height: 1;
+    }
+
+.mapsearch {
+    border:solid 1px white;
+    border-bottom:solid 1px silver;
+    height:24px;
+    width:100%;
+}
+.inner-page {
+    overflow-y: auto;
+    background-color: white;
+    padding-bottom:50px;
+}
+.inner-title {
+    padding-top: 5px;
+    padding-bottom: 5px;
+}
+.btn-toggle-map {
+    font-size: 0.7em;
+    border: solid 1px #0047ba;
+    border-radius: 12px;
+    background-color: #0047ba;
+    color: white;
+    font-weight: bold;
+    padding:3px;
+}
+.btn-toggle-near {
+    font-size: 0.7em;
+    border: solid 1px #f7931e;
+    border-radius: 12px;
+    background-color: #f7931e;
+    color: white;
+    font-weight: bold;
+    padding: 3px;
+    margin-left: 2px;
+    margin-right: 2px;
+}
+
+.btn-pagar {
+    font-size: 0.80em;
+    border: solid 1px #FF9800;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+}
+.btn-solicitar {
+    font-size: 0.80em;
+    border: solid 1px #FF9800;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+}
+.btn-accept-sincargo {
+    font-size: 0.80em;
+    border: solid 1px #FF9800;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+}
+.btn-accept-previa {
+    font-size: 0.80em;
+    border: solid 1px #FF9800;
+    border-radius: 20px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white !important;
+    font-weight: bold;
+    padding: 5px 15px 5px 15px;
+}
+.back-sidebar {
+    font-size: 0.80em;
+    border: solid 1px silver;
+    border-radius: 20px;
+    height: 30px;
+    background-color: silver;
+    color: grey;
+    padding: 5px 15px 5px 15px;
+}
+.page-header {
+    z-index: 99999;
+    width: 100vw;
+}
+.app-forget {
+    background-color: white;
+    height: 100vh;
+}
+.page-sections {
+    width: 100vw;
+    height:100vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    z-index:99999;
+}
+.effect {
+    display: none;
+    opacity: 1;
+    background-color: ghostwhite;
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    z-index: 99999;
+    width: 100vw;
+    height: 100vh;
+}
+.page-sidebar {
+    background-color: ghostwhite;
+    position: absolute;
+    left: -2500px;
+    top: 50px;
+    opacity: 0;
+    height: 100vh;
+    z-index: 999999;
+}
+.meet {
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    width: 100vw;
+    height: 100vh;
+    display: none;
+    z-index: 99999;
+}
+.initSession {
+    font-size: 0.8em;
+    border: solid 1px rgb(22,75,103);
+    border-radius: 15px;
+    height: 30px;
+    background-color: rgb(22,75,103);
+    color: white;
+}
+.initAsociate {
+    font-size: 0.70em;
+    border: solid 1px #FF9800;
+    border-radius: 15px;
+    height: 30px;
+    background-color: #FF9800;
+    color: white;
+}
+.necesitoAyuda {
+    font-size: 0.75em;
+    border: solid 1px ghostwhite;
+    border-radius: 15px;
+    height: 30px;
+    background-color: transparent;
+    color: white;
+    width: 120px;
+}
+.res-result {
+    color: grey;
+    font-family: 'Antenna-medium' !important;
+    font-size: 0.80rem;
+    
+}
+.img-menu-hamb {
+    height: 40px;
+    margin-left: 0px;
+    margin-top: 0px;
+}
+
+.mensaje-cobertura {
+    font-size: 0.7em;
+}
+
+.btn-menu-comun-tiny {
+    text-align: center;
+    height: 25px;
+    color: grey;
+    font-size: 0.80em;
+    font-weight: bold;
+    text-decoration: none;
+    background: transparent;
+    width: 99%;
+    border-width: 0px;
+}
+.btn-data-page {
+    border-width: 0px;
+}
+.btn-rounded {
+    border-width: 0px;
+    background-color: transparent;
+}
+.verification-code {
+    border: double 4px rgba(235, 0, 139, 0.5);
+    color: rgb(235, 0, 139);
+    margin: 0px 10px 0px 10px;
+    padding: 5px;
+    font-size: 20px;
+    font-weight: bold;
+}
+.verification-msg {
+    margin: 10px;
+    padding: 10px;
+    font-size: 18px;
+    color: grey;
+    font-weight: bold;
+}
+.field-comun {
+    color: #005caf;
+    font-size: 18px;
+    background-color: white;
+    border: solid 0px grey;
+    margin: 0px;
+    padding: 10px;
+    width: 100%;
+    height: 50px;
+    border-radius: 15px;
+    -webkit-box-shadow: 0px 0px 25px -10px rgba(0,0,0,0.45);
+}
+.map {
+    height: 100%;
+    width: 100%;
+}
+.nd-beneficio {
+    color: grey;
+    font-family: 'Antenna-Bold' !important;
+    font-size: 0.75rem;
+}
+.nd-small {
+    color: grey;
+    font-family: 'Antenna-light' !important;
+    font-size: 0.65rem;
+}
+.nd-tiny {
+    color: grey;
+    font-family: 'Antenna-light' !important;
+    font-size: 0.55rem;
+}
+
+.img-tarjeta {
+    width:100%;
+    border:solid 1px white;
+    border-radius:15px;
+}
+.displayUserdata {
+    font-size: 0.8rem;
+    color: white;
+    opacity: 0;
+}
+.skeleton {
+    animation: skeleton-loading 1s linear infinite alternate;
+}
+.line-loader {
+    height:40px;
+    width:100%;
+    border-radius:5px;
+}
+.card-loader {
+    height: 140px;
+    width: 50%;
+    padding: 10px 10px 10px 10px;
+    border-radius: 5px;
+}
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200, 20%, 80%);
+    }
+
+    100% {
+        background-color: hsl(200, 20%, 95%);
+    }
+}
+.msg-legales-with {
+    border: double 4px darkred;
+    color: black;
+    padding: 5px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.mensaje-asistencia {
+    padding: 5px;
+}
+
+html.plt-ios.plt-pwa {
+    height: 99.9vh !important;
+}

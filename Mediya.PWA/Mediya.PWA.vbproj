@@ -1,0 +1,332 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{74030524-DE27-4A73-91E5-F694395D5C55}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NeodataNet</RootNamespace>
+    <AssemblyName>NeodataNet</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mobile">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="My Project\AssemblyInfo.vb" />
+    <Compile Include="My Project\Application.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Application.myapp</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Resources.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="My Project\Settings.Designer.vb">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="My Project\Resources.resx">
+      <Generator>VbMyResourcesResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.vb</LastGenOutput>
+      <CustomToolNamespace>My.Resources</CustomToolNamespace>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="css\index-mediya.css" />
+    <Content Include="icons\Mediya\favico.ico" />
+    <Content Include="icons\Mediya\maskable_icon_x128.png" />
+    <Content Include="icons\Mediya\maskable_icon_x1280.png" />
+    <Content Include="icons\Mediya\maskable_icon_x192.png" />
+    <Content Include="icons\Mediya\maskable_icon_x36.png" />
+    <Content Include="icons\Mediya\maskable_icon_x384.png" />
+    <Content Include="icons\Mediya\maskable_icon_x48.png" />
+    <Content Include="icons\Mediya\maskable_icon_x512.png" />
+    <Content Include="icons\Mediya\maskable_icon_x72.png" />
+    <Content Include="icons\Mediya\maskable_icon_x96.png" />
+    <Content Include="img\banner.jpg" />
+    <Content Include="img\Comun\cerrajeria.png" />
+    <Content Include="img\Comun\electricidad.png" />
+    <Content Include="img\Comun\gasista.png" />
+    <Content Include="img\Comun\lnk.png" />
+    <Content Include="img\Comun\plomeria.png" />
+    <Content Include="img\Comun\vidrieria.png" />
+    <Content Include="img\Comun\asistencia_hogar.png" />
+    <Content Include="img\Comun\asistencia_legal.png" />
+    <Content Include="img\Comun\autos.png" />
+    <Content Include="img\Comun\cines.png" />
+    <Content Include="img\Comun\club.png" />
+    <Content Include="img\Comun\compras.png" />
+    <Content Include="img\Comun\educacion.png" />
+    <Content Include="img\Comun\entretenimiento.png" />
+    <Content Include="img\Comun\gastronomia.png" />
+    <Content Include="img\Comun\gym_deportes.png" />
+    <Content Include="img\Comun\indumentaria.png" />
+    <Content Include="img\Comun\logo_mediya.png" />
+    <Content Include="img\Comun\mediya.png" />
+    <Content Include="img\Comun\mil.png" />
+    <Content Include="img\Comun\motos.png" />
+    <Content Include="img\Comun\salud_belleza.png" />
+    <Content Include="img\Comun\servicios.png" />
+    <Content Include="img\Comun\teatros.png" />
+    <Content Include="img\Comun\turismo.png" />
+    <Content Include="img\Comun\de_salud_a.png" />
+    <Content Include="img\Comun\de_salud_v.png" />
+    <Content Include="img\Comun\de_vida_a.png" />
+    <Content Include="img\Comun\de_vida_v.png" />
+    <Content Include="img\Comun\item_-125.png" />
+    <Content Include="img\Comun\h_miscomprobantes.png" />
+    <Content Include="img\Comun\h_misrecetas.png" />
+    <Content Include="img\Comun\h_beneficios.png" />
+    <Content Include="img\Comun\ubicacion.png" />
+    <Content Include="img\Comun\ytb.png" />
+    <Content Include="img\Credenciales\gerdanna.jpg" />
+    <Content Include="img\Credenciales\originales\gerdanna.png" />
+    <Content Include="img\Credenciales\originales\swiss.png" />
+    <Content Include="img\Credenciales\swiss.jpg" />
+    <Content Include="img\Credenciales\swiss.png" />
+    <Content Include="img\Mediya\0800.png" />
+    <Content Include="img\Mediya\0800_azul.png" />
+    <Content Include="img\Mediya\boton_especialidades.png" />
+    <Content Include="img\Mediya\boton_laboratorio.png" />
+    <Content Include="img\Mediya\boton_odontologia.png" />
+    <Content Include="img\Mediya\btn_telemedicina.png" />
+    <Content Include="img\Mediya\devida.png" />
+    <Content Include="img\Mediya\h_asistencia_hogar.png" />
+    <Content Include="img\Mediya\h_asistencia_legal.png" />
+    <Content Include="img\Mediya\h_especialidades.png" />
+    <Content Include="img\Mediya\h_laboratorios.png" />
+    <Content Include="img\Comun\icono_tel.png" />
+    <Content Include="img\Comun\logo_club.png" />
+    <Content Include="img\Mediya\h_urgencias.png" />
+    <Content Include="img\Mediya\logo.png" />
+    <Content Include="img\Comun\logo_mil.png" />
+    <Content Include="img\Comun\logo_pago.png" />
+    <Content Include="img\Comun\facebook.png" />
+    <Content Include="img\Comun\instagram.png" />
+    <Content Include="img\Comun\home.png" />
+    <Content Include="img\Comun\hamburg.png" />
+    <Content Include="img\Comun\tiktok.png" />
+    <Content Include="img\Mediya\especialidades.png" />
+    <Content Include="img\Mediya\farmacia.png" />
+    <Content Include="img\Mediya\laboratorios.png" />
+    <Content Include="img\Mediya\mail.png" />
+    <Content Include="img\Mediya\mediya.png" />
+    <Content Include="img\Mediya\portada_app.jpg" />
+    <Content Include="img\Mediya\qr_app_mediya.png" />
+    <Content Include="img\Mediya\telefono.png" />
+    <Content Include="img\Mediya\telemedicina-close.png" />
+    <Content Include="img\Mediya\telemedicina-no.png" />
+    <Content Include="img\Mediya\telemedicina-si.png" />
+    <Content Include="img\Mediya\telemedicina.png" />
+    <Content Include="img\Mediya\urgencias.png" />
+    <Content Include="img\Mediya\whatsapp_b.png" />
+    <Content Include="img\Mediya\whatsapp.png" />
+    <Content Include="includes\Comun\dynamic.html" />
+    <Content Include="includes\Comun\credencialgerdanna.html" />
+    <Content Include="includes\Comun\credencialclubredondo.html" />
+    <Content Include="img\Mediya\boton_0810.png" />
+    <Content Include="img\Mediya\boton_telemedicina.png" />
+    <Content Include="img\Mediya\boton_turnos.png" />
+    <Content Include="img\Mediya\boton_whatsapp.png" />
+    <Content Include="includes\Mediya\contacto.html" />
+    <Content Include="includes\Mediya\coberturas.html" />
+    <Content Include="includes\Mediya\especialidades.html" />
+    <Content Include="includes\Mediya\invitar.html" />
+    <Content Include="includes\Mediya\laboratorios.html" />
+    <Content Include="includes\Mediya\home.html" />
+    <Content Include="includes\Mediya\asociarme.html" />
+    <Content Include="includes\Comun\searchResult.html" />
+    <Content Include="index.html" />
+    <Content Include="js\HTTPREQUEST.js" />
+    <Content Include="js\NMF.js" />
+    <Content Include="css\fonts.css" />
+    <Content Include="css\index.css" />
+    <Content Include="img\Mediya\h_farmacia.png" />
+    <Content Include="img\Comun\h_pagos.png" />
+    <Content Include="img\Mediya\h_telemedicina.png" />
+    <Content Include="img\Comun\vacio.gif" />
+    <Content Include="img\Comun\wait.gif" />
+    <Content Include="img\Comun\clubredondo.png" />
+    <Content Include="img\Comun\me.png" />
+    <Content Include="includes\Comun\credencialswiss.html" />
+    <Content Include="includes\Comun\forget.html" />
+    <Content Include="includes\Mediya\farmacias.html" />
+    <Content Include="includes\Mediya\miscomprobantes.html" />
+    <Content Include="includes\Mediya\misrecetas.html" />
+    <Content Include="includes\Mediya\miscupones.html" />
+    <Content Include="includes\Comun\exit.html" />
+    <Content Include="includes\Comun\logout.html" />
+    <Content Include="includes\Comun\login.html" />
+    <Content Include="includes\Mediya\pagos.html" />
+    <Content Include="includes\Mediya\telemedicina.html" />
+    <Content Include="index-mediya.html" />
+    <Content Include="js\API.js" />
+    <Content Include="js\INDEX.js" />
+    <Content Include="fonts\Antenna-Black.otf" />
+    <Content Include="fonts\Antenna-Bold.otf" />
+    <Content Include="fonts\Antenna-BoldItalic.otf" />
+    <Content Include="fonts\Antenna-Light.otf" />
+    <Content Include="fonts\Antenna-Medium.otf" />
+    <Content Include="fonts\Antenna-MediumItalic.otf" />
+    <Content Include="fonts\Antenna-Thin.otf" />
+    <Content Include="js\PAY.js" />
+    <Content Include="js\PHOTO.js" />
+    <Content Include="js\TOOLS.js" />
+    <Content Include="lupa.png" />
+    <Content Include="img\Comun\placeholder.png" />
+    <Content Include="website-movil-mediya-configuration.js" />
+    <Content Include="website-movil-worker.js" />
+    <Content Include="fonts\Roboto-Black.ttf" />
+    <Content Include="fonts\Roboto-BlackItalic.ttf" />
+    <Content Include="fonts\Roboto-Bold.ttf" />
+    <Content Include="fonts\Roboto-BoldItalic.ttf" />
+    <Content Include="fonts\Roboto-Italic.ttf" />
+    <Content Include="fonts\Roboto-Light.ttf" />
+    <Content Include="fonts\Roboto-LightItalic.ttf" />
+    <Content Include="fonts\Roboto-Medium.ttf" />
+    <Content Include="fonts\Roboto-MediumItalic.ttf" />
+    <Content Include="fonts\Roboto-Regular.ttf" />
+    <Content Include="fonts\Roboto-Thin.ttf" />
+    <Content Include="fonts\Roboto-ThinItalic.ttf" />
+    <Content Include="fonts\Lato-Black.ttf" />
+    <None Include="My Project\Application.myapp">
+      <Generator>MyApplicationCodeGenerator</Generator>
+      <LastGenOutput>Application.Designer.vb</LastGenOutput>
+    </None>
+    <None Include="My Project\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <CustomToolNamespace>My</CustomToolNamespace>
+      <LastGenOutput>Settings.Designer.vb</LastGenOutput>
+    </None>
+    <Content Include="pdf\cuadro_coberturas_de_salud.pdf" />
+    <Content Include="pdf\cuadro_asistencia_al_hogar.pdf" />
+    <Content Include="website-movil-mediya-manifest.json" />
+    <Content Include="Recursos\configServers.json" />
+  </ItemGroup>
+  <ItemGroup />
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:50481/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

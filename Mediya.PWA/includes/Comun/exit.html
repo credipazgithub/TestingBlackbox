@@ -1,0 +1,20 @@
+<div class="app-exit container-full mt-2 p-4 text-center inner-page" style="background-color:white;">
+    <h5>Salir de la aplicación</h5>
+    <p>Decinos si querés que te volvamos a preguntar quién sos al volver a ingresar, marcando la casilla de abajo antes de salir.</p>
+
+    <input type="checkbox" id="chkRecordarme" name="chkRecordarme" class="loged" />
+    <span style="font-size:14px;" class="loged">¡Acordate quién soy!</span>
+
+    <div class="row mt-5">
+        <div class="col-6 text-center">
+            <button class="btn-back-sidebar back-sidebar pull-left"> VOLVER </button>
+        </div>
+        <div class="col-6 text-center">
+            <button class="btn-action-exit pull-right"> SALIR </button>
+        </div>
+    </div>
+</div>
+<script>
+    $(".page-footer").addClass("d-none");
+    _NMF.onResizeInner();
+</script>

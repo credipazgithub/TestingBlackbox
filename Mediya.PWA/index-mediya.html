@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="es-AR" dir="ltr">
+<head>
+    <title>Mediya</title>
+    <meta charset="UTF-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate">
+    <meta http-equiv="Pragma" content="no-cache">
+    <meta http-equiv="Expires" content="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <meta http-equiv="Content-Security-Policy" content="
+        default-src * https://* whatsapp://* gap://* tel://* mail://* 'self' 'unsafe-inline' 'unsafe-eval';
+        object-src * data: content: blob: 'self' 'unsafe-inline' 'unsafe-eval';
+        frame-src * data: content: blob: 'self' 'unsafe-inline' 'unsafe-eval';
+        script-src * 'self' 'unsafe-inline' 'unsafe-eval';
+        connect-src * 'self' 'unsafe-inline' 'unsafe-eval';
+        media-src * 'self' 'unsafe-inline' 'unsafe-eval';
+        img-src * data: content: blob: 'self' 'unsafe-inline' 'unsafe-eval';
+        style-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
+    <meta name="apple-mobile-web-app-status-bar" content="#db4938" />
+    <meta name="theme-color" content="#db4938" />
+    <meta name="Robots" content="all, index, follow">
+    <meta name="keywords" content="Mediya, medicina, laboratorio, especialidades médicas, odontología, farmacias">
+    <meta name="description" content="Mediya, medicina, laboratorio, especialidades médicas, odontología, farmacias">
+    <meta name="facebook-domain-verification" content="2i2la5jd5mdyxn3wwoad1e16ockucc" />
+
+    <link rel="manifest" href="./website-movil-mediya-manifest.json" />
+    <!-- Application Style Sheets -->
+    <link rel="stylesheet" href="./css/index.css?x" />
+    <link rel="stylesheet" href="./css/index-mediya.css?x" />
+    <link rel="stylesheet" href="./css/fonts.css?x" />
+    <link rel="stylesheet" href="./assets/bootstrap/css/bootstrap.min.css?x" />
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script src="./assets/bootstrap/js/bootstrap.min.js?x"></script>
+
+    <!-- Application libraries -->
+    <script src="./js/NMF.js?cx"></script>
+    <script src="./js/HTTPREQUEST.js?cx"></script>
+
+    <link rel="apple-touch-icon" href="./icons/mediya/maskable_icon_x180.png">
+</head>
+<body id="bodyMain" class="bodyMain p-0 m-0 colorBack">
+    <div class="container-full p-0 m-0 page-header">
+        <div class="app-header container-full p-0 m-auto d-none">
+            <div class="row no-gutters pt-1">
+                <div class="col-6 m-0 p-1 pt-3 my-auto">
+                    <img src="./img/MediYa/logo.png" style="width:150px;height:27px;padding:0px;" alt="MediYa" />
+                </div>
+                <div class="col-6 p-0 px-2 text-right m-0 my-auto">
+                    <a href="#" class="btn-data-page close-sidebar" style="border: solid 0px white; background-color: transparent;" data-direction="normal" data-href="./includes/MediYa/home.html">
+                        <img src="./img/Comun/home.png" style="height: 35px; width: 35px; padding: 5px;" alt="Inicio" />
+                    </a>
+                    <a href="#" class="toggle-sidebar" aria-label="Activar la barra lateral">
+                        <img src="./img/Comun/hamburg.png" style="height: 35px; width: 35px; padding: 5px;" alt="Barra lateral" />
+                    </a>
+                </div>
+            </div>
+            <div class="row no-gutters mt-3 mb-1 pb-1 stext-left">
+                <div class="col-6 p-0 px-2 text-left m-0 mb-2 loged">
+                    <span class="displayUserdata"></span>
+                </div>
+                <div class="col-6 m-0 p-0 m-0 pl-1 mb-2 notloged">
+                    <button class="btn-data-page initAsociate btnAsociate" style="border-width:0px;" data-direction="normal" data-href="./includes/MediYa/asociarme.html">
+                        ASOCIATE
+                    </button>
+                    <button class="btn-data-page initSession btnLogin" style="border-width:0px;" data-direction="normal" data-href="./includes/Comun/login.html">
+                        Iniciar sesión
+                    </button>
+                </div>
+                <div class="col-6 m-0 p-0 m-0 pr-1 mb-2">
+                    <input data-category="0" class="searcher" type="text" id="search" name="search" data-direction="normal" data-href="./includes/Comun/searchResult.html" placeholder="¿Qué estás buscando?" />
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="p-0 m-0 page-sections pb-5" id="pageSection">
+        <div class="app-000 no-gutters text-center" style="width: 100%; height: 100vh; background-image: url(./img/MediYa/portada_app.jpg);background-size:cover;position:absolute;">
+            <img class="img-intro" src="./img/MediYa/logo.png" style="width:200px;opacity: 0; position: absolute; " alt="Logo" />
+        </div>
+    </div>
+
+    <div class="container-full p-0 m-0 page-footer">
+        <div class="app-footer container-full p-0 m-0 pt-2 text-center d-none">
+            <div class="row no-gutters">
+                <!--
+                    <div class="col-4 m-0 p-0 text-center">
+                        <a href="tel:08106661729">
+                            <img src='./img/Mediya/0800.png' style="height: 42px; width: 42px;" alt="Contacto" />
+                            <p class="footer-text" style="color:#003f5b;">Contacto</p>
+                        </a>
+                    </div>
+                -->
+                <div class="col-4 m-0 p-0 text-center">
+                    <a href="#" class="btn-data-page" data-direction="normal" data-href="./includes/MediYa/contacto.html">
+                        <img class="icontact" src='./img/Mediya/0800.png' style="height: 42px; width: 42px;" alt="Contacto" />
+                        <!--<p class="footer-text" style="color:#003f5b;">Contactos útiles</p>-->
+                        <p class="fcontact footer-text" style="color:white;">Contactos útiles</p>
+                    </a>
+                </div>
+                <div class="col-4 m-0 p-0 text-center">
+                    <a href="https://api.whatsapp.com/send?phone=5491131515452&text=Hola!%20" target="_blank">
+                        <img src='./img/Mediya/whatsapp.png' style="height: 42px; width: 42px; " alt="Beneficios" />
+                        <p class="footer-text">Whatsapp</p>
+                    </a>
+                </div>
+                <div class="col-4 m-0 p-0 text-center">
+                    <a href="#" class="linkPago" target="_blank">
+                        <img src='./img/Comun/logo_pago.png' style="height: 42px; width: 42px; " alt="Botón de Pago" />
+                        <p class="footer-text">Botón de Pago</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-full no-gutters page-sidebar mt-2">
+        <div style="width:100vw;" class="text-center px-2 pt-2">
+            <button class="btn-data-page btn-menu-comun" data-direction="normal" data-href="./includes/MediYa/coberturas.html">Coberturas de salud</button>
+            <button class="btn-data-page btn-menu-comun loged" data-direction="normal" data-href="./includes/MediYa/misrecetas.html">Mis recetas</button>
+            <button class="btn-data-page btn-menu-comun notloged btnLogin" data-direction="normal" data-href="./includes/Comun/login.html">Iniciar sesión</button>
+            <button class="btn-data-page btn-menu-comun notloged btnAsociate" data-direction="normal" data-href="./includes/MediYa/asociarme.html">Asociarme</button>
+            <button class="btn-data-page btn-menu-comun loged" data-direction="normal" data-href="./includes/Comun/logout.html">Cerrar sesión</button>
+            <button class="btn-data-page btn-menu-comun" data-direction="normal" data-href="./includes/Comun/exit.html">Salir</button>
+            <table align="center" class="mt-3">
+                <tr>
+                    <td class="p-1">
+                        <a href="https://www.instagram.com/mediya.salud/" target="_blank">
+                            <img loading="lazy" src="./img/Comun/instagram.png" style="height: 36px; width: 36px;" alt="Instagram" />
+                        </a>
+                    </td>
+                    <td class="p-1">
+                        <a href="https://www.facebook.com/mediyasalud.ok/" target="_blank">
+                            <img loading="lazy" src="./img/Comun/facebook.png" style="height: 36px; width: 36px;" alt="Facebook" />
+                        </a>
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <div class="container-full p-0 m-0 effect"></div>
+
+    <div class="m-0 p-0 meet" id="meet"></div>
+</body>
+</html>
+<script>
+    $(function () {
+        setTimeout(function () {
+            var _t = (($(window).height() - $(".img-intro").height()) / 2);
+            var _l = ($(window).width() - $(".img-intro").width()) / 2;
+            $(".img-intro").css({ "left": (_l + "px"), "top": (_t + "px"), "opacity": 1 });
+            $.getScript("https://maps.googleapis.com/maps/api/js?key=AIzaSyC1tenNE7Ci3lOcX-MHqGEbzzFtPaSRJWY&libraries=geometry&callback=initAll", function () { });
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js", function () { });
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js", function () { });
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.min.js", function () { });
+            $.getScript("https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.6.347/pdf.worker.js", function () { });
+
+            $.getScript("https://www.gstatic.com/firebasejs/7.21.0/firebase-app.js", function () {
+                $.getScript("https://www.gstatic.com/firebasejs/7.21.0/firebase-auth.js", function () {
+                    /*----------------------------------------------------*/
+                    // Initialize Firebase
+                    /*----------------------------------------------------*/
+                    const firebaseConfig = {
+                        apiKey: "AIzaSyBTmdERZWB5SdDUrZfD3dNYvNOrEOS4LGY",
+                        authDomain: "club-redondo.firebaseapp.com",
+                        projectId: "club-redondo",
+                        storageBucket: "club-redondo.appspot.com",
+                        messagingSenderId: "90733007752",
+                        appId: "1:90733007752:web:a89cb220deca983e70603d",
+                        measurementId: "G-8XX6X303W3"
+                    };
+                    firebase.initializeApp(firebaseConfig);
+                    /*----------------------------------------------------*/
+                    var ms = Date.now();
+                    _NMF._default_page = ("./includes/mediya/home.html?" + ms);
+                    _NMF._map_icon = ("./img/Comun/mediya.png?" + ms);
+                    _NMF._actualPage = ("./includes/mediya/home.html?" + ms);
+                    _HTTPREQUEST._id_app = 5;
+                    _HTTPREQUEST._sufixEmail = "@clubredondo.com";
+                    _HTTPREQUEST._id_root = "appClubRedondo";
+
+                    /*Todo va wrapped dentro del llamado a la configuracion de server Blacbox */
+                    _NMF.readConfigServers("Intranet").then(function (data) {
+                        _HTTPREQUEST.server = data.url;
+                        _HTTPREQUEST._mobile = (screen.width < 700 || screen.height < 500);
+                        _NMF.onEvalLoginStatus();
+                        $(".inactive-paycode").removeClass("d-none");
+                        $(".btn-generate-paycode").removeClass("d-none");
+                    });
+                });
+            });
+        }, 1);
+    });
+</script>
+
+<link async rel="icon" type="image/png" href="./icons/MediYa/favico.ico" />
+<link async rel="apple-touch-icon" href="./icons/MediYa/maskable_icon_x192.png" />
+
+<!-- Third party Style Sheets -->
+<script async src="https://cdn.gruponeodata.com/database/DB.js"></script>
+<script async src="./js/TOOLS.js"></script>
+<script async src="./js/API.js"></script>
+<script async src="./js/INDEX.js"></script>
+<script async src="website-movil-mediya-configuration.js"></script>

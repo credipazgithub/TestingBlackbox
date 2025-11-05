@@ -1,0 +1,142 @@
+@font-face {
+    font-display: swap;
+    font-family: 'Nunito-bold';
+    src: url('/fonts/Nunito-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-black';
+    src: url('/fonts/Antenna-Black.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-bolditalic';
+    src: url('/fonts/Antenna-BoldItalic.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-bold';
+    src: url('/fonts/Antenna-Bold.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-light';
+    src: url('/fonts/Antenna-Light.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-medium';
+    src: url('/fonts/Antenna-Medium.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Antenna-mediumitalic';
+    src: url('/fonts/Antenna-MediumItalic.otf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Lato-black';
+    src: url('/fonts/Lato-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-black';
+    src: url('/fonts/Roboto-Black.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-blackitalic';
+    src: url('/fonts/Roboto-BlackItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-bold';
+    src: url('/fonts/Roboto-Bold.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-bolditalic';
+    src: url('/fonts/Roboto-BoldItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-italic';
+    src: url('/fonts/Roboto-Italic.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-light';
+    src: url('/fonts/Roboto-Light.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-lightitalic';
+    src: url('/fonts/Roboto-LightItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-medium';
+    src: url('/fonts/Roboto-Medium.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-mediumitalic';
+    src: url('/fonts/Roboto-MediumItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-regular';
+    src: url('/fonts/Roboto-Regular.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-thin';
+    src: url('/fonts/Roboto-Thin.ttf') format('truetype');
+}
+
+@font-face {
+    font-display: swap;
+    font-family: 'Roboto-thinitalic';
+    src: url('/fonts/Roboto-ThinItalic.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'Material Icons';
+    font-style: normal;
+    font-weight: 400;
+    src: url(https://fonts.gstatic.com/s/materialicons/v142/flUhRq6tzZclQEJ-Vdg-IuiaDsNc.woff2) format('woff2');
+}
+
+.material-icons {
+    font-family: 'Material Icons';
+    font-weight: normal;
+    font-style: normal;
+    font-size: 24px;
+    line-height: 1;
+    letter-spacing: normal;
+    text-transform: none;
+    display: inline-block;
+    white-space: nowrap;
+    word-wrap: normal;
+    direction: ltr;
+    -webkit-font-feature-settings: 'liga';
+    -webkit-font-smoothing: antialiased;
+}

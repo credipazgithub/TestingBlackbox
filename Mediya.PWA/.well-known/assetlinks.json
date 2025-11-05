@@ -1,0 +1,12 @@
+[
+  {
+    "relation": ["delegate_permission/common.handle_all_urls"],
+    "target": {
+      "namespace": "android_app",
+      "package_name": "ar.com.mediya.app.twa",
+      "sha256_cert_fingerprints": [
+        "4A:05:8C:30:D1:07:78:1B:80:EB:73:7F:73:6C:92:66:2B:9C:AA:B4:2C:DC:8C:FC:17:9D:3F:E9:48:02:58:65"
+      ]
+    }
+  }
+]
