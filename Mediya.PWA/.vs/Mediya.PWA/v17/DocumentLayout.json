@@ -3,28 +3,56 @@
   "WorkspaceRootPath": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\js\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\home.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\comun\\credencialswiss.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\comun\\credencialswiss.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\comun\\credencialgerdanna.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\comun\\credencialgerdanna.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\comun\\credencialclubredondo.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\comun\\credencialclubredondo.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:index.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\includes\\mediya\\contacto.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
       "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\contacto.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:index-mediya.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\especialidades.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\farmacias.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:includes\\mediya\\laboratorios.html||{40D31677-CBC0-4297-A9EF-89D907823A98}"
     }
   ],
   "DocumentGroupContainers": [
@@ -34,7 +62,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 17,
+          "SelectedChildIndex": 15,
           "Children": [
             {
               "$type": "Bookmark",
@@ -90,7 +118,98 @@
             },
             {
               "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "API.js",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\API.js",
+              "RelativeDocumentMoniker": "js\\API.js",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\API.js",
+              "RelativeToolTip": "js\\API.js",
+              "ViewState": "AgIAAK8AAAAAAAAAAAAAAO4AAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-07T21:39:20.401Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
               "DocumentIndex": 1,
+              "Title": "home.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\home.html",
+              "RelativeDocumentMoniker": "includes\\Mediya\\home.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\home.html",
+              "RelativeToolTip": "includes\\Mediya\\home.html",
+              "ViewState": "AgIAADYAAAAAAAAAAAAjwEQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-07T21:39:12.193Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "NMF.js",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
+              "RelativeDocumentMoniker": "js\\NMF.js",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
+              "RelativeToolTip": "js\\NMF.js",
+              "ViewState": "AgIAAM8GAAAAAAAAAAAAwOgGAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-07T21:38:17.004Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "credencialswiss.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialswiss.html",
+              "RelativeDocumentMoniker": "includes\\Comun\\credencialswiss.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialswiss.html",
+              "RelativeToolTip": "includes\\Comun\\credencialswiss.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAA7AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-07T21:38:16.379Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "credencialgerdanna.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialgerdanna.html",
+              "RelativeDocumentMoniker": "includes\\Comun\\credencialgerdanna.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialgerdanna.html",
+              "RelativeToolTip": "includes\\Comun\\credencialgerdanna.html",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAAAkAAAA+AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-07T21:38:15.588Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "credencialclubredondo.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialclubredondo.html",
+              "RelativeDocumentMoniker": "includes\\Comun\\credencialclubredondo.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Comun\\credencialclubredondo.html",
+              "RelativeToolTip": "includes\\Comun\\credencialclubredondo.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAABBAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-07T21:38:04.462Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "index.html",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index.html",
+              "RelativeDocumentMoniker": "index.html",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index.html",
+              "RelativeToolTip": "index.html",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
+              "WhenOpened": "2025-11-07T21:37:50.319Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
               "Title": "especialidades.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\especialidades.html",
               "RelativeDocumentMoniker": "includes\\Mediya\\especialidades.html",
@@ -98,12 +217,11 @@
               "RelativeToolTip": "includes\\Mediya\\especialidades.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAACEAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-11-05T17:12:44.679Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:12:44.679Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 11,
               "Title": "farmacias.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\farmacias.html",
               "RelativeDocumentMoniker": "includes\\Mediya\\farmacias.html",
@@ -111,12 +229,11 @@
               "RelativeToolTip": "includes\\Mediya\\farmacias.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAnAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-11-05T17:12:32.392Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:12:32.392Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 12,
               "Title": "laboratorios.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\laboratorios.html",
               "RelativeDocumentMoniker": "includes\\Mediya\\laboratorios.html",
@@ -124,12 +241,11 @@
               "RelativeToolTip": "includes\\Mediya\\laboratorios.html",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAABMAAAAlAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
-              "WhenOpened": "2025-11-05T17:11:40.431Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:11:40.431Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 9,
               "Title": "INDEX.js",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\INDEX.js",
               "RelativeDocumentMoniker": "js\\INDEX.js",
@@ -137,12 +253,11 @@
               "RelativeToolTip": "js\\INDEX.js",
               "ViewState": "AgIAAGoAAAAAAAAAAADwv3oAAAADAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-05T17:07:51.591Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-05T17:07:51.591Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 8,
               "Title": "contacto.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\contacto.html",
               "RelativeDocumentMoniker": "includes\\Mediya\\contacto.html",
@@ -155,13 +270,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 6,
               "Title": "index-mediya.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html",
               "RelativeDocumentMoniker": "index-mediya.html",
               "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html",
               "RelativeToolTip": "index-mediya.html",
-              "ViewState": "AgIAAEUAAAAAAAAAAAAAAE8AAAAOAAAAAAAAAA==",
+              "ViewState": "AgIAAKIAAAAAAAAAAAAAwM0AAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001512|",
               "WhenOpened": "2025-11-05T16:33:49.362Z",
               "EditorCaption": ""

@@ -1,4 +1,4 @@
- /** c
+/**
  * /
  * Requerided functions for all applications!
  * Must be customized for each implementation

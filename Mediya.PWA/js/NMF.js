@@ -1746,6 +1746,7 @@ var _NMF = {
                         var _Nombre = data.Nombre;
                         var _FechaIngreso = data.FechaIngreso;
                         var _FechaNacimiento = data.FechaNacimiento;
+                        var _token = data.Token;
                         switch (_mode) {
                             case "clubredondo":
                                 break;
@@ -1753,6 +1754,7 @@ var _NMF = {
                                 ctx.fillStyle = "rgb(76, 76, 76)";
                                 ctx.font = '25px Lato-black';
                                 ctx.fillText(_NroCredencial, 54, 150);
+                                ctx.fillText("TOKEN: " + _token, 420, 150);
                                 ctx.fillText(_Nombre, 54, 185);
                                 ctx.font = '20px Lato-black';
                                 ctx.fillText(_FechaIngreso, 110, 222);
@@ -1764,6 +1766,7 @@ var _NMF = {
                                 ctx.fillText(_Nombre, 40, 285);
                                 ctx.font = '24px Roboto-black';
                                 ctx.fillText(_NroCredencial, 40, 320);
+                                ctx.fillText("TOKEN: " + _token, 40, 375);
                                 break;
                         }
                         var _b64 = canvas.toDataURL("image/png");
