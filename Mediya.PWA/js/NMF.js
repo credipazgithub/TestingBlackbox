@@ -1766,7 +1766,7 @@ var _NMF = {
                                 ctx.fillText(_Nombre, 40, 285);
                                 ctx.font = '24px Roboto-black';
                                 ctx.fillText(_NroCredencial, 40, 320);
-                                ctx.fillText("TOKEN: " + _token, 40, 375);
+                                //ctx.fillText("TOKEN: " + _token, 40, 375);
                                 break;
                         }
                         var _b64 = canvas.toDataURL("image/png");
