@@ -148,7 +148,6 @@ function totalizePayment(_this) {
 		if (_otro_monto != 0) { _FUNCTIONS._itemsPagos.push(_rec); }
 	}
 	$(".chkPay").each(function () {
-		console.log(_rec);
 		var _rec = JSON.parse(_TOOLS.b64_to_utf8($(this).attr("data-record")));
 		if ($(this).prop("checked")) {
 			if (_rec.Importe == null || _rec.Importe == "" ) { _rec.Importe = 0;}
@@ -159,7 +158,12 @@ function totalizePayment(_this) {
 			}
 		}
 	});
-	_total = (Math.round(_total * 100) / 100).toFixed(2);
+	/*consolidar total contra los items registrados! */
+	var _total_consolidado = 0;
+	for (let item of _FUNCTIONS._itemsPagos) {
+		_total_consolidado += parseInt(item["Importe"].split(".")[0]);
+	}
+	_total = _total_consolidado;
 	$(".coinTotal").html(_TOOLS.formatMoney(_total, 2));
 	$(".importe").val(_total);
 	if (_total > 0) {
@@ -175,7 +179,6 @@ function totalizePayment(_this) {
 			_visible = 1;
 			_targetFrame = "iframe_fiserv";
 		}
-
 		var _location = window.location.href;
 		var _json = {
 			"pagoTarjeta": _pagoTarjeta,

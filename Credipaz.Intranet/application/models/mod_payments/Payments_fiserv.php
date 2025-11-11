@@ -129,7 +129,7 @@ class Payments_fiserv extends MY_Model {
 			$timezone="America/Buenos_Aires";
 			$txndatetime=date("Y:m:d-H:i:s");
 		    $currency=$values["currency"];
-			$chargetotal=floatval($values["total"]);
+			$chargetotal=$values["total"];
 
 		    if(!isset($values["itemsPagos"])){
 			   $values["itemsPagos"]=array(
@@ -144,8 +144,6 @@ class Payments_fiserv extends MY_Model {
 			}
 
 			$identificacion="";
-			$chargetotal2=0;
-
 			/*RECALCULO DE TOTALES A ENVIAR A PLATAFORMA EXTERNA */
 			//if (!is_array($values["itemsPagos"])){
 			//   $values["itemsPagos"]=json_encode($values["itemsPagos"]);
@@ -154,19 +152,10 @@ class Payments_fiserv extends MY_Model {
 			$values["itemsPagos"]=json_decode($values["itemsPagos"], true);
 			$identificacion=$values["itemsPagos"][0]["Identificacion"];
 
-			foreach ($values["itemsPagos"] as $item){$chargetotal2+=floatval($item["Importe"]);}
+            $chargetotal2 = 0;
+            foreach ($values["itemsPagos"] as $item){$chargetotal2+=(int)$item["Importe"];}
 			if($chargetotal2!=0) {$chargetotal=$chargetotal2;};
-
-			$chargetotal=number_format($chargetotal,2,".","");
-			$chargetotal2=number_format($chargetotal2,2,".","");
-
 			logGeneralCustom($this,$values,"Payments::diferenciaMonto","NORMAL PREVIO-IDENTIFICACION: ".$identificacion."|Total enviado: ".$values["total"]."|Total calculado: ".$chargetotal2);
-
-			if ($chargetotal!=$chargetotal2){
-				logGeneralCustom($this,$values,"Payments::diferenciaMonto","FALLA DETECTADA-IDENTIFICACION: ".$identificacion."|Total enviado: ".$values["total"]."|Total calculado: ".$chargetotal2);
-				$chargetotal=$chargetotal2;
-				$abort=($chargetotal!=$chargetotal2);
-			}
 
 			$responseFailURL=$values["responseFailURL"];
 			$responseSuccessURL=$values["responseSuccessURL"];
