@@ -346,3 +346,4 @@ $lang['m_credit_cards_transacciones'] = "Transacciones";
 $lang['m_credit_cards_cobranzas'] = "Cobranzas";
 $lang['m_credit_cards_autorizaciones'] = "Autorizaciones";
 $lang['m_credit_cards_tarjetas'] = "Tarjetas";
+$lang['m_grilla_red_mutual'] = "Red Mutual";

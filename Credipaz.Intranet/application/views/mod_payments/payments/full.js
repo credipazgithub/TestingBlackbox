@@ -160,9 +160,7 @@ function totalizePayment(_this) {
 	});
 	/*consolidar total contra los items registrados! */
 	var _total_consolidado = 0;
-	for (let item of _FUNCTIONS._itemsPagos) {
-		_total_consolidado += parseInt(item["Importe"].split(".")[0]);
-	}
+	for (let item of _FUNCTIONS._itemsPagos) {_total_consolidado += (item["Importe"]*1);}
 	_total = _total_consolidado;
 	$(".coinTotal").html(_TOOLS.formatMoney(_total, 2));
 	$(".importe").val(_total);
