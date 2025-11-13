@@ -154,7 +154,7 @@ class Payments_fiserv extends MY_Model {
 
             $chargetotal2 = 0;
             foreach ($values["itemsPagos"] as $item){$chargetotal2+=(int)$item["Importe"];}
-			if($chargetotal2!=0) {$chargetotal=$chargetotal2;};
+			//if($chargetotal2!=0) {$chargetotal=$chargetotal2;};
 			logGeneralCustom($this,$values,"Payments::diferenciaMonto","NORMAL PREVIO-IDENTIFICACION: ".$identificacion."|Total enviado: ".$values["total"]."|Total calculado: ".$chargetotal2);
 
 			$responseFailURL=$values["responseFailURL"];
