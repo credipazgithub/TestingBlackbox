@@ -488,12 +488,6 @@ var _NMF = {
                         /*
                          * Reemplazar valores en solicitud
                          * */
-                        //data = _TOOLS.tagReplace(data, /\[SOLICITUD\]/g, "a asignar");
-                        //data = _TOOLS.tagReplace(data, /\[LEGAJO\]/g, "a asignar");
-                        //data = _TOOLS.tagReplace(data, /\[SUCURSAL\]/g, "a asignar");
-                        //data = _TOOLS.tagReplace(data, /\[FECHAVTO1\]/g, "a asignar");
-                        //data = _TOOLS.tagReplace(data, /\[NACIONALIDAD\]/g, "a asignar");
-                        //data = _TOOLS.tagReplace(data, /\[ESTADOCIVIL\]/g, "a asignar");
                         data = _TOOLS.tagReplace(data, /\[APELLIDO\]/g, _NMF._ClientData._solicitudData.Apellido);
                         data = _TOOLS.tagReplace(data, /\[NOMBRE\]/g, _NMF._ClientData._solicitudData.Nombre);
                         data = _TOOLS.tagReplace(data, /\[DNI\]/g, _NMF._ClientData._solicitudData.Documento);
@@ -505,7 +499,7 @@ var _NMF = {
                         data = _TOOLS.tagReplace(data, /\[PROVINCIA\]/g, _NMF._ClientData._solicitudData.ProvinciaDesc);
                         data = _TOOLS.tagReplace(data, /\[CODIGOPOSTAL\]/g, _NMF._ClientData._solicitudData.CodigoPostal);
                         data = _TOOLS.tagReplace(data, /\[CELULAR\]/g, (_NMF._ClientData._solicitudData.prefijoTelefono + " " + _NMF._ClientData._solicitudData.Telefono));
-                        data = _TOOLS.tagReplace(data, /\[EMAIL\]/g, _NMF._ClientData._solicitudData.Email);
+                        if (_NMF._ClientData._solicitudData.Email != null) { data = _TOOLS.tagReplace(data, /\[EMAIL\]/g, _NMF._ClientData._solicitudData.Email); }
                         data = _TOOLS.tagReplace(data, /\[CAPITAL\]/g, _TOOLS.toCurr(_NMF._ClientData._solicitudData.Capital));
                         data = _TOOLS.tagReplace(data, /\[IMPORTE\]/g, _TOOLS.toCurr(_NMF._ClientData._solicitudData.importe));
                         data = _TOOLS.tagReplace(data, /\[CUOTAS\]/g, _NMF._ClientData._solicitudData.cuotas);
@@ -519,10 +513,10 @@ var _NMF = {
 
                         /* Agregado 29/8/2025 */
                         if (_NMF._ClientData._solicitudData.IdCliente != "") {
-                            data = _TOOLS.tagReplace(data, /\[LEGAJO\]/g, _NMF._ClientData._solicitudData.IdCliente);
                             data = _TOOLS.tagReplace(data, /\[SUCURSAL\]/g, _NMF._ClientData._solicitudData.Sucursal);
-                            data = _TOOLS.tagReplace(data, /\[NACIONALIDAD\]/g, _NMF._ClientData._solicitudData.Nacionalidad);
-                            data = _TOOLS.tagReplace(data, /\[ESTADOCIVIL\]/g, _NMF._ClientData._solicitudData.EstadoCivil);
+                            if (_NMF._ClientData._solicitudData.IdCliente != null) { data = _TOOLS.tagReplace(data, /\[LEGAJO\]/g, _NMF._ClientData._solicitudData.IdCliente); }
+                            if (_NMF._ClientData._solicitudData.Nacionalidad != null) { data = _TOOLS.tagReplace(data, /\[NACIONALIDAD\]/g, _NMF._ClientData._solicitudData.Nacionalidad); }
+                            if (_NMF._ClientData._solicitudData.EstadoCivil != null) { data = _TOOLS.tagReplace(data, /\[ESTADOCIVIL\]/g, _NMF._ClientData._solicitudData.EstadoCivil); }
                         }
 
                         _NMF._ClientData._solicitudData.pdf_solicitud = _TOOLS.utf8_to_b64(data);
