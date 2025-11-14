@@ -1,0 +1,56 @@
+<div class="page get-foto py-4 px-0 d-flex justify-content-center">
+    <!--#include virtual="./pages/includes/header.html" -->
+    <div class="container-full text-center" style="background-color:white;">
+        <h4 class="mt-5">Registre los datos de su tarjeta</h4>
+        <p class="my-1 areaMensaje" style="font-size:0.85rem;"></p>
+        <div class="card card-tokenizar text-left">
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-12">
+                        <label>Nombre</label>
+                        <input type="text" id="wNombre" name="wNombre" class="form-control dbase wvalidate wNombre" value="" placeholder="Ingrese nombre en el plástico" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-12">
+                        <label>Nºde la tarjeta</label>
+                        <input type="number" id="wNumero" name="wNumero" maxlength="16" class="onlyNumbers form-control dbase wvalidate wNumero" value="" placeholder="Ingrese Nºde la tarjeta" />
+                    </div>
+                </div>
+                <div class="row areaDocumento d-none">
+                    <div class="col-12">
+                        <label>DNI</label>
+                        <input type="number" id="wDocumento" name="wDocumento" maxlength="10" class="onlyNumbers form-control dbase wDocumento" value="" placeholder="DNI" />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-4">
+                            <label>CVC/CVV</label>
+                            <input type="number" id="wCVV" name="wCVV" maxlength="4" class="onlyNumbers form-control dbase wvalidate wCVV" value="" placeholder="CVC/CVV" />
+                        </div>
+                        <div class="col-4">
+                            <label>Mes vto.</label>
+                            <input type="number" id="wMM" name="wMM" maxlength="2" class="onlyNumbers form-control dbase wvalidate wMM" value="" placeholder="MM" />
+                        </div>
+                        <div class="col-4">
+                            <label>Año vto.</label>
+                            <input type="number" id="wYY" name="wYY" maxlength="2" class="onlyNumbers form-control dbase wvalidate wYY" value="" placeholder="AA" />
+                        </div>
+                    </div>
+                    <hr />
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <a href="#" class="btn btn-sm btn-success btn-ok-tokenizar"><span class="material-icons">done</span> Aceptar</a>
+                        </div>
+                    </div>
+                    <input id="wPreferido" name="wPreferido" type="hidden" class="dbase" value="1" />
+                    <input id="wId_type_medio_cobro" name="wId_type_medio_cobro" type="hidden" class="dbase" value="1" />
+                    <input id="IdTransaccion" name="IdTransaccion" type="hidden" class="dbase IdTransaccion" value="0" />
+                    <input id="IdSocio" name="IdSocio" type="hidden" class="dbase IdSocio" value="0" />
+                    <input id="wId" name="wId" type="hidden" class="dbase wId" value="0" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

@@ -80,4 +80,15 @@ var _API = {
                 _AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    UiOnboardingTokenizar: function (_json) {
+        return new Promise(
+            function (resolve, reject) {
+                _json["method"] = "api.pwa/Tokenizar"; //method
+                _AJAX.ExecuteDirect(_json, null).then(function (data) {
+                    resolve(data);
+                }).catch(function (err) {
+                    reject(err);
+                });
+            });
+    },
 };

@@ -71,6 +71,14 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
             switch (_parameters.monopage.toLowerCase()) {
                 case "firma-creditos":
                     break;
+                case "tokenizar-tdnt": //Tokenizaciones-tarjetas debito Neutrales
+                case "tokenizar-tdcp": //Tokenizaciones-tarjetas debito Credipaz
+                case "tokenizar-tdmy": //Tokenizaciones-tarjetas debito Mediya
+                    _AJAX._id_type_medio_cobro = 1;
+                    _AJAX._formularioFirma = _parameters.monopage;
+                    _AJAX._justSign = true;
+                    _AJAX._init_page = "get-tokenizar";
+                    break;
                 case "cambiolimitecredito": //formulario de cambio de limite de credito
                     _AJAX._formularioFirma = _parameters.monopage;
                     _AJAX._formularioPrefijoCarpetaDigital = "CLC";

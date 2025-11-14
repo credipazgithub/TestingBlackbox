@@ -251,6 +251,37 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+    public function Tokenizar($values)
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $fields = array(
+                "idTransaccion"=>$values["IdTransaccion"],
+                "idSocio"=>$values["IdSocio"],
+                "month"=>$values["wMM"],
+                "year"=>$values["wYY"],
+                "cvv"=>$values["wCVV"],
+                "numero"=>$values["wNumero"],
+                "documento" => $values["wDocumento"],
+                "nombre" => $values["wNombre"]
+                );
+            $url = (CPFINANCIALS . "/CardCred/AltaTarjetaAlt/");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
+            $result = json_decode($result, true);
+            if ($result["logica"]=="false") {throw new Exception($result["mensaje"], 9999);}
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function EmisionProducto($values)
     {
         try {

@@ -27,6 +27,24 @@ class Pwa extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
+    public function Tokenizar()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'Tokenizar';
+            $_POST['module'] = MOD_EXTERNAL;
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
+            $this->neocommandTransparent(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
     public function GetFormulario()
     {
         try {

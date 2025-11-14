@@ -146,6 +146,7 @@
     <Content Include="head.html" />
     <Content Include="js\global\CONDITIONAL.js" />
     <Content Include="js\global\TOOLS.js" />
+    <Content Include="js\pages\get-tokenizar.js" />
     <Content Include="js\pages\get-foto.js" />
     <Content Include="js\pages\msg-ok.js" />
     <Content Include="js\pages\msg-error.js" />
@@ -191,6 +192,7 @@
     <Content Include="js\vendor\material-5-dist\js\mdb.min.js" />
     <Content Include="js\vendor\material-5-dist\js\mdb.min.js.map" />
     <Content Include="js\vendor\velocity.min.js" />
+    <Content Include="pages\get-tokenizar.html" />
     <Content Include="pages\get-foto.html" />
     <Content Include="pages\msg-ok.html" />
     <Content Include="pages\msg-error.html" />
