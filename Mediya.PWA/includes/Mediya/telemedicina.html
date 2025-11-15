@@ -14,11 +14,6 @@
             </div>
         </div>
         <div class="col-12 msj-status text-center pt-1 mt-2 d-none"></div>
-        <div class="col-12 take-picture text-center pt-1 mt-2 d-none">
-            <a href="#" data-action="camera" class="btn btn-primary btn-raised btn-block btn-take-picture" data-source="1">
-                <i class="material-icons">add_a_photo</i> Sacar foto y enviarla al doctor
-            </a>
-        </div>
         <div class="col-12 msj-detalles text-left m-0 p-0 pt-1 mb-2" style="font-size:0.8rem;color:grey;font-weight:bold;">
             <p style="color:white;padding-bottom:10px;font-weight:bold;font-size:1.1em;" class="px-2 msgTelemedicina text-center"></p>
             <div class="inactive-paycode text-center generate-paycode" style="font-size:0.8rem;">
@@ -122,11 +117,13 @@
                 _NEOVIDEO.onDisconnect = function () {
                     $(".app-footer").removeClass("d-none");
                     $("#meet").fadeOut("fast");
+                    $(".take-picture").addClass("d-none");
                     _NMF._joined = false;
                 };
                 _NEOVIDEO.onParticipantLeft = function (data) {
                     $(".app-footer").removeClass("d-none");
                     $("#meet").fadeOut("fast");
+                    $(".take-picture").addClass("d-none");
                     $(".close-sidebar").click()
                     _NMF._joined = false;
                 };
@@ -134,6 +131,7 @@
                     $('[name ^= "jitsiConferenceFrame"]').css({ "height": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height, "width": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width });
                     $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).fadeIn("slow");
                     $(".app-footer").addClass("d-none");
+                    $(".take-picture").removeClass("d-none");
                 };
 
                 _NEOVIDEO.onTurnOffVideo({});

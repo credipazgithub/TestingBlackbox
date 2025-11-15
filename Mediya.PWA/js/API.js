@@ -58,6 +58,19 @@ var _API = {
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    UiSaveMessage: function (_json) {
+        return new Promise(
+            function (resolve, reject) {
+                _json["function"] = "directTelemedicina";
+                _json["module"] = "mod_telemedicina";
+                _json["table"] = "messages";
+                _json["model"] = "messages";
+                _json["method"] = "api.backend/neocommand"; //method
+                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+            });
+    },
+
+
     UiDelete: function (_json) {
         return new Promise(
             function (resolve, reject) {

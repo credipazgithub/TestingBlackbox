@@ -186,10 +186,6 @@ class Operators_tasks extends MY_Model {
             $values["chat_domain"]=SERVER_SUB;
             $club_redondo=getUserClubRedondo($this,(int)$values["records"]["data"][0]["id_club_redondo"]);
             $values["club_redondo"]=$club_redondo["message"];
-
-            log_message("error", "RELATED TELEFONO " . json_encode($values["club_redondo"], JSON_PRETTY_PRINT));
-
-
             $CREDENTIALS=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
             $nDoc=$club_redondo["message"]["DNI"];
             $Sexo=$club_redondo["message"]["Sexo"];

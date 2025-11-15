@@ -1355,6 +1355,9 @@ _FUNCTIONS = {
 			_AJAX.UiGet(_data).then(function (datajson) {
 				_json = datajson.data[0];
 				var _raw_data = JSON.parse(datajson.data[0].raw_data);
+				console.log("_raw_data");
+				console.log(_raw_data);
+
 				_FUNCTIONS.onDestroyModal("#telemedicinaModalView");
 				var _html = "<div class='modal fade' id='telemedicinaModalView' role='dialog'>";
 				_html += " <input type='hidden' id='code' name='code' value='" + _TOOLS.UUID() + "' class='code dbaseComprobante'/>";
@@ -1371,7 +1374,10 @@ _FUNCTIONS = {
 				_html += "    <div class='modal-body data-pdf'>";
 				switch (parseInt(_json.id_type_item)) {
 					case 1:
-						_html += "<div class='shadow'><span class='badge badge-primary'>" + _json.message + "</span><br/><img src='" + _raw_data.mime + _raw_data.base64 + "' style='width:100%;'/></div>";
+						var _sep = ",";
+						if (_raw_data.mime.slice(-1) == ",") { _sep = ""; }
+						var _imgUrl = (_raw_data.mime + _sep + _raw_data.base64);
+						_html += "<div class='shadow'><span class='badge badge-primary'>" + _json.message + "</span><br/><img src='" + _imgUrl + "' style='width:100%;'/></div>";
 						break;
 					case 2:
 						_bFill = true;
@@ -1678,7 +1684,6 @@ _FUNCTIONS = {
 					_html += "            </td>";
 					var _classClick = "msg-telemedicina";
 					if (_isPDF) { _classClick = "msg-telemedicina-pdf"; }
-
 					_html += "            <td><table><tr data-mode='edit' class='" + _classClick + "' data-item='" + _rec + "'>" + _line + "</tr></table></td>";
 					_html += "        </tr>"
 					_html += "     </table>";

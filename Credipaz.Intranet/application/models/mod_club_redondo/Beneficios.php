@@ -282,10 +282,6 @@ class Beneficios extends MY_Model {
                $values["order"]="date_canje DESC";
                break;
             default:
-
-                log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
-
                $this->view="vw_beneficios_mobile";
                //$this->view="beneficios_resueltos";
 				$near=(string)$values["near"];

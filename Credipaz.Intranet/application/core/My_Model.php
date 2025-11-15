@@ -1222,7 +1222,6 @@ class My_Model extends CI_Model
                 }
                 $sql = str_replace(", kms ASC", "", $sql);
             }
-            log_message("error", "RELATED " . json_encode($sql, JSON_PRETTY_PRINT));
             $records = $this->dbLayerExecuteWS("records", "SET language 'Español';".$sql, "");
             $return = array(
                 "records" => $records,

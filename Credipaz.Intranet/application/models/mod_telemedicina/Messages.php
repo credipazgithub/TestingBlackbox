@@ -56,7 +56,7 @@ class Messages extends MY_Model {
                         'id_charge_code' => $values["id_charge_code"],
                         'id_type_item' => $values["id_type_item"],
                         'id_type_direction' => $values["id_type_direction"],
-                        'id_operator' => $values["id_operator"],
+                        'id_operator' => secureEmptyNull($values,"id_operator"),
                         'id_user' => $values["id_user_active"],
                         'type_media' => $values["type_media"],
                         'carbon_copy' => $values["carbon_copy"],
@@ -65,9 +65,10 @@ class Messages extends MY_Model {
                 }
             } else {
                 $bOk=true;
-            } 
+            }
             $saved=parent::save($values,$fields);
-			try {
+            try {
+                $push = false;
 				if($push){
 					$params=array(
 						"id_user"=>$values["id_user_active"],

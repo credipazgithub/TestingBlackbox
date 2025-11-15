@@ -55,24 +55,12 @@ $("body").off("click", ".btn-i-am").on("click", ".btn-i-am", function () {
     _NMF.onSelectMyName($(this));
 });
 $("body").off("click", ".btn-take-picture").on("click", ".btn-take-picture", function () {
-    var permissions = cordova.plugins.permissions;
-    var list = [permissions.CAMERA, permissions.RECORD_AUDIO];
-    permissions.hasPermission(
-        list,
-        function (status) {
-            if (!status.hasPermission) {
-                permissions.requestPermissions(
-                    list,
-                    function (status) {
-                        if (status.hasPermission) {
-                            _PHOTO.onGetPicture($(this));
-                        }
-                    }, null);
-            } else {
-                _PHOTO.onGetPicture($(this));
-            }
-        }, null);
+    $(".fileLibrary").click();
 });
+$("body").off("change", ".fileLibrary").on("change", ".fileLibrary", function () {
+    _PHOTO.onGetPicture($(this));
+});
+
 $("body").off("input", ".onlyNumbers").on("input", ".onlyNumbers", function () {
     _TOOLS.onlyNumbers($(this));
 });

@@ -1,44 +1,39 @@
 var _PHOTO = {
     onGetPicture: function (_this) {
         try {
-            navigator.camera.getPicture(_PHOTO.onPhotoDataSuccess, _PHOTO.onPhotoFail,
-                {
-                    quality: 100,
-                    destinationType: 0,
-                    sourceType: _this.attr("data-source"),
-                    encodingType: 0,
-                    targetWidth: 1536,
-                    targetHeight: 2048,
-                    allowEdit: false,
-                    correctOrientation: false
-                });
+            var file = document.getElementById('fileLibrary').files[0];
+            var reader = new FileReader();
+            reader.onload = function (e) {
+                var _data = e.target.result;
+                _PHOTO.onPhotoDataSuccess(_data);
+            }
+            reader.readAsDataURL(file); 
         } catch (err) {
-            modalAlert("Error", "<b>No se ha podido tomar la foto en forma adecuada.</b><br/>Su dispositivo puede tener algún problema de configuración, de memoria o de espacio libre para el almacenamiento.");
+            alert("No hemos podido tomar la imagen indicada");
         }
     },
     onPhotoDataSuccess: function (_imageData) {
-        var _type_media = "data:image/jpeg;base64,";
+        var _x = _imageData.split(",");
         var _json = {
-            "carbon_copy": 0,
+            "carbon_copy": "0",
             "message": ("Imagen: " + _TOOLS.getNow()),
-            "raw_data": ('{"mime":"' + _type_media + '","base64":"' + _imageData + '"}'),
-            "id_charge_code":  $(".paycode").html(),
-            "id_type_item": 1,
-            "id_type_direction": 1,
-            "type_media": _type_media
+            "raw_data": ('{"mime":"' + _x[0] + '","base64":"' + _x[1] + '"}'),
+            "id_charge_code": _NMF._id_charge_code,
+            "id_type_item": "1",
+            "id_type_direction": "1",
+            "type_media": _x[0]
         };
-        _API.UiDirectTelemedicina(_json).then(function (data) {
+        _API.UiSaveMessage(_json).then(function (data) {
             if (data.status == "OK") {
-                modalAlert("Alerta", "<b>Se ha enviado la imagen en forma exitosa</b>");
+                alert("Se ha enviado la imagen en forma exitosa");
             } else {
                 throw data;
             }
         }).catch(function (err) {
-            modalAlert("Alerta", "<b style='color:red;'>No se ha enviado ninguna imagen.  " + err.message + "</b>");
+            alert("No se ha enviado ninguna imagen.  " + err.message);
         });
-
     },
     onPhotoFail: function (message) {
-        modalAlert("Alerta", "<b style='color:orange;'>No se ha enviado ninguna imagen.  Reintente</b>");
+        alert("No se ha enviado ninguna imagen.  Reintente");
     },
 }
