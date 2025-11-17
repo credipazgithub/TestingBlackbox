@@ -4,6 +4,13 @@ var oAppGetTokenizar = new Object();
 oAppGetTokenizar.onShow = function () {
     setTimeout(function () {
         $(".wId_type_medio_cobro").val(_AJAX._id_type_medio_cobro);
+        var currentYear = new Date().getFullYear();
+        var lastYear = (currentYear + 10);
+        for (var i = currentYear; i <= lastYear; i++) {
+            $(".wYY").append("<option value='" + i.toString().slice(-2) + "'>" + i + "</option>");
+        }
+
+
         switch (_AJAX._formularioFirma) {
             case "tokenizar-tdnt": //Tokenizaciones-tarjetas debito Neutrales
                 $(".areaDocumento").removeClass("d-none");
