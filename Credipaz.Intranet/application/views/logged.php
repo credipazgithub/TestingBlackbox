@@ -81,6 +81,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             </div>
             <div class="col-8 ml-auto m-auto p-auto" style="max-height:47px;">
                 <div class="float-right status-ajax-calls d-none p-0 m-0">
+
+<?php
+$html = "   <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam_off</i> " . lang('b_pause') . "</a>";
+$html .= "   <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam</i> " . lang('b_atender') . "</a>";
+$html .= "   <span class='doctor-on alert alert-success m-0 p-1 d-none'>" . lang('msg_doctor_on') . "</span>";
+$html .= "   <span class='doctor-off alert alert-danger m-0 p-1 d-none'>" . lang('msg_doctor_off') . "</span>";
+$html .= "   <span id='barTelemedicina' class='d-none barTelemedicina m-0 p-1' style='opacity:1;padding:0px;margin:0px;'></span>";
+
+$html .= "<input id='pacientesTelemedicina' name='pacientesTelemedicina' class='pacientesTelemedicina' type='hidden' value='0' />";
+$html .= "<input id='myStatusTelemedicina' name='myStatusTelemedicina' class='myStatusTelemedicina' type='hidden' value='0' />";
+$html .= "<audio autoplay id='ringerAlertas' class='d-none'><source src='' type='audio/mpeg'></audio>";
+echo $html;
+?>
+
+
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-config"><i class='material-icons'>manage_accounts</i></a>
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-silence"><i class='material-icons icon-silence'>volume_up</i></a>
                     <a class="btn btn-sm btn-dark text-break mx-0 p-2 raw-messages_alert_NO d-none" title="<?php echo lang('msg_notreaded');?>"></a>
@@ -110,20 +125,6 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
 </div>
 
-<?php
-$html="<div style='position:fixed;left:15rem;top:0px;z-index:999999;opacity:1;padding:0px;margin:0px;'>";
-$html.="   <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam_off</i> ".lang('b_pause')."</a>";
-$html.="   <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam</i> ".lang('b_atender')."</a>";
-$html.="   <span class='doctor-on alert alert-success m-0 p-1 d-none'>".lang('msg_doctor_on')."</span>";
-$html.="   <span class='doctor-off alert alert-danger m-0 p-1 d-none'>".lang('msg_doctor_off')."</span>";
-$html.="</div>";
-$html.="<div id='barTelemedicina' class='d-none barTelemedicina m-0 p-1' style='position:fixed;left:236px;top:25px;z-index:999999;opacity:1;padding:0px;margin:0px;'></div>";
-
-$html.="<input id='pacientesTelemedicina' name='pacientesTelemedicina' class='pacientesTelemedicina' type='hidden' value='0' />";
-$html.="<input id='myStatusTelemedicina' name='myStatusTelemedicina' class='myStatusTelemedicina' type='hidden' value='0' />";
-$html.="<audio autoplay id='ringerAlertas' class='d-none'><source src='' type='audio/mpeg'></audio>";
-echo $html;
-?>
 
 <script>
    $(".btn-m_home").click();
