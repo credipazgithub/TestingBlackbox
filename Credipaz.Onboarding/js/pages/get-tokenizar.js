@@ -9,8 +9,6 @@ oAppGetTokenizar.onShow = function () {
         for (var i = currentYear; i <= lastYear; i++) {
             $(".wYY").append("<option value='" + i.toString().slice(-2) + "'>" + i + "</option>");
         }
-
-
         switch (_AJAX._formularioFirma) {
             case "tokenizar-tdnt": //Tokenizaciones-tarjetas debito Neutrales
                 $(".areaDocumento").removeClass("d-none");
@@ -31,7 +29,9 @@ oAppGetTokenizar.onShow = function () {
             if (!_TOOLS.validate(".wvalidate")) { return false; }
             var _params = _TOOLS.getFormValues(".dbase");
             _API.UiOnboardingTokenizar(_params).then(function (data) {
+                console.log(data);
                 if (data.message.logica) {
+
                     _NMF.onModalAlert("Registro de datos", "Datos de tarjeta enviados", "info");
                 } else {
                     _NMF.onModalAlert("Error", data.message.mensaje, "danger");
