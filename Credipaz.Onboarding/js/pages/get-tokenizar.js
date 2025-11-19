@@ -29,9 +29,7 @@ oAppGetTokenizar.onShow = function () {
             if (!_TOOLS.validate(".wvalidate")) { return false; }
             var _params = _TOOLS.getFormValues(".dbase");
             _API.UiOnboardingTokenizar(_params).then(function (data) {
-                console.log(data);
                 if (data.message.logica) {
-
                     _NMF.onModalAlert("Registro de datos", "Datos de tarjeta enviados", "info");
                 } else {
                     _NMF.onModalAlert("Error", data.message.mensaje, "danger");

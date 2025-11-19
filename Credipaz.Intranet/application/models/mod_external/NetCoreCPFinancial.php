@@ -269,7 +269,7 @@ class NetCoreCPFinancial extends MY_Model {
             $url = (CPFINANCIALS . "/CardCred/AltaTarjetaAlt/");
             $result = $this->callAPI($url, $headers, json_encode($fields));
             $result = json_decode($result, true);
-            if ($result["logica"]=="false") {throw new Exception($result["mensaje"], 9999);}
+            //if ($result["logica"]=="false") {throw new Exception($result["mensaje"], 9999);}
             return array(
                 "code" => "2000",
                 "status" => "OK",

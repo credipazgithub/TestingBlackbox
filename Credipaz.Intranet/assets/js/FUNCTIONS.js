@@ -3326,7 +3326,7 @@ _FUNCTIONS = {
 			}
 			_html += "         <tr>";
 			_html += "            <td align='center' valign='middle' style='font-weight:bold;font-size:24px;'>$ " + _item.Importe + "</td>";
-			_html += "            <td align='center' valign='middle' style='font-weight:bold;font-size:24px;'>(Importe sujeto a confirmación de cobro)</td>";
+			_html += "            <td align='center' valign='middle' style='font-weight:bold;font-size:12px;'>(Importe sujeto a confirmación de cobro)</td>";
 			_html += "         </tr>";
 			if (_identificaciones != "") { _identificaciones += ", " }
 			_identificaciones += _item.Identificacion;
