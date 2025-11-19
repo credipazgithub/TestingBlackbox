@@ -460,7 +460,7 @@ class Operators_tasks extends MY_Model {
             )
         );
         $seconds=(int)$charge_code["data"][0]["seconds"];
-        $html="<span class='badge badge-primary m-0'>No hay pacientes en espera</span>";
+        $html="<span class='badge badge-primary m-0'>Nadie espera</span>";
         $pacientes=0;
         if ($seconds!=0) {
             $pacientes=$charge_code["data"][0]["total"];

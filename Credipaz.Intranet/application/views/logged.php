@@ -72,21 +72,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 
     <div id="page-content-wrapper">
         <div class="d-flex" style="height:50px;border-bottom:2px solid black;">
-            <div class="col-4 m-0 p-0" style="max-height:47px;">
-                <div class="info-heading p-1 d-none">
+            <div class="info-heading col-1 m-0 p-0 bg-white d-none" style="max-height:47px;">
+                <div class="p-1">
                     <span class="btn-toggle-menu btn btn-menu-open btn-sm pb-0 mb-0"><i class="material-icons">menu</i></span>
-                    <h5 class="p-1 top-heading d-inline"><?php echo $title;?></h5> 
                     <span class="mx-0 px-1 waiter wait-ajax"></span>
                 </div>
             </div>
-            <div class="col-8 ml-auto m-auto p-auto" style="max-height:47px;">
+            <div class="col-11 ml-auto m-auto p-auto bg-white" style="max-height:47px;">
                 <div class="float-right status-ajax-calls d-none p-0 m-0">
 
 <?php
-$html = "   <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam_off</i> " . lang('b_pause') . "</a>";
-$html .= "   <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam</i> " . lang('b_atender') . "</a>";
-$html .= "   <span class='doctor-on alert alert-success m-0 p-1 d-none'>" . lang('msg_doctor_on') . "</span>";
-$html .= "   <span class='doctor-off alert alert-danger m-0 p-1 d-none'>" . lang('msg_doctor_off') . "</span>";
+$html = "   <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam_off</i> " . lang('msg_doctor_on') ."</a>";
+$html .= "   <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam</i> " . lang('msg_doctor_off')."</a>";
 $html .= "   <span id='barTelemedicina' class='d-none barTelemedicina m-0 p-1' style='opacity:1;padding:0px;margin:0px;'></span>";
 
 $html .= "<input id='pacientesTelemedicina' name='pacientesTelemedicina' class='pacientesTelemedicina' type='hidden' value='0' />";
