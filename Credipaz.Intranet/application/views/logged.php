@@ -121,8 +121,17 @@ echo $html;
         <div class="alert-frame" style="position:fixed;bottom:50px;"></div>
     </div>
 </div>
-
-
 <script>
-   $(".btn-m_home").click();
+    $(".btn-m_home").click();
+    switch (parseInt(_AJAX._id_type_user_active)) {
+        case 77:
+        case 78:
+            break;
+        default:
+            $(".xSearchDNI").remove();
+            $(".btn-xSearchDNI").remove();
+            $(".btn-config").remove();
+            $(".img-user").remove();
+            break;
+    };
 </script>
