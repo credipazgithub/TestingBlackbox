@@ -131,6 +131,7 @@
                     $('[name ^= "jitsiConferenceFrame"]').css({ "height": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height, "width": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width });
                     $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).fadeIn("slow");
                     $(".app-footer").addClass("d-none");
+                    $(".take-picture").attr("style","position:absolute;top:0;z-index:99999999;");
                     $(".take-picture").removeClass("d-none");
                 };
 
