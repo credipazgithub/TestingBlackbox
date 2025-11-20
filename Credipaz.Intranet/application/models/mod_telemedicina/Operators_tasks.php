@@ -466,8 +466,9 @@ class Operators_tasks extends MY_Model {
             $pacientes=$charge_code["data"][0]["total"];
             $class="badge badge-info";
             $moreInfo="Normal - menos de 15 minutos";
-            if ($seconds>(60*15)){$class="badge badge-warning m-0";$moreInfo="ALERTA -  más de 15 minutos";}
-            $html="<span class='".$class."' style='font-size:12px;display:block;'>".$pacientes." pacientes en espera, desde hace ".$charge_code["data"][0]["elapsed"]."</span><span class='badge badge-primary m-0' style='font-size:12px;display:block;'>".$moreInfo."</span>";
+            if ($seconds>(60*15)){$class="badge badge-warning m-0 blink_me";$moreInfo="ALERTA - más de 15 minutos";}
+            $html = "<span class='" . $class . "' style='font-size:12px;'>" . $pacientes . " pacientes en espera, desde hace " . $charge_code["data"][0]["elapsed"] . "</span>";
+            $html .= "<span class='badge badge-primary m-0' style='font-size:12px;'>".$moreInfo."</span>";
         }
         return array(
             "code"=>"2000",

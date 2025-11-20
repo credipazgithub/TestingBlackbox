@@ -91,8 +91,6 @@ $html .= "<input id='myStatusTelemedicina' name='myStatusTelemedicina' class='my
 $html .= "<audio autoplay id='ringerAlertas' class='d-none'><source src='' type='audio/mpeg'></audio>";
 echo $html;
 ?>
-
-
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-config"><i class='material-icons'>manage_accounts</i></a>
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-silence"><i class='material-icons icon-silence'>volume_up</i></a>
                     <a class="btn btn-sm btn-dark text-break mx-0 p-2 raw-messages_alert_NO d-none" title="<?php echo lang('msg_notreaded');?>"></a>
