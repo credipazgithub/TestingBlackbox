@@ -1,6 +1,7 @@
 var _AJAX = {
     _BPAM: {},
     _KEY: 0,
+    _bforceGoto: false,
     _id_type_medio_cobro: 1,
     _formularioFirma: "",
     _formularioPrefijoCarpetaDigital: "",

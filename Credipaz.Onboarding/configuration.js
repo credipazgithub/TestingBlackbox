@@ -5,6 +5,7 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
     ****************************************** * */
     _AJAX._serverBlackBox = data.url;
     _AJAX._modo = "NORMAL";
+    _AJAX._bforceGoto = false;
     /*********************************************/
 
     /* *******************************************
@@ -74,6 +75,7 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
                 case "tokenizar-tdnt": //Tokenizaciones-tarjetas debito Neutrales
                 case "tokenizar-tdcp": //Tokenizaciones-tarjetas debito Credipaz
                 case "tokenizar-tdmy": //Tokenizaciones-tarjetas debito Mediya
+                    _AJAX._bforceGoto = true;
                     _AJAX._id_type_medio_cobro = 1;
                     _AJAX._formularioFirma = _parameters.monopage;
                     _AJAX._justSign = true;
@@ -186,8 +188,7 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
             _NMF.onTryPage(null, "msg-error");
         });
     }
-    if (_AJAX._KEY != 0 && _AJAX._justSign) {
+    if ((_AJAX._KEY != 0 && _AJAX._justSign) || _AJAX._bforceGoto) {
         _NMF.onTryPage(null, _AJAX._init_page);
     }
-
 });
