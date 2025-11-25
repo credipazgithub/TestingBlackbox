@@ -27,7 +27,8 @@ oAppGetTokenizar.onShow = function () {
         }
         $("body").off("click", ".btn-ok-tokenizar").on("click", ".btn-ok-tokenizar", function () {
             if (!_TOOLS.validate(".wvalidate")) { return false; }
-            $(this).addClass("d-none");
+            var _this = $(this);
+            _this.addClass("d-none");
             var _params = _TOOLS.getFormValues(".dbase");
             _API.UiOnboardingTokenizar(_params).then(function (data) {
                 if (data.message.logica) {
@@ -37,11 +38,11 @@ oAppGetTokenizar.onShow = function () {
                     _NMF.onTryPage(null, "msg-ok");
                 } else {
                     _NMF.onModalAlert("Error", data.message.mensaje, "danger");
-                    $(this).removeClass("d-none");
+                    _this.removeClass("d-none");
                 }
             }).catch(function (err) {
                 _NMF.onModalAlert("Error", err.mensaje, "danger");
-                $(this).removeClass("d-none");
+                _this.removeClass("d-none");
             });
         });
     }, 250);
