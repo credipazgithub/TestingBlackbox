@@ -14,7 +14,7 @@ class Payments_fiserv extends MY_Model {
 		$data["mode"]="";
 		$data["dni"]="";
         $html=$this->load->view(MOD_PAYMENTS."/payments/".$data["interface"],$data,true);
-        logGeneral($this,$values,__METHOD__);
+        
         return array(
             "code"=>"2000",
             "status"=>"OK",
@@ -270,7 +270,7 @@ class Payments_fiserv extends MY_Model {
 				$html.="  </form>";
 			}
 
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
@@ -286,7 +286,7 @@ class Payments_fiserv extends MY_Model {
     public function initTransactionFiserv($values){
         try {
             $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
-            logGeneral($this,$values,__METHOD__);
+            
 			$values["id"]=0;
             return $TRANSACTIONS->save($values,null);
 

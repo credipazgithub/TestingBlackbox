@@ -166,7 +166,7 @@ class Folder_items extends MY_Model {
             $values["where"]=("data='".$file."'");
             $ret=$this->get($values);
             if ($ret["status"]!="OK"){throw new Exception($ret["message"],(int)$ret["code"]);}
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

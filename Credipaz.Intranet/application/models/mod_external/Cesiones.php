@@ -19,7 +19,7 @@ class Cesiones extends MY_Model {
             $sql = "SELECT * FROM DBCentral.dbo.NS_vw_descuentoCarteraBanco ORDER BY Nombre ASC";
             $data["bancos"] = $this->getRecordsAdHoc($sql);
             $html = $this->load->view("mod_external/cesiones/form", $data, true);
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",

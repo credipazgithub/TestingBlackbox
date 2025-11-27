@@ -263,7 +263,7 @@ class Functions extends MY_Model {
             $data["title"] = ucfirst(lang("m_permissions_map"));
             $html=$this->load->view(MOD_BACKEND."/functions/form",$data,true);
 
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

@@ -87,7 +87,7 @@ class Farmalink extends MY_Model {
             $result = $this->callAPI(($this->api_server . "/GenerateForm/Generate"),$headers,json_encode($fields));
 			$result = json_decode($result, true);
 			if($result["result"]==null){throw new Exception("Se han producido errores: ".$result["errors"][0]." ".$result["validationErrors"][0]["errorMessage"]);}
-            $this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ONLINE'");
+            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ONLINE'");
 
             return array(
                 "code"=>"2000",
@@ -101,7 +101,7 @@ class Farmalink extends MY_Model {
             );        
 		}
         catch (Exception $e) {
-            $this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ERROR'");
+            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ERROR'");
             return logError($e,__METHOD__ );
         }
     }

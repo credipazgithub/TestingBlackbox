@@ -147,7 +147,7 @@ class ClubRedondoWS extends MY_Model {
         }
     }
 	public function responseTransactionAsync($values){
-		logGeneralCustom($this,$params,"Payments::callbackCOIN",json_encode($values));
+		//logGeneralCustom($this,$params,"Payments::callbackCOIN",json_encode($values));
 		return array(
 			"code"=>"2000",
 			"status"=>"OK",

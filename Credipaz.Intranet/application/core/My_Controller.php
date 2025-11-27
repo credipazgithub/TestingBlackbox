@@ -68,9 +68,6 @@ class MY_Controller extends CI_Controller {
             $_POST["baseserver"]=$baseserver;
             $_POST["check_token"]=true;
             switch($_POST["model"]){
-                //case "log_general";
-                //    logGeneral($this,$_POST,$_POST["model"],$_POST["trace"]);
-                //    return null;
                 case "charges_codes": //Exception model NOT uses authentication
                 case "messages": //Exception model NOT uses authentication
                 case "folder_items": //Exception model NOT uses authentication

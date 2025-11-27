@@ -19,7 +19,7 @@ class Iframes extends MY_Model {
             $values["table"].=$sep."id_user_active=".$values["id_user_active"]."&username=".$values["username_active"]."&id_sucursal=[ID_SUCURSAL]&sucursal=[SUCURSAL]";//.$id_sucursal;
             $data["parameters"]=$values;
             $html=$this->load->view(MOD_EXTERNAL."/iframe/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

@@ -27,7 +27,7 @@ class My_Model extends CI_Model
     public function init($model, $table, $lang = null)
     {
         try {
-            $this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='INTRANET', @estado='ONLINE'");
+            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='INTRANET', @estado='ONLINE'");
 
             $this->REFERRER_NEOCORE = "BLACKBOX";
             $this->TOKEN_NEOCORE = bin2hex(getEncryptionKey());
@@ -162,7 +162,7 @@ class My_Model extends CI_Model
             }
             $id = $this->setRecord($fields, $id);
             if ((int) $id == 0) {
-                logGeneral($this, $values, __METHOD__, "ERROR ZERO ID");
+                //logGeneral($this, $values, __METHOD__, "ERROR ZERO ID");
                 throw new Exception(lang("error_5004"), 5004);
             }
 
@@ -170,7 +170,7 @@ class My_Model extends CI_Model
             $this->saveMessages($values, $id, null);
 
             $data = array("id" => $id);
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -188,7 +188,7 @@ class My_Model extends CI_Model
             $this->prepareModule();
             $sql = "INSERT INTO " . ($this->module . $this->table) . " (" . $values["fieldList"] . ") (" . $values["selectToInsert"] . ")";
             $this->dbLayerExecuteWS("nothing", $sql, "");
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -204,7 +204,7 @@ class My_Model extends CI_Model
     {
         try {
             $data = array("id" => $this->setRecord(array('offline' => $this->now, 'fum' => $this->now), $values["id"]));
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -220,7 +220,7 @@ class My_Model extends CI_Model
     {
         try {
             $data = array("id" => $this->setRecord(array('offline' => null, 'fum' => $this->now), $values["id"]));
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -250,7 +250,7 @@ class My_Model extends CI_Model
             } catch (Exception $e) {
             }
 
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -349,7 +349,7 @@ class My_Model extends CI_Model
     public function process($values)
     {
         try {
-            logGeneral($this, $values, __METHOD__);
+            //logGeneral($this, $values, __METHOD__);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -392,7 +392,7 @@ class My_Model extends CI_Model
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
             $html = $this->load->view($values["interface"], $data, true);
-            //logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -427,7 +427,7 @@ class My_Model extends CI_Model
                 $data["title"] = ucfirst($values["title"]);
             }
             $html = $this->load->view($values["interface"], $data, true);
-            //logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -452,7 +452,7 @@ class My_Model extends CI_Model
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
             $html = $this->load->view($values["interface"], $data, true);
-            //logGeneral($this,$values,__METHOD__);
+            
             $ret = array("message" => $html, "mime" => "text/csv", "mode" => $values["mode"], "indisk" => false);
             return $ret;
         } catch (Exception $e) {
@@ -472,7 +472,7 @@ class My_Model extends CI_Model
             $this->m_pdf->pdf->WriteHTML($html, 2);
             ob_end_clean();
             $html = $this->m_pdf->pdf->Output("legalizacion.pdf", "S");
-            //logGeneral($this,$values,__METHOD__);
+            
             $ret = array("message" => $html, "mime" => "application/pdf", "mode" => $values["mode"], "indisk" => false);
             return $ret;
         } catch (Exception $e) {
@@ -499,7 +499,7 @@ class My_Model extends CI_Model
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
             $html = $this->load->view($values["interface"], $data, true);
-            //logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code" => "2000",
                 "status" => "OK",

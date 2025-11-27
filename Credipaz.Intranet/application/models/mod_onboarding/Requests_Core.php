@@ -13,7 +13,7 @@ class Requests_Core extends MY_Model {
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_".$values["model"]));
             $html=$this->load->view(MOD_ONBOARDING."/requests_core/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
@@ -302,7 +302,7 @@ class Requests_Core extends MY_Model {
 			if (isset($fields["decision"])) {
 			    try {
 			       $vals=array("id"=>$id,"type_rel"=>"id","identify_rel"=>$fields["decision"]);
-		           logGeneralCustom($this,$vals,"Onboarding::Save","decision: ".$fields["decision"]);
+		           //logGeneralCustom($this,$vals,"Onboarding::Save","decision: ".$fields["decision"]);
 				} catch(Exception $err){}
 	        }
 			return $ret;

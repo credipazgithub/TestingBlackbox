@@ -14,7 +14,6 @@ class Sinisters extends MY_Model {
             $data["title"] = ucfirst(lang("m_statics"));
 			$data["cboDoctors"] = comboDoctorsUsername($this,array("where"=>"offline is null and test!=1","order"=>"username ASC","pagesize"=>-1));
             $html=$this->load->view(MOD_FOLLOW."/sinisters/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
@@ -1363,7 +1362,6 @@ class Sinisters extends MY_Model {
 	}
     public function changePriority($values){
         try {
-            logGeneral($this,$values,__METHOD__);
             $fields = array('id_type_priority' => $values["id_type_priority"]);
             return parent::save($values,$fields);
         }
@@ -1374,7 +1372,6 @@ class Sinisters extends MY_Model {
     }
     public function changeFullVacuna($values){
         try {
-            logGeneral($this,$values,__METHOD__);
             $fields = array('full_vacuna' => $values["full_vacuna"]);
             return parent::save($values,$fields);
         }
@@ -1385,7 +1382,6 @@ class Sinisters extends MY_Model {
     }
     public function changeAudit($values){
         try {
-            logGeneral($this,$values,__METHOD__);
             $fields = array('audit_control' => $values["audit_control"]);
             return parent::save($values,$fields);
         }
@@ -1396,7 +1392,6 @@ class Sinisters extends MY_Model {
     }
     public function changeMedicalNotes($values){
         try {
-            logGeneral($this,$values,__METHOD__);
             $fields = array('medical_notes' => $values["medical_notes"]);
             return parent::save($values,$fields);
         }

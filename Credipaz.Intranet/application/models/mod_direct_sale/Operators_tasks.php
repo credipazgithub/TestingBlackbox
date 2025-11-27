@@ -148,7 +148,7 @@ class Operators_tasks extends MY_Model {
             $cams=$CAMERAS->get(array("order"=>"description ASC"));
             $data["cams"] = $cams["data"];
             $html=$this->load->view(MOD_DIRECT_SALE."/operators_tasks/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
+           
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

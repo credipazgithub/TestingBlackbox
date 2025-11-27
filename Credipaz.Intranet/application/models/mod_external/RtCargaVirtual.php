@@ -315,7 +315,7 @@ class RtCargaVirtual extends MY_Model {
                 "id_user"=>$id_user,
                 "id_credipaz"=>$id_credipaz
             );
-            logGeneral($this,$values,__METHOD__,$custom_trace);
+            //logGeneral($this,$values,__METHOD__,$custom_trace);
             return true;
         }
         catch (Exception $e) {

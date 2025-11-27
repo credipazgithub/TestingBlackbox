@@ -14,7 +14,7 @@ class External_forms extends MY_Model {
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_add_credit_cards"));
             $html=$this->load->view(MOD_EXTERNAL."/external_forms/add_creditcard",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

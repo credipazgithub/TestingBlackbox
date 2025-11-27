@@ -491,7 +491,7 @@ class Charges_codes extends MY_Model {
 				$params["subject"]=lang('msg_telemedicina_delay_alert')." ".$record["name_club_redondo"]." - ".date(FORMAT_DATE_DMYHMS, strtotime($record["created"]));
 				$params["body"]=$this->load->view(MOD_EMAIL.'/templates/alertDelayTelemedicina',$data, true);
                 $ret=$EMAIL->directEmail($params);
-                logGeneral($this, $values, __METHOD__);
+                //logGeneral($this, $values, __METHOD__);
                 $sql="INSERT INTO ".MOD_BACKEND."_alert_control (code,[description],created,verified,offline,fum,id_rel,table_rel) VALUES ('".opensslRandom(16)."','Alerta delay Telemedicina',getdate(),getdate(),null,getdate(),".$record["id"].",'charges_codes')";
                 $this->execAdHoc($sql);
 			}
@@ -529,7 +529,7 @@ class Charges_codes extends MY_Model {
 			$params["email"]=$notifyTo;
 			$params["subject"]=lang('msg_telemedicina_noauditing_alert')." ".$record["name_club_redondo"]." - ".date(FORMAT_DATE_DMYHMS, strtotime($record["created"]));
 			$params["body"]=$this->load->view(MOD_EMAIL.'/templates/alertNoAuditingTelemedicina',$data, true);
-			logGeneral($this,$values,__METHOD__);
+			
 			$EMAIL->directEmail($params);
         }
         $charge_code=$this->get(array("where"=>"id=".$values["id"]));

@@ -58,7 +58,6 @@ class Transactions extends MY_Model {
             $data["parameters"] = $values;
             $data["title"] = ucfirst(lang("m_".$values["model"]));
             $html=$this->load->view(MOD_PAYMENTS."/transactions/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

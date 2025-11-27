@@ -30,7 +30,7 @@ class Devices extends MY_Model {
 			$data["browser_id_request"]=getCombo($parameters,$this);
             $html=$this->load->view(MOD_DIRECT_SALE."/devices/form_vendor",$data,true);
 
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
@@ -51,7 +51,7 @@ class Devices extends MY_Model {
 			$data["files"]=glob(FILES_VIDEOS."*");
 			$data["id_user_active"]=$values["id_user_active"];
             $html=$this->load->view(MOD_DIRECT_SALE."/devices/form_device",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

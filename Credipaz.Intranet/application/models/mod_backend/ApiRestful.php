@@ -17,7 +17,7 @@ class ApiRestful extends MY_Model {
             $data["title"] = ucfirst(lang("m_add_credit_cards"));
             $data["menu"] = $FUNCTIONS->menuAPI($values);
             $html=$this->load->view(MOD_BACKEND."/apirestful/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

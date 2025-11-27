@@ -268,7 +268,6 @@ class Users extends MY_Model {
             $this->load->library("session");
             $this->session->set_userdata(array("logged"=>false));
             $this->psession=$this->session;
-            logGeneral($this,$values,__METHOD__);
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

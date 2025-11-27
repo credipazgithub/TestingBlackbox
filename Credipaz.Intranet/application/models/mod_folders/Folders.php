@@ -249,7 +249,7 @@ class Folders extends MY_Model {
     public function offline($values){
         try {
             $data=array("id"=>$this->setRecord(array('offline' => $this->now),$values["id"]));
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

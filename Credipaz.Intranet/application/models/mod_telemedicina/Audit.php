@@ -45,7 +45,7 @@ class Audit extends MY_Model {
             $data["encurso"] = $OPERATORS_TASKS->get(array("pagesize"=>"-1","fields"=>"*,datediff(second,verified,getdate()) as seconds,dbo.fc_formatSeconds(datediff(second,verified,getdate()),'s') as elapsed","where"=>"id_type_task_close IS null","order"=>"id DESC"));
             $data["finalizadas"] = $OPERATORS_TASKS->get(array("pagesize"=>"20","fields"=>"*,datediff(second,verified,fum) as seconds,dbo.fc_formatSeconds(datediff(second,verified,fum),'s') as elapsed","where"=>"id_type_task_close IS NOT null","order"=>"id DESC"));
             $html=$this->load->view(MOD_TELEMEDICINA."/audit/form",$data,true);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

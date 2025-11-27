@@ -101,7 +101,7 @@ class Beneficio_farmacia extends MY_Model {
             $BENEFICIO_FARMACIA=$this->createModel(MOD_DBCENTRAL,"Beneficio_Farmacia","DBClub.dbo.Beneficio_Farmacia");
             $BENEFICIO_FARMACIA->save(array("id"=>$id,$fields));
             $data=array("id"=>0);
-            logGeneral($this,$values,__METHOD__);
+            
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
