@@ -869,15 +869,15 @@ class My_Model extends CI_Model
     {
         try {
             /*
-            $forget = false;
-            if ($expected == "nothing") {$forget = true;}
             switch (DB_ACCESS_MODE) {
                 case "ws":
                     $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-                    $ret = $NETCORECPFINANCIALS->Bridge("DBCentral", $command, $forget);
+                    log_message("error", "RELATED RET 1 " . json_encode($command, JSON_PRETTY_PRINT));
+                    $ret = $NETCORECPFINANCIALS->Bridge("dbIntranet", $command, $expected);
 
                     if ($ret["status"] == "OK") {
                         $ret = json_decode($ret["message"], true);
+                        log_message("error", "RELATED RET 2 " . json_encode($ret, JSON_PRETTY_PRINT));
                     } else {
                         throw new Exception(lang('error_100') . ": " . $ret["message"], 100);
                     }

@@ -100,6 +100,9 @@ class MY_Controller extends CI_Controller {
                 if($verify["status"]!="OK"){throw new Exception($verify["message"],(int)$verify["code"]);}
             }
             $return=$this->InnerResolver();
+            if (!isset($_POST["express_function"])) {
+                $_POST["express_function"] = "";
+            }
             switch ($_POST["express_function"]) {
                 case "GetCuotasPlain":
                     $this->outputRaw($return, "text/html");

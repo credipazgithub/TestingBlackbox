@@ -12,23 +12,13 @@ class NetCoreCPFinancial extends MY_Model {
         parent::__construct();
     }
 
-    public function Bridge($key,$command,$forget)
+    public function Bridge($key,$command,$mode)
     {
         try {
-
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $fields = array("Key"=>$key,"Command"=>$command);
-            $url = (CPFINANCIALS . "/Utilidades/BridgeSqlAsDataTableEx/");
-            if ($forget) {$url = (CPFINANCIALS . "/Utilidades/BridgeSqlNoReturnEx/");}
-            $result = $this->cUrlRestful($url, $headers, json_encode($fields));
-            log_message("error", "RELATED xxxx " . json_encode($result, JSON_PRETTY_PRINT));
-
-            if (!$forget) {
-                $result = json_decode($result, true);
-            } else {
-                $result = "";
-            }
+            $url = (CPFINANCIALS . "/Utilidades/BridgeDirect?Key=". $key."&Command=".base64_encode($command)."&Mode=". $mode);
+            $result = $this->cUrlRestful($url, $headers);
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -1434,7 +1424,7 @@ class NetCoreCPFinancial extends MY_Model {
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
         if ($headers!=null){curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
         $response = curl_exec($ch);
-		$response=trim($response, "\xEF\xBB\xBF");
+        $response=trim($response, "\xEF\xBB\xBF");
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $err=curl_error($ch);
         curl_close($ch);
