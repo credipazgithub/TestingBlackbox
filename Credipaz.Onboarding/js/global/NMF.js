@@ -373,7 +373,7 @@ var _NMF = {
             /*
              * Full WS Financial original response!
              * */
-            if (data.data.raw_verify == null) {
+            if (data.data.raw_verify == null || data.data.raw_verify=="") {
                 _NMF._ClientData._solicitudData.raw_verify = {};
             } else {
                 _NMF._ClientData._solicitudData.raw_verify = JSON.parse(data.data.raw_verify);

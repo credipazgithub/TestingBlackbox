@@ -539,7 +539,8 @@ class Requests_Core extends MY_Model {
 		    $id=(int)$values["id"];
 
 			$record=$this->get(array("fields"=>"idtx,Sexo,Documento","where"=>("id=".$id)));
-            $sexoPrevio=$record["data"][0]["Sexo"];
+
+			$sexoPrevio=$record["data"][0]["Sexo"];
 			$documentoPrevio=$record["data"][0]["Documento"];
 			$secondIdtx=($record["data"][0]["idtx"]!="" and $record["data"][0]["idtx"]!="0" );
 
@@ -561,6 +562,7 @@ class Requests_Core extends MY_Model {
 				}
 			}
 			$record=$this->get(array("where"=>("id=".$id)));
+            log_message("error", "RELATED record" . json_encode($record, JSON_PRETTY_PRINT));
 
             if ($end=="AK"){
 				/*Se debe setear aqui el codigo SMS para averificar el requests.id*/
