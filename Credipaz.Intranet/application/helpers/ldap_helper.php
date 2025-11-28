@@ -27,20 +27,6 @@ function LDAPSyncGroups($username,$password,$groups,$obj){
         $sql = "exec dbIntranet.dbo.NS_LDAPSyncGroups @id_user=" . $id_user . ", @filter='" . $filter . "'";
         $obj->execAdHoc($sql);
     }
-    /*
-    $REL_USERS_GROUPS=$obj->createModel(MOD_BACKEND,"Rel_users_groups","Rel_users_groups");
-    $REL_USERS_GROUPS->deleteByWhere(array("id_user"=>$id_user));
-    if (is_array($groups)) {
-        $filter=implode("','",$groups);
-        $filter=("'".$filter."'");
-        $GROUPS=$obj->createModel(MOD_BACKEND,"Groups","Groups");
-        $adds=$GROUPS->get(array("pagesize"=>-1,"where"=>"code in (".$filter.")"));
-        foreach($adds["data"] as $item) {
-            $fields=array("id_group"=>$item["id"],"id_user"=>$id_user);
-            $REL_USERS_GROUPS->save(array("id"=>0),$fields);
-        }
-    }
-    */
 }
 
 function LDAPInit($values){

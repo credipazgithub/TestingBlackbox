@@ -719,7 +719,7 @@ class Users extends MY_Model {
             } else {
                 foreach($retNames as $item) {
                     $viable=0;
-                    if ($item["Estado"]=="Aprobado"){$viable=1;}
+                    //if ($item["Estado"]=="Aprobado"){$viable=1;}
                     $this->save(array("id"=>$record[0]["id"]),array("viable"=>$viable));
                 }
                 return array(

@@ -1845,10 +1845,10 @@ _FUNCTIONS = {
 																	/*-----------------------------------------------*/
 																	/*Configuracion de Comunicacion WebSocket*/
 																	/*-----------------------------------------------*/
-																	_WEBSOCKET._targetReturn = ".log";
-																	_WEBSOCKET._host = "wss://websocket.credipaz.com";
-																	_WEBSOCKET._userIntranet = _AJAX._username_active;
-																	_WEBSOCKET._buildAlert = true;
+																	//_WEBSOCKET._targetReturn = ".log";
+																	//_WEBSOCKET._host = "wss://websocket.credipaz.com";
+																	//_WEBSOCKET._userIntranet = _AJAX._username_active;
+																	//_WEBSOCKET._buildAlert = true;
 
 																	$(".main").removeClass("container").addClass("container-flex").html(data.message).fadeIn("slow");
 																	if (_auth.data.telemedicina_rol == "doctor") {
@@ -2020,8 +2020,8 @@ _FUNCTIONS = {
 			function (resolve, reject) {
 				try {
 					_FUNCTIONS.onDestroyModal("#modal-info");
-					_WEBSOCKET.destroy(null);
-					_WEBSOCKET.connect(null);
+					//_WEBSOCKET.destroy(null);
+					//_WEBSOCKET.connect(null);
 					_AJAX._waiter = true;
 					_AJAX.UiInformUserArea({ "last_area": _this.attr("data-area") }).then(function (data) { });
 					$("." + _FUNCTIONS._defaultBrowserSearch).val("");

@@ -868,6 +868,33 @@ class My_Model extends CI_Model
     public function dbLayerExecuteWS($expected, $command, $token, $params = null)
     {
         try {
+            /*
+            $forget = false;
+            if ($expected == "nothing") {$forget = true;}
+            switch (DB_ACCESS_MODE) {
+                case "ws":
+                    $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+                    $ret = $NETCORECPFINANCIALS->Bridge("DBCentral", $command, $forget);
+
+                    if ($ret["status"] == "OK") {
+                        $ret = json_decode($ret["message"], true);
+                    } else {
+                        throw new Exception(lang('error_100') . ": " . $ret["message"], 100);
+                    }
+                    break;
+                default:
+                    switch ($expected) {
+                        case "records":
+                            $ret = $this->db->query($command, $params)->result_array();
+                            break;
+                        default:
+                            $ret = $this->db->query($command, $params);
+                            break;
+                    }
+                    break;
+            }
+            return $ret;
+            */
             switch (DB_ACCESS_MODE) {
                 case "ws":
                     $data = array(

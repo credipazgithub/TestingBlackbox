@@ -11,6 +11,38 @@ class NetCoreCPFinancial extends MY_Model {
     {
         parent::__construct();
     }
+
+    public function Bridge($key,$command,$forget)
+    {
+        try {
+
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $fields = array("Key"=>$key,"Command"=>$command);
+            $url = (CPFINANCIALS . "/Utilidades/BridgeSqlAsDataTableEx/");
+            if ($forget) {$url = (CPFINANCIALS . "/Utilidades/BridgeSqlNoReturnEx/");}
+            $result = $this->cUrlRestful($url, $headers, json_encode($fields));
+            log_message("error", "RELATED xxxx " . json_encode($result, JSON_PRETTY_PRINT));
+
+            if (!$forget) {
+                $result = json_decode($result, true);
+            } else {
+                $result = "";
+            }
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
+
     public function landing($values)
     {
         try {

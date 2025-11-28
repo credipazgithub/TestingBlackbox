@@ -82,6 +82,7 @@ class ClubRedondoWS extends MY_Model {
     public function getIdentityInformation($values){
         try {
             if (!isset($values["documentNumber"])) {$values["documentNumber"] = "";}
+            if (!isset($values["documentSex"])) {$values["documentSex"] = "";}
             if ($values["documentNumber"] != "") {
                 $sql = (string) "EXEC DBCentral.dbo.NS_ObtenerDatosPersona @nroDoc=" . $values["documentNumber"] . ",@sexo='" . $values["documentSex"] . "'";
                 $result = $this->getRecordsAdHoc($sql);
