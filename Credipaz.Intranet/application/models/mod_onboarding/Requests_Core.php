@@ -654,7 +654,7 @@ class Requests_Core extends MY_Model {
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
-        if ($headers!=null){curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
         curl_setopt($ch, CURLOPT_POSTFIELDS, $fields);
         $response = curl_exec($ch);
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

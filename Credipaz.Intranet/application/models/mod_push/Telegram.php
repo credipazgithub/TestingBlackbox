@@ -40,7 +40,7 @@ class Telegram extends My_Model {
         curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
         curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        //curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
         curl_setopt($ch, CURLOPT_POST, 0);
         $jsonResponse = curl_exec($ch);
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);

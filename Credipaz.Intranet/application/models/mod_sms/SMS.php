@@ -51,7 +51,7 @@ class SMS extends MY_Model {
         curl_setopt($ch, CURLOPT_POSTFIELDS, json_encode($data));
 		//curl_setopt($ch, CURLOPT_HEADER, true);
 		curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
-        if ($headers!=null){curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
         $response = curl_exec($ch);
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $err=curl_error($ch);
