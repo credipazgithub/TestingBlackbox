@@ -128,7 +128,6 @@
     <Content Include="application\helpers\builder_helper.php" />
     <Content Include="application\helpers\global_helper.php" />
     <Content Include="application\helpers\index.html" />
-    <Content Include="application\helpers\ldap_helper.php" />
     <Content Include="application\helpers\mod_aproval_helper.php" />
     <Content Include="application\helpers\mod_backend_helper.php" />
     <Content Include="application\helpers\mod_direct_sale_helper.php" />

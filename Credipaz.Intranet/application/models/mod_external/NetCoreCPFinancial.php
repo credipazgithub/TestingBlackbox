@@ -12,12 +12,12 @@ class NetCoreCPFinancial extends MY_Model {
         parent::__construct();
     }
 
-    public function Bridge($key,$command,$mode)
+    public function BridgeDirectCommand($key,$command,$mode)
     {
         try {
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $url = (CPFINANCIALS . "/Utilidades/BridgeDirect?Key=". $key."&Command=".base64_encode($command)."&Mode=". $mode);
+            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectCommand?Key=". $key."&Command=".base64_encode($command)."&Mode=". $mode);
             $result = $this->cUrlRestful($url, $headers);
             return array(
                 "code" => "2000",
@@ -31,7 +31,44 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-
+    public function BridgeDirectEmail($to, $from, $body, $subject)
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectEmail?To=" . base64_encode($to) . "&From=" . base64_encode($from) . "&Body=" . base64_encode($body) . "&Subject=" . base64_encode($subject));
+            $result = $this->cUrlRestful($url, $headers);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function BridgeDirectLDAP($usuario,$password) 
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectLDAP?Usuario=" . $usuario . "&Password=" . $password);
+            $result = $this->cUrlRestful($url, $headers);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
 
     public function landing($values)
     {

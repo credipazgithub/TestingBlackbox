@@ -37,7 +37,7 @@ class MY_Controller extends CI_Controller {
     }
     public function createModel($module,$model,$table) {
         try {
-            $this->load->model($module."/".$model,$model, (DB_ACCESS_MODE=="local"));
+            $this->load->model($module."/".$model,$model, false);
             $this->{$model}->status=$this->{$model}->init($module."/".$model,$table,$this->language);
             if ($this->{$model}->status["status"]!="OK"){throw new Exception($this->{$model}->status["message"],(int)$this->{$model}->status["code"]);}
             return $this->{$model};

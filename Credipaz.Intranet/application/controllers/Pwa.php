@@ -345,9 +345,9 @@ class Pwa extends MY_Controller {
             $_POST['table'] = 'Email';
             $_POST["from"] = "intranet@mediya.com.ar";
             $_POST["alias_from"] = "intranet@mediya.com.ar";
-            //$_POST["email"] = "daniel@neodata.com.ar";
-            //$_POST["subject"] = "Solicitud de baja Mediya";
-            //$_POST["body"] = "test";
+            $_POST["email"] = "daniel@neodata.com.ar";
+            $_POST["subject"] = "Test";
+            $_POST["body"] = "test";
             $this->neocommand(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));

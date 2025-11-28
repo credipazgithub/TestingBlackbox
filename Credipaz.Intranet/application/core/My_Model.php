@@ -52,7 +52,7 @@ class My_Model extends CI_Model
     public function createModel($module, $model, $table)
     {
         try {
-            $this->load->model($module . "/" . $model, $model, (DB_ACCESS_MODE == "local"));
+            $this->load->model($module . "/" . $model, $model, false);
             $this->{$model}->status = $this->{$model}->init($module . "/" . $model, $table, $this->language);
             if ($this->{$model}->status["status"] != "OK") {
                 throw new Exception($this->{$model}->status["message"], (int) $this->{$model}->status["code"]);
@@ -868,117 +868,13 @@ class My_Model extends CI_Model
     public function dbLayerExecuteWS($expected, $command, $token, $params = null)
     {
         try {
-            /*
-            switch (DB_ACCESS_MODE) {
-                case "ws":
-                    $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-                    log_message("error", "RELATED RET 1 " . json_encode($command, JSON_PRETTY_PRINT));
-                    $ret = $NETCORECPFINANCIALS->Bridge("dbIntranet", $command, $expected);
-
-                    if ($ret["status"] == "OK") {
-                        $ret = json_decode($ret["message"], true);
-                        log_message("error", "RELATED RET 2 " . json_encode($ret, JSON_PRETTY_PRINT));
-                    } else {
-                        throw new Exception(lang('error_100') . ": " . $ret["message"], 100);
-                    }
-                    break;
-                default:
-                    switch ($expected) {
-                        case "records":
-                            $ret = $this->db->query($command, $params)->result_array();
-                            break;
-                        default:
-                            $ret = $this->db->query($command, $params);
-                            break;
-                    }
-                    break;
-            }
-            return $ret;
-            */
-            switch (DB_ACCESS_MODE) {
-                case "ws":
-                    $data = array(
-                        "key" => opensslRandom(16),
-                        "format" => "json",
-                        "expected" => $expected,
-                        "referrer" => $this->REFERRER_NEOCORE,
-                        "scoope" => DB_SCOOPE,
-                        "command" => $command,
-                        "token" => $this->TOKEN_NEOCORE,
-                        "params" => $params
-                    );
-                    $data = json_encode($data);
-                    $ret = $this->cUrlRestful(DB_LAYER_ENDPOINT, array('Content-Type:application/json', 'Content-Length: ' . strlen($data)), 1, $data);
-                    $ret = json_decode($ret, true);
-                    if ($ret["status"] == "OK") {
-                        $ret = json_decode($ret["response"], true);
-                    } else {
-                        throw new Exception(lang('error_100') . ": " . $ret["message"], 100);
-                    }
-                    break;
-                default:
-                    switch ($expected) {
-                        case "records":
-                            $ret = $this->db->query($command, $params)->result_array();
-                            break;
-                        default:
-                            $ret = $this->db->query($command, $params);
-                            break;
-                    }
-                    break;
-            }
-            return $ret;
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
-    }
-    public function adLayerExecuteWS($expected, $command, $token, $username, $password)
-    {
-        try {
-            switch (AD_ACCESS_MODE) {
-                case "ws":
-                    $data = array(
-                        "key" => opensslRandom(16),
-                        "format" => "json",
-                        "expected" => $expected,
-                        "referrer" => $this->REFERRER_NEOCORE,
-                        "scoope" => AD_SCOOPE,
-                        "command" => $command,
-                        "token" => $this->TOKEN_NEOCORE,
-                        "username" => $username,
-                        "password" => $password
-                    );
-                    $data = json_encode($data);
-                    $ret = $this->cUrlRestful(AD_LAYER_ENDPOINT, array('Content-Type:application/json', 'Content-Length: ' . strlen($data)), 1, $data);
-                    $ret = json_decode($ret, true);
-                    if ($ret["status"] == "OK") {
-                        $groups = [];
-                        $records = json_decode($ret["response"], true);
-                        foreach ($records as $group) {array_push($groups, $group["Group"]);}
-                        LDAPSyncGroups($username, $password, $groups, $this);
-                        $ret = array(
-                            "code" => "2000",
-                            "status" => "OK",
-                            "mode" => "LDAP",
-                            "username" => $username,
-                            "message" => "LDAPChecked",
-                            "groups" => $groups,
-                            "function" => "production",
-                            "data" => null
-                        );
-                    } else {
-                        throw new Exception(lang('error_101') . ": " . $ret["message"], 101);
-                    }
-                    break;
-                default:
-                    switch ($expected) {
-                        case "groups":
-                        case "nothing":
-                        case "procedure":
-                            $ret = LDAPCheck($this, array("username" => $username, "password" => $password));
-                            break;
-                    }
-                    break;
+            $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $ret = $NETCORECPFINANCIALS->BridgeDirectCommand("dbIntranet", $command, $expected);
+            if ($ret["status"] == "OK") {
+                $ret = json_decode($ret["message"], true);
+                $ret = $ret["records"];
+            } else {
+                throw new Exception(lang('error_100') . ": " . $ret["message"], 100);
             }
             return $ret;
         } catch (Exception $e) {
@@ -988,194 +884,42 @@ class My_Model extends CI_Model
     public function emLayerExecuteWS($expected, $command, $token, $subject, $body, $from, $alias_from, $replyTo, $to, $cc, $bcc, $attachments, $names, $priority)
     {
         try {
-            if ($priority == null) {
-                $priority = 0;
-            }
-            switch (EM_ACCESS_MODE) {
-                case "ws":
-                    $arr_replyTo = $this->buildEmailEntry($replyTo, ",");
-                    $arr_to = $this->buildEmailEntry($to, ",");
-                    $arr_cc = $this->buildEmailEntry($cc, ",");
-                    $arr_bcc = $this->buildEmailEntry($bcc, ",");
-                    $arr_attachments = array();
-                    if (!is_array($attachments)) {
-                        if ($attachments != "") {
-                            $filenames = explode("[NAME]", $names);
-                            $files = explode("[FILE]", $attachments);
-                            $i = 0;
-                            foreach ($files as $file) {
-                                if ($file != "") {
-                                    array_push($arr_attachments, array("mimeType" => getMimeType($filenames[$i]), "fileName" => $filenames[$i], "rawBase64" => $file));
-                                    $i += 1;
-                                }
-                            }
-                        }
-                    } else {
-                        $arr_attachments = $attachments;
-                    }
-                    $data = array(
-                        "key" => opensslRandom(16),
-                        "format" => "json",
-                        "expected" => $expected,
-                        "referrer" => $this->REFERRER_NEOCORE,
-                        "scoope" => EM_SCOOPE,
-                        "command" => $command,
-                        "token" => $this->TOKEN_NEOCORE,
-                        "subject" => $subject,
-                        "body" => $body,
-                        "render" => "html",
-                        "from" => $from,
-                        "replyTo" => $arr_replyTo,
-                        "to" => $arr_to,
-                        "cc" => $arr_cc,
-                        "bcc" => $arr_bcc,
-                        "priority" => $priority,
-                        "attachments" => $arr_attachments
-                    );
-                    $data = json_encode($data);
-                    $ret = $this->cUrlRestful(EM_LAYER_ENDPOINT, array('Content-Type:application/json', 'Content-Length: ' . strlen($data)), 1, $data);
-                    $ret = json_decode($ret, true);
-                    break;
-                default:
-                    $config = array(
-                        "protocol" => "SMTP",
-                        "smtp_host" => "localhost",
-                        "smtp_port" => 25,
-                        "smtp_user" => "",
-                        "smtp_pass" => "",
-                        "mailtype" => "html",
-                        "wordwrap" => true,
-                        "charset" => "utf-8",
-                        "newline" => "\r\n"
-                    );
-                    $this->load->library('email', null, 'innerEmail');
-                    $this->innerEmail->initialize($config);
-                    $this->innerEmail->from($from, $alias_from);
-                    $this->innerEmail->to($to);
-                    $this->innerEmail->cc($cc);
-                    $this->innerEmail->bcc($bcc);
-                    $this->innerEmail->subject($subject);
-                    $this->innerEmail->message($body);
-                    $this->innerEmail->priority($priority);
-
-                    $vattachs = array();
-                    if ($attachments != "") {
-                        $filenames = explode("[NAME]", $names);
-                        $files = explode("[FILE]", $attachments);
-                        $i = 0;
-                        foreach ($files as $file) {
-                            if ($file != "") {
-                                $fullPath = (FILES_ATTACHED_LOCAL . uniqid("", true) . "-" . $filenames[$i]);
-                                array_push($vattachs, $fullPath);
-                                saveBase64ToFile(array("data" => $file, "path" => FILES_ATTACHED_LOCAL, "fullPath" => $fullPath));
-                                $this->innerEmail->attach($fullPath);
-                                $i += 1;
-                            }
-                        }
-                    }
-                    $sended = $this->innerEmail->send(true);
-                    foreach ($vattachs as $file) {
-                        unlink($file);
-                    }
-                    if (!$sended) {
-                        throw new Exception(lang('error_5600'), 5600);
-                    }
-                    $ret = array("status" => "OK", "message" => lang('error_5601'));
-                    break;
-            }
+            $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $ret = $NETCORECPFINANCIALS->BridgeDirectEmail($to, $from, $body, $subject);
             return $ret;
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
     }
-    public function fsLayerExecuteWS($expected, $command, $token, $filter, $from, $to, $rawBase64)
+    public function adLayerExecuteWS($expected, $command, $token, $username, $password)
     {
         try {
-            switch (FS_ACCESS_MODE) {
-                case "ws":
-                    $data = array(
-                        "key" => opensslRandom(16),
-                        "format" => "json",
-                        "expected" => "dynamic",
-                        "referrer" => $this->REFERRER_NEOCORE,
-                        "scoope" => FS_SCOOPE,
-                        "command" => $command,  //0 to 9
-                        "token" => $this->TOKEN_NEOCORE,
-                        "filter" => $filter,
-                        "from" => $from,
-                        "to" => $to,
-                        "rawBase64" => $rawBase64
-                    );
-                    $data = json_encode($data);
-                    $ret = $this->cUrlRestful(FS_LAYER_ENDPOINT, array('Content-Type:application/json', 'Content-Length: ' . strlen($data)), 1, $data);
-                    $ret = json_decode($ret, true);
-                    if ($ret["status"] == "OK") {
-                        switch ((int) $command) {
-                            case 0: //List
-                                $files = json_decode($ret["response"], true);
-                                $ret = array();
-                                foreach ($files as $file) {
-                                    $ret[] = $file["fullFilename"];
-                                }
-                                break;
-                            case 8: // ReadFileBase64
-                                $files = json_decode($ret["response"], true);
-                                $a = getMimeType($files[0]["fileName"]);
-                                $ret = ('data:' . $a . ';base64,' . $files[0]["rawBase64"]);
-                                break;
-                            default: // rest...
-                                $ret = json_decode($ret["response"], true);
-                                $ret = (bool) $ret["result"];
-                                break;
-                        }
-                    } else {
-                        throw new Exception(lang('error_101') . ": " . $ret["message"], 101);
-                    }
-                    break;
-                default:
-                    switch ((int) $command) {
-                        case 0: //List
-                            $ret = glob($from . $filter);
-                            break;
-                        case 8: //ReadFileBase64
-                            $filename = ($from . $filter);
-                            $ret = fileToBase64($filename, true);
-                            break;
-                        case 1: //Copy
-                            $ret = copy($from, $to);
-                            break;
-                        case 2: //Move
-                            $ret = rename($from, $to);
-                            break;
-                        case 3: //Delete
-                            $ret = unlink($from);
-                            break;
-                        case 4: //CreateDirectory
-                            $ret = mkdir($from);
-                            break;
-                        case 5: //Removedirectory
-                            $ret = rmdir($from);
-                            break;
-                        case 6: //FileExists
-                            $ret = file_exists($from);
-                            break;
-                        case 7: //DirectoryExists
-                            $ret = is_dir($from);
-                            break;
-                        case 9: //WriteFileBase64
-                            $path_parts = pathinfo($to);
-                            $ret = saveBase64ToFile(array("data" => $rawBase64, "path" => $path_parts["dirname"], "fullPath" => $to));
-                            $ret = ($ret !== false);
-                            break;
-                    }
-                    break;
+            $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $ret = $NETCORECPFINANCIALS->BridgeDirectLDAP($username, $password);
+            if ($ret["status"] == "OK") {
+                $ret = json_decode($ret["message"], true);
+                $records = $ret["records"];
+            } else {
+                throw new Exception(lang('error_101') . ": " . $ret["message"], 101);
             }
+            $groups = [];
+            foreach ($records as $group) {array_push($groups, $group["Group"]);}
+            $ret = array(
+                "code" => "2000",
+                "status" => "OK",
+                "mode" => "LDAP",
+                "username" => $username,
+                "message" => "LDAPChecked",
+                "groups" => $groups,
+                "function" => "production",
+                "data" => null
+            );
             return $ret;
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
     }
-
+    
     public function getRecords($values)
     {
         try {
@@ -1368,46 +1112,5 @@ class My_Model extends CI_Model
             }
         }
         return $arr;
-    }
-
-    public function neoList($filter, $from)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 0, "", $filter, $from, "", "");
-    }
-    public function neoCopy($from, $to)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 1, "", "", $from, $to, "");
-    }
-    public function neoMove($from, $to)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 2, "", "", $from, $to, "");
-    }
-    public function neoDelete($fullPathFilename)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 3, "", "", $fullPathFilename, "", "");
-    }
-    public function neoCreateDirectory($directory)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 4, "", "", $directory, "", "");
-    }
-    public function neoRemoveDirectory($directory)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 5, "", "", $directory, "", "");
-    }
-    public function neoFileExists($fullPathFilename)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 6, "", "", $fullPathFilename, "", "");
-    }
-    public function neoDirectoryExists($directory)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 7, "", "", $directory, "", "");
-    }
-    public function neoReadFileBase64($fileName, $directory)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 8, "", $fileName, $directory, "", "");
-    }
-    public function neoWriteFileBase64($fullPathFilename, $rawBase64)
-    {
-        return $this->fsLayerExecuteWS("dynamic", 9, "", "", "", $fullPathFilename, $rawBase64);
     }
 }
