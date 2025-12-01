@@ -44,11 +44,15 @@ class External extends MY_Model {
             switch((int)$values["id_app"]) {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
-                  return $MOBILE->firstStepAuth($values);
+                  $r=$MOBILE->firstStepAuth($values);
+                  log_message("error", "RELATED credipaz " . json_encode($r, JSON_PRETTY_PRINT));
+                  return $r;
                case 5: // Club Redondo
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
-                  return $MOBILE->firstStepAuth($values);
-               default:
+                  $r=$MOBILE->firstStepAuth($values);
+                  log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
+                  return $r;
+                default:
                   return null;
             }
         }
@@ -63,11 +67,14 @@ class External extends MY_Model {
             switch((int)$values["id_app"]) {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
-                  $ret=$MOBILE->secondStepAuth($values);
-                  return $ret;
+                  $r=$MOBILE->secondStepAuth($values);
+                    log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
+                    return $r;
                case 5: // Club Redondo
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
-                  return $MOBILE->secondStepAuth($values);
+                    $r=$MOBILE->secondStepAuth($values);
+                    log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
+                    return $r;
                default:
                   return null;
             }

@@ -40,7 +40,8 @@ class ClubRedondoWS extends MY_Model {
         if (strpos($values["dni"], "@") !== false) {$values["dni"] = explode("@", $values["dni"])[0];}
         switch($scope){
            case "CP":
-              $sql=(string)"EXEC DBCentral.dbo.NS_Clientes_Datos_Generales_JSON @xmlData='<Consulta><Documento>".$values["dni"]."</Documento><Sexo>".$values["sex"]."</Sexo></Consulta>'";
+              $sql=(string)"EXEC DBCentral.dbo.NS_Clientes_Datos_Generales_JSON @doc=".$values["dni"].", @sexo='".$values["sex"]."'";
+              log_message("error", "RELATED SQL CP " . json_encode($sql, JSON_PRETTY_PRINT));
               $result=$this->getRecordsAdHoc($sql);
               $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
@@ -58,9 +59,11 @@ class ClubRedondoWS extends MY_Model {
               $result["message"]=$result[0];
               break;
            case "CR":
-              $sql=(string)"EXEC DBClub.dbo.NS_Socio_Datos_Generales_JSON @xmlData='<Consulta><Documento>".$values["dni"]."</Documento><Sexo>".$values["sex"]."</Sexo></Consulta>'";
+              $sql = (string) "EXEC DBClub.dbo.NS_Socio_Datos_Generales_JSON @doc=" . $values["dni"] . ", @sexo='" . $values["sex"] . "'";
               $result=$this->getRecordsAdHoc($sql);
-              $result = objectToArrayRecusive($result);
+                log_message("error", "RELATED SQL CR " . json_encode($result, JSON_PRETTY_PRINT));
+
+                $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
               $user=$USERS->get(array("fields"=>"id,id_type_user,username,viable,documentArea,documentPhone,documentName,documentType,documentNumber,documentSex,created,fum","where"=>"username='".$values["dni"]."@clubredondo.com"."'"));
               $result["registered"]=(int)$user["totalrecords"];

@@ -804,6 +804,7 @@
     </Content>
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="application\logs\" />
     <Folder Include="application\session\" />
   </ItemGroup>
   <PropertyGroup>
