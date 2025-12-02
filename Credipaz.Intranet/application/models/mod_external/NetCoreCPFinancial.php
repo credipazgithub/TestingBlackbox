@@ -1445,13 +1445,28 @@ class NetCoreCPFinancial extends MY_Model {
         }
     }
 
+    public function MessageTelemedicina($values)
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $url = (CPFINANCIALS . "/Telemedicina/Message");
+            $result = $this->callAPI($url, $headers, json_encode($values));
+            $result = json_decode($result, true);
+            return $result;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
+
     private function Authenticate(){
 		$headers = array('Content-Type:application/json');
 		$url=(CPFINANCIALS."/Login/Login/");
 		$token = $this->callAPI($url,$headers,json_encode($this->auth_credentials));
 		return $token;
 	}
-	private function callAPI($url, $headers, $data){
+    private function callAPI($url, $headers, $data){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, $url);
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);

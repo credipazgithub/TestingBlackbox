@@ -771,12 +771,8 @@ _FUNCTIONS = {
 						"type_media": "pdf"
 					};
 					_AJAX.UiDirectTelemedicina(_json).then(function (datajson) {
-						if (datajson.status == "OK") {
-							alert("¡Se ha adjuntado la receta correctamente!");
-							_FUNCTIONS.onDestroyModal("#telemedicinaModalPDF");
-						} else {
-							alert(datajson.message);
-						}
+						alert("¡Se ha adjuntado la receta correctamente!");
+						_FUNCTIONS.onDestroyModal("#telemedicinaModalPDF");
 					}).catch(function (error) { alert(error.message); });
 				};
 			});

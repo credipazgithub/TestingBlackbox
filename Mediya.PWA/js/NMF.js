@@ -376,7 +376,6 @@ var _NMF = {
         _API.UiGetUserInformation(_NMF._auth_user_data).then(
             function (data) {
                 console.log("UiGetUserInformation XXX1");
-                console.log(data);
                 var _message = "";
                 switch (data.scope) {
                     case "CP":

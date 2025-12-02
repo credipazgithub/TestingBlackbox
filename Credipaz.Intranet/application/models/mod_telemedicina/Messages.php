@@ -21,7 +21,6 @@ class Messages extends MY_Model {
 
     public function save($values,$fields=null){
         try {
-            $push=false;
             $bOk=false;
             if (!isset($values["id"])){$values["id"]=0;}
             $id=(int)$values["id"];
@@ -39,52 +38,38 @@ class Messages extends MY_Model {
                           $description="Imagen: ".date("d/m/Y H:i:s",strtotime($this->now));
                           break;
                        case 2:
-                          $push=true;
                           $description="Receta: ".date("d/m/Y H:i:s",strtotime($this->now));
                           break;
                     }
                     $fields = array(
-                        'code' => opensslRandom(16),
-                        'description' => $description,
+                        'Code' => opensslRandom(16),
+                        'Description' => $description,
                         'created' => $this->now,
                         'verified' => null,
                         'offline' => null,
                         'fum' => $this->now,
-                        'message' => $message,
-                        'raw_data' => $raw_data,
-                        'viewed' => $values["viewed"],
-                        'id_charge_code' => $values["id_charge_code"],
-                        'id_type_item' => $values["id_type_item"],
-                        'id_type_direction' => $values["id_type_direction"],
-                        'id_operator' => secureEmptyNull($values,"id_operator"),
-                        'id_user' => $values["id_user_active"],
-                        'type_media' => $values["type_media"],
-                        'carbon_copy' => $values["carbon_copy"],
-                        'id_type_vademecum' => $id_type_vademecum,
+                        'Message' => $message,
+                        'Raw_data' => $raw_data,
+                        'Viewed' => $values["viewed"],
+                        'Id_charge_code' => $values["id_charge_code"],
+                        'Id_type_item' => $values["id_type_item"],
+                        'Id_type_direction' => $values["id_type_direction"],
+                        'Id_operator' => secureEmptyNull($values,"id_operator"),
+                        'Id_user' => $values["id_user_active"],
+                        'Type_media' => $values["type_media"],
+                        'Carbon_copy' => $values["carbon_copy"],
+                        'Id_type_vademecum' => $id_type_vademecum,
                     );
                 }
             } else {
                 $bOk=true;
             }
-            $saved=parent::save($values,$fields);
-            try {
-                $push = false;
-				if($push){
-					$params=array(
-						"id_user"=>$values["id_user_active"],
-						"id_type_command"=>2, //click sobre objeto!
-						"id_type_target"=>6, // objecto btnTelemedicina!
-						"subject"=>"¡Tiene una nueva receta a su nombre!",
-						"body"=>"Por favor, ingrese a la aplicación y consulte sus recetas",
-						"image_url"=>"https://intranet.credipaz.com/assets/uploads/push/alerta_receta.jpg"
-					);
-					$PUSH_OUT=$this->createModel(MOD_PUSH,"Push_out","Push_out");
-					$PUSH_OUT->sendToOne($params);
-				}
-				if (!$bOk) {throw new Exception(lang("error_6000"),6000);}
-			} catch(Exception $er){}
+            $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $ret = $NETCORECPFINANCIALS->MessageTelemedicina($fields);
+            return $ret;
 
-            return $saved;
+            //$saved=parent::save($values,$fields);
+            //return $saved;
         }
         catch (Exception $e){
             return logError($e,__METHOD__ );
@@ -192,6 +177,7 @@ class Messages extends MY_Model {
                   $data=array("order"=>"created DESC","where"=>"id_charge_code=".$values["id_charge_code"]." OR id_charge_code IN (SELECT id FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$values["id_club_redondo"]." AND freezed IS NOT NULL) AND DATEDIFF(day, created, getdate())<30".$where);
                   break;
             }
+            log_message("error", "RELATED " . json_encode($data, JSON_PRETTY_PRINT));
             return $this->get($data);
         }
         catch(Exception $e){
