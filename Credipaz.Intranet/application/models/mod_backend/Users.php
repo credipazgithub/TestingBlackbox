@@ -284,35 +284,51 @@ class Users extends MY_Model {
         try {
             if (!isset($values["callsource"])) {$values["callsource"] = "";}
             if (!isset($values["id_app"])) {$values["id_app"] = 0;}
+            if ((int) $values["id_app"] == 0) {$values["id_app"] = 7;}
             if (!isset($values["version"])) {$values["version"] = "";}
             if (!isset($values["id_type_user"])) {$values["id_type_user"] = 78;}
-            $id_type_user=$values["id_type_user"];
             if(!isset($values["external_operator"])){$values["external_operator"]=0;}
 			$values["external_operator"]=(int)$values["external_operator"];
 			$values["username"]=trim($values["username"]);
 			$values["password"]=trim($values["password"]);
             $values["id_user_active"]=0;
-            logGeneralCustom($this,$values,"Users::TryLogin","username:".$values["username"]." password:".md5($values["password"]));
+            if (!isset($values["transparent"])) {$values["transparent"] = false;}
+            if (!isset($values["try"])) {$values["try"] = "LOCAL";}
+            if (!isset($values["scoope"])) {$values["scoope"] = "backend";}
+            if ($values["transparent"]) {$values["scoope"] = "site";}
+            if ((int) $values["external_operator"] == 1) {
+                $values["id_type_user"] = "81,85,87";
+                $values["try"] = "LOCAL";
+            }
 
-            $id_app=(int)$values["id_app"];
-            switch($id_app){
-               case 2: // credipaz, mobile
-               case 5: // club redondo, mobile
-                  return $this->authenticateMobile($values);
-               case 0:
-                  $id_app=7; // intranet
-                  break;
+            $id_type_user = $values["id_type_user"];
+            $id_app = (int) $values["id_app"];
+            logGeneralCustom($this,$values,"Users::TryLogin","username:".$values["username"]." password:".md5($values["password"]));
+            
+            /***************************/
+            /*Divert for mobile auth!  */
+            /***************************/
+            switch ($id_app) {
+                case 2: // credipaz, mobile
+                case 5: // club redondo, mobile
+                    return $this->authenticateMobile($values);
             }
+            /***************************/
+
+            /***************************/
+            /*EN PROCESO DE REEMPLAZO*/
+            /***************************/
+            /*
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $retAuth = $NETCORECPFINANCIAL->BridgeDirectAuthenticate($values);
+            log_message("error", "RELATED auth ".json_encode($retAuth,JSON_PRETTY_PRINT));
+            if ($retAuth["status"]!="OK") {throw new Exception(lang("error_5200"), 5200); }
+            $users = json_decode($retAuth["data"], true);
+            log_message("error", "RELATED auth " . json_encode($users, JSON_PRETTY_PRINT));
+            */
+
             $this->view="vw_users";
-            if(!isset($values["transparent"])){$values["transparent"]=false;}
-            if(!isset($values["try"])){$values["try"]="LOCAL";}
-            if(!isset($values["scoope"])){$values["scoope"]="backend";}
-            if($values["transparent"]){$values["scoope"]="site";}
             $values["page"]=1;
-			if((int)$values["external_operator"]==1){
-                $id_type_user="81,85,87";
-                $values["try"]="LOCAL";
-            }
             switch ($values["try"]) {
                case "LDAP":
                     $ldap=$this->adLayerExecuteWS("groups","authenticate","",strtoupper($values["username"]),$values["password"]);
@@ -330,6 +346,8 @@ class Users extends MY_Model {
             }
             $users=parent::get($values);
             if ((int)$users["totalrecords"]==0){ throw new Exception(lang("error_5200"),5200);}
+
+
             $values["id_user_active"]=$users["data"][0]["id"];
             $type=$users["data"][0]["id_type_user"];
             $ret=$this->buildTokenAuthentication($users,$values["scoope"],$values["transparent"]);

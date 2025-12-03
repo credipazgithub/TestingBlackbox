@@ -17,8 +17,9 @@ class NetCoreCPFinancial extends MY_Model {
         try {
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectCommand?Key=". $key."&Command=".base64_encode($command)."&Mode=". $mode);
-            $result = $this->cUrlRestful($url, $headers);
+            $fields = array("Key" => $key, "Command" => base64_encode($command), "Mode" => $mode);
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectCommand");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -36,8 +37,9 @@ class NetCoreCPFinancial extends MY_Model {
         try {
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectEmail?To=" . base64_encode($to) . "&From=" . base64_encode($from) . "&Body=" . base64_encode($body) . "&Subject=" . base64_encode($subject));
-            $result = $this->cUrlRestful($url, $headers);
+            $fields = array("To" => base64_encode($to), "From" => base64_encode($from), "Body" => base64_encode($body), "Subject"=> base64_encode($subject));
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectEmail");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -55,8 +57,9 @@ class NetCoreCPFinancial extends MY_Model {
         try {
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $url = (CPFINANCIALS . "/Utilidades/BridgeDirectLDAP?Usuario=" . $usuario . "&Password=" . $password);
-            $result = $this->cUrlRestful($url, $headers);
+            $fields = array("Usuario" => $usuario, "Password" => $password);
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectLDAP");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -69,6 +72,49 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
+    public function BridgeDirectAuthenticate($values)
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $fields = array(
+                "Usuario" => $values["username"],
+                "Password" => md5($values["password"]),
+                "PasswordPlain" => $values["password"],
+                "ExternalOperator"=> $values["external_operator"],
+                "Id_type_user"=> $values["id_type_user"],
+                "Version"=> $values["version"],
+                "Id_app"=> $values["id_app"],
+                "CallSource"=> $values["callsource"],
+                "Mode" => $values["try"],
+                "Scope" => $values["scoope"],
+            );
+            //$url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate");
+            //$result = $this->callAPI($url, $headers, json_encode($fields));
+        
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate?Usuario=".$fields["Usuario"]."&Password=". $fields["Password"]."&PasswordPlain=" . $fields["PasswordPlain"] . "&ExternalOperator=".$fields["ExternalOperator"]."&Id_type_user=".$fields["Id_type_user"]."&Version=".$fields["Version"]."&Id_app=".$fields["Id_app"]."&CallSource=".$fields["CallSource"]."&Mode=".$fields["Mode"]."&Scope=".$fields["Scope"]);
+            $result = $this->cUrlRestful($url, $headers);
+            if ($result["status"] == "OK") {
+                $result = json_decode($result["message"], true);
+                $result = $result["records"];
+            } else {
+                throw new Exception(lang('error_100') . ": " . $result["message"], 100);
+            }
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
 
     public function landing($values)
     {
