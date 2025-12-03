@@ -72,7 +72,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-
     public function BridgeDirectAuthenticate($values)
     {
         try {
@@ -90,18 +89,14 @@ class NetCoreCPFinancial extends MY_Model {
                 "Mode" => $values["try"],
                 "Scope" => $values["scoope"],
             );
-            //$url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate");
-            //$result = $this->callAPI($url, $headers, json_encode($fields));
-        
             $url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate?Usuario=".$fields["Usuario"]."&Password=". $fields["Password"]."&PasswordPlain=" . $fields["PasswordPlain"] . "&ExternalOperator=".$fields["ExternalOperator"]."&Id_type_user=".$fields["Id_type_user"]."&Version=".$fields["Version"]."&Id_app=".$fields["Id_app"]."&CallSource=".$fields["CallSource"]."&Mode=".$fields["Mode"]."&Scope=".$fields["Scope"]);
             $result = $this->cUrlRestful($url, $headers);
-            if ($result["status"] == "OK") {
-                $result = json_decode($result["message"], true);
+            $result = json_decode($result, true);
+            if ($result["estado"] == "OK") {
                 $result = $result["records"];
             } else {
                 throw new Exception(lang('error_100') . ": " . $result["message"], 100);
             }
-
             return array(
                 "code" => "2000",
                 "status" => "OK",
@@ -114,7 +109,30 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+    public function BridgeDirectTokenAuthentication($values)
+    {
+        try {
+            $token = $this->Authenticate();
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+            $fields = array("Id" => $values["id_user_active"]);
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectTokenAuthentication?Id=" . $fields["Id"]."&Token_authentication=". $values["token_authentication"]);
+            $result = $this->cUrlRestful($url, $headers);
+            $result = json_decode($result, true);
+            if (!isset($result["records"][0])) {throw new Exception(lang("error_5401"), 5401);}
+            /*Post procesamiento de login con validación tokenizada, deberia ir aqui si hace falta!*/
 
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result["records"][0],
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
 
     public function landing($values)
     {

@@ -95,8 +95,8 @@ class MY_Controller extends CI_Controller {
                 $id_user_active=(int)$_POST["id_user_active"];
                 if($id_user_active==0){throw new Exception(lang("error_5107"),5107);}
                 if (!isset($_POST["token_authentication"]) or $_POST["token_authentication"]=="") {throw new Exception(lang("error_5109"),5109);}
-                $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
-                $verify=$USERS->verifyTokenAuthentication($this->parameters);
+                $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+                $verify = $NETCORECPFINANCIAL->BridgeDirectTokenAuthentication($this->parameters);
                 if($verify["status"]!="OK"){throw new Exception($verify["message"],(int)$verify["code"]);}
             }
             $return=$this->InnerResolver();

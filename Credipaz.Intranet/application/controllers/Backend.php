@@ -696,70 +696,6 @@ class Backend extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
-    public function getUserAreas(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'getUserAreas';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'Users';
-            $_POST['table'] = 'Users';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function UiCreateTokenTelemedicina(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'createTokenJWT';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'Users';
-            $_POST['table'] = 'Users';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function UiCreateTokenJWT(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'createTokenJWT';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'Crypto';
-            $_POST['table'] = 'Crypto';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function UiReadTokenJWT(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); 
-            $_POST['function'] = 'readTokenJWT';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'Crypto';
-            $_POST['table'] = 'Crypto';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
     public function Uif(){
         try {
             $raw=$this->rawInput();
@@ -882,41 +818,6 @@ class Backend extends MY_Controller {
             if (!isset($_POST["password"])) {throw new Exception(lang("error_5105"),5105);}
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'authenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function reAuthenticate(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            if (!isset($_POST["id_user_active"]) or $_POST["id_user_active"]=="") {throw new Exception(lang("error_5107"),5107);}
-            if (!isset($_POST["token_authentication"]) or $_POST["token_authentication"]=="") {throw new Exception(lang("error_5109"),5109);}
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'reAuthenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function revalidatePassword(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            if (!isset($_POST["password"])) {throw new Exception(lang("error_5105"),5105);}
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'revalidatePassword';
             $_POST['module'] = MOD_BACKEND;
             $_POST['model'] = 'users';
             $_POST['table'] = 'users';

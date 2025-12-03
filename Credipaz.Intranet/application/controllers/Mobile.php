@@ -58,24 +58,6 @@ class Mobile extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
-    public function reAuthenticate(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            if (!isset($_POST["id_user_active"]) or $_POST["id_user_active"]=="") {throw new Exception(lang("error_5107"),5107);}
-            if (!isset($_POST["token_authentication"]) or $_POST["token_authentication"]=="") {throw new Exception(lang("error_5109"),5109);}
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'reAuthenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
 
     public function getIdentityInformation(){
         try {
@@ -131,22 +113,6 @@ class Mobile extends MY_Controller {
             $_POST['module'] = MOD_BACKEND;
             $_POST['model'] = 'external';
             $_POST['table'] = 'external';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
-    public function getMenuTree(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-			$_POST['function'] = 'getMenuTree';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
             $this->neocommand(true);
         }
         catch (Exception $e){

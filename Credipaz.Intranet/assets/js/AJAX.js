@@ -211,11 +211,6 @@ _AJAX = {
 							if (datajson.message != "") { _FUNCTIONS.onAlert({ "message": datajson.message, "class": "alert-danger" }); }
 							switch (parseInt(datajson.code)) {
 								case 5400:
-									_AJAX.UiReAuthenticate({}).then(function (data) {
-										_FUNCTIONS.onStatusAuthentication(data);
-										_AJAX.Execute(_json_original);
-									})
-									break;
 								case 5200:
 								case 5401:
 									$(".barTelemedicina").remove();
@@ -373,22 +368,6 @@ _AJAX = {
 				//_json["try"] = "LOCAL";
 				_json["try"] = "LDAP";
 				_json["method"] = "api.backend/authenticate"; //method
-				_AJAX._waiter = true;
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiReAuthenticate: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["method"] = "api.backend/reAuthenticate"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiRevalidatePassword: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["username"] = _AJAX._username_active;
-				_json["method"] = "api.backend/revalidatePassword"; //method
 				_AJAX._waiter = true;
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
@@ -846,28 +825,6 @@ _AJAX = {
 				_json["module"] = "mod_telemedicina";
 				_json["table"] = "charges_codes";
 				_json["model"] = "charges_codes";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiGetTokenJWT: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "createTokenJWT";
-				_json["module"] = "mod_backend";
-				_json["table"] = "users";
-				_json["model"] = "users";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiGetTokenJWTVenta: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "createTokenJWTVenta";
-				_json["module"] = "mod_backend";
-				_json["table"] = "users";
-				_json["model"] = "users";
 				_json["method"] = "api.backend/neocommand"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
@@ -1435,7 +1392,6 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-
 	UiGetAdicionalesTarjeta: function (_json) {
 		return new Promise(
 			function (resolve, reject) {

@@ -3,11 +3,15 @@
   "WorkspaceRootPath": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\js\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|d:\\datos\\www\\credipaz.code\\externos\\mediya.pwa\\website-movil-worker.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\website-movil-worker.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:website-movil-worker.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
@@ -21,10 +25,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\photo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
       "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\photo.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|solutionrelative:js\\api.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{74030524-DE27-4A73-91E5-F694395D5C55}|Mediya.PWA.vbproj|D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\index.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
@@ -74,7 +74,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": 13,
           "Children": [
             {
               "$type": "Bookmark",
@@ -130,7 +130,20 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
+              "Title": "NMF.js",
+              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
+              "RelativeDocumentMoniker": "js\\NMF.js",
+              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
+              "RelativeToolTip": "js\\NMF.js",
+              "ViewState": "AgIAAHUBAAAAAAAAAADwv0sCAAAtAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-11-15T15:55:52.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
               "Title": "website-movil-worker.js",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\website-movil-worker.js",
               "RelativeDocumentMoniker": "website-movil-worker.js",
@@ -138,8 +151,7 @@
               "RelativeToolTip": "website-movil-worker.js",
               "ViewState": "AgIAAAAAAAAAAAAAAAAAAAsAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-20T15:53:10.311Z",
-              "EditorCaption": ""
+              "WhenOpened": "2025-11-20T15:53:10.311Z"
             },
             {
               "$type": "Document",
@@ -155,20 +167,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NMF.js",
-              "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
-              "RelativeDocumentMoniker": "js\\NMF.js",
-              "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\NMF.js",
-              "RelativeToolTip": "js\\NMF.js",
-              "ViewState": "AgIAAF8BAAAAAAAAAADwv3YBAAAlAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-15T15:55:52.971Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 4,
               "Title": "index-mediya.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\index-mediya.html",
               "RelativeDocumentMoniker": "index-mediya.html",
@@ -180,7 +179,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 3,
               "Title": "telemedicina.html",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\includes\\Mediya\\telemedicina.html",
               "RelativeDocumentMoniker": "includes\\Mediya\\telemedicina.html",
@@ -192,15 +191,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 1,
               "Title": "API.js",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\API.js",
               "RelativeDocumentMoniker": "js\\API.js",
               "ToolTip": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\API.js",
               "RelativeToolTip": "js\\API.js",
-              "ViewState": "AgIAAAYAAAAAAAAAAAAAADwAAAARAAAAAAAAAA==",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAC4AAAAyAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-11-07T21:39:20.401Z"
+              "WhenOpened": "2025-11-07T21:39:20.401Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -216,7 +216,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 5,
               "Title": "PHOTO.js",
               "DocumentMoniker": "D:\\Datos\\www\\credipaz.code\\Externos\\Mediya.PWA\\js\\PHOTO.js",
               "RelativeDocumentMoniker": "js\\PHOTO.js",
