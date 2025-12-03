@@ -159,6 +159,7 @@ class Users extends MY_Model {
                         'uid_firecloud' => null,
                     );
                 }
+                if ($id_type_user == "") {$id_type_user = 0;}
                 $sql="SELECT id FROM dbIntranet.dbo.".MOD_BACKEND."_users WHERE username='".$values["username"]."' AND id_type_user=". $id_type_user;
 			    $control=$this->getRecordsAdHoc($sql);
                 if (sizeof($control) != 0) {

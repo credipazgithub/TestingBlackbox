@@ -38,6 +38,7 @@ class ClubRedondoWS extends MY_Model {
     public function getUserInformation($values,$scope){
         $sql="";
         if (strpos($values["dni"], "@") !== false) {$values["dni"] = explode("@", $values["dni"])[0];}
+        if ($values["dni"] == "") {$values["dni"] = 0;}
         switch($scope){
            case "CP":
               $sql=(string)"EXEC DBCentral.dbo.NS_Clientes_Datos_Generales_JSON @doc=".$values["dni"].", @sexo='".$values["sex"]."'";
@@ -61,9 +62,9 @@ class ClubRedondoWS extends MY_Model {
            case "CR":
               $sql = (string) "EXEC DBClub.dbo.NS_Socio_Datos_Generales_JSON @doc=" . $values["dni"] . ", @sexo='" . $values["sex"] . "'";
               $result=$this->getRecordsAdHoc($sql);
-                log_message("error", "RELATED SQL CR " . json_encode($result, JSON_PRETTY_PRINT));
+              log_message("error", "RELATED SQL CR " . json_encode($result, JSON_PRETTY_PRINT));
 
-                $result = objectToArrayRecusive($result);
+              $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
               $user=$USERS->get(array("fields"=>"id,id_type_user,username,viable,documentArea,documentPhone,documentName,documentType,documentNumber,documentSex,created,fum","where"=>"username='".$values["dni"]."@clubredondo.com"."'"));
               $result["registered"]=(int)$user["totalrecords"];
