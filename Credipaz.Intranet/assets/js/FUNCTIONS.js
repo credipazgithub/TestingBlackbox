@@ -1820,7 +1820,7 @@ _FUNCTIONS = {
 														var _html = '<ul class="list-group">';
 														var _sucursales = "";
 														var _empty = true;
-														$.each(_auth.details, function (i, item) {
+														$.each(_auth.data.details, function (i, item) {
 															_empty = false;
 															if (parseInt(item.nIDSucursal) !=0) {
 																_sucursales += '<a class="list-group-item list-group-item-action btnSelectSucursal" href="#" data-name="' + item.sSucursal + '" data-id="' + item.nIDSucursal + '">' + item.sSucursal + '</a>';
