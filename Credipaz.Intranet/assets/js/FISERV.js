@@ -3,7 +3,6 @@ var _FISERV = {
 	method: "api.backend/neocommandTransparent",
 	_itemsPagos: null,
 	onPayFiserv: function (_json) {
-		console.log(_json);
 		return new Promise(
 			function (resolve, reject) {
 				try {
@@ -30,10 +29,7 @@ var _FISERV = {
 						dataType: "json",
 						url: (_FISERV.server + _FISERV.method),
 						data: _json,
-						error: function (xhr, ajaxOptions, thrownError) {
-							console.log(thrownError);
-							reject(thrownError);
-						},
+						error: function (xhr, ajaxOptions, thrownError) {reject(thrownError);},
 						success: function (data) {
 							$(_formContainer).html(data.data).removeClass("d-none");
 							$(_iframeContainer).html("<iframe id='iframe_fiserv' name='iframe_fiserv' class='iframe_fiserv' src='' frameborder='0' style='height:100vh;width:100%;display:none;' />");

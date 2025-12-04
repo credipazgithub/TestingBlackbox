@@ -309,12 +309,8 @@ class Users extends MY_Model
             $values["username"] = trim($values["username"]);
             $values["password"] = trim($values["password"]);
             $values["id_user_active"] = 0;
-            if (!isset($values["try"])) {
-                $values["try"] = "LOCAL";
-            }
-            if (!isset($values["scoope"])) {
-                $values["scoope"] = "backend";
-            }
+            if (!isset($values["try"])) {$values["try"] = "LOCAL";}
+            if (!isset($values["scoope"])) {$values["scoope"] = "backend";}
             if ((int) $values["external_operator"] == 1) {
                 $values["id_type_user"] = "81,85,87";
                 $values["try"] = "LOCAL";
@@ -327,26 +323,21 @@ class Users extends MY_Model
             switch ((int) $values["id_app"]) {
                 case 2: // credipaz, mobile
                 case 5: // club redondo, mobile
+                    /*para moviles*/
                     return $this->authenticateMobile($values);
+                default:
+                    /*para Intranet*/
+                    $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+                    $users = $NETCORECPFINANCIAL->BridgeDirectAuthenticate($values);
+                    if ($users["status"] != "OK") {throw new Exception(lang("error_5200"), 5200);}
+                    return array(
+                        "code" => "2000",
+                        "status" => "OK",
+                        "message" => "",
+                        "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                        "data" => $users["data"][0]
+                    );
             }
-            /***************************/
-
-            /***************************/
-            /*EN PROCESO AUTENTICACION */
-            /***************************/
-            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-            $users = $NETCORECPFINANCIAL->BridgeDirectAuthenticate($values);
-            if ($users["status"] != "OK") {
-                throw new Exception(lang("error_5200"), 5200);
-            }
-            //log_message("error", "RELATED RET " . json_encode($ret, JSON_PRETTY_PRINT));
-            return array(
-                "code" => "2000",
-                "status" => "OK",
-                "message" => "",
-                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
-                "data" => $users["data"][0]
-            );
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }

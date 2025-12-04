@@ -4,7 +4,6 @@ var _gateway = "";
 var _timer = 0;
 var _TMR_PAY_BOTONPAGO = 0;
 var _idTransaction = 0;
-var _TEST_DNI = 16916852;
 
 $("body").off("click", ".btn-deuda-fiserv").on("click", ".btn-deuda-fiserv", function (e) {
 	$(".data-payment2").addClass("d-none");
@@ -163,20 +162,11 @@ function totalizePayment(_this) {
 	for (let item of _FUNCTIONS._itemsPagos) {_total_consolidado += (item["Importe"]*1);}
 	_total = _total_consolidado;
 	$(".coinTotal").html(_TOOLS.formatMoney(_total, 2));
+	if (_total.toString().indexOf(".")==-1) { _total += ".00"; }
 	$(".importe").val(_total);
-	if (_total > 0) {
-		//cargar iframe con data ajax!
+	if (_total_consolidado > 0) {
 		var _dni = parseInt($(".dni_tarjeta").val());
-		var _sandbox = 0;
-		var _visible = 0;
-		//var _targetFrame = "_blank";
 		var _targetFrame = "iframe_fiserv";
-
-		if (_dni == _TEST_DNI) {
-			_sandbox = 1;
-			_visible = 1;
-			_targetFrame = "iframe_fiserv";
-		}
 		var _location = window.location.href;
 		var _json = {
 			"pagoTarjeta": _pagoTarjeta,
@@ -186,8 +176,8 @@ function totalizePayment(_this) {
 			"dni": _dni,
 			"itemsPagos": JSON.stringify(_FUNCTIONS._itemsPagos),
 			"targetFrame": _targetFrame,
-			"sandbox":_sandbox,
-			"visible": _visible,
+			"sandbox":0,
+			"visible": 1,
 			"parentUri": _location
 		};
 		_AJAX.UiBuildFormFiserv(_json).then(function (data) {
@@ -197,7 +187,6 @@ function totalizePayment(_this) {
 			$(".data-payment2").addClass("d-none");
 			_FUNCTIONS.onReBuildLinkPago();
 		});
-
 	} else {
 		$(".data-payment1").addClass("d-none");
 		$(".data-payment2").addClass("d-none");

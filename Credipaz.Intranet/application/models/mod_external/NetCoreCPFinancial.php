@@ -1088,9 +1088,6 @@ class NetCoreCPFinancial extends MY_Model {
         try {
 		    $token=$this->Authenticate();
 			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
-			$items=json_decode($values["raw_request"],true);
-			$items=json_decode($items["comments"],true);
-
 			$fields = array(
 				'Code' => opensslRandom(16),
 				'Description' => 'Pago vía agente externo',
@@ -1105,16 +1102,6 @@ class NetCoreCPFinancial extends MY_Model {
 			$url=(CPFINANCIALS."/Pagos/IniciarTransaccion/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
 			$result = json_decode($result, true);
-
-			foreach($items as $rec){
-				$params=array(
-				   "id"=>$result["id"],
-				   "identify_rel"=>$rec["Identificacion"],
-				   "amount_rel"=>$rec["Importe"],
-				   "type_rel"=>$rec["Tipo"]
-				);
-				logGeneralCustom($this,$params,"Payments::initExternalTransaction","Registro previo a respuesta externa de items de pago a procesar");
-			}
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

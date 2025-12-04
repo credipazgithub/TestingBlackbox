@@ -57,26 +57,9 @@ class Log_general extends MY_Model {
             if (!isset($values["id"])){$values["id"]=0;}
             $id=(int)$values["id"];
             if($id==0){
-                $bSave=true;
+                $bSave=false;
                 if($fields["action"]==null){$fields["action"]="";};
                 switch($fields["action"]){
-                   case "":
-                   case "Sinisters::changeAudit":
-                   case "Sinisters::changeFullVacuna":
-                   case "Sinisters::changeMedicalNotes":
-                   case "Sinisters::changePriority":
-                   case "Sinisters::form":
-                   case "Folders::offline":
-                   case "My_Model::offline":
-                   case "My_Model::online":
-                   case "Operators_tasks::form":
-                   case "Transactions::form":
-                   case "Requests::form":
-                   case "Adherir::form":
-                   case "Audit::form":
-                   case "Functions::form":
-                      $bSave=false; // Deshabilita el registro del log para el evento
-                      break;
                    case "Charges_codes::alertDelayTelemedicina":
                    case "Charges_codes::generatePaycode":
                    case "ClubRedondo::referirProspecto":
@@ -111,37 +94,8 @@ class Log_general extends MY_Model {
                       $bSave=true;
                       break;
                 }
-
                 if(!$bSave) {return false;}
-
                 $saved=parent::save($values,$fields);
-		   
-			    $trace=json_decode($fields["trace"], true);
-			    if(json_last_error()!=JSON_ERROR_NONE){$trace=$fields["trace"];}
-
-			    $externalData=array(
-			        "trace"=>$trace,
-			        "id_user"=>$fields["id_user"],
-			        "id_rel"=>$fields["id_rel"],
-			        "table_rel"=>$fields["table_rel"],
-			        "type_rel"=>$fields["type_rel"],
-			        "identify_rel"=>$fields["identify_rel"],
-			        "amount_rel"=>$fields["amount_rel"]
-			    );
-			    $description=array(
-			        "entity"=>"log_general",
-			        "id"=>$saved["data"]["id"],
-				    "description"=>"Log general"
-			    );
-			    $params=array(
-			        "code"=>$fields["action"],
-			        "description"=>json_encode($description),
-				    "mime_type"=>"text/plain",
-				    "raw_data"=>json_encode($externalData),
-				    "externalid"=>$saved["data"]["id"]
-			    );
-			    //$NEOTRANSACTIONS=$this->createModel(MOD_EXTERNAL,"NeoTransactions","NeoTransactions");
-			    //$neotransactions=$NEOTRANSACTIONS->setTransaction($params);
 			    return $saved;
             } else {
                 throw new Exception(lang('error_9999'),9999);
