@@ -891,34 +891,6 @@ class My_Model extends CI_Model
             return logError($e, __METHOD__);
         }
     }
-    public function adLayerExecuteWS($expected, $command, $token, $username, $password)
-    {
-        try {
-            $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-            $ret = $NETCORECPFINANCIALS->BridgeDirectLDAP($username, $password);
-            if ($ret["status"] == "OK") {
-                $ret = json_decode($ret["message"], true);
-                $records = $ret["records"];
-            } else {
-                throw new Exception(lang('error_101') . ": " . $ret["message"], 101);
-            }
-            $groups = [];
-            foreach ($records as $group) {array_push($groups, $group["Group"]);}
-            $ret = array(
-                "code" => "2000",
-                "status" => "OK",
-                "mode" => "LDAP",
-                "username" => $username,
-                "message" => "LDAPChecked",
-                "groups" => $groups,
-                "function" => "production",
-                "data" => null
-            );
-            return $ret;
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
-    }
     
     public function getRecords($values)
     {

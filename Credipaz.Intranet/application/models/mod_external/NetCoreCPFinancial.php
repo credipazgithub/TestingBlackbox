@@ -52,12 +52,12 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-    public function BridgeDirectLDAP($usuario,$password) 
+    public function BridgeDirectLDAP($usuario,$passwordPlain, $password) 
     {
         try {
             $token = $this->Authenticate();
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $fields = array("Usuario" => $usuario, "Password" => $password);
+            $fields = array("Usuario" => $usuario, "PasswordPlain" => $passwordPlain, "Password" => $password);
             $url = (CPFINANCIALS . "/Intranet/BridgeDirectLDAP");
             $result = $this->callAPI($url, $headers, json_encode($fields));
             return array(

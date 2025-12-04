@@ -456,7 +456,7 @@ class Operators_tasks extends MY_Model {
         $charge_code=$CHARGES_CODES->get(
             array(
                 "fields"=>"count(id) as total,datediff(second,min(created),getdate()) as seconds, dbo.fc_formatSeconds(datediff(second,min(created),getdate()),'s') as elapsed",
-                "where"=>"offline IS null AND id_operator_task IS null AND especialidad IN (".$inGroup.")"
+                "where"=>"offline IS null AND id_operator_task IS null"
             )
         );
         $seconds=(int)$charge_code["data"][0]["seconds"];
