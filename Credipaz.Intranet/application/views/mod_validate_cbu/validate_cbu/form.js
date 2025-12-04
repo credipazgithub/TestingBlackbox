@@ -19,7 +19,6 @@ function calculate(_this) {
 	if (_TOOLS.validate("." + _type)) {
 		var _json = { "tipoConsulta": _this.attr("data-type"), "valorConsulta": $("."+_type).val() };
 		_AJAX.UiValidateCBU(_json).then(function (datajson) {
-			console.log(datajson);
 			var _html = "";
 			_html += "<table class='table-condensed' style='color:grey;' align='center'>";
 			if (datajson.status == "OK") {

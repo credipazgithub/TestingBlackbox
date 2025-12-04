@@ -58,7 +58,6 @@ var _COIN = {
                 xhttp.setRequestHeader("content-type", "application/json;charset=utf-8");
                 xhttp.setRequestHeader("accept", "application/json");
 				xhttp.onreadystatechange = function () {
-					//console.log(xhttp.responseText);
                     if (xhttp.readyState == 4 && xhttp.status == 200) {
                         _COIN._AUTHENTICATION = JSON.parse(xhttp.responseText);
 						//if (_COIN._log) {console.log(_COIN._AUTHENTICATION);}
@@ -91,7 +90,6 @@ var _COIN = {
                 def.resolve(_COIN._CREDITCARDS);
             },
             error: function (error) {
-                //if (_COIN._log) { console.log(error); }
                 def.reject(error);
             }
         });

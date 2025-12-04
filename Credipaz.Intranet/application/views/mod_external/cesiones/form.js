@@ -119,9 +119,6 @@ function FillGrid(_dni, _download) {
 			}
 			$.unblockUI();
 		}).catch(function (err) {
-			console.log("err");
-			console.log(err);
-
 		});
 	}
 	catch (rex) {

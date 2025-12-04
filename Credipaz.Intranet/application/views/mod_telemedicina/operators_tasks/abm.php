@@ -290,7 +290,6 @@ echo $html;
 	
 	$("body").off("change", ".cboSwiss").on("change", ".cboSwiss", function () {
 	    var _record=JSON.parse(_TOOLS.b64_to_utf8($( "#cboSwiss option:selected" ).attr("data-record")));
-	    console.log(_record);
 		$(".idsocio").html(_record.IdSocio)
 		$(".tipo").html(_record.Tipo);
 		$(".fechaalta").html(_record.FechaAlta);

@@ -404,9 +404,6 @@ _AJAX = {
 		return new Promise(
 			function (resolve, reject) {
 				_json["method"] = "api.backend/loggedMediYa"; //method
-
-				console.log(_json);
-
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},

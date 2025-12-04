@@ -82,8 +82,6 @@ $("body").off("click", ".btn-open-session").on("click", ".btn-open-session", fun
 
 function checkDevices() {
 	_AJAX.UiCheckDevices({}).then(function (datajson) {
-		//console.log("devices");
-		//console.log(datajson);
 		if (datajson.status == "OK") {
 			$.each(datajson.data, function (ndx, item) {
 				var _msg = "Desconectado";

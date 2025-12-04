@@ -16,8 +16,6 @@
 		}
 	},
 	error: function (err) {
-		console.log("ERROR");
-		console.log(err);
 	},
 	connect: function (_this) {
 		try {
@@ -74,7 +72,6 @@
 	},
 	response: function (msg) {
 		try {
-			console.log(msg);
 			var _json = null;
 			if (msg == undefined || msg == null) { msg = '{"Estado":"OK","Comando":"closed","Mensaje":"Desconectado"}'; }
 			_json = JSON.parse(msg);

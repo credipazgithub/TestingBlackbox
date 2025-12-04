@@ -38,10 +38,7 @@ _FUNCTIONS = {
 	onDoCaptureDIV: function (_this) {
 		var _id = _this.attr("data-target");
 		window.scrollTo(0, 0);
-		html2canvas(document.getElementById(_id)).then(function (canvas) {
-			$(".test-image").attr("src", canvas.toDataURL("image/jpeg", 1));
-			//console.log(canvas.toDataURL("image/jpeg", 1));
-		});
+		html2canvas(document.getElementById(_id)).then(function (canvas) {$(".test-image").attr("src", canvas.toDataURL("image/jpeg", 1));});
 	},
 	onClearTimers: function () {
 		try { clearInterval(_FUNCTIONS._TMR_PAY_BOTONPAGO); } catch (e) { }
@@ -1351,9 +1348,6 @@ _FUNCTIONS = {
 			_AJAX.UiGet(_data).then(function (datajson) {
 				_json = datajson.data[0];
 				var _raw_data = JSON.parse(datajson.data[0].raw_data);
-				console.log("_raw_data");
-				console.log(_raw_data);
-
 				_FUNCTIONS.onDestroyModal("#telemedicinaModalView");
 				var _html = "<div class='modal fade' id='telemedicinaModalView' role='dialog'>";
 				_html += " <input type='hidden' id='code' name='code' value='" + _TOOLS.UUID() + "' class='code dbaseComprobante'/>";
@@ -1603,7 +1597,6 @@ _FUNCTIONS = {
 			$(_target).html("<ul class='ls-previous list-group'></ul>");
 			if (datajson.status == "OK") {
 				$.each(datajson.data, function (i, item) {
-					console.log(item);
 					var _rec = _TOOLS.utf8_to_b64(JSON.stringify(item));
 					var _html = "<li data-mode='edit' class='previous-telemedicina shadow list-group-item list-group-item-light' style='width:100%;cursor:pointer;text-align:left;' data-item='" + _rec + "'>";
 					_html += "     <table style='width:100%;'>";
@@ -1910,7 +1903,6 @@ _FUNCTIONS = {
 		return new Promise(
 			function (resolve, reject) {
 				var _json = { "function": "traerLookUp", "tabla": _table, "key": _key };
-				//console.log(_json);
 				_AJAX.UiClubRedondoWSTransparent(_json).then(function (_data) {
 					resolve(_data);
 				}).catch(function (error) {
@@ -2080,7 +2072,6 @@ _FUNCTIONS = {
 					_FUNCTIONS._oLast_record = _this;
 					_FUNCTIONS.onClearTimers();
 					var _json = _TOOLS.getFormValues(null, _this);
-					//console.log(_json);
 					_AJAX.UiEdit(_json).then(function (data) {
 						if (data.status == "OK") {
 							$(".dyn-area").addClass("d-none").hide();
@@ -2810,7 +2801,6 @@ _FUNCTIONS = {
 			};
 			_AJAX._waiter = true;
 			_AJAX.UiCRM(_json).then(function (data) {
-				//console.log(data);
 				var _html = ("<h3>" + _this.attr("data-title") + "</h3>");
 				_html += "<table class='table table-condensed'>";
 				_html += " <tr>";
@@ -3167,7 +3157,6 @@ _FUNCTIONS = {
 			_html += "<h5>Mora - " + data.data.mora[0].Nombre + "</h5>";
 			_html += "<table style='font-size:14px;'>";
 			$.each(data.data.mora, function (i, item) {
-				console.log(item);
 				if (item.Identificacion != "") {
 					_bDirty = true;
 					if (item.Total != null) { _total = (parseFloat(item.Total) > 0); }
@@ -4090,8 +4079,6 @@ _FUNCTIONS = {
 			"order": "description ASC",
 		};
 		_AJAX.UiGetTransparent(_json).then(function (datajson) {
-			console.log("Respuesta");
-			console.log(datajson);
 			if (datajson.data[0].status != "INICIADO") {
 				clearInterval(_FUNCTIONS._TMR_PAY_BOTONPAGO);
 				if (datajson.data[0].status == "APROBADO") {
@@ -4110,7 +4097,6 @@ _FUNCTIONS = {
 				}
 			}
 		}).catch(function (error) {
-			console.log(error, "ERROR");
 			alert(error.message);
 		});
 	},
@@ -4419,7 +4405,6 @@ _FUNCTIONS = {
 		$("body").append(_window);
 
 		_AJAX.UiGetHistorialDePagos({ "IdSocio": _idSocio }).then(function (datajson) {
-			console.log(datajson);
 			var _html = "<table style='width:100%'>";
 			_html += "<tr style='font-weight:bold;background-color:silver;'>";
 			_html += "   <td align='center'>Fecha</td>";

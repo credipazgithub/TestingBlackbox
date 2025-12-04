@@ -47,7 +47,6 @@ $("body").off("click", ".btn-login").on("click", ".btn-login", function () {
 			_AJAX._waiter = true;
 			_AJAX.UiLoginComercializador(_json)
 				.then(function (_auth) {
-					console.log(_auth);
 					$(".dataAuth").html("<span class='badge badge-warning' style='font-size:16px;'>Bienvenido/a <b>" + _auth.message[0].Nombre + "</b></span>");
 					if (_auth.status == "OK") {
 						if (_auth.message != null && _auth.message[0] != null && _auth.message[0].Id != null) {
@@ -110,7 +109,6 @@ $("body").off("click", ".btnVerifyDni").on("click", ".btnVerifyDni", function ()
 					$(".info-verify").html(_message);
 				})
 				.catch(function (error) {
-					console.log(error);
 					$(".info-verify").removeClass("badge-success").addClass("badge-warning");
 					$(".info-verify").html(error.message).addClass("badge-danger");;
 					throw error;
@@ -194,7 +192,6 @@ function redirectEdit(_codigo) {
 	window.location.href = (window.location.protocol + "//" + window.location.host + "/" + _path[1] + "/" + _path[2] + "/" + _TOOLS.utf8_to_b64(JSON.stringify(_param)));
 }
 function setData(_data) {
-	console.log(_data);
 	if (_data[0].dFechaNac != "") { $(".dFechaNac").val(new Date(_data[0].dFechaNac).toISOString().split('T')[0]); }
 	if (_data[0].dFechaIngreso1 != "") { $(".dFechaIngreso1").val(new Date(_data[0].dFechaIngreso1).toISOString().split('T')[0]); }
 
