@@ -52,26 +52,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-    public function BridgeDirectLDAP($usuario,$passwordPlain, $password) 
-    {
-        try {
-            $token = $this->Authenticate();
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $fields = array("Usuario" => $usuario, "PasswordPlain" => $passwordPlain, "Password" => $password);
-            $url = (CPFINANCIALS . "/Intranet/BridgeDirectLDAP");
-            $result = $this->callAPI($url, $headers, json_encode($fields));
-            return array(
-                "code" => "2000",
-                "status" => "OK",
-                "message" => $result,
-                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
-                "data" => null,
-                "compressed" => false
-            );
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
-    }
     public function BridgeDirectAuthenticate($values)
     {
         try {
@@ -80,7 +60,7 @@ class NetCoreCPFinancial extends MY_Model {
             $fields = array(
                 "Usuario" => $values["username"],
                 "Password" => md5($values["password"]),
-                "PasswordPlain" => $values["password"],
+                "PasswordPlain" => base64_encode($values["password"]),
                 "ExternalOperator"=> $values["external_operator"],
                 "Id_type_user"=> $values["id_type_user"],
                 "Version"=> $values["version"],
@@ -89,7 +69,11 @@ class NetCoreCPFinancial extends MY_Model {
                 "Mode" => $values["try"],
                 "Scope" => $values["scoope"],
             );
+            log_message("error", "RELATED 2 " . json_encode($fields, JSON_PRETTY_PRINT));
+
             $url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate?Usuario=".$fields["Usuario"]."&Password=". $fields["Password"]."&PasswordPlain=" . $fields["PasswordPlain"] . "&ExternalOperator=".$fields["ExternalOperator"]."&Id_type_user=".$fields["Id_type_user"]."&Version=".$fields["Version"]."&Id_app=".$fields["Id_app"]."&CallSource=".$fields["CallSource"]."&Mode=".$fields["Mode"]."&Scope=".$fields["Scope"]);
+            log_message("error", "RELATED 2 " . $url);
+
             $result = $this->cUrlRestful($url, $headers);
             $result = json_decode($result, true);
             if ($result["estado"] == "OK") {

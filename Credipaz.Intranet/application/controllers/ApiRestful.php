@@ -49,6 +49,8 @@ class ApiRestful extends MY_Controller {
             $_POST['table'] = 'users';
             $_POST['id_type_user'] = "all";
             $_POST['callsource'] = "api";
+            //log_message("error", "RELATED 1 " . json_encode($_POST, JSON_PRETTY_PRINT));
+
             $this->neocommand(true);
         }
         catch (Exception $e){
