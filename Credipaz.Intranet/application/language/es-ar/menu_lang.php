@@ -347,4 +347,4 @@ $lang['m_credit_cards_cobranzas'] = "Cobranzas";
 $lang['m_credit_cards_autorizaciones'] = "Autorizaciones";
 $lang['m_credit_cards_tarjetas'] = "Tarjetas";
 $lang['m_grilla_red_mutual'] = "Red Mutual";
-$lang['m_anular_barrido'] = "Anular barrido";
+$lang['m_anular_barrido'] = "Anular barrido cliente";
