@@ -17,3 +17,8 @@
 /Credipaz.Intranet/assets/uploads
 /prepare.bat
 /.gitignore
+/Mediya.PWA/.vs/Mediya.PWA.slnx/v18
+/Mediya.PWA/.vs/Mediya.PWA/config/applicationhost.config
+*.vsidx
+/Mediya.PWA/.vs/Mediya.PWA/v18
+/Mediya.PWA/.vs/VSWorkspaceState.json
