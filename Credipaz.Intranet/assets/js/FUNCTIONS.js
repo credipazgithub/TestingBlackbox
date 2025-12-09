@@ -707,7 +707,7 @@ _FUNCTIONS = {
 				};
 
 				_AJAX.UiDirectTelemedicina(_json).then(function (datajson) {
-					if (datajson.status == "OK") {
+					if (datajson.estado == "OK") {
 						alert("¡El mensaje ha sido enviado!");
 						$(".btn-send-telemedicina").fadeIn("fast");
 						$("#telemedicinaModal").modal("toggle");

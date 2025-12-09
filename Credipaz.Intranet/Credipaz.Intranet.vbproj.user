@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
   <PropertyGroup>
     <ProjectView>ShowAllFiles</ProjectView>
@@ -18,13 +18,13 @@
           <StartPageUrl>
           </StartPageUrl>
           <StartAction>URL</StartAction>
-          <AspNetDebugging>True</AspNetDebugging>
+          <AspNetDebugging>False</AspNetDebugging>
           <SilverlightDebugging>False</SilverlightDebugging>
           <NativeDebugging>False</NativeDebugging>
           <SQLDebugging>False</SQLDebugging>
           <ExternalProgram>
           </ExternalProgram>
-          <StartExternalURL>http://localhost:13402/britanico.html</StartExternalURL>
+          <StartExternalURL>http://localhost:1100</StartExternalURL>
           <StartCmdLineArguments>
           </StartCmdLineArguments>
           <StartWorkingDirectory>
