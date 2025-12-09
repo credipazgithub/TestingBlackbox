@@ -1453,8 +1453,10 @@ _FUNCTIONS = {
 			var _json = JSON.parse(_TOOLS.b64_to_utf8(_this.attr("data-item")));
 			var _data = { "module": "MOD_TELEMEDICINA", "where": ("id=" + _json.id), "function": "get", "table": "messages", "model": "messages", "order": "created DESC", "page": -1, "pagesize": -1 };
 			_AJAX.UiGet(_data).then(function (datajson) {
+				console.log(datajson);
 				_json = datajson.data[0];
-				var _raw_data = JSON.parse(datajson.data[0].raw_data);
+				//var _raw_data = JSON.parse(datajson.data[0].raw_data);
+				//console.log(_raw_data);
 				_FUNCTIONS.onDestroyModal("#telemedicinaModalViewPDF");
 				var _html = "<div class='modal fade' id='telemedicinaModalViewPDF' role='dialog'>";
 				_html += " <div class='modal-dialog modal-dialog-centered modal-lg' role='document'>";
