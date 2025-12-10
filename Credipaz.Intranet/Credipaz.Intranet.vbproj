@@ -533,6 +533,8 @@
     <Content Include="application\controllers\Webhooks.php" />
     <Content Include="application\controllers\Verify.php" />
     <Content Include="app.config" />
+    <Content Include="application\controllers\ApiRestfulIntegraciones.php" />
+    <Content Include="application\models\mod_api_credipaz\Integraciones.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
@@ -558,6 +560,9 @@
     <Content Include="documentacion\credipaz\infoCabalTracking.html" />
     <Content Include="documentacion\credipaz\infoCabalTitular.html" />
     <Content Include="documentacion\credipaz\resumenTarjeta.html" />
+    <Content Include="documentacion\integraciones\GetProductsConsolidatedPosition.html" />
+    <Content Include="documentacion\integraciones\GetProducts.html" />
+    <Content Include="documentacion\integraciones\GetClientsByDocument.html" />
     <Content Include="documentacion\mediya\asesores\modificar.html" />
     <Content Include="documentacion\mediya\asesores\listar.html" />
     <Content Include="documentacion\mediya\asesores\habilitar.html" />

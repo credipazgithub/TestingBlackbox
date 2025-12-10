@@ -237,6 +237,11 @@ function TransformHtmlToPdf($obj,$html)
     return $obj->m_pdf->pdf->Output("form.pdf", 'S');
 }
 
+function keySecureString($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    return $array[$key];
+}
 function keySecureSexo($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}
@@ -244,6 +249,23 @@ function keySecureSexo($array, $key)
     switch ($array[$key]) {
         case "M":
         case "F":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureProducto($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "":
+        case "tarjeta":
+        case "credito":
+        case "mediya":
+        case "moratemprana":
+        case "moratardia":
             break;
         default:
             return "";

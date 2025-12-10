@@ -11,7 +11,6 @@ class ApiRestfulCredipaz extends MY_Controller {
     public function __construct() {
         parent::__construct();
     }
-
     public function resumenTarjeta(){
         try {
             $raw=$this->rawInput();

@@ -69,11 +69,7 @@ class NetCoreCPFinancial extends MY_Model {
                 "Mode" => $values["try"],
                 "Scope" => $values["scoope"],
             );
-            log_message("error", "RELATED 2 " . json_encode($fields, JSON_PRETTY_PRINT));
-
             $url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate?Usuario=".$fields["Usuario"]."&Password=". $fields["Password"]."&PasswordPlain=" . $fields["PasswordPlain"] . "&ExternalOperator=".$fields["ExternalOperator"]."&Id_type_user=".$fields["Id_type_user"]."&Version=".$fields["Version"]."&Id_app=".$fields["Id_app"]."&CallSource=".$fields["CallSource"]."&Mode=".$fields["Mode"]."&Scope=".$fields["Scope"]);
-            log_message("error", "RELATED 2 " . $url);
-
             $result = $this->cUrlRestful($url, $headers);
             $result = json_decode($result, true);
             if ($result["estado"] == "OK") {

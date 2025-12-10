@@ -12,7 +12,7 @@ class Credipaz extends MY_Model {
     public function resumenTarjeta($values){
         try {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
-            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_verror_1026"), 1026);}
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
 
             $values["Sexo"] = keySecureSexo($values, "Sexo");

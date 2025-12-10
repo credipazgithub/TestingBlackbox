@@ -37,6 +37,8 @@ $lang['api_error_1034'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1035'] = "No se ha provisto un valor válido para el parámetro 'NroDocumentoA'";
 $lang['api_error_1036'] = "No se ha provisto un valor válido para el parámetro 'SexoT'";
 $lang['api_error_1037'] = "No se ha provisto un valor válido para el parámetro 'SexoA'";
+$lang['api_error_1038'] = "No se ha provisto un valor válido para el parámetro 'IdCliente'";
+$lang['api_error_1039'] = "No se ha provisto un valor válido para el parámetro 'producto'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";

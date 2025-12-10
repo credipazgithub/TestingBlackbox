@@ -348,3 +348,7 @@ $lang['m_credit_cards_autorizaciones'] = "Autorizaciones";
 $lang['m_credit_cards_tarjetas'] = "Tarjetas";
 $lang['m_grilla_red_mutual'] = "Red Mutual";
 $lang['m_anular_barrido'] = "Anular barrido cliente";
+$lang['m_api_integraciones_GetClientsByDocument'] = "Integraciones GetClientsByDocument";
+$lang['m_api_integraciones_GetProducts'] = "Integraciones GetProducts";
+$lang['m_api_integraciones_GetProductsConsolidatedPosition'] = "Integraciones GetProductsConsolidatedPosition";
+$lang['m_api_integraciones_funciones'] = "Integraciones";

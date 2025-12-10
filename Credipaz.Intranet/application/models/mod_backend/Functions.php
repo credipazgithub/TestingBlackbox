@@ -292,6 +292,7 @@ class Functions extends MY_Model {
         $where.=" (";
         $where.="    SELECT id_function FROM ".MOD_BACKEND."_rel_functions_applications WHERE id_application=".$id_application;
         $where.=" )";
+        log_message("error", "RELATED ".json_encode($where,JSON_PRETTY_PRINT));
         return $where;
     }
 }
