@@ -260,12 +260,13 @@ function keySecureProducto($array, $key)
     if (!isset($array[$key])) {$array[$key] = "";}
     $array[$key] = strtoupper($array[$key]);
     switch ($array[$key]) {
-        case "":
-        case "tarjeta":
-        case "credito":
-        case "mediya":
-        case "moratemprana":
-        case "moratardia":
+        case "CREDITO":
+        case "TARJETA":
+        case "CABAL":
+        case "VISA":
+        case "MEDIYA":
+        case "MORATEMPRANA":
+        case "MORATARDIA":
             break;
         default:
             return "";

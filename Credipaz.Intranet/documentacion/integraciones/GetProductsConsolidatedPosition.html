@@ -56,8 +56,11 @@
                         <tr>
                             <td><b>Producto</b></td>
                             <td><input class="form-control" id="producto" name="producto" type="text" placeholder="Producto" value=""/></td>
-                            <td><i>string</i><p style="font-size:0.6rem;">Valores permitidos: tarjeta / credito / mediya / moratemprana / moratardia</p></td>
-                            <td><span class="badge badge-secondary">opcional</span></td>
+                            <td>
+                                <i>string</i>
+                                <p style="font-size:0.6rem;">Valores permitidos: credito / tarjeta / cabal / visa / mediya / moratemprana / moratardia</p>
+                            </td>
+                            <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                     </tbody>
                 </table>
@@ -95,7 +98,8 @@
             "token_authentication": $("#token_authentication").val(),
             "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
-            "IdCliente": $("#IdCliente").val()
+            "IdCliente": $("#IdCliente").val(),
+            "producto": $("#producto").val()
         }
         docUiExecute(_json).then(function (data) {
             $("#response").html("<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");

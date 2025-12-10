@@ -54,6 +54,16 @@
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                         <tr>
+                            <td><b>Sexo</b></td>
+                            <td><input class="form-control" id="Sexo" name="Sexo" type="text" placeholder="Sexo" value=""/></td>
+                            <td>
+                                <i>string</i>
+                                <p style="font-size:0.6rem;">Valores permitidos: M/F</p>
+                                <p style="font-size:0.6rem;">Si no se envía o se envía cadena vacía, no filtra por sexo.</p>
+                            </td>
+                            <td><span class="badge badge-secondary">opcional</span></td>
+                        </tr>
+                        <tr>
                             <td><b>Email</b></td>
                             <td><input class="form-control" id="email" name="email" type="email" placeholder="Email" value=""/></td>
                             <td><i>string</i></td>
@@ -108,6 +118,7 @@
             "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
             "NroDocumento": $("#NroDocumento").val(),
+            "Sexo": $("#Sexo").val(),
             "email": $("#email").val(),
             "area": $("#area").val(),
             "telefono": $("#telefono").val()

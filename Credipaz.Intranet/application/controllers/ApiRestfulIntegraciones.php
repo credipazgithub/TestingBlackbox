@@ -3,7 +3,7 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 /*---------------------------------*/
 
-class ApiRestfulCredipaz extends MY_Controller {
+class ApiRestfulIntegraciones extends MY_Controller {
     private $module=MOD_API_CREDIPAZ;
     private $model="Integraciones";
     private $table="Integraciones";
@@ -12,7 +12,7 @@ class ApiRestfulCredipaz extends MY_Controller {
         parent::__construct();
     }
 
-    public function GetClientsByDocument()
+public function GetClientsByDocument()
     {
         try {
             $raw = $this->rawInput();
