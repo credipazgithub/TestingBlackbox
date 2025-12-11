@@ -870,6 +870,7 @@ class My_Model extends CI_Model
         try {
             $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             $ret = $NETCORECPFINANCIALS->BridgeDirectCommand("dbIntranet", $command, $expected);
+
             if ($ret["status"] == "OK") {
                 $ret = json_decode($ret["message"], true);
                 $ret = $ret["records"];

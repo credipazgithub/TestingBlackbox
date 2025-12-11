@@ -558,9 +558,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function GetHistorialDePagos($values){
         try {
-		    $token=$this->Authenticate();
-            
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
  		    $fields=array("IdSocio"=>(int)$values["IdSocio"]);
 
 			$url=(CPFINANCIALS."/Mediya/GetHistorialDePagosAlt/");
@@ -582,9 +580,7 @@ class NetCoreCPFinancial extends MY_Model {
 	}
 	public function GetCredenciales($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
-
+			$headers = $this->Authenticate();
             if (strpos($values["NroDocumento"], "@") !== false) {$values["NroDocumento"] = explode("@", $values["NroDocumento"])[0];} 
  		    $fields=array("Tipo"=>strtoupper($values["Tipo"]),"NroDocumento"=>$values["NroDocumento"],"Sexo"=>$values["Sexo"]);
 			$url=(CPFINANCIALS."/Mediya/GetCredencialesAlt/");
@@ -605,9 +601,7 @@ class NetCoreCPFinancial extends MY_Model {
 	}
     public function GetTitularMediya($values){
         try {
-		    $token=$this->Authenticate();
-            
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
 			if ((int)$values["Id"]==0){unset($values["Id"]);}
 			if(isset($values["Id"])) {
 	 		    $fields=array("Id"=>(int)$values["Id"]);
@@ -636,9 +630,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function GetAdicionalesMediya($values){
         try {
-		    $token=$this->Authenticate();
-            
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
 			if ((int)$values["Id"]==0){unset($values["Id"]);}
 		    $fields=array("Id"=>(int)$values["Id"]);
 			$url=(CPFINANCIALS."/Mediya/GetAdicionales/");
@@ -660,8 +652,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function SetTitularMediya($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
 			if ($values["Latitud"]=="0" && $values["Longitud"]=="0") {
 				$searchAddress=($values["Calle"]." ".$values["Numeracion"]." ".$values["Localidad"]." ".$values["Provincia"].", Argentina");
 				$PLACES=$this->createModel(MOD_PLACES,"Places","Places");
@@ -732,8 +723,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function SetAdicionalMediya($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
             $fields = array(
                 "IDFamiliar" => (int) $values["a_IDFamiliar"],
                 "idTipoAdicional" => (int) $values["a_IdTipoAdicional"],
@@ -768,8 +758,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function DelAdicionalMediya($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
             $fields=array(
 			   "IDFamiliar"=>(int)$values["id"],
 			   "Username"=>(string)$values["username"],
@@ -799,10 +788,7 @@ class NetCoreCPFinancial extends MY_Model {
 
 		    $origen=(int)$values["origen"]; // 1 sucursal
 			$id_type_request=(int)$values["id_type_request"]; // 351 Tarjeta de credito
-		    $token=$this->Authenticate();
-           
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
-			
+			$headers = $this->Authenticate();
             $fields=array(
 			    "Origen"=>$origen,
 				"Tipo"=>$id_type_request,
@@ -836,9 +822,8 @@ class NetCoreCPFinancial extends MY_Model {
 	public function GetTarjeta($values){
         try {
 			if ($values["username_active"]==""){$values["username_active"]="web";}
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
- 		    $fields=array(
+            $headers = $this->Authenticate();
+            $fields=array(
 				 "Codigo"=>(string)$values["Codigo"],
 				 "Usuario"=>(string)$values["Usuario"]
 			);
@@ -861,10 +846,8 @@ class NetCoreCPFinancial extends MY_Model {
 	}
 	public function GetAdicionalesTarjeta($values){
         try {
-		    $token=$this->Authenticate();
-            
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
-			if ((int)$values["Codigo"]==0){unset($values["Codigo"]);}
+            $headers = $this->Authenticate();
+            if ((int)$values["Codigo"]==0){unset($values["Codigo"]);}
 		    $fields=array("Codigo"=>(int)$values["Codigo"]);
 			$url=(CPFINANCIALS."/Tarjetas/GetAdicionales/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
@@ -885,8 +868,8 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function SetAdicionalTarjeta($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
             $fields=array(
 			   "nId"=>(int)$values["a_nId"],
 			   "nIDSucursal"=>(int)$values["nIDSucursal"],
@@ -920,8 +903,8 @@ class NetCoreCPFinancial extends MY_Model {
 		    if (!isset($values["test"])){$values["test"]="N";}
 			if ($values["username"]==""){$values["username"]="web";}
 
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
 			
             $fields=array(
 			    "Origen"=>$origen,
@@ -991,8 +974,8 @@ class NetCoreCPFinancial extends MY_Model {
 	}
     public function lookup($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
 			$url=(CPFINANCIALS."/Lookups/GetLookUp?Tipo=".$values["Tipo"]);
 			$result = $this->cUrlRestful($url,$headers);
 			$result = json_decode($result, true);
@@ -1015,8 +998,8 @@ class NetCoreCPFinancial extends MY_Model {
             $result=$this->getRecordsAdHoc($sql);
 
 		    /*
-			$token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			
+			$headers = $this->Authenticate();
  		    $fields=array("TipoConsulta"=>strtoupper($values["tipoConsulta"]),"ValorConsulta"=>$values["valorConsulta"]);
 			$url=(CPFINANCIALS."/Utilidades/ValidarCBU/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
@@ -1038,8 +1021,8 @@ class NetCoreCPFinancial extends MY_Model {
 	}
     public function GetDeudaAPagar($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
  		    $fields=array(
 				 "sTipo"=>"D",
 				 "sTipodoc"=>"DNI",
@@ -1065,8 +1048,8 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function PagosIniciarTransaccion($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
 			$fields = array(
 				'Code' => opensslRandom(16),
 				'Description' => 'Pago vía agente externo',
@@ -1096,8 +1079,8 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function PagosTerminarTransaccion($values){
         try {
-		    $token=$this->Authenticate();
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+		    
+			$headers = $this->Authenticate();
 
 			$fields = array(
 				"id"=>(int)$values["id"],
@@ -1131,9 +1114,9 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function ProcesarItemPago($values){
         try {
-		    $token=$this->Authenticate();
+		    
             
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
 			$url=(CPFINANCIALS."/Pagos/ProcesarItemPago/");
 
 			$params=array(
@@ -1172,9 +1155,9 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function CheckPlan($values){
         try {
-		    $token=$this->Authenticate();
+		    
             
-			$headers = array('Content-Type:application/json','Authorization: Bearer '.$token);
+			$headers = $this->Authenticate();
  		    $fields=array("idPlan"=>(int)$values["idPlan"]);
 			$url=(CPFINANCIALS."/Utilidades/ValidarPlan/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
@@ -1491,8 +1474,7 @@ class NetCoreCPFinancial extends MY_Model {
 
 
     private function Authenticate(){
-        $token = "";
-        return $token;
+        return array('Content-Type:application/json');
 	}
     private function callAPI($url, $headers, $data){
         $ch = curl_init();
