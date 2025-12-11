@@ -330,7 +330,7 @@ class Backend extends MY_Controller {
 
 				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
 				   $dni_request=$record[0]["dni_request"];
-                   status=$record[0]["status"];
+                   $status=$record[0]["status"];
                    if ($status=="INICIADO") {
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
