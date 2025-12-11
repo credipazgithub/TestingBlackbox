@@ -3,7 +3,7 @@
 /*---------------------------------*/
     function API_EsFuncional($id){
         $fields=array("Id"=>$id);
-	    $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	    $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	    $func = API_callAPIGet("/Asesores/EsFuncional?_Id=".$id,$headers,json_encode($fields));
 	    $func = json_decode($func, true);
         $idEmpresario="";
@@ -22,12 +22,6 @@
             );
         }
         return $ret;
-    }
-    function API_Authenticate(){
-        $url="/Login/Login/";
-        $headers=array('Content-Type:application/json');
-        $data=json_encode(array("usuario"=>"credipaz","password"=>"CreD1p4z2022"));
-	    return API_callAPI($url,$headers,$data);
     }
     function API_callAPI($url, $headers, $data){
         $ch = curl_init();

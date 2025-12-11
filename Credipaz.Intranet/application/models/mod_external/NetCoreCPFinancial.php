@@ -1492,7 +1492,7 @@ class NetCoreCPFinancial extends MY_Model {
 
     private function Authenticate(){
         $token = "";
-        return $this->Authenticate();
+        return $token;
 	}
     private function callAPI($url, $headers, $data){
         $ch = curl_init();

@@ -38,7 +38,7 @@ class Integraciones extends MY_Model {
 
             $fields = array("NroDocumento" => $NroDocumento, "email" => $Email, "area" => $area, "telefono" => $telefono);
 
-            $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetClientsByDocument/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
 
@@ -62,7 +62,7 @@ class Integraciones extends MY_Model {
             
             $fields = array("IdCliente" => $IdCliente);
 
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Integraciones/GetProducts/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -94,7 +94,7 @@ class Integraciones extends MY_Model {
 
             $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
 
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Integraciones/GetProductsConsolidatedPosition/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
