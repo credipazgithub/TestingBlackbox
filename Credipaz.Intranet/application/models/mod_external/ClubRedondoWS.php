@@ -432,8 +432,10 @@ class ClubRedondoWS extends MY_Model {
                   $creditoId=null;
                   $acuerdo=0;
                   $acuerdoId=null;
+                  log_message("error", "RELATED values-itemsPagos " . json_encode($values["itemsPagos"], JSON_PRETTY_PRINT));
                   foreach($values["itemsPagos"] as $item){
-				     $importe=(float)$item["Importe"];
+                     log_message("error", "RELATED item " . json_encode($item, JSON_PRETTY_PRINT));
+                     $importe=(float)$item["Importe"];
 					 /*1 set itempago por cada cosa!!!*/
 					 $params=array(
                           "id"=>$values["id"],
@@ -450,7 +452,8 @@ class ClubRedondoWS extends MY_Model {
 						  "Respuesta"=>urlencode($values["Respuesta"]),
                           "TransaccionOrigen"=>$values["TransaccionOrigen"]
 					 );
-					 if ($importe!=0){$result=$this->setItemPago($params);}   
+                     log_message("error", "RELATED params " . json_encode($params, JSON_PRETTY_PRINT));
+                     if ($importe!=0){$result=$this->setItemPago($params);}   
                   }
                   break;
             }

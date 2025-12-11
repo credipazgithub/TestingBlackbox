@@ -310,7 +310,7 @@ class Backend extends MY_Controller {
 				   break;
 
                case "fiserv-ok-test":
-                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114141089","Importe":"188030.00","idTransfer":302774},{"Tipo":"CRE","Identificacion":1528230,"Importe":"58120.00"}]';
+                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114141089","Importe":"188030.00","idTransfer":3},{"Tipo":"CRE","Identificacion":1528230,"Importe":"58120.00"}]';
                    $_POST["approval_code"]="Y:192178:4625678746:PPXX:1921784351";
                    $_POST["status"]="APROBADO";
                    $_POST["currency"]="032";
@@ -327,10 +327,10 @@ class Backend extends MY_Controller {
 				   $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
 				   $comments=json_decode($_POST["comments"], true);
 				   $id=$comments[0]["idTransfer"];
+
 				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
-				   $dni_request=$record["data"][0]["dni_request"];
-                   $status=$record["data"][0]["status"];
-   
+				   $dni_request=$record[0]["dni_request"];
+                   status=$record[0]["status"];
                    if ($status=="INICIADO") {
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
