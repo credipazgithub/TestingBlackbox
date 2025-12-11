@@ -82,8 +82,8 @@ class Farmalink extends MY_Model {
 						"especialidad"=> (string)"GENERALISTA"
 					)
 				);
-			$token = $this->Authenticate();
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
+			
+            $headers = $this->Authenticate();
             $result = $this->callAPI(($this->api_server . "/GenerateForm/Generate"),$headers,json_encode($fields));
 			$result = json_decode($result, true);
 			if($result["result"]==null){throw new Exception("Se han producido errores: ".$result["errors"][0]." ".$result["validationErrors"][0]["errorMessage"]);}

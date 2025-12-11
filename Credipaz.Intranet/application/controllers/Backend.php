@@ -310,7 +310,7 @@ class Backend extends MY_Controller {
 				   break;
 
                case "fiserv-ok-test":
-                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0102413098","Importe":"1.00","idTransfer":40191}]';
+                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114141089","Importe":"188030.00","idTransfer":302774},{"Tipo":"CRE","Identificacion":1528230,"Importe":"58120.00"}]';
                    $_POST["approval_code"]="Y:192178:4625678746:PPXX:1921784351";
                    $_POST["status"]="APROBADO";
                    $_POST["currency"]="032";
@@ -332,7 +332,6 @@ class Backend extends MY_Controller {
                    $status=$record["data"][0]["status"];
    
                    if ($status=="INICIADO") {
-                       /*Si el dni es de Carlos, ir por el WS nuevo cpfinancials!*/
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
 			               'id'=>$id,
