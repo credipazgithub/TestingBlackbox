@@ -45,12 +45,10 @@ class External extends MY_Model {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   $r=$MOBILE->firstStepAuth($values);
-                  log_message("error", "RELATED credipaz " . json_encode($r, JSON_PRETTY_PRINT));
                   return $r;
                case 5: // Club Redondo
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
                   $r=$MOBILE->firstStepAuth($values);
-                  log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
                   return $r;
                 default:
                   return null;
@@ -68,12 +66,10 @@ class External extends MY_Model {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   $r=$MOBILE->secondStepAuth($values);
-                    log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
                     return $r;
                case 5: // Club Redondo
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
                     $r=$MOBILE->secondStepAuth($values);
-                    log_message("error", "RELATED mediya " . json_encode($r, JSON_PRETTY_PRINT));
                     return $r;
                default:
                   return null;

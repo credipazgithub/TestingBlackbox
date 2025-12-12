@@ -318,7 +318,7 @@ class Backend extends MY_Controller {
                    $_POST["ccbrand"]="VISA";
                    $_POST["bname"]="Gómez Lorena elisab";
                    $_POST["cardnumber"]="(VISA) ... 6022";
-               case "fiserv-ok":
+                case "fiserv-ok":
                case "fiserv-error":
                    $data["get"]=$_GET;
                    $data["post"]=$_POST;
@@ -329,9 +329,9 @@ class Backend extends MY_Controller {
 				   $id=$comments[0]["idTransfer"];
 
 				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
-				   $dni_request=$record[0]["dni_request"];
-                   $status=$record[0]["status"];
-                   if ($status=="INICIADO") {
+				   $dni_request=$record["data"][0]["dni_request"];
+                   $status=$record["data"][0]["status"];
+                    if ($status=="INICIADO") {
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
 			               'id'=>$id,
@@ -346,7 +346,7 @@ class Backend extends MY_Controller {
                            'raw_response' => serialize($_POST),
                            'registro_externo' => $registro_externo,
 			           );
-                       $saved=$NETCORECPFINANCIAL->PagosTerminarTransaccion($params);
+                        $saved=$NETCORECPFINANCIAL->PagosTerminarTransaccion($params);
 				       logGeneral($this,$_POST,__METHOD__);
 
                        if(($page=="fiserv-ok" or $page=="fiserv-ok-test" ) and $id!=null) {

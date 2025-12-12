@@ -79,11 +79,6 @@ class Integraciones extends MY_Model {
     public function GetProductsConsolidatedPosition($values)
     {
         try {
-
-
-            log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
-
             $values["IdCliente"] = keySecureZero($values, "IdCliente");
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];

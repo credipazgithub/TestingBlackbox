@@ -12,6 +12,26 @@ class NetCoreCPFinancial extends MY_Model {
         parent::__construct();
     }
 
+    public function HtmlToPdfBase64($plainString)
+    {
+        try {
+            $headers = $this->Authenticate();
+            $fields = array("PlainString" => $plainString);
+            $url = (CPFINANCIALS . "/Utilidades/HtmlToPdfBase64");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function BridgeDirectCommand($key,$command,$mode)
     {
         try {
@@ -1079,9 +1099,7 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function PagosTerminarTransaccion($values){
         try {
-		    
 			$headers = $this->Authenticate();
-
 			$fields = array(
 				"id"=>(int)$values["id"],
                 'status' => (string)$values["status"],
@@ -1095,7 +1113,7 @@ class NetCoreCPFinancial extends MY_Model {
                 'raw_response' => (string)$values["raw_response"],
                 'registro_externo' => (string)$values["registro_externo"],
 			);
-			$url=(CPFINANCIALS."/Pagos/TerminarTransaccion/");
+            $url=(CPFINANCIALS."/Pagos/TerminarTransaccion/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
 			$result = json_decode($result, true);
 
@@ -1114,11 +1132,8 @@ class NetCoreCPFinancial extends MY_Model {
     }
     public function ProcesarItemPago($values){
         try {
-		    
-            
 			$headers = $this->Authenticate();
 			$url=(CPFINANCIALS."/Pagos/ProcesarItemPago/");
-
 			$params=array(
 				"TipoUsuario"=>(string)$values["TipoUsuario"],
 				"Identificacion"=>(string)$values["Identificacion"],
@@ -1138,8 +1153,7 @@ class NetCoreCPFinancial extends MY_Model {
 				"TransaccionOrigen"=>(string)$values["Registro_externo"],
 			);
 			$result = $this->callAPI($url,$headers,json_encode($params));
-			$result = json_decode($result, true);
-
+            $result = json_decode($result, true);
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

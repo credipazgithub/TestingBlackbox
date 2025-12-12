@@ -2,6 +2,10 @@
 //log_message("error", "RELATED ".json_encode($data,JSON_PRETTY_PRINT));
 /*---------------------------------*/
 require APPPATH.'/libraries/CreatorJwt.php';
+function html2pdfBase64($obj,$html){
+    $NETCORECPFINANCIAL = $obj->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+    return $NETCORECPFINANCIAL->HtmlToPdfBase64(base64_decode($html));
+}
 //CRYPTO
 function sign($raw){
     try {
@@ -228,15 +232,6 @@ function encodeTokenJWTSSH($tokenData){
     }
 }
 //FORMATING
-function TransformHtmlToPdf($obj,$html)
-{
-    $obj->load->library("m_pdf");
-    $obj->m_pdf->pdf->useSubstitutions = false;
-    $obj->m_pdf->pdf->simpleTables = true;
-    $obj->m_pdf->pdf->WriteHTML($html, 2);
-    return $obj->m_pdf->pdf->Output("form.pdf", 'S');
-}
-
 function keySecureString($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}
