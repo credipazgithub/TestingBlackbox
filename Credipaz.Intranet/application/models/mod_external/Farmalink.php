@@ -49,9 +49,9 @@ class Farmalink extends MY_Model {
 			if ($doctor["data"][0]["sex"]==""){$doctor["data"][0]["sex"]="F";}
 			if ($doctor["data"][0]["birthday"]==""){$doctor["data"][0]["birthday"]="1980-01-01";}
 			$doctor["data"][0]["birthday"]=explode(" ",$doctor["data"][0]["birthday"])[0];
-			if (!filter_var($doctor["data"][0]["email"], FILTER_VALIDATE_EMAIL)) {$doctor["data"][0]["email"]="telemedicina@credipaz.com";} 
+			if (!filter_var($doctor["data"][0]["email"], FILTER_VALIDATE_EMAIL)) {$doctor["data"][0]["email"]="telemedicina@credipaz.com";}
 
-			$fields=array(
+            $fields=array(
 				"urlCallback"=>(string)INTRANET."/",
 				"direccionConsultorio"=> "",
 				"paciente"=>
@@ -85,8 +85,9 @@ class Farmalink extends MY_Model {
 			
             $headers = $this->Authenticate();
             $result = $this->callAPI(($this->api_server . "/GenerateForm/Generate"),$headers,json_encode($fields));
-			$result = json_decode($result, true);
-			if($result["result"]==null){throw new Exception("Se han producido errores: ".$result["errors"][0]." ".$result["validationErrors"][0]["errorMessage"]);}
+            $result = json_decode($result, true);
+
+            if($result["result"]==null){throw new Exception("Se han producido errores: El servicio de Farmalink esta caído - ".$result["errors"][0]." - ".$result["validationErrors"][0]["errorMessage"]);}
             //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ONLINE'");
 
             return array(

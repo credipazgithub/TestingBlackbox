@@ -310,14 +310,14 @@ class Backend extends MY_Controller {
 				   break;
 
                case "fiserv-ok-test":
-                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114141089","Importe":"188030.00","idTransfer":3},{"Tipo":"CRE","Identificacion":1528230,"Importe":"58120.00"}]';
-                   $_POST["approval_code"]="Y:192178:4625678746:PPXX:1921784351";
+                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
+                   $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";
                    $_POST["status"]="APROBADO";
                    $_POST["currency"]="032";
-                   $_POST["chargetotal"]="1,00";
+                   $_POST["chargetotal"]="457947,00";
                    $_POST["ccbrand"]="VISA";
-                   $_POST["bname"]="juan gomez";
-                   $_POST["cardnumber"]="(VISA) ... 0005";
+                   $_POST["bname"]="Gómez Lorena elisab";
+                   $_POST["cardnumber"]="(VISA) ... 6022";
                case "fiserv-ok":
                case "fiserv-error":
                    $data["get"]=$_GET;
