@@ -131,57 +131,43 @@ class Functions extends MY_Model {
         }
     }
 
+    public function buildSubMenu($menu,$params)
+    {
+        $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+        $i = 0;
+        foreach ($menu["data"] as $function) {
+            $params["Id_parent"] = $function["id"];
+            $submenu = $NETCORECPFINANCIAL->BridgeDirectMenu($params);
+            $menu["data"][$i]["label"] = lang($function["code"]);
+            $y = 0;
+            foreach ($submenu["data"] as $subfunction) {
+                $submenu["data"][$y]["label"] = lang($subfunction["code"]);
+                $y += 1;
+            }
+            $menu["data"][$i]["submenu"] = $submenu["data"];
+            $i += 1;
+        }
+        return $menu;
+    }
+
     public function menuAPI($values)
     {
         try {
-            $values["id_app"] = 11;
-            $values["pagesize"] = -1;
-            $values["where"] = $this->resolveWhereMenu(null, $values["id_user_active"], $values["id_app"]);
-            $values["order"] = "priority ASC";
-            $values["pagesize"] = -1;
-            $menu = $this->get($values);
-            $i = 0;
-            foreach ($menu["data"] as $function) {
-                $values["where"] = $this->resolveWhereMenu($function["id"], $values["id_user_active"], $values["id_app"]);
-                $submenu = $this->get($values);
-                $menu["data"][$i]["label"] = lang($function["code"]);
-                $y = 0;
-                foreach ($submenu["data"] as $subfunction) {
-                    $submenu["data"][$y]["label"] = lang($subfunction["code"]);
-                    $y += 1;
-                }
-                $menu["data"][$i]["submenu"] = $submenu["data"];
-                $i += 1;
-            }
-            return $menu;
+            $params=array("Scope"=>"api","Id_app"=>11,"Id_user"=> $values["id_user_active"],"Id_parent"=>null,"Id"=>null);
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            return $this->buildSubMenu($NETCORECPFINANCIAL->BridgeDirectMenu($params), $params);
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
     }
     public function menuTree($values){
         try {
-            if (!isset($values["id_app"])){$values["id_app"]=$values["id_application"];}
-            if (!isset($values["id_app"])){$values["id_app"]=0;}
-            if ($values["id_app"]==null or $values["id_app"]==""){$values["id_app"]=0;}
-            $values["pagesize"]=-1;
-            $values["where"]=$this->resolveWhereMenu(null,$values["id_user_active"],$values["id_app"]);
-            $values["order"]="priority ASC";
-            $values["pagesize"]=-1;
-			$menu=$this->get($values);
-            $i=0;
-            foreach ($menu["data"] as $function){
-                $values["where"]=$this->resolveWhereMenu($function["id"],$values["id_user_active"],$values["id_app"]);
-                $submenu=$this->get($values);
-                $menu["data"][$i]["label"]=lang($function["code"]);
-                $y=0;
-                foreach ($submenu["data"] as $subfunction){
-                   $submenu["data"][$y]["label"]=lang($subfunction["code"]);
-                   $y+=1;
-                }
-                $menu["data"][$i]["submenu"]=$submenu["data"];
-                $i+=1;
-            }
-            return $menu;
+            if (!isset($values["id_app"])) {$values["id_app"] = $values["id_application"];}
+            if (!isset($values["id_app"])) {$values["id_app"] = 0;}
+            if ($values["id_app"] == null or $values["id_app"] == "") {$values["id_app"] = 0;}
+            $params = array("Scope" => "tree", "Id_app" => $values["id_app"], "Id_user" => $values["id_user_active"], "Id_parent" => null, "Id" => null);
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            return $this->buildSubMenu($NETCORECPFINANCIAL->BridgeDirectMenu($params), $params);
         }
         catch(Exception $e){
             return logError($e,__METHOD__ );
@@ -189,18 +175,9 @@ class Functions extends MY_Model {
     }
     public function menuTreeFull(){
         try {
-            $values["where"]="id_parent IS null AND offline IS null";
-            $values["order"]="priority ASC";
-            $values["pagesize"]=-1;
-            $menu=$this->get($values);
-            $i=0;
-            foreach ($menu["data"] as $function){
-                $values["where"]="id_parent=".$function["id"]." AND offline IS null";
-                $submenu=$this->get($values);
-                $menu["data"][$i]["submenu"]=$submenu["data"];
-                $i+=1;
-            }
-            return $menu;
+            $params = array("Scope" => "treeFull", "Id_app" => null, "Id_user" => null, "Id_parent" => null, "Id" => null);
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            return $this->buildSubMenu($NETCORECPFINANCIAL->BridgeDirectMenu($params), $params);
         }
         catch(Exception $e){
             return logError($e,__METHOD__ );
@@ -209,10 +186,9 @@ class Functions extends MY_Model {
     public function menuLevelOne($values)
     {
         try {
-            $values["where"] = $this->resolveWhereMenu(null, $values["id_user_active"], $values["id_app"]);
-            $values["order"] = "description ASC";
-            $values["pagesize"] = -1;
-            return $this->get($values);
+            $params = array("Scope" => "levelOne", "Id_app" => $values["id_app"], "Id_user" => $values["id_user_active"], "Id_parent" => null, "Id" => null);
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            return $NETCORECPFINANCIAL->BridgeDirectMenu($params);
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
@@ -276,22 +252,5 @@ class Functions extends MY_Model {
         catch(Exception $e){
             return logError($e,__METHOD__ );
         }
-    }
-
-    private function resolveWhereMenu($nodo,$id_user,$id_application){
-        if($nodo!=null){$nodo=("=".$nodo);} else{$nodo=" IS null";}
-        $where="id_parent ".$nodo." AND offline IS null";
-        $where.=" AND id IN ";
-        $where.=" (";
-        $where.="    SELECT id_function FROM ".MOD_BACKEND."_rel_groups_functions WHERE id_group IN ";
-        $where.="       (";
-        $where.="          SELECT id_group FROM ".MOD_BACKEND."_rel_users_groups WHERE id_user=".$id_user;
-        $where.="       )";
-        $where.=" )";
-        $where.=" AND id IN ";
-        $where.=" (";
-        $where.="    SELECT id_function FROM ".MOD_BACKEND."_rel_functions_applications WHERE id_application=".$id_application;
-        $where.=" )";
-        return $where;
     }
 }

@@ -7,7 +7,10 @@ class Farmalink extends MY_Model {
     //private $api_server="https://api.test.recetaonline.ar/api";
 	//private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-X2TqqAbEO4qWoduxzj4tcJf5nK5s2TdDb");
 
-    private $api_server="https://api.recetaonline.ar/boton-prescipcion-back/api";
+    //actual
+	private $api_server="https://api.recetaonline.ar/boton-prescipcion-back/api";
+	//nueva???
+	//private $api_server="https://api.recetaonline.ar/api/GenerateForm/Generate";
 	private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-x4JH8qsumujXOW7s3giTxy2ftuClvevg0");
 
     public function __construct()
@@ -84,7 +87,13 @@ class Farmalink extends MY_Model {
 				);
 			
             $headers = $this->Authenticate();
-            $result = $this->callAPI(($this->api_server . "/GenerateForm/Generate"),$headers,json_encode($fields));
+            $url = ($this->api_server . "/GenerateForm/Generate");
+            log_message("error", "RELATED headers " . json_encode($headers, JSON_PRETTY_PRINT));
+            log_message("error", "RELATED fields " . json_encode($fields, JSON_PRETTY_PRINT));
+            log_message("error", "RELATED url " . json_encode($url, JSON_PRETTY_PRINT));
+
+            $result = $this->callAPI($url,$headers,json_encode($fields));
+            log_message("error", "RELATED result " . $result);
             $result = json_decode($result, true);
 
             if($result["result"]==null){throw new Exception("Se han producido errores: El servicio de Farmalink esta caído - ".$result["errors"][0]." - ".$result["validationErrors"][0]["errorMessage"]);}
