@@ -1090,7 +1090,7 @@ class NetCoreCPFinancial extends MY_Model {
 		    
 			$headers = $this->Authenticate();
 			$fields = array(
-				'Code' => opensslRandom(16),
+				'Code' => opensslRandom(8),
 				'Description' => 'Pago vía agente externo',
 				'Id_type_channel' => (int)secureEmptyNull($values,"id_type_channel"),
 				'Identificacion' => (string)$values["identificacion"],

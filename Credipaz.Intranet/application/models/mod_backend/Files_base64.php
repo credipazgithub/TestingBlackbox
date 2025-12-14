@@ -12,7 +12,7 @@ class Files_base64 extends MY_Model {
     public function save($values,$fields=null){
         try {
             if (!isset($values["id"])){$values["id"]=0;}
-            if (!isset($values["code"])){$values["code"]=opensslRandom(16);}
+            if (!isset($values["code"])){$values["code"]=opensslRandom(8);}
 			$filedata=$values["base64"];
 			$filedata_2=$values["base64"];
 			$b64=$filedata;

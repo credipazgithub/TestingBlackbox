@@ -49,14 +49,12 @@ class MY_Controller extends CI_Controller {
         
     public function neocommand($forced=false){
         try {
-            if ($this->legacy) {throw new Exception(lang("error_legacy"),-1);}
             if(!$forced or $_POST["function"]=="registrarSocioNT"){
                 $raw=$this->rawInput();
                 if ($raw!=null)  {throw new Exception($raw);}
                 $this->status=$this->init();
             }
             if (!isset($_POST["force"])) {$_POST["force"]="";}
-
             if (!isset($_POST["function"])) {throw new Exception(lang("error_5100"),5100);}
             if (!isset($_POST["module"])) {throw new Exception(lang("error_5101"),5101);}
             if (!isset($_POST["table"])) {throw new Exception(lang("error_5102"),5102);}

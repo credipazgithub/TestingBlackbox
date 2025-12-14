@@ -130,7 +130,6 @@ class Functions extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
-
     public function buildSubMenu($menu,$params)
     {
         $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
@@ -149,7 +148,6 @@ class Functions extends MY_Model {
         }
         return $menu;
     }
-
     public function menuAPI($values)
     {
         try {

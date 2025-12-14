@@ -90,7 +90,7 @@ function logGeneralCustom($obj,$values,$method,$custom_trace){
         $obj->prepareModule();
         $resolvedTableView=($obj->module.$obj->table);
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_general'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -126,15 +126,13 @@ function logGeneral($obj,$values,$method,$custom_trace=null){
                 "file"=>__FILE__,
                 "dir"=>__DIR__,
                 "function"=>__FUNCTION__,
-                "class"=>__CLASS__,
-                "trait"=>__TRAIT__,
                 "method"=>__METHOD__,
                 "namespace"=>__NAMESPACE__
         );
         if($values["username"]!=null) {$trace["username"]=$values["username"];}
         if($custom_trace!=null) {$trace["custom"]=json_encode($custom_trace);}
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_general'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -160,7 +158,7 @@ function logMessagesAttached($obj,$values,$method){
         if(!isset($values["id"])){$values["id"]=null;}
         $MESSAGES_ATTACHED_LOG=$obj->createModel(MOD_BACKEND,"Messages_attached_log","Messages_attached_log");
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_folder_items'),
             'created' => $obj->now,
             'verified' => $obj->now,

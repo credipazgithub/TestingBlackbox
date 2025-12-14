@@ -13,7 +13,7 @@ class ReceiverBase64 extends MY_Model {
        if(!isset($values["behaviour"])){$values["behaviour"]=null;}
        if(!isset($values["extension"])){$values["extension"]="";}
        if ($values["extension"]==""){$values["extension"]="";}
-       $code=opensslRandom(16);
+       $code=opensslRandom(8);
        $fullpath=(FILES_LOCAL.("/".$code.".".$values["extension"]));
        saveBase64ToFile(array("data"=>$values["base64"],"path"=>FILES_LOCAL,"fullPath"=>$fullpath));
        return array(

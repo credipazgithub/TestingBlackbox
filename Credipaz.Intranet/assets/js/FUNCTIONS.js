@@ -2207,29 +2207,21 @@ _FUNCTIONS = {
 						_AJAX.onBeforeSendExecute();
 						setTimeout(function () {
 							var _json = _TOOLS.getFormValues(".dbase", _this);
-
-							if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 1 SAVE"); }
-							//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 1 SAVE");}
+							console.log(_json);
 							_AJAX.UiSave(_json).then(function (data) {
 								if (data.status == "OK") {
-									if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 2 SAVE OK"); }
-									//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 2 SAVE OK"); }
 									$(".abm").addClass("d-none").hide();
 									$(".browser").removeClass("d-none").show();
 									_FUNCTIONS.onAlert({ "message": "Se ha grabado el registro", "class": "alert-success" });
 									_FUNCTIONS.onRefreshBrowser();
 									resolve(data);
 								} else {
-									if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 2 SAVE ERROR - Notificar a sistemas"); }
-									//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 2 SAVE ERROR - Notificar a sistemas"); }
 									throw data;
 								}
 							});
 						}, 250);
 					}
 				} catch (rex) {
-					if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 3 SAVE ERROR - Notificar a sistemas"); }
-					//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 3 SAVE ERROR - Notificar a sistemas"); }
 					setTimeout(function () { _AJAX.onCompleteExecute(); }, 50);
 					_FUNCTIONS.onAlert({ "message": rex.message, "class": "alert-danger" });
 					reject(rex);

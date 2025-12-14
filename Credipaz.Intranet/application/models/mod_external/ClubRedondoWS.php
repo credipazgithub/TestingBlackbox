@@ -506,7 +506,7 @@ class ClubRedondoWS extends MY_Model {
         }
     }
 	public function generateReceipt($params){
-	    $filename="Comprobante de pago ".opensslRandom(16).".pdf";
+	    $filename="Comprobante de pago ".opensslRandom(8).".pdf";
 		$html = "<div style='max-width:540px;width:100%;font-family:arial;border:solid 2px black;padding:5px;' class='data-pdf'>";
 		$html .= "<input type='hidden' id='code' name='code' value='".$params["dni"]."' class='code dbaseComprobante'/>";
 		$html .= "<input type='hidden' id='description' name='description' value='comprobanteCOIN' class='description dbaseComprobante'/>";

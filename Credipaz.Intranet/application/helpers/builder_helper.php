@@ -1079,9 +1079,7 @@ function getMultiSelect($parameters,$obj){
             }
         };
         $html.="</select>";
-    } catch(Exception $e){
-
-    }
+    } catch(Exception $e){}
     return $html;
 }
 function getProgressBar($parameters,$ops){
@@ -1118,16 +1116,13 @@ function getButtonRibbon($parameters,$ops){
   if(!isset($parameters["class"])){$parameters["class"]="btn-default";}
   $html="<div class='btn-toolbar' role='toolbar'>";  
   $html.="<div class='btn-group mr-2' role='group'>";
-  //$html.=$parameters["name"];
   foreach($ops as $op){
       if(!isset($op["mode"])){$op["mode"]="";}
       if(!isset($op["class"])){$op["class"]="";}
       if(!isset($op["link"])){$op["link"]="#";}
       if(!isset($op["datax"])){$op["datax"]="";}
       if(!isset($op["style"])){$op["style"]="";}
-      //if ($parameters["name"]!=$op["name"]) {
-        $html.="<button type='button' class='btn btn-sm btn-primary btn-raised ".$op["class"]."' ".$op["datax"]." style='".$op["style"]."'>".$op["name"]."</button>";
-      //}
+      $html.="<button type='button' class='btn btn-sm btn-primary btn-raised ".$op["class"]."' ".$op["datax"]." style='".$op["style"]."'>".$op["name"]."</button>";
   }
   $html.="</div>";
   $html.="</div>";

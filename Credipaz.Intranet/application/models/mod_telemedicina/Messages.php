@@ -42,7 +42,7 @@ class Messages extends MY_Model {
                           break;
                     }
                     $fields = array(
-                        'Code' => opensslRandom(16),
+                        'Code' => opensslRandom(8),
                         'Description' => $description,
                         'created' => $this->now,
                         'verified' => null,

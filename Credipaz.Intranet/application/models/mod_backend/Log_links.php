@@ -16,7 +16,7 @@ class Log_links extends MY_Model {
             $fields=null;
             if($id==0){
                 $fields = array(
-                    'code' => opensslRandom(16),
+                    'code' => opensslRandom(8),
                     'description' => $values["link"],
                     'created' => $this->now,
                     'verified' => $this->now,

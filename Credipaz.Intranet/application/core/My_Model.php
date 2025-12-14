@@ -582,7 +582,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["new"]]) and is_array($values[$opts["new"]])) {
                 foreach ($values[$opts["new"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $opts["filename"] = removeAccents($opts["filename"]);
                         $fullpath = ($path . "/" . $code . "_" . $item[$opts["filename"]]);
                         $base64 = $item[$opts["source"]];
@@ -645,7 +645,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["newLinks"]]) and is_array($values[$opts["newLinks"]])) {
                 foreach ($values[$opts["newLinks"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $fullpath = $item["link"];
 
                         if (!isset($opts["inner"])) {
@@ -776,7 +776,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["new"]]) and is_array($values[$opts["new"]])) {
                 foreach ($values[$opts["new"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $fields = array(
                             "code" => $code,
                             "description" => $code,

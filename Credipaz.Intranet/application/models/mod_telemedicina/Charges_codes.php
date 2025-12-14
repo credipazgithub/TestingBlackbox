@@ -124,7 +124,7 @@ class Charges_codes extends MY_Model {
 
                   $CHARGES_CODES_ACCESS=$this->createModel(MOD_TELEMEDICINA,"Charges_codes_access","Charges_codes_access");
                   $fields=array(
-                     "code"=>opensslRandom(16),
+                     "code"=>opensslRandom(8),
                      "description"=>"",
                      "created"=>$this->now,
                      "verified"=>$this->now,
@@ -173,7 +173,7 @@ class Charges_codes extends MY_Model {
             foreach ($eval as $record){$id=(int)$record["id"];}
 
             if ($id==0) {
-                if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(16);}
+                if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(8);}
                 $fields = array(
                     'code' => $values["code"],
                     'description' => 'Código de pago',
@@ -492,7 +492,7 @@ class Charges_codes extends MY_Model {
 				$params["body"]=$this->load->view(MOD_EMAIL.'/templates/alertDelayTelemedicina',$data, true);
                 $ret=$EMAIL->directEmail($params);
                 //logGeneral($this, $values, __METHOD__);
-                $sql="INSERT INTO ".MOD_BACKEND."_alert_control (code,[description],created,verified,offline,fum,id_rel,table_rel) VALUES ('".opensslRandom(16)."','Alerta delay Telemedicina',getdate(),getdate(),null,getdate(),".$record["id"].",'charges_codes')";
+                $sql="INSERT INTO ".MOD_BACKEND."_alert_control (code,[description],created,verified,offline,fum,id_rel,table_rel) VALUES ('".opensslRandom(8)."','Alerta delay Telemedicina',getdate(),getdate(),null,getdate(),".$record["id"].",'charges_codes')";
                 $this->execAdHoc($sql);
 			}
         }
