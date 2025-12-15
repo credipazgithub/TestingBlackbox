@@ -1187,6 +1187,7 @@ _FUNCTIONS = {
 		_FUNCTIONS.onEmailModal({ "close": true, "title": "Responder", "body": _body });
 	},
 	onProcessDirectTelemedicinaPDF: function (_this) {
+		
 		var _iface = _this.attr("data-iface");
 		var _id_type_item = parseInt(_this.attr("data-id-type-item"));
 		var _id_charge_code = parseInt(_this.attr("data-id-charge-code"));
@@ -1202,6 +1203,7 @@ _FUNCTIONS = {
 			"panswiss": _this.attr("data-panswiss"),
 			"id_charge_code": _id_charge_code
 		}
+		_AJAX._waiter = true;
 		_AJAX.UiFarmaLinkRecetas(_params).then(function (datajson) {
 			var _body = "<iframe src='" + datajson.url + "' style='width:100%;height:1000px;border:solid 0px red;'></iframe>";
 			_FUNCTIONS.onTelemedicinaModalPDF({ "body": _body, "id_charge_code": _id_charge_code });

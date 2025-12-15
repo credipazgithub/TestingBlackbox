@@ -12,6 +12,24 @@ class NetCoreCPFinancial extends MY_Model {
         parent::__construct();
     }
 
+    public function GenerarLinkFarmalink($params)
+    {
+        try {
+            $headers = $this->Authenticate();
+            $url = (CPFINANCIALS . "/Farmalink/GenerarLink");
+            $result = $this->callAPI($url, $headers, json_encode($params));
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function BridgeDirectMenu($params)
     {
         try {

@@ -4,15 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*---------------------------------*/
 
 class Farmalink extends MY_Model {
-    //private $api_server="https://api.test.recetaonline.ar/api";
-	//private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-X2TqqAbEO4qWoduxzj4tcJf5nK5s2TdDb");
-
-    //actual
-	private $api_server="https://api.recetaonline.ar/boton-prescipcion-back/api";
-	//nueva???
-	//private $api_server="https://api.recetaonline.ar/api/GenerateForm/Generate";
-	private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-x4JH8qsumujXOW7s3giTxy2ftuClvevg0");
-
     public function __construct()
     {
         parent::__construct();
@@ -85,24 +76,16 @@ class Farmalink extends MY_Model {
 						"especialidad"=> (string)"GENERALISTA"
 					)
 				);
-			
-            $headers = $this->Authenticate();
-            $url = ($this->api_server . "/GenerateForm/Generate");
-            log_message("error", "RELATED headers " . json_encode($headers, JSON_PRETTY_PRINT));
-            log_message("error", "RELATED fields " . json_encode($fields, JSON_PRETTY_PRINT));
-            log_message("error", "RELATED url " . json_encode($url, JSON_PRETTY_PRINT));
 
-            $result = $this->callAPI($url,$headers,json_encode($fields));
-            log_message("error", "RELATED result " . $result);
-            $result = json_decode($result, true);
-
-            if($result["result"]==null){throw new Exception("Se han producido errores: El servicio de Farmalink esta caído - ".$result["errors"][0]." - ".$result["validationErrors"][0]["errorMessage"]);}
-            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ONLINE'");
-
+            $b64= base64_encode(json_encode($fields));
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $params=array("base64"=>$b64);
+            $result = $NETCORECPFINANCIAL->GenerarLinkFarmalink($params);
+            $result = json_decode($result["data"], true);
             return array(
                 "code"=>"2000",
                 "status"=>strtoupper($result["status"]),
-                "url"=>$result["result"]["url"],
+                "url"=>$result["url"],
                 "message"=>$result["successMessage"],
                 "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
                 "errors"=>$result["errors"],
@@ -111,34 +94,9 @@ class Farmalink extends MY_Model {
             );        
 		}
         catch (Exception $e) {
-            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ERROR'");
             return logError($e,__METHOD__ );
         }
     }
-
-	private function Authenticate(){
-		$headers = array('Content-Type:application/json');
-		$url=($this->api_server."/Aplicacion/login");
-		$result = $this->callAPI($url,$headers,json_encode($this->auth_credentials));
-		$result = json_decode($result, true);
-		return $result["result"]["accessToken"];
-	}
-	private function callAPI($url, $headers, $data){
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
-        $response = curl_exec($ch);
-		$response=trim($response, "\xEF\xBB\xBF");
-        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $err=curl_error($ch);
-        curl_close($ch);
-        return $response;
-	}
 }
 
 

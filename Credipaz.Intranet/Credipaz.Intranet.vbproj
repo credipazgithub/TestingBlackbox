@@ -325,6 +325,8 @@
     <Content Include="application\third_party\index.html" />
     <Content Include="application\views\loggedMediYa.php" />
     <Content Include="application\views\loggedTiendaMil.php" />
+    <Content Include="application\views\mod_dbcentral\ingresos\consulta.js" />
+    <Content Include="application\views\mod_dbcentral\mediya\subdiario.js" />
     <Content Include="application\views\mod_external\cesiones\form.js" />
     <Content Include="application\views\mod_external\external_forms\tarjeta.js" />
     <Content Include="application\views\mod_club_redondo\arrepentimiento\form.js" />
@@ -535,6 +537,22 @@
     <Content Include="app.config" />
     <Content Include="application\controllers\ApiRestfulIntegraciones.php" />
     <Content Include="application\models\mod_api_credipaz\Integraciones.php" />
+    <Content Include="application\models\mod_dbcentral\Comercializador.php" />
+    <Content Include="application\models\mod_dbcentral\consulta.php" />
+    <Content Include="application\models\mod_dbcentral\CR_Vendedor.php" />
+    <Content Include="application\models\mod_dbcentral\empresa.php" />
+    <Content Include="application\models\mod_dbcentral\EmpresaComercializadora.php" />
+    <Content Include="application\models\mod_dbcentral\filesystem.php" />
+    <Content Include="application\models\mod_dbcentral\Ingresos.php" />
+    <Content Include="application\models\mod_dbcentral\logCargaVirtual.php" />
+    <Content Include="application\models\mod_dbcentral\Mediya.php" />
+    <Content Include="application\models\mod_dbcentral\Mstfraude.php" />
+    <Content Include="application\models\mod_dbcentral\prospecto.php" />
+    <Content Include="application\models\mod_dbcentral\stdUsuario.php" />
+    <Content Include="application\models\mod_dbcentral\tarGestionBaja.php" />
+    <Content Include="application\models\mod_dbcentral\tarMovimiento.php" />
+    <Content Include="application\models\mod_dbcentral\wrkRequerimiento.php" />
+    <Content Include="application\models\mod_dbcentral\wrkRequerimiento_userview.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
@@ -731,6 +749,14 @@
     <Content Include="application\views\mod_push\type_actions\abm.php" />
     <Content Include="application\views\mod_email\templates\verificacionEmail.php" />
     <Content Include="application\views\mod_external\formVerify.php" />
+    <Content Include="application\views\mod_dbcentral\Comercializador\abm.php" />
+    <Content Include="application\views\mod_dbcentral\CR_Vendedor\abm.php" />
+    <Content Include="application\views\mod_dbcentral\EmpresaComercializadora\abm.php" />
+    <Content Include="application\views\mod_dbcentral\Empresa\abm.php" />
+    <Content Include="application\views\mod_dbcentral\ingresos\consulta.php" />
+    <Content Include="application\views\mod_dbcentral\mediya\subdiario.php" />
+    <Content Include="application\views\mod_dbcentral\Mstfraude\abm.php" />
+    <Content Include="application\views\mod_dbcentral\wrkRequerimiento\abm.php" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
