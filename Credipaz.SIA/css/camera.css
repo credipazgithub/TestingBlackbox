@@ -1,0 +1,28 @@
+.camera {
+    width: 0; /* 0 width - change this with JavaScript */
+    position: fixed; /* Stay in place */
+    z-index: 1; /* Stay on top */
+    top: 0; /* Stay at the top */
+    right: 0;
+    background-color: rgba(0, 0, 0, 0.5); /* Black*/
+    overflow-x: hidden; /* Disable horizontal scroll */
+    padding-top: 60px; /* Place content 60px from the top */
+    transition: 0.5s; /* 0.5 second transition effect to slide in the sidenav */
+}
+.wVideo {
+    position: relative;
+}
+
+.video {
+    z-index: 999999;
+}
+
+.cameraStatus {
+    position: absolute;
+    background-color: black;
+    left: 0px;
+    bottom: -55px;
+    z-index: 9999999;
+    width: 100%;
+}
+

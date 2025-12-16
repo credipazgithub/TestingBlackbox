@@ -1,0 +1,118 @@
+* {
+    -webkit-tap-highlight-color: rgba(0,0,0,0); /* make transparent link selection, adjust last value opacity 0 to 1.0 */
+}
+/* Chrome, Safari, Edge, Opera */
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+    -moz-appearance: textfield;
+}
+
+.form-control {
+    font-size: 1em !important;
+    margin-bottom: 10px !important;
+    padding: 5px !important;
+}
+label {
+    font-size: 1.15em !important;
+}
+
+
+body {
+    -webkit-touch-callout: none; /* prevent callout to copy image, etc when tap to hold */
+    -webkit-text-size-adjust: none; /* prevent webkit from resizing text to fit */
+    -webkit-user-select: text; /* prevent copy paste, to allow, change 'none' to 'text' */
+    background-color: whitesmoke;
+    font-family: system-ui, -apple-system, -apple-system-font, 'Segoe UI', 'Roboto', sans-serif;
+    font-size: 12px;
+    margin: 0px;
+    padding: 0px;
+    overflow-x: hidden;
+    overflow-y: auto;
+}
+
+/* Portrait layout (default) */
+.page {
+    height: 100%; /* text area height */
+    width: 100%; /* text area width */
+    display: none;
+    background-color: transparent;
+}
+
+.page-header {
+    margin-top: 20px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.groupPaginator {
+    padding-left: 25px;
+    padding-right: 25px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom:25px;
+}
+.btnPlain {
+    border: solid 0px transparent;
+    padding: 5px;
+    margin: 5px;
+    background-color: transparent;
+}
+
+.message {
+    margin-top: 10px;
+    padding-top: 3px;
+    padding-bottom: 3px;
+    padding-left: 5px;
+    padding-right: 5px;
+    background-color: white;
+}
+
+.card-footer {
+    background-color: whitesmoke;
+    font-size: 8px;
+}
+
+.codeChar {
+    margin:4px;
+    padding:2px;
+    font-size:32px;
+    width:40px;
+    height:40px;
+    text-align:center;
+}
+/* Landscape layout (with min-width) */
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+    .app-intro {
+        background-position:left center;
+        padding:75px 0px 75px 170px;  /* padding-top + padding-bottom + text area = image height */
+        margin:-90px 0px 0px -198px;  /* offset vertical: half of image height */
+                                      /* offset horizontal: half of image width and text area width */
+    }
+}
+
+@keyframes fade {
+    from { opacity: 1.0; }
+    50% { opacity: 0.4; }
+    to { opacity: 1.0; }
+}
+
+@media screen and (max-height: 450px) {
+    .sidenav {
+        padding-top: 15px;
+    }
+}
+
+.blink {
+    animation: fade 3000ms infinite;
+    -webkit-animation: fade 3000ms infinite;
+}
+.btnEmpty {
+    color:dimgrey;
+    border: solid 0px red;
+    background-color:transparent;
+}
