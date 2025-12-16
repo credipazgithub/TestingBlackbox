@@ -11,6 +11,63 @@ class NetCoreCPFinancial extends MY_Model {
     {
         parent::__construct();
     }
+    public function BridgeLookup($params)
+    {
+        try {
+            $headers = $this->Authenticate();
+            $url = (CPFINANCIALS . "/Intranet/BridgeLookup");
+            $result = $this->callAPI($url, $headers, json_encode($params));
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result["records"],
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function BridgeAutorizarSocioDS($params)
+    {
+        try {
+            $headers = $this->Authenticate();
+            $url = (CPFINANCIALS . "/ClubRedondo/AutorizarSocioDS");
+            $result = $this->callAPI($url, $headers, json_encode($params));
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result["records"],
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function BridgeAutorizarSocioMediya($params)
+    {
+        try {
+            $headers = $this->Authenticate();
+            $url = (CPFINANCIALS . "/ClubRedondo/AutorizarSocioMEDIYA");
+            $result = $this->callAPI($url, $headers, json_encode($params));
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => $result["records"],
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
 
     public function GenerarLinkFarmalink($params)
     {
