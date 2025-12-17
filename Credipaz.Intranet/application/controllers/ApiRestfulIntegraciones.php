@@ -12,7 +12,7 @@ class ApiRestfulIntegraciones extends MY_Controller {
         parent::__construct();
     }
 
-public function GetClientsByDocument()
+    public function GetClientsByDocument()
     {
         try {
             $raw = $this->rawInput();
@@ -55,6 +55,57 @@ public function GetClientsByDocument()
             }
             $this->status = $this->init();
             $_POST['function'] = 'GetProductsConsolidatedPosition';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetLoan()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetLoan';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetLoanFees()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetLoanFees';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetLoanRates()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetLoanRates';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;

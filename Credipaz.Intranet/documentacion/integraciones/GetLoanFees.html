@@ -48,8 +48,8 @@
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                         <tr>
-                            <td><b>ID cliente</b></td>
-                            <td><input class="form-control" id="IdCliente" name="IdCliente" type="number" placeholder="ID Cliente" value=""/></td>
+                            <td><b>ID solicitud</b></td>
+                            <td><input class="form-control" id="IdSolicitud" name="IdSolicitud" type="number" placeholder="ID solicitud" value=""/></td>
                             <td><i>integer</i></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
@@ -89,7 +89,7 @@
             "token_authentication": $("#token_authentication").val(),
             "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
-            "IdCliente": $("#IdCliente").val()
+            "IdSolicitud": $("#IdSolicitud").val()
         }
         docUiExecute(_json).then(function (data) {
             $("#response").html("<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");
