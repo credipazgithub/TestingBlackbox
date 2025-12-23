@@ -2,6 +2,8 @@ var _fnc = new Object();
 var oAppFirmaCreditos = new Object();
 
 oAppFirmaCreditos.onShow = function () {
+    $(".headerBar").css({ "background": "rgb(110, 3, 73)", "background": "linear-gradient(0deg, rgba(110, 3,73,1) 0%, rgba(224,0,125,1) 69%)" });
+    $(".imgHeaderFirma").attr("src", "img/logo-yellow.png");
     setTimeout(function () {
         $(".topMenu").addClass("d-none");
         $("#qrcode").html("").addClass("d-none");
