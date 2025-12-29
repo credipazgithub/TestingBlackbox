@@ -103,8 +103,7 @@ class Integraciones extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-    public function GetLoan($values)
-    {
+    public function GetLoan($values) {
         try {
             $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
             if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
@@ -125,8 +124,7 @@ class Integraciones extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-    public function GetLoanFees($values)
-    {
+    public function GetLoanFees($values) {
         try {
             $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
             if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
@@ -147,8 +145,7 @@ class Integraciones extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-    public function GetLoanRates($values)
-    {
+    public function GetLoanRates($values) {
         try {
             $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
             if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
@@ -157,6 +154,53 @@ class Integraciones extends MY_Model {
             $fields = array("IdSolicitud" => $IdSolicitud);
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Integraciones/GetLoanRates/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
+    public function GetProductBankStatements($values)
+    {
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+            
+            $fields = array("IdCliente" => $IdCliente);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProductBankStatements/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetProductBankStatementFile($values)
+    {
+        try {
+            $values["producto"] = keySecureProducto($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProductBankStatementFile/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";

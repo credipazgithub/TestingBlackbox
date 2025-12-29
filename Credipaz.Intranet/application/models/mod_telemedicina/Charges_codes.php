@@ -567,7 +567,7 @@ class Charges_codes extends MY_Model {
         //    $bP = 1;
         //}
         //if ($bP == 0) {$mensaje .= "No hay pacientes en espera\n";}
-        $TELEGRAM->send("8370684627:AAFFCfjCMakrFEJ3cAq04AqLNHxDni3pq6M", "-4612096073", $mensaje);
+        $TELEGRAM->send("8306720186:AAHsgXLiGkNRQUEFL6yGZnhdZsfwyoGMnN4", "-4612096073", $mensaje);
 
         /* PUSH a lista de alerta y medicos en atención */
         /*

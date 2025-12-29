@@ -590,6 +590,8 @@
     <Content Include="documentacion\integraciones\GetLoanFees.html" />
     <Content Include="documentacion\integraciones\GetLoanRates.html" />
     <Content Include="documentacion\integraciones\GetPendingServiceBills.html" />
+    <Content Include="documentacion\integraciones\GetProductBankStatementFile.html" />
+    <Content Include="documentacion\integraciones\GetProductBankStatements.html" />
     <Content Include="documentacion\integraciones\GetProductsConsolidatedPosition.html" />
     <Content Include="documentacion\integraciones\GetProducts.html" />
     <Content Include="documentacion\integraciones\GetClientsByDocument.html" />

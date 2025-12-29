@@ -40,6 +40,7 @@ $lang['api_error_1037'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1038'] = "No se ha provisto un valor válido para el parámetro 'IdCliente'";
 $lang['api_error_1039'] = "No se ha provisto un valor válido para el parámetro 'producto'";
 $lang['api_error_1040'] = "No se ha provisto un valor válido para el parámetro 'IdSolicitud'";
+$lang['api_error_1041'] = "No se ha provisto un valor válido para el parámetro 'IdStatement'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";

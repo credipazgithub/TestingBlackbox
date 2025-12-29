@@ -370,3 +370,5 @@ $lang['m_api_integraciones_SendSmsToken'] = "Integraciones SendSmsToken";
 $lang['m_api_integraciones_GetPendingServiceBills'] = "Integraciones GetPendingServiceBills";
 $lang['m_api_integraciones_InsertServicePaymentFromData'] = "Integraciones InsertServicePaymentFromData";
 $lang['m_support_acciones'] = "Acciones de soporte";
+$lang['m_api_integraciones_GetProductBankStatements'] = "Integraciones GetProductBankStatements";
+$lang['m_api_integraciones_GetProductBankStatementFile'] = "Integraciones GetProductBankStatementFile";
