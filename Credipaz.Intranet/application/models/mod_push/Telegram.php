@@ -17,13 +17,17 @@ class Telegram extends My_Model {
             if ($i != 0) { return false; }
             $sql="INSERT INTO ".MOD_BACKEND."_alert_control (code,[description],created,verified,offline,fum,id_rel,table_rel) VALUES ('".opensslRandom(8)."','Alerta nueva atención Tienda MIL',getdate(),getdate(),getdate(),getdate(),". $values["id"].",'tienda_mil')";
             $this->execAdHoc($sql);
-            return $this->send("8370684627:AAFFCfjCMakrFEJ3cAq04AqLNHxDni3pq6M", "-4891344472","¡Hay un cliente esperando atención!");
+            return $this->send("TIENDAMIL","¡Hay un cliente esperando atención!");
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
     }
-    public function send($token,$chat,$mensaje){
+    public function send($canal,$mensaje){
         try {
+            $sql="SELECT * FROM ".MOD_PUSH."_telegram WHERE code='".strtoupper($canal)."'";
+            $data=$this->getRecordsAdHoc($sql);
+            $token=$data[0]["token"];
+            $chat=$data[0]["chat"];
             $url = ("https://api.telegram.org/bot" . $token . "/sendMessage?chat_id=" . $chat . "&text=" . urlencode($mensaje));
             $this->cUrlRestfulGet($url, "");
             return true;

@@ -53,6 +53,7 @@ class ApiRestfulIntegraciones extends MY_Controller {
             if ($raw != null) {
                 throw new Exception($raw);
             }
+            $ip_address = $_SERVER["REMOTE_ADDR"];
             $this->status = $this->init();
             $_POST['function'] = 'GetProductsConsolidatedPosition';
             $_POST['module'] = $this->module;
