@@ -1,7 +1,7 @@
 <form>
     <div class="container-full">
-        <h5>Información xxx dado un IdCliente</h5>
-        <p>Devuelve xxx de un cliente de acuerdo a los datos provistos y dado el <b>token_authentication</b> y <b>id_user_active</b> autenticado.</p>
+        <h5>Información de verificación dado un IdCliente y Token</h5>
+        <p>Devuelve estado de verificación de cliente de acuerdo a los datos provistos y dado el <b>token_authentication</b> y <b>id_user_active</b> autenticado.</p>
         <div class="row">
             <div class="col-6 shadow pt-2">
                 <table class="table table-borderless">
@@ -53,6 +53,46 @@
                             <td><i>integer</i></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
+                        <tr>
+                            <td><b>DNI</b></td>
+                            <td><input class="form-control" id="NroDocumento" name="NroDocumento" type="number" placeholder="DNI" value=""/></td>
+                            <td><i>integer</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Sexo</b></td>
+                            <td><input class="form-control" id="Sexo" name="Sexo" type="text" placeholder="Sexo" value=""/></td>
+                            <td>
+                                <i>string</i>
+                                <p style="font-size:0.6rem;">Valores permitidos: M/F</p>
+                                <p style="font-size:0.6rem;">Si no se envía o se envía cadena vacía, no filtra por sexo.</p>
+                            </td>
+                            <td><span class="badge badge-secondary">opcional</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Email</b></td>
+                            <td><input class="form-control" id="email" name="email" type="email" placeholder="Email" value=""/></td>
+                            <td><i>string</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Área</b></td>
+                            <td><input class="form-control" id="area" name="area" type="number" placeholder="Área" value=""/></td>
+                            <td><i>integer</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Teléfono</b></td>
+                            <td><input class="form-control" id="telefono" name="telefono" type="number" placeholder="Teléfono" value=""/></td>
+                            <td><i>integer</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Token</b></td>
+                            <td><input class="form-control" id="token" name="token" type="number" placeholder="Token" value=""/></td>
+                            <td><i>integer</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
                     </tbody>
                 </table>
                 <hr />
@@ -89,7 +129,13 @@
             "token_authentication": $("#token_authentication").val(),
             "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
-            "IdCliente": $("#IdCliente").val()
+            "IdCliente": $("#IdCliente").val(),
+            "NroDocumento": $("#NroDocumento").val(),
+            "Sexo": $("#Sexo").val(),
+            "email": $("#email").val(),
+            "area": $("#area").val(),
+            "telefono": $("#telefono").val(),
+            "token": $("#token").val()
         }
         docUiExecute(_json).then(function (data) {
             $("#response").html("<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");

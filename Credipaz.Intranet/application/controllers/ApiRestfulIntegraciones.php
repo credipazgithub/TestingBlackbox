@@ -64,7 +64,7 @@ class ApiRestfulIntegraciones extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
-    public function GetLoan() {
+    public function GetLoan(){
         try {
             $raw = $this->rawInput();
             if ($raw != null) {
@@ -112,8 +112,7 @@ class ApiRestfulIntegraciones extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
-    public function GetProductBankStatements()
-    {
+    public function GetProductBankStatements(){
         try {
             $raw = $this->rawInput();
             if ($raw != null) {
@@ -129,8 +128,7 @@ class ApiRestfulIntegraciones extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
-    public function GetProductBankStatementFile()
-    {
+    public function GetProductBankStatementFile(){
         try {
             $raw = $this->rawInput();
             if ($raw != null) {
@@ -138,6 +136,23 @@ class ApiRestfulIntegraciones extends MY_Controller {
             }
             $this->status = $this->init();
             $_POST['function'] = 'GetProductBankStatementFile';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function SendSmsToken()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'SendSmsToken';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;
