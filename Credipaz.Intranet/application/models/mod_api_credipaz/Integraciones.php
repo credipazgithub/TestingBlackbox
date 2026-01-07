@@ -287,7 +287,7 @@ class Integraciones extends MY_Model {
             if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
             $IdTarjeta = (int) $values["IdTarjeta"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentBalances/",$headers,json_encode($fields));
@@ -326,7 +326,7 @@ class Integraciones extends MY_Model {
             if ($values["FechaHasta"] == "") {throw new Exception(lang("api_error_1045"), 1045);}
             $FechaHasta=$values["FechaHasta"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta, "FechaDesde"=>$FechaDesde, "FechaHasta"=>$FechaHasta);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "FechaDesde"=>$FechaDesde, "FechaHasta"=>$FechaHasta);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentMovements/",$headers,json_encode($fields));
@@ -361,7 +361,7 @@ class Integraciones extends MY_Model {
             if ($values["resumen"] == "") {throw new Exception(lang("api_error_1046"), 1046);}
             $Resumen=$values["resumen"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardStatementMovements/",$headers,json_encode($fields));
@@ -392,7 +392,7 @@ class Integraciones extends MY_Model {
             if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
             $IdTarjeta = (int) $values["IdTarjeta"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardDueDate/",$headers,json_encode($fields));
@@ -423,7 +423,7 @@ class Integraciones extends MY_Model {
             if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
             $IdTarjeta = (int) $values["IdTarjeta"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardDetails/",$headers,json_encode($fields));
@@ -454,7 +454,7 @@ class Integraciones extends MY_Model {
             if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
             $IdTarjeta = (int) $values["IdTarjeta"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardExtensions/",$headers,json_encode($fields));
@@ -489,7 +489,7 @@ class Integraciones extends MY_Model {
             if ($values["resumen"] == "") {throw new Exception(lang("api_error_1046"), 1046);}
             $Resumen=$values["resumen"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/GetCreditCardStatements/",$headers,json_encode($fields));
@@ -524,7 +524,7 @@ class Integraciones extends MY_Model {
             if ($values["accion"] == "") {throw new Exception(lang("api_error_1047"), 1047);}
             $Accion=$values["accion"];
 
-            $fields = array("IdCliente"=>$IdCliente, "producto">=$Producto, "IdTarjeta" => $IdTarjeta, "Accion"=>$Accion);
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Accion"=>$Accion);
 
             $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Integraciones/UpdateCreditCards/",$headers,json_encode($fields));
