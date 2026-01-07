@@ -53,6 +53,30 @@
                             <td><i>integer</i></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
+                        <tr>
+                            <td><b>Producto</b></td>
+                            <td><input class="form-control" id="producto" name="producto" type="text" placeholder="Producto" value=""/></td>
+                            <td>
+                                <i>string</i>
+                                <p style="font-size:0.6rem;">Valores permitidos: cabal / visa</p>
+                            </td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>ID tarjeta</b></td>
+                            <td><input class="form-control" id="IdTarjeta" name="IdTarjeta" type="number" placeholder="ID Tarjeta" value=""/></td>
+                            <td><i>integer</i></td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
+                        <tr>
+                            <td><b>Resumen</b></td>
+                            <td><input class="form-control" id="resumen" name="resumen" type="text" placeholder="Resumen" value=""/></td>
+                            <td>
+                                <i>string</i>
+                                <p style="font-size:0.6rem;">Formato: YYYY-MM</p>
+                            </td>
+                            <td><span class="badge badge-danger">requerido</span></td>
+                        </tr>
                     </tbody>
                 </table>
                 <hr />
@@ -89,8 +113,13 @@
             "token_authentication": $("#token_authentication").val(),
             "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
-            "IdCliente": $("#IdCliente").val()
+            "IdCliente": $("#IdCliente").val(),
+            "IdTarjeta": $("#IdTarjeta").val(),
+            "IdCliente": $("#IdCliente").val(),
+            "producto": $("#producto").val(),
+            "resumen": $("#resumen").val()
         }
+
         docUiExecute(_json).then(function (data) {
             $("#response").html("<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");
             $(".titleCall").removeClass("d-none");

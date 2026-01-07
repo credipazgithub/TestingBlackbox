@@ -230,6 +230,11 @@ function encodeTokenJWTSSH($tokenData){
     }
 }
 //FORMATING
+function validateDateString($date, $format = 'Y-m-d')
+{
+    $dt = DateTime::createFromFormat($format, $date);
+    return $dt !== false && $dt->format($format) === $date;
+}
 function keySecureString($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}
@@ -254,12 +259,37 @@ function keySecureProducto($array, $key)
     $array[$key] = strtoupper($array[$key]);
     switch ($array[$key]) {
         case "CREDITO":
-        case "TARJETA":
         case "CABAL":
         case "VISA":
         case "MEDIYA":
         case "MORATEMPRANA":
         case "MORATARDIA":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureProductoTAR($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "CABAL":
+        case "VISA":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureAccion($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "BLOCK":
+        case "UNBLOCK":
             break;
         default:
             return "";
@@ -278,6 +308,12 @@ function keySecureNumbers($array, $key)
     }
     $str = preg_replace('/[^0-9.]+/', '', $array[$key]);
     return $str;
+}
+function keySecureDate($array, $key, $format)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    if (!validateDateString($array[$key],$format)) {$array[$key] = "";}
+    return $array[$key];
 }
 
 function dateDifference($date_1 , $date_2 , $differenceFormat = '%a' ){

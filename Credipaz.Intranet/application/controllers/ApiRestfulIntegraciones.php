@@ -161,4 +161,143 @@ class ApiRestfulIntegraciones extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
+
+
+
+    public function GetCreditCardCurrentBalances()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardCurrentBalances';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardCurrentMovements()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardCurrentMovements';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardStatementMovements()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardStatementMovements';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardDueDate()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardDueDate';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardDetails()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardDetails';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardExtensions()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardExtensions';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function GetCreditCardStatements()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'GetCreditCardStatements';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function UpdateCreditCards()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'UpdateCreditCards';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
 }
