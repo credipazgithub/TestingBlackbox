@@ -372,3 +372,4 @@ $lang['m_api_integraciones_InsertServicePaymentFromData'] = "Integraciones Inser
 $lang['m_support_acciones'] = "Acciones de soporte";
 $lang['m_api_integraciones_GetProductBankStatements'] = "Integraciones GetProductBankStatements";
 $lang['m_api_integraciones_GetProductBankStatementFile'] = "Integraciones GetProductBankStatementFile";
+$lang['m_documentos_firmables'] = "Documentos firmables";
