@@ -20,7 +20,7 @@ class Operators_tasks_items extends MY_Model {
             $fields=null;
             if($id==0){
                 $fields = array(
-                    'code' => opensslRandom(16),
+                    'code' => opensslRandom(8),
                     'description' => $values["description"],
                     'created' => $this->now,
                     'verified' => $this->now,

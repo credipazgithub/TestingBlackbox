@@ -707,7 +707,7 @@ _FUNCTIONS = {
 				};
 
 				_AJAX.UiDirectTelemedicina(_json).then(function (datajson) {
-					if (datajson.status == "OK") {
+					if (datajson.estado == "OK") {
 						alert("¡El mensaje ha sido enviado!");
 						$(".btn-send-telemedicina").fadeIn("fast");
 						$("#telemedicinaModal").modal("toggle");
@@ -1187,6 +1187,7 @@ _FUNCTIONS = {
 		_FUNCTIONS.onEmailModal({ "close": true, "title": "Responder", "body": _body });
 	},
 	onProcessDirectTelemedicinaPDF: function (_this) {
+		
 		var _iface = _this.attr("data-iface");
 		var _id_type_item = parseInt(_this.attr("data-id-type-item"));
 		var _id_charge_code = parseInt(_this.attr("data-id-charge-code"));
@@ -1202,6 +1203,7 @@ _FUNCTIONS = {
 			"panswiss": _this.attr("data-panswiss"),
 			"id_charge_code": _id_charge_code
 		}
+		_AJAX._waiter = true;
 		_AJAX.UiFarmaLinkRecetas(_params).then(function (datajson) {
 			var _body = "<iframe src='" + datajson.url + "' style='width:100%;height:1000px;border:solid 0px red;'></iframe>";
 			_FUNCTIONS.onTelemedicinaModalPDF({ "body": _body, "id_charge_code": _id_charge_code });
@@ -1453,8 +1455,10 @@ _FUNCTIONS = {
 			var _json = JSON.parse(_TOOLS.b64_to_utf8(_this.attr("data-item")));
 			var _data = { "module": "MOD_TELEMEDICINA", "where": ("id=" + _json.id), "function": "get", "table": "messages", "model": "messages", "order": "created DESC", "page": -1, "pagesize": -1 };
 			_AJAX.UiGet(_data).then(function (datajson) {
+				console.log(datajson);
 				_json = datajson.data[0];
-				var _raw_data = JSON.parse(datajson.data[0].raw_data);
+				//var _raw_data = JSON.parse(datajson.data[0].raw_data);
+				//console.log(_raw_data);
 				_FUNCTIONS.onDestroyModal("#telemedicinaModalViewPDF");
 				var _html = "<div class='modal fade' id='telemedicinaModalViewPDF' role='dialog'>";
 				_html += " <div class='modal-dialog modal-dialog-centered modal-lg' role='document'>";
@@ -2205,29 +2209,21 @@ _FUNCTIONS = {
 						_AJAX.onBeforeSendExecute();
 						setTimeout(function () {
 							var _json = _TOOLS.getFormValues(".dbase", _this);
-
-							if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 1 SAVE"); }
-							//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 1 SAVE");}
+							console.log(_json);
 							_AJAX.UiSave(_json).then(function (data) {
 								if (data.status == "OK") {
-									if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 2 SAVE OK"); }
-									//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 2 SAVE OK"); }
 									$(".abm").addClass("d-none").hide();
 									$(".browser").removeClass("d-none").show();
 									_FUNCTIONS.onAlert({ "message": "Se ha grabado el registro", "class": "alert-success" });
 									_FUNCTIONS.onRefreshBrowser();
 									resolve(data);
 								} else {
-									if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 2 SAVE ERROR - Notificar a sistemas"); }
-									//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 2 SAVE ERROR - Notificar a sistemas"); }
 									throw data;
 								}
 							});
 						}, 250);
 					}
 				} catch (rex) {
-					if (_FUNCTIONS._vLog.includes(_AJAX._username_active)) { alert("Paso 3 SAVE ERROR - Notificar a sistemas"); }
-					//if (_AJAX._username_active == "lcuello" || _AJAX._username_active == "galtamirano") { alert("Paso 3 SAVE ERROR - Notificar a sistemas"); }
 					setTimeout(function () { _AJAX.onCompleteExecute(); }, 50);
 					_FUNCTIONS.onAlert({ "message": rex.message, "class": "alert-danger" });
 					reject(rex);

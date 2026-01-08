@@ -12,19 +12,14 @@ class Files_base64 extends MY_Model {
     public function save($values,$fields=null){
         try {
             if (!isset($values["id"])){$values["id"]=0;}
-            if (!isset($values["code"])){$values["code"]=opensslRandom(16);}
+            if (!isset($values["code"])){$values["code"]=opensslRandom(8);}
 			$filedata=$values["base64"];
 			$filedata_2=$values["base64"];
 			$b64=$filedata;
 			$b64_2=$filedata_2;
 			switch($values["extension"]){
 			   case "pdf":
-    			  $filedata=base64_decode($values["base64"]);
-				  $this->load->library("m_pdf");
-				  $this->m_pdf->pdf->WriteHTML($filedata, 2);
-	              ob_end_clean();
-                  $filedata=$this->m_pdf->pdf->Output("credipaz.pdf", "S");
-				  $b64=base64_encode($filedata);
+                  $b64=html2pdfBase64($this, base64_decode($values["base64"]));
 			      break;
 			}
             $id=(int)$values["id"];

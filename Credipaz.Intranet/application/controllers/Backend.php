@@ -310,15 +310,15 @@ class Backend extends MY_Controller {
 				   break;
 
                case "fiserv-ok-test":
-                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0102413098","Importe":"1.00","idTransfer":40191}]';
-                   $_POST["approval_code"]="Y:192178:4625678746:PPXX:1921784351";
+                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
+                   $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";
                    $_POST["status"]="APROBADO";
                    $_POST["currency"]="032";
-                   $_POST["chargetotal"]="1,00";
+                   $_POST["chargetotal"]="457947,00";
                    $_POST["ccbrand"]="VISA";
-                   $_POST["bname"]="juan gomez";
-                   $_POST["cardnumber"]="(VISA) ... 0005";
-               case "fiserv-ok":
+                   $_POST["bname"]="Gómez Lorena elisab";
+                   $_POST["cardnumber"]="(VISA) ... 6022";
+                case "fiserv-ok":
                case "fiserv-error":
                    $data["get"]=$_GET;
                    $data["post"]=$_POST;
@@ -327,12 +327,11 @@ class Backend extends MY_Controller {
 				   $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
 				   $comments=json_decode($_POST["comments"], true);
 				   $id=$comments[0]["idTransfer"];
+
 				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
 				   $dni_request=$record["data"][0]["dni_request"];
                    $status=$record["data"][0]["status"];
-   
-                   if ($status=="INICIADO") {
-                       /*Si el dni es de Carlos, ir por el WS nuevo cpfinancials!*/
+                    if ($status=="INICIADO") {
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
 			               'id'=>$id,
@@ -347,7 +346,7 @@ class Backend extends MY_Controller {
                            'raw_response' => serialize($_POST),
                            'registro_externo' => $registro_externo,
 			           );
-                       $saved=$NETCORECPFINANCIAL->PagosTerminarTransaccion($params);
+                        $saved=$NETCORECPFINANCIAL->PagosTerminarTransaccion($params);
 				       logGeneral($this,$_POST,__METHOD__);
 
                        if(($page=="fiserv-ok" or $page=="fiserv-ok-test" ) and $id!=null) {

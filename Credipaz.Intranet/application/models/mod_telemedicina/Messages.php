@@ -42,7 +42,7 @@ class Messages extends MY_Model {
                           break;
                     }
                     $fields = array(
-                        'Code' => opensslRandom(16),
+                        'Code' => opensslRandom(8),
                         'Description' => $description,
                         'created' => $this->now,
                         'verified' => null,
@@ -177,7 +177,6 @@ class Messages extends MY_Model {
                   $data=array("order"=>"created DESC","where"=>"id_charge_code=".$values["id_charge_code"]." OR id_charge_code IN (SELECT id FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$values["id_club_redondo"]." AND freezed IS NOT NULL) AND DATEDIFF(day, created, getdate())<30".$where);
                   break;
             }
-            log_message("error", "RELATED " . json_encode($data, JSON_PRETTY_PRINT));
             return $this->get($data);
         }
         catch(Exception $e){

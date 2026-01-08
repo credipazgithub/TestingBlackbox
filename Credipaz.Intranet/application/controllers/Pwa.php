@@ -145,6 +145,61 @@ class Pwa extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
+    public function SIAfarmacia()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'BridgeLookup';
+            $_POST['Scope'] = 'dbClub.dbo.NS_TraerFarmacias';
+            $_POST['module'] = MOD_EXTERNAL;
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function BridgeAutorizarSocioDS()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'BridgeAutorizarSocioDS';
+            $_POST['module'] = MOD_EXTERNAL;
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function BridgeAutorizarSocioMediya()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'BridgeAutorizarSocioMediya';
+            $_POST['module'] = MOD_EXTERNAL;
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
     public function RecalcularImporteCuotaCredito(){
         try {
             $raw=$this->rawInput();

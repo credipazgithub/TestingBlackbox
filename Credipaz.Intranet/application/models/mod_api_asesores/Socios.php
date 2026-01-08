@@ -42,7 +42,7 @@ class Socios extends MY_Model {
             $first["data"]["habilitado"]=$eval["habilitado"];
             $first["data"]["detalle"]=$eval["detalle"];
             
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Mediya/GetRowsAsesoresSocios/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
             $second["code"]=$ret["codigo"];
@@ -77,7 +77,7 @@ class Socios extends MY_Model {
                 "Sexo" => $values["sexo"]
             );
 
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Mediya/GetProfileSocio/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
             $second["code"] = $ret["codigo"];
@@ -179,7 +179,7 @@ class Socios extends MY_Model {
             $fields["IDOcupacion"]=(int)$values["id_ocupacion"];
             $fields["IDModoPago"]=(int)$values["id_modo_pago"];
 
-            $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
             
             /*Solo si es ALTA ! Paso 1 segun respuesta sale por error o continua*/
             if ($idSocio == 0) {
@@ -208,7 +208,7 @@ class Socios extends MY_Model {
             $NroDocumento = (int) $values["NroDocumento"];
 
             $fields = array("NroDocumento" => $NroDocumento);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Mediya/GetLinkPago/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);

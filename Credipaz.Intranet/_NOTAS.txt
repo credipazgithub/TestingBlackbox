@@ -20,25 +20,3 @@ IIS notes
 Para poder escribir en path de red!
 En el IIS en el FastCGI Settings poner para cada PHP en las propiedades / Advanced, que el protocolo sea TCP y no NamedPipe
 
-PENDIENTES
-----------
-
-
-
-
-
-
-
-["Content-Type:application\/json"]
-["Content-Type:application\/json","Authorization: Bearer ZNJ2qSkK23CB7NTMdshhWwzDo0V1Mqhr"]
-["Content-Type:application\/json","Authorization: Bearer ZNJ2qSkK23CB7NTMdshhWwzDo0V1Mqhr"]]
-
-
-{"client_id":"26IjMtaHH36td0fKFc2NGLaon1Aof4Ax","client_secret":"vovF0VGtlagC5MlSrjNFcKxOJU2a7UPL","grant_type":"password","provision_key":"iwT5kwHNVGTflyaXr0qYvq3MO4y2836R","authenticated_userid":"credipaz_wb"}
-{"apikey":"AR_CREDPZ_WB","seckey":"49919db5-987b-433f-9f69-835fe9cc35a5"}
-{"apikey":"AR_CREDPZ_WB","sessionidauth":"e785752b-bfe6-4747-b6f3-3d9ab8785d5c","responseinf":"https:\/\/onboarding.credipaz.com"}
-
-{"refresh_token":"C526biTAfNeJcads1qFvWctRoysjFpN5","expires_in":7200,"token_type":"bearer","access_token":"ZNJ2qSkK23CB7NTMdshhWwzDo0V1Mqhr"}
-{"tokenId":"e785752b-bfe6-4747-b6f3-3d9ab8785d5c"}
-{"tokenId":"INVALID_PARAMS"}
-

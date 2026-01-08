@@ -36,6 +36,7 @@
     </DocumentationFile>
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseWinFormsOutOfProcDesigner>True</UseWinFormsOutOfProcDesigner>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>None</DebugType>
@@ -48,6 +49,7 @@
     <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
     <PlatformTarget>AnyCPU</PlatformTarget>
     <Prefer32Bit>false</Prefer32Bit>
+    <UseWinFormsOutOfProcDesigner>True</UseWinFormsOutOfProcDesigner>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System">
@@ -56,9 +58,11 @@
     <Reference Include="System.Data">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Deployment" />
     <Reference Include="System.Drawing">
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ServiceProcess" />
     <Reference Include="System.Web">
       <Private>True</Private>
     </Reference>
@@ -321,6 +325,8 @@
     <Content Include="application\third_party\index.html" />
     <Content Include="application\views\loggedMediYa.php" />
     <Content Include="application\views\loggedTiendaMil.php" />
+    <Content Include="application\views\mod_dbcentral\ingresos\consulta.js" />
+    <Content Include="application\views\mod_dbcentral\mediya\subdiario.js" />
     <Content Include="application\views\mod_external\cesiones\form.js" />
     <Content Include="application\views\mod_external\external_forms\tarjeta.js" />
     <Content Include="application\views\mod_club_redondo\arrepentimiento\form.js" />
@@ -528,6 +534,25 @@
     <Content Include="application\helpers\mod_dbcentral_helper.php" />
     <Content Include="application\controllers\Webhooks.php" />
     <Content Include="application\controllers\Verify.php" />
+    <Content Include="app.config" />
+    <Content Include="application\controllers\ApiRestfulIntegraciones.php" />
+    <Content Include="application\models\mod_api_credipaz\Integraciones.php" />
+    <Content Include="application\models\mod_dbcentral\Comercializador.php" />
+    <Content Include="application\models\mod_dbcentral\consulta.php" />
+    <Content Include="application\models\mod_dbcentral\CR_Vendedor.php" />
+    <Content Include="application\models\mod_dbcentral\empresa.php" />
+    <Content Include="application\models\mod_dbcentral\EmpresaComercializadora.php" />
+    <Content Include="application\models\mod_dbcentral\filesystem.php" />
+    <Content Include="application\models\mod_dbcentral\Ingresos.php" />
+    <Content Include="application\models\mod_dbcentral\logCargaVirtual.php" />
+    <Content Include="application\models\mod_dbcentral\Mediya.php" />
+    <Content Include="application\models\mod_dbcentral\Mstfraude.php" />
+    <Content Include="application\models\mod_dbcentral\prospecto.php" />
+    <Content Include="application\models\mod_dbcentral\stdUsuario.php" />
+    <Content Include="application\models\mod_dbcentral\tarGestionBaja.php" />
+    <Content Include="application\models\mod_dbcentral\tarMovimiento.php" />
+    <Content Include="application\models\mod_dbcentral\wrkRequerimiento.php" />
+    <Content Include="application\models\mod_dbcentral\wrkRequerimiento_userview.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
@@ -553,6 +578,28 @@
     <Content Include="documentacion\credipaz\infoCabalTracking.html" />
     <Content Include="documentacion\credipaz\infoCabalTitular.html" />
     <Content Include="documentacion\credipaz\resumenTarjeta.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardCurrentBalances.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardCurrentMovements.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardDetails.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardDueDate.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardExtensions.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardStatementMovements.html" />
+    <Content Include="documentacion\integraciones\GetCreditCardStatements.html" />
+    <Content Include="documentacion\integraciones\GetExchangeRateTransaction.html" />
+    <Content Include="documentacion\integraciones\GetLoan.html" />
+    <Content Include="documentacion\integraciones\GetLoanFees.html" />
+    <Content Include="documentacion\integraciones\GetLoanRates.html" />
+    <Content Include="documentacion\integraciones\GetPendingServiceBills.html" />
+    <Content Include="documentacion\integraciones\GetProductBankStatementFile.html" />
+    <Content Include="documentacion\integraciones\GetProductBankStatements.html" />
+    <Content Include="documentacion\integraciones\GetProductsConsolidatedPosition.html" />
+    <Content Include="documentacion\integraciones\GetProducts.html" />
+    <Content Include="documentacion\integraciones\GetClientsByDocument.html" />
+    <Content Include="documentacion\integraciones\GetTransactionCost.html" />
+    <Content Include="documentacion\integraciones\InsertServicePaymentFromData.html" />
+    <Content Include="documentacion\integraciones\InsertTransaction.html" />
+    <Content Include="documentacion\integraciones\SendSmsToken.html" />
+    <Content Include="documentacion\integraciones\UpdateCreditCards.html" />
     <Content Include="documentacion\mediya\asesores\modificar.html" />
     <Content Include="documentacion\mediya\asesores\listar.html" />
     <Content Include="documentacion\mediya\asesores\habilitar.html" />
@@ -704,6 +751,14 @@
     <Content Include="application\views\mod_push\type_actions\abm.php" />
     <Content Include="application\views\mod_email\templates\verificacionEmail.php" />
     <Content Include="application\views\mod_external\formVerify.php" />
+    <Content Include="application\views\mod_dbcentral\Comercializador\abm.php" />
+    <Content Include="application\views\mod_dbcentral\CR_Vendedor\abm.php" />
+    <Content Include="application\views\mod_dbcentral\EmpresaComercializadora\abm.php" />
+    <Content Include="application\views\mod_dbcentral\Empresa\abm.php" />
+    <Content Include="application\views\mod_dbcentral\ingresos\consulta.php" />
+    <Content Include="application\views\mod_dbcentral\mediya\subdiario.php" />
+    <Content Include="application\views\mod_dbcentral\Mstfraude\abm.php" />
+    <Content Include="application\views\mod_dbcentral\wrkRequerimiento\abm.php" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
@@ -737,6 +792,12 @@
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
     <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject />
+  </PropertyGroup>
+  <PropertyGroup>
+    <MyType>Windows</MyType>
+  </PropertyGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
@@ -744,16 +805,18 @@
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
         <WebProjectProperties>
-          <UseIIS>True</UseIIS>
+          <UseIIS>False</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
           <DevelopmentServerPort>0</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
           <IISUrl>http://localhost:50481/</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
-          <UseCustomServer>False</UseCustomServer>
-          <CustomServerUrl>
-          </CustomServerUrl>
+          <UseCustomServer>True</UseCustomServer>
+          <CustomServerUrl>http://localhost:1100</CustomServerUrl>
           <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+          <servers defaultServer="ExternalHost">
+            <server name="SelfHostServer" exePath="" cmdArgs="" url="http://localhost:50481/" workingDir="" />
+          </servers>
         </WebProjectProperties>
       </FlavorProperties>
     </VisualStudio>

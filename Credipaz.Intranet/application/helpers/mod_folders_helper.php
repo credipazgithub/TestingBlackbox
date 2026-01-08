@@ -9,7 +9,7 @@ function logFolders($obj,$values,$method){
         if(!isset($values["id"])){$values["id"]=null;}
         $FOLDERS_LOG=$obj->createModel(MOD_FOLDERS,"Folders_log","Folders_log");
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_folders'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -32,7 +32,7 @@ function logFolderItems($obj,$values,$method){
         if(!isset($values["id"])){$values["id"]=null;}
         $FOLDER_ITEMS_LOG=$obj->createModel(MOD_FOLDERS,"Folder_items_log","Folder_items_log");
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_folder_items'),
             'created' => $obj->now,
             'verified' => $obj->now,

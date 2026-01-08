@@ -4,12 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*---------------------------------*/
 
 class Farmalink extends MY_Model {
-    //private $api_server="https://api.test.recetaonline.ar/api";
-	//private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-X2TqqAbEO4qWoduxzj4tcJf5nK5s2TdDb");
-
-    private $api_server="https://api.recetaonline.ar/boton-prescipcion-back/api";
-	private $auth_credentials=array("username"=>"app-credipaz-user","accessKey"=>"BP-x4JH8qsumujXOW7s3giTxy2ftuClvevg0");
-
     public function __construct()
     {
         parent::__construct();
@@ -49,9 +43,9 @@ class Farmalink extends MY_Model {
 			if ($doctor["data"][0]["sex"]==""){$doctor["data"][0]["sex"]="F";}
 			if ($doctor["data"][0]["birthday"]==""){$doctor["data"][0]["birthday"]="1980-01-01";}
 			$doctor["data"][0]["birthday"]=explode(" ",$doctor["data"][0]["birthday"])[0];
-			if (!filter_var($doctor["data"][0]["email"], FILTER_VALIDATE_EMAIL)) {$doctor["data"][0]["email"]="telemedicina@credipaz.com";} 
+			if (!filter_var($doctor["data"][0]["email"], FILTER_VALIDATE_EMAIL)) {$doctor["data"][0]["email"]="telemedicina@credipaz.com";}
 
-			$fields=array(
+            $fields=array(
 				"urlCallback"=>(string)INTRANET."/",
 				"direccionConsultorio"=> "",
 				"paciente"=>
@@ -82,17 +76,16 @@ class Farmalink extends MY_Model {
 						"especialidad"=> (string)"GENERALISTA"
 					)
 				);
-			$token = $this->Authenticate();
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . $token);
-            $result = $this->callAPI(($this->api_server . "/GenerateForm/Generate"),$headers,json_encode($fields));
-			$result = json_decode($result, true);
-			if($result["result"]==null){throw new Exception("Se han producido errores: ".$result["errors"][0]." ".$result["validationErrors"][0]["errorMessage"]);}
-            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ONLINE'");
 
+            $b64= base64_encode(json_encode($fields));
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $params=array("base64"=>$b64);
+            $result = $NETCORECPFINANCIAL->GenerarLinkFarmalink($params);
+            $result = json_decode($result["data"], true);
             return array(
                 "code"=>"2000",
                 "status"=>strtoupper($result["status"]),
-                "url"=>$result["result"]["url"],
+                "url"=>$result["url"],
                 "message"=>$result["successMessage"],
                 "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
                 "errors"=>$result["errors"],
@@ -101,34 +94,9 @@ class Farmalink extends MY_Model {
             );        
 		}
         catch (Exception $e) {
-            //$this->execAdHoc("EXEC dbCentral.dbo.NS_ServiciosExternos_Update @code='FARMALINK', @estado='ERROR'");
             return logError($e,__METHOD__ );
         }
     }
-
-	private function Authenticate(){
-		$headers = array('Content-Type:application/json');
-		$url=($this->api_server."/Aplicacion/login");
-		$result = $this->callAPI($url,$headers,json_encode($this->auth_credentials));
-		$result = json_decode($result, true);
-		return $result["result"]["accessToken"];
-	}
-	private function callAPI($url, $headers, $data){
-        $ch = curl_init();
-        curl_setopt($ch, CURLOPT_URL, $url);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
-        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
-        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
-        curl_setopt($ch, CURLOPT_POST, 1);
-        curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
-        $response = curl_exec($ch);
-		$response=trim($response, "\xEF\xBB\xBF");
-        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
-        $err=curl_error($ch);
-        curl_close($ch);
-        return $response;
-	}
 }
 
 

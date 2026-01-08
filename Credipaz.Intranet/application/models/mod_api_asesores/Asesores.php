@@ -12,7 +12,7 @@ class Asesores extends MY_Model {
     public function listar($values){
         try {
  	        $fields=array("Id"=>(int)$values["id_user_active"]);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Asesores/GetRows/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
             $ret["code"]=$ret["codigo"];
@@ -113,7 +113,7 @@ class Asesores extends MY_Model {
                  "documentSurname"=>(string)$values["apellido"],
                  "documentEmail"=>(string)$values["email"]
              );
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Asesores/GuardarABM/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
             
@@ -146,7 +146,7 @@ class Asesores extends MY_Model {
             $values["idAsesor"]=keySecureZero($values,"idAsesor");
             if ($values["idAsesor"]==0){throw new Exception(lang("api_error_1005"),1005);}
  	        $fields=array("Id"=>(int)$values["idAsesor"],"Id_type_user"=>87);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Asesores/".$values["endpoint"]."/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
 

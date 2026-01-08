@@ -2,6 +2,10 @@
 //log_message("error", "RELATED ".json_encode($data,JSON_PRETTY_PRINT));
 /*---------------------------------*/
 require APPPATH.'/libraries/CreatorJwt.php';
+function html2pdfBase64($obj,$html){
+    $NETCORECPFINANCIAL = $obj->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+    return $NETCORECPFINANCIAL->HtmlToPdfBase64(base64_decode($html));
+}
 //CRYPTO
 function sign($raw){
     try {
@@ -86,7 +90,7 @@ function logGeneralCustom($obj,$values,$method,$custom_trace){
         $obj->prepareModule();
         $resolvedTableView=($obj->module.$obj->table);
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_general'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -122,15 +126,13 @@ function logGeneral($obj,$values,$method,$custom_trace=null){
                 "file"=>__FILE__,
                 "dir"=>__DIR__,
                 "function"=>__FUNCTION__,
-                "class"=>__CLASS__,
-                "trait"=>__TRAIT__,
                 "method"=>__METHOD__,
                 "namespace"=>__NAMESPACE__
         );
         if($values["username"]!=null) {$trace["username"]=$values["username"];}
         if($custom_trace!=null) {$trace["custom"]=json_encode($custom_trace);}
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_general'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -156,7 +158,7 @@ function logMessagesAttached($obj,$values,$method){
         if(!isset($values["id"])){$values["id"]=null;}
         $MESSAGES_ATTACHED_LOG=$obj->createModel(MOD_BACKEND,"Messages_attached_log","Messages_attached_log");
         $fields = array(
-            'code' => opensslRandom(16),
+            'code' => opensslRandom(8),
             'description' => lang('msg_log_folder_items'),
             'created' => $obj->now,
             'verified' => $obj->now,
@@ -228,15 +230,16 @@ function encodeTokenJWTSSH($tokenData){
     }
 }
 //FORMATING
-function TransformHtmlToPdf($obj,$html)
+function validateDateString($date, $format = 'Y-m-d')
 {
-    $obj->load->library("m_pdf");
-    $obj->m_pdf->pdf->useSubstitutions = false;
-    $obj->m_pdf->pdf->simpleTables = true;
-    $obj->m_pdf->pdf->WriteHTML($html, 2);
-    return $obj->m_pdf->pdf->Output("form.pdf", 'S');
+    $dt = DateTime::createFromFormat($format, $date);
+    return $dt !== false && $dt->format($format) === $date;
 }
-
+function keySecureString($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    return $array[$key];
+}
 function keySecureSexo($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}
@@ -244,6 +247,49 @@ function keySecureSexo($array, $key)
     switch ($array[$key]) {
         case "M":
         case "F":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureProducto($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "CREDITO":
+        case "CABAL":
+        case "VISA":
+        case "MEDIYA":
+        case "MORATEMPRANA":
+        case "MORATARDIA":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureProductoTAR($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "CABAL":
+        case "VISA":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
+function keySecureAccion($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "BLOCK":
+        case "UNBLOCK":
             break;
         default:
             return "";
@@ -262,6 +308,12 @@ function keySecureNumbers($array, $key)
     }
     $str = preg_replace('/[^0-9.]+/', '', $array[$key]);
     return $str;
+}
+function keySecureDate($array, $key, $format)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    if (!validateDateString($array[$key],$format)) {$array[$key] = "";}
+    return $array[$key];
 }
 
 function dateDifference($date_1 , $date_2 , $differenceFormat = '%a' ){

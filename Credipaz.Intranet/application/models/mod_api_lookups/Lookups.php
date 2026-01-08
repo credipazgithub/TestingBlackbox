@@ -12,7 +12,7 @@ class Lookups extends MY_Model {
     public function listar($values){
         try {
  	        $fields=array("Id"=>(int)$values["id_user_active"]);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPIGet(("/Lookups/GetLookUp/?Tipo=".$values["table"]),$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
 
@@ -46,7 +46,7 @@ class Lookups extends MY_Model {
                 "adicMayores" => (int) $values["adicMayores"],
                 "adicMenores" => (int) $values["adicMenores"],
             );
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI(("/Mediya/GetPlanes/"), $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -91,7 +91,7 @@ class Lookups extends MY_Model {
                     break;
             }
 
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI(("/Mediya/GetBeneficios/"), $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -113,7 +113,7 @@ class Lookups extends MY_Model {
             $fields = array(
                 "Id" => (int) $values["id_empresa"],
             );
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI(("/Mediya/GetComercilizadoras/"), $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 

@@ -3,6 +3,8 @@ var oAppGetTokenizar = new Object();
 
 oAppGetTokenizar.onShow = function () {
     setTimeout(function () {
+        $(".headerBar").css({ "background": "rgb(110, 3, 73)", "background": "linear-gradient(0deg, rgba(110, 3,73,1) 0%, rgba(224,0,125,1) 69%)" });
+        $(".imgHeaderFirma").attr("src", "img/logo-yellow.png");
         $(".wId_type_medio_cobro").val(_AJAX._id_type_medio_cobro);
         var currentYear = new Date().getFullYear();
         var lastYear = (currentYear + 10);
@@ -21,7 +23,8 @@ oAppGetTokenizar.onShow = function () {
                 });
                 break;
             case "tokenizar-tdmy": //Tokenizaciones-tarjetas debito Mediya
-                $(".IdSocio").val(_AJAX._KEY);
+                $(".headerBar").css({ "background": "#0dabff" });
+                $(".imgHeaderFirma").attr("src", "img/logo-mediya.png");               $(".IdSocio").val(_AJAX._KEY);
                 $(".areaMensaje").html("Los datos se registrarán al socio " + _AJAX._KEY);
                 break;
         }

@@ -19,7 +19,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                foreach ($item["submenu"] as $subitem) {
                    $server = getServer();
                    if (strpos($server, "localhost") === false) {$server = "https://api.credipaz.com";}
-                   $html .= '   <li class="list-group-item"><a href="#" class="btn-link" data-link="' . $server . $subitem["data_module"] . '?' . opensslRandom(16) . '" data-endpoint="' . $server . $subitem["data_model"] . '">' . ucfirst(lang($subitem["code"])) . '</a></li>';
+                   $html .= '   <li class="list-group-item"><a href="#" class="btn-link" data-link="' . $server . $subitem["data_module"] . '?' . opensslRandom(8) . '" data-endpoint="' . $server . $subitem["data_model"] . '">' . ucfirst(lang($subitem["code"])) . '</a></li>';
                }
                $html .= '  </ul>';
                $html .= "</div>";

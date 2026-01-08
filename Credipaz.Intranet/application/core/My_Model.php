@@ -459,26 +459,6 @@ class My_Model extends CI_Model
             return logError($e, __METHOD__);
         }
     }
-    public function pdf($values)
-    {
-        try {
-            if (!isset($values["interface"])) {
-                $values["interface"] = ("pdf");
-            }
-            $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
-            $html = $this->load->view($values["interface"], $data, true);
-            $this->load->library("m_pdf");
-            $this->m_pdf->pdf->WriteHTML($html, 2);
-            ob_end_clean();
-            $html = $this->m_pdf->pdf->Output("legalizacion.pdf", "S");
-            
-            $ret = array("message" => $html, "mime" => "application/pdf", "mode" => $values["mode"], "indisk" => false);
-            return $ret;
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
-    }
     public function edit($values)
     {
         try {
@@ -602,7 +582,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["new"]]) and is_array($values[$opts["new"]])) {
                 foreach ($values[$opts["new"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $opts["filename"] = removeAccents($opts["filename"]);
                         $fullpath = ($path . "/" . $code . "_" . $item[$opts["filename"]]);
                         $base64 = $item[$opts["source"]];
@@ -665,7 +645,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["newLinks"]]) and is_array($values[$opts["newLinks"]])) {
                 foreach ($values[$opts["newLinks"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $fullpath = $item["link"];
 
                         if (!isset($opts["inner"])) {
@@ -796,7 +776,7 @@ class My_Model extends CI_Model
             if (isset($values[$opts["new"]]) and is_array($values[$opts["new"]])) {
                 foreach ($values[$opts["new"]] as $item) {
                     if ($item[$opts["source"]] != null and $item[$opts["source"]] != "") {
-                        $code = opensslRandom(16);
+                        $code = opensslRandom(8);
                         $fields = array(
                             "code" => $code,
                             "description" => $code,
@@ -870,6 +850,7 @@ class My_Model extends CI_Model
         try {
             $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             $ret = $NETCORECPFINANCIALS->BridgeDirectCommand("dbIntranet", $command, $expected);
+
             if ($ret["status"] == "OK") {
                 $ret = json_decode($ret["message"], true);
                 $ret = $ret["records"];

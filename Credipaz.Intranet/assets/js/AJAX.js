@@ -71,7 +71,7 @@ _AJAX = {
 			_json["token_push"] = _AJAX._token_push;
 			_json["language"] = _AJAX._language;
 			_json["token_authentication"] = _AJAX._token_authentication;
-			if (_AJAX._id_user_active == "" || _AJAX._id_user_active == null) { _AJAX._id_user_active = 0;}
+			if (_AJAX._id_user_active == "" || _AJAX._id_user_active == null) { _AJAX._id_user_active = 0; }
 			_json["id_user_active"] = _AJAX._id_user_active;
 			_json["username_active"] = _AJAX._username_active;
 			if (_json["id_app"] == undefined) { _json["id_app"] = _AJAX._id_app; }
@@ -93,7 +93,8 @@ _AJAX = {
 		return new Promise(
 			function (resolve, reject) {
 				try {
-					_AJAX.Execute(_AJAX.formatFixedParameters(_json)).then(function (datajson) {
+					var _params = _AJAX.formatFixedParameters(_json);
+					_AJAX.Execute(_params).then(function (datajson) {
 						if (datajson.status != undefined) {
 							if (datajson.status == "OK") {
 								$(".raw-username_active").html(_AJAX._username_active);

@@ -12,7 +12,7 @@ class Credipaz extends MY_Model {
     public function resumenTarjeta($values){
         try {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
-            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_verror_1026"), 1026);}
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
 
             $values["Sexo"] = keySecureSexo($values, "Sexo");
@@ -32,7 +32,7 @@ class Credipaz extends MY_Model {
                 "iYear" => $iYear,
                 "iMont" => $iMonth
             );
-            $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Cabal/Resumen/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
             return $ret;
@@ -62,7 +62,7 @@ class Credipaz extends MY_Model {
             );
 
 
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetCedido/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -114,7 +114,7 @@ class Credipaz extends MY_Model {
     {
         try {
             $fields = array("Id_user" => $values["id_user_active"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetCesiones/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -138,7 +138,7 @@ class Credipaz extends MY_Model {
             if ($values["Key"] == "") {throw new Exception(lang("api_error_1029"), 1029);}
 
             $fields = array("RutaOrigen" => $values["Key"], "Archivo"=> $values["File"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPIGet("/Utilidades/BridgeFileGet?RutaOrigen=".$values["Key"]."&Archivo=". $values["File"], $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -167,7 +167,7 @@ class Credipaz extends MY_Model {
             if ($values["Sexo"] == "") {throw new Exception(lang("api_error_1002"), 1002);}
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo"=> $values["Sexo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Cabal/GetRowsTarjeta/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
@@ -223,7 +223,7 @@ class Credipaz extends MY_Model {
                 "SexoT" => $values["SexoT"],
                 "SexoA" => $values["SexoA"]
             );
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Cabal/GetRowsAdicionales/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
@@ -262,7 +262,7 @@ class Credipaz extends MY_Model {
             $Cuenta = (int) $values["Cuenta"];
 
             $fields = array("Cuenta" => $Cuenta);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Cabal/GetRowsTarjetaTracking/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -300,7 +300,7 @@ class Credipaz extends MY_Model {
             $Cuenta = (int) $values["Cuenta"];
 
             $fields = array("Cuenta" => $Cuenta);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Cabal/GetRowsTarjeta/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
@@ -341,7 +341,7 @@ class Credipaz extends MY_Model {
             $Cuenta = (int) $values["Cuenta"];
 
             $fields = array("Cuenta" => $Cuenta);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Cabal/GetRowsDatosCierre/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -407,7 +407,7 @@ class Credipaz extends MY_Model {
                 "iYear" => $iYear,
                 "iMont" => $iMonth
             );
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Cabal/GetRowsPagosPeriodo/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -440,7 +440,7 @@ class Credipaz extends MY_Model {
             $Cuenta = (int) $values["Cuenta"];
 
             $fields = array("Cuenta" => $Cuenta);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Cabal/GetRowsUltimosMovimientos/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -480,7 +480,7 @@ class Credipaz extends MY_Model {
             $Cuenta = (int) $values["Cuenta"];
 
             $fields = array("Cuenta" => $Cuenta);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Cabal/GetRowsFechasImportantes/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -520,7 +520,7 @@ class Credipaz extends MY_Model {
             }
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo"=> $values["Sexo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Cabal/GetLinkPago/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
@@ -552,7 +552,7 @@ class Credipaz extends MY_Model {
             }
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo" => $values["Sexo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
 
             $ret = API_callAPI("/Credito/GetLinkPago/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
@@ -585,7 +585,7 @@ class Credipaz extends MY_Model {
             }
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo" => $values["Sexo"], "sLKEstado" => "ACT");
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetRowsCredito/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -627,7 +627,7 @@ class Credipaz extends MY_Model {
             if ($values["Sexo"] == "") {throw new Exception(lang("api_error_1002"), 1002);}
 
             $fields = array("NroDocumento" => $NroDocumento,"Sexo"=> $values["Sexo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetDeudaCredito/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
@@ -670,7 +670,7 @@ class Credipaz extends MY_Model {
             }
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo" => $values["Sexo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ' . API_Authenticate());
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetCuotasCredito/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 

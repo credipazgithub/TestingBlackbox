@@ -562,8 +562,6 @@ class Requests_Core extends MY_Model {
 				}
 			}
 			$record=$this->get(array("where"=>("id=".$id)));
-            log_message("error", "RELATED record" . json_encode($record, JSON_PRETTY_PRINT));
-
             if ($end=="AK"){
 				/*Se debe setear aqui el codigo SMS para averificar el requests.id*/
 				$record["data"][0]["codigo_sms_a_verificar"]=mt_rand(10000,99999);//"11111";

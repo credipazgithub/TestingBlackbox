@@ -77,7 +77,7 @@ class Charges_codes extends MY_Model {
 
                   $CHARGES_CODES_ACCESS=$this->createModel(MOD_LEGAL,"Charges_codes_access","Charges_codes_access");
                   $fields=array(
-                     "code"=>opensslRandom(16),
+                     "code"=>opensslRandom(8),
                      "description"=>"",
                      "created"=>$this->now,
                      "verified"=>$this->now,
@@ -144,7 +144,7 @@ class Charges_codes extends MY_Model {
             $OPERATORS_TASKS=$this->createModel(MOD_LEGAL,"Operators_tasks","Operators_tasks");
             $ret=$OPERATORS_TASKS->save(array("id"=>0),$data);
             $fields = array(
-                'code' => opensslRandom(16),
+                'code' => opensslRandom(8),
                 'description' => 'Código de pago',
                 'created' => $this->now,
                 'verified' => null,

@@ -42,7 +42,6 @@ class ClubRedondoWS extends MY_Model {
         switch($scope){
            case "CP":
               $sql=(string)"EXEC DBCentral.dbo.NS_Clientes_Datos_Generales_JSON @doc=".$values["dni"].", @sexo='".$values["sex"]."'";
-              log_message("error", "RELATED SQL CP " . json_encode($sql, JSON_PRETTY_PRINT));
               $result=$this->getRecordsAdHoc($sql);
               $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
@@ -62,8 +61,6 @@ class ClubRedondoWS extends MY_Model {
            case "CR":
               $sql = (string) "EXEC DBClub.dbo.NS_Socio_Datos_Generales_JSON @doc=" . $values["dni"] . ", @sexo='" . $values["sex"] . "'";
               $result=$this->getRecordsAdHoc($sql);
-              log_message("error", "RELATED SQL CR " . json_encode($result, JSON_PRETTY_PRINT));
-
               $result = objectToArrayRecusive($result);
               $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
               $user=$USERS->get(array("fields"=>"id,id_type_user,username,viable,documentArea,documentPhone,documentName,documentType,documentNumber,documentSex,created,fum","where"=>"username='".$values["dni"]."@clubredondo.com"."'"));
@@ -432,9 +429,10 @@ class ClubRedondoWS extends MY_Model {
                   $creditoId=null;
                   $acuerdo=0;
                   $acuerdoId=null;
-                  foreach($values["itemsPagos"] as $item){
-				     $importe=(float)$item["Importe"];
-					 /*1 set itempago por cada cosa!!!*/
+
+                 foreach($values["itemsPagos"] as $item){
+                        $importe=(float)$item["Importe"];
+                        /*1 set itempago por cada cosa!!!*/
 					 $params=array(
                           "id"=>$values["id"],
 					      "servicioPago"=>$values["servicioPago"],
@@ -450,7 +448,7 @@ class ClubRedondoWS extends MY_Model {
 						  "Respuesta"=>urlencode($values["Respuesta"]),
                           "TransaccionOrigen"=>$values["TransaccionOrigen"]
 					 );
-					 if ($importe!=0){$result=$this->setItemPago($params);}   
+                     if ($importe!=0){$result=$this->setItemPago($params);}   
                   }
                   break;
             }
@@ -508,7 +506,7 @@ class ClubRedondoWS extends MY_Model {
         }
     }
 	public function generateReceipt($params){
-	    $filename="Comprobante de pago ".opensslRandom(16).".pdf";
+	    $filename="Comprobante de pago ".opensslRandom(8).".pdf";
 		$html = "<div style='max-width:540px;width:100%;font-family:arial;border:solid 2px black;padding:5px;' class='data-pdf'>";
 		$html .= "<input type='hidden' id='code' name='code' value='".$params["dni"]."' class='code dbaseComprobante'/>";
 		$html .= "<input type='hidden' id='description' name='description' value='comprobanteCOIN' class='description dbaseComprobante'/>";
@@ -600,9 +598,7 @@ class ClubRedondoWS extends MY_Model {
     private function setItemPago($params)
     {
         try {
-            if (!isset($params["id"])) {
-                $params["id"] = 0;
-            }
+            if (!isset($params["id"])) {$params["id"] = 0;}
             $params["Importe"] = (float) $params["Importe"];
             $params["type_rel"] = $params["Tipo"];
             $params["identify_rel"] = $params["Identificacion"];
@@ -611,7 +607,11 @@ class ClubRedondoWS extends MY_Model {
             logGeneralCustom($this, $params, "Payments::setItemPago", "idpt: " . $params["id"] . " Servicio:" . $params["servicioPago"] . " Tipo:" . $params["Tipo"] . " Identificacion:" . $params["Identificacion"] . " Importe:" . $params["Importe"] . " Resultado:" . $params["Resultado"] . " Transaccion:" . $params["Transaccion"] . " Respuesta:" . $params["Respuesta"]);
             $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             $result = $NETCORECPFINANCIAL->ProcesarItemPago($params);
-            logGeneralCustom($this, $params, "Payments::setItemPagoResponse", $forlog);
+
+        log_message("error", "RELATED setItemPago result xxx " . json_encode($result, JSON_PRETTY_PRINT));
+
+
+            logGeneralCustom($this, $params, "Payments::setItemPagoResponse", $result);
             /*Saving receipt for dni + payment*/
             $this->generateReceipt($params);
             return $result;

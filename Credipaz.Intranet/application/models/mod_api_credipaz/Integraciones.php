@@ -1,0 +1,545 @@
+<?php
+if ( ! defined('BASEPATH')) exit('No direct script access allowed');
+//log_message("error", "RELATED ".json_encode($data,JSON_PRETTY_PRINT));
+/*---------------------------------*/
+
+class Integraciones extends MY_Model {
+    public function __construct()
+    {
+        parent::__construct();
+    }
+
+    public function GetClientsByDocument($values){
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $NroDocumento = (int) $values["NroDocumento"];
+
+            if (isset($values["Sexo"])) {
+                if ($values["Sexo"] != "") {
+                    $values["Sexo"] = keySecureSexo($values, "Sexo");
+                    if ($values["Sexo"] == "") {
+                        throw new Exception(lang("api_error_1002"), 1002);
+                    }
+                }
+            }
+
+            $values["email"] = keySecureString($values, "email");
+            if ($values["email"] == "") {throw new Exception(lang("api_error_1009"), 1009);}
+            $Email = $values["email"];
+
+            $values["area"] = keySecureZero($values, "area");
+            if ($values["area"] == 0) {throw new Exception(lang("api_error_1003"), 1003);}
+            $area = $values["area"];
+
+            $values["telefono"] = keySecureZero($values, "telefono");
+            if ($values["telefono"] == 0) {throw new Exception(lang("api_error_1004"), 1004);}
+            $telefono = $values["telefono"];
+
+            $fields = array("NroDocumento" => $NroDocumento, "email" => $Email, "area" => $area, "telefono" => $telefono);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetClientsByDocument/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetProducts($values)
+    {
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+            
+            $fields = array("IdCliente" => $IdCliente);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProducts/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetProductsConsolidatedPosition($values)
+    {
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProducto($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProductsConsolidatedPosition/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetLoan($values) {
+        try {
+            $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
+            if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
+            $IdSolicitud = (int) $values["IdSolicitud"];
+
+            $fields = array("IdSolicitud" => $IdSolicitud);
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetLoan/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetLoanFees($values) {
+        try {
+            $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
+            if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
+            $IdSolicitud = (int) $values["IdSolicitud"];
+
+            $fields = array("IdSolicitud" => $IdSolicitud);
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetLoanFees/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetLoanRates($values) {
+        try {
+            $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
+            if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
+            $IdSolicitud = (int) $values["IdSolicitud"];
+
+            $fields = array("IdSolicitud" => $IdSolicitud);
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetLoanRates/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
+    public function GetProductBankStatements($values)
+    {
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+            
+            $fields = array("IdCliente" => $IdCliente);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProductBankStatements/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function GetProductBankStatementFile($values)
+    {
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProducto($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
+
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetProductBankStatementFile/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function SendSmsToken($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["token"] = keySecureZero($values, "token");
+            if ($values["token"] == 0) {throw new Exception(lang("api_error_1042"), 1042);}
+            $Token = $values["token"];
+
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $NroDocumento = (int) $values["NroDocumento"];
+
+            if (isset($values["Sexo"])) {
+                if ($values["Sexo"] != "") {
+                    $values["Sexo"] = keySecureSexo($values, "Sexo");
+                    if ($values["Sexo"] == "") {
+                        throw new Exception(lang("api_error_1002"), 1002);
+                    }
+                }
+            }
+
+            $values["email"] = keySecureString($values, "email");
+            if ($values["email"] == "") {throw new Exception(lang("api_error_1009"), 1009);}
+            $Email = $values["email"];
+
+            $values["area"] = keySecureZero($values, "area");
+            if ($values["area"] == 0) {throw new Exception(lang("api_error_1003"), 1003);}
+            $area = $values["area"];
+
+            $values["telefono"] = keySecureZero($values, "telefono");
+            if ($values["telefono"] == 0) {throw new Exception(lang("api_error_1004"), 1004);}
+            $telefono = $values["telefono"];
+
+            $fields = array("IdCliente"=>$IdCliente, "Token">=$Token, "NroDocumento" => $NroDocumento, "email" => $Email, "area" => $area, "telefono" => $telefono);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/SendSmsToken/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+
+
+
+    public function GetCreditCardCurrentBalances($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentBalances/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardCurrentMovements($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $values["FechaDesde"] = keySecureDate($values, "FechaDesde", "Y-m-d");
+            if ($values["FechaDesde"] == "") {throw new Exception(lang("api_error_1044"), 1044);}
+            $FechaDesde=$values["FechaDesde"];
+
+            $values["FechaHasta"] = keySecureDate($values, "FechaHasta", "Y-m-d");
+            if ($values["FechaHasta"] == "") {throw new Exception(lang("api_error_1045"), 1045);}
+            $FechaHasta=$values["FechaHasta"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "FechaDesde"=>$FechaDesde, "FechaHasta"=>$FechaHasta);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentMovements/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardStatementMovements($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $values["resumen"] = keySecureDate($values, "resumen", "Y-m");
+            if ($values["resumen"] == "") {throw new Exception(lang("api_error_1046"), 1046);}
+            $Resumen=$values["resumen"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardStatementMovements/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardDueDate($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardDueDate/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardDetails($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardDetails/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardExtensions($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardExtensions/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function GetCreditCardStatements($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $values["resumen"] = keySecureDate($values, "resumen", "Y-m");
+            if ($values["resumen"] == "") {throw new Exception(lang("api_error_1046"), 1046);}
+            $Resumen=$values["resumen"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/GetCreditCardStatements/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function UpdateCreditCards($values){
+        try {
+            $values["IdCliente"] = keySecureZero($values, "IdCliente");
+            if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
+            $IdCliente = (int) $values["IdCliente"];
+
+            $values["producto"] = keySecureProductoTAR($values, "producto");
+            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
+            $Producto = $values["producto"];
+
+            $values["IdTarjeta"] = keySecureZero($values, "IdTarjeta");
+            if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
+            $IdTarjeta = (int) $values["IdTarjeta"];
+
+            $values["accion"] = keySecureAccion($values, "accion");
+            if ($values["accion"] == "") {throw new Exception(lang("api_error_1047"), 1047);}
+            $Accion=$values["accion"];
+
+            $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Accion"=>$Accion);
+
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Integraciones/UpdateCreditCards/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+}

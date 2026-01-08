@@ -14,7 +14,7 @@ class SociosAdicionales extends MY_Model {
             $values["id_socio"] = keySecureZero($values, "id_socio");
             if ($values["id_socio"] == 0) {throw new Exception(lang("api_error_1011"), 1011);}
             $fields = array("Id" => (int) $values["id_socio"]);
-            $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Mediya/GetAdicionales/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
 
@@ -70,7 +70,7 @@ class SociosAdicionales extends MY_Model {
                  "sEmail"=>(string)$values["email"],//
                  "Username"=>(string)$values["username"],
             );
-	        $headers = array('Content-Type:application/json','Authorization: Bearer '.API_Authenticate());
+	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
 	        $ret = API_callAPI("/Mediya/SetAdicional/",$headers,json_encode($fields));
 	        $ret = json_decode($ret, true);
            

@@ -37,6 +37,16 @@ $lang['api_error_1034'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1035'] = "No se ha provisto un valor válido para el parámetro 'NroDocumentoA'";
 $lang['api_error_1036'] = "No se ha provisto un valor válido para el parámetro 'SexoT'";
 $lang['api_error_1037'] = "No se ha provisto un valor válido para el parámetro 'SexoA'";
+$lang['api_error_1038'] = "No se ha provisto un valor válido para el parámetro 'IdCliente'";
+$lang['api_error_1039'] = "No se ha provisto un valor válido para el parámetro 'producto'";
+$lang['api_error_1040'] = "No se ha provisto un valor válido para el parámetro 'IdSolicitud'";
+$lang['api_error_1041'] = "No se ha provisto un valor válido para el parámetro 'IdStatement'";
+$lang['api_error_1042'] = "No se ha provisto un valor válido para el parámetro 'Token'";
+$lang['api_error_1043'] = "No se ha provisto un valor válido para el parámetro 'IdTarjeta'";
+$lang['api_error_1044'] = "No se ha provisto un valor válido para el parámetro 'FechaDesde'";
+$lang['api_error_1045'] = "No se ha provisto un valor válido para el parámetro 'FechaHasta'";
+$lang['api_error_1046'] = "No se ha provisto un valor válido para el parámetro 'Resumen'";
+$lang['api_error_1047'] = "No se ha provisto un valor válido para el parámetro 'Accion'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";
