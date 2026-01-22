@@ -7,6 +7,22 @@ class Backend extends MY_Controller {
     public function __construct() {
         parent::__construct();
     }
+    public function getUserAreas(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'getUserAreas';
+            $_POST['module'] = MOD_BACKEND;
+            $_POST['model'] = 'Users';
+            $_POST['table'] = 'Users';
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
     public function index()	{
         $this->status=$this->init();
         $data["title"] = TITLE_GENERAL;

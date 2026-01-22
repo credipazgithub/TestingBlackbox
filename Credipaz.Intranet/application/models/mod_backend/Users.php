@@ -9,7 +9,24 @@ class Users extends MY_Model
     {
         parent::__construct();
     }
-
+   	public function getUserAreas($values){
+        try {
+			$seconds=9999;
+			$users=parent::get(array("order"=>"2 ASC","where"=>"last_area='".$values["last_area"]."'","fields"=>"last_area,datediff(second,last_access_area,getdate()) as seconds"));
+			if ((int)$users["totalrecords"]!=0){$seconds=$users["data"][0]["seconds"];}
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>"",
+				"area"=>$users["data"][0]["last_area"],
+				"seconds"=>$users["data"][0]["seconds"],
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+            );
+        }
+        catch(Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
     public function brow($values)
     {
         try {
