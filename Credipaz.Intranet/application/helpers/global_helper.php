@@ -261,9 +261,6 @@ function keySecureProducto($array, $key)
         case "CREDITO":
         case "CABAL":
         case "VISA":
-        case "MEDIYA":
-        case "MORATEMPRANA":
-        case "MORATARDIA":
             break;
         default:
             return "";
