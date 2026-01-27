@@ -78,19 +78,20 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     <span class="mx-0 px-1 waiter wait-ajax"></span>
                 </div>
             </div>
-            <div class="col-11 ml-auto m-auto p-auto bg-white" style="max-height:47px;">
+            <div class="col-12 ml-auto m-auto p-auto bg-white" style="max-height:47px;">
+                <div class='float-left p-0 m-0 mt-2' style='font-size:12px;'>
+                    <span class='text-monospace text-break font-weight-lighter badge badge-light mx-0 px-1 elapsed-time d-none d-sm-inline'></span>
+                    <span class='text-monospace text-break font-weight-lighter badge badge-info mx-0 px-1 execution-mode d-sm-inline'><?php echo strtoupper(ENVIRONMENT);?>"</span>
+                    <span class='text-monospace text-break font-weight-lighter badge badge-success mx-0 px-1 status-last-call d-none d-sm-inline'></span>
+                    <span class='text-monospace text-break font-weight-lighter badge badge-danger mx-0 px-1 status-message d-none'></span>
+                </div>
                 <div class="float-right status-ajax-calls d-none p-0 m-0">
-
-<?php
-$html = "   <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam_off</i> " . lang('msg_doctor_on') ."</a>";
-$html .= "   <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><i class='material-icons'>videocam</i> " . lang('msg_doctor_off')."</a>";
-$html .= "   <span id='barTelemedicina' class='d-none barTelemedicina m-0 p-1' style='opacity:1;padding:0px;margin:0px;'></span>";
-
-$html .= "<input id='pacientesTelemedicina' name='pacientesTelemedicina' class='pacientesTelemedicina' type='hidden' value='0' />";
-$html .= "<input id='myStatusTelemedicina' name='myStatusTelemedicina' class='myStatusTelemedicina' type='hidden' value='0' />";
-$html .= "<audio autoplay id='ringerAlertas' class='d-none'><source src='' type='audio/mpeg'></audio>";
-echo $html;
-?>
+                    <a href='#' data-action='pause' class='btn-doctor-atencion doctor-on btn btn-sm btn-danger btn-raised m-0 p-1 d-none'><?php echo lang('msg_doctor_on');?></a>
+                    <a href='#' data-action='active' class='btn-doctor-atencion doctor-off btn btn-sm btn-success btn-raised m-0 p-1 d-none'><?php echo lang('msg_doctor_off');?></a>
+                    <span id='barTelemedicina' class='d-none barTelemedicina m-0 p-1' style='opacity:1;padding:0px;margin:0px;'></span>
+                    <input id='pacientesTelemedicina' name='pacientesTelemedicina' class='pacientesTelemedicina' type='hidden' value='0' />
+                    <input id='myStatusTelemedicina' name='myStatusTelemedicina' class='myStatusTelemedicina' type='hidden' value='0' />
+                    <audio autoplay id='ringerAlertas' class='d-none'><source src='' type='audio/mpeg'></audio>
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-config"><i class='material-icons'>manage_accounts</i></a>
                     <a href="#" class="btn btn-sm btn-dark mx-0 p-2 btn-silence"><i class='material-icons icon-silence'>volume_up</i></a>
                     <a class="btn btn-sm btn-dark text-break mx-0 p-2 raw-messages_alert_NO d-none" title="<?php echo lang('msg_notreaded');?>"></a>
@@ -99,18 +100,7 @@ echo $html;
                     <span class="text-break font-weight-lighter badge badge-primary mx-0 px-2 raw-master_account d-none d-sm-inline"></span>
                     <img class="rounded-circle shadow img-user" src="https://intranet.credipaz.com/assets/img/user.jpg" style="height:38px;"/>
                     <span class="text-break font-weight-lighter badge badge-primary mx-0 px-2 raw-username_active d-none d-sm-inline"></span>
-                    <a href="#" class="btn btn-raised btn-sm btn-logout"><i class='material-icons'>logout</i></a>
-                    <?php 
-                        if  (ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') {
-                            echo "<br/>";
-                            echo "<div class='float-right p-0 m-0'>";
-                            echo "   <span class='text-monospace text-break font-weight-lighter badge badge-light mx-0 px-1 elapsed-time d-none d-sm-inline' style='font-size:8px;'></span>";
-                            echo "   <span class='text-monospace text-break font-weight-lighter badge badge-info mx-0 px-1 execution-mode d-sm-inline' style='font-size:8px;'>".strtoupper(ENVIRONMENT)."</span>";
-                            echo "   <span class='text-monospace text-break font-weight-lighter badge badge-success mx-0 px-1 status-last-call d-none d-sm-inline' style='font-size:8px;'></span>";
-                            echo "   <span class='text-monospace text-break font-weight-lighter badge badge-danger mx-0 px-1 status-message d-none' style='font-size:8px;'></span>";
-                            echo "</div>";
-                        }
-                    ?>
+                    <a href="#" class="btn btn-dark btn-sm btn-logout"><i class='material-icons'>logout</i></a>
                 </div>
             </div>
         </div>
