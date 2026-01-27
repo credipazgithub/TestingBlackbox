@@ -197,11 +197,11 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProducto($values, "producto");
-            if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
-            $Producto = $values["producto"];
+            $values["IdResumen"] = keySecureZero($values, "IdResumen");
+            if ($values["IdResumen"] == 0) {throw new Exception(lang("api_error_1048"), 1048);}
+            $IdResumen = (int) $values["IdResumen"];
 
-            $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
+            $fields = array("IdResumen" => $IdResumen, "IdCliente"=> $IdCliente);
 
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Integraciones/GetProductBankStatementFile/", $headers, json_encode($fields));

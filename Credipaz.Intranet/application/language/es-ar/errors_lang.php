@@ -47,6 +47,7 @@ $lang['api_error_1044'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1045'] = "No se ha provisto un valor válido para el parámetro 'FechaHasta'";
 $lang['api_error_1046'] = "No se ha provisto un valor válido para el parámetro 'Resumen'";
 $lang['api_error_1047'] = "No se ha provisto un valor válido para el parámetro 'Accion'";
+$lang['api_error_1048'] = "No se ha provisto un valor válido para el parámetro 'IdResumen'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";

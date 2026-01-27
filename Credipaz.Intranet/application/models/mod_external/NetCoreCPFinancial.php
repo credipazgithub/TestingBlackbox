@@ -11,6 +11,7 @@ class NetCoreCPFinancial extends MY_Model {
     {
         parent::__construct();
     }
+
     public function BridgeLookup($params)
     {
         try {
