@@ -206,10 +206,8 @@ class NetCoreCPFinancial extends MY_Model {
     public function BridgeDirectTokenAuthentication($values)
     {
         try {
-            
             $headers = $this->Authenticate();
-            $fields = array("Id" => $values["id_user_active"]);
-            $url = (CPFINANCIALS . "/Intranet/BridgeDirectTokenAuthentication?Id=" . $fields["Id"]."&Token_authentication=". $values["token_authentication"]);
+            $url = (CPFINANCIALS . "/Intranet/BridgeDirectTokenAuthentication?Id=" . $values["id_user_active"]."&Token_authentication=". $values["token_authentication"]);
             $result = $this->cUrlRestful($url, $headers);
             $result = json_decode($result, true);
             if (!isset($result["records"][0])) {throw new Exception(lang("error_5401"), 5401);}

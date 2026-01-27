@@ -140,6 +140,7 @@ class MY_Controller extends CI_Controller {
             return $ACTIVE->{$this->parameters["function"]}($this->parameters);
         }
         catch(Exception $e){
+        log_message("error", "RELATED ERR ".json_encode($e,JSON_PRETTY_PRINT));
             return logError($e,__METHOD__." model: ".$this->parameters["model"]);
         }
     }

@@ -70,10 +70,14 @@ class ApiRestfulCredipaz extends MY_Controller {
                 throw new Exception($raw);
             }
             $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'archivo';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;
+
+        log_message("error", "RELATED ".json_encode($_POST,JSON_PRETTY_PRINT));
+
             $this->neocommand(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));

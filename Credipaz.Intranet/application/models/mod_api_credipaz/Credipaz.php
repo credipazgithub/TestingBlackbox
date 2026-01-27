@@ -136,12 +136,11 @@ class Credipaz extends MY_Model {
             if (!isset($values["Key"])) {$values["Key"] = "";}
             if ($values["File"] == "") {throw new Exception(lang("api_error_1030"), 1030);}
             if ($values["Key"] == "") {throw new Exception(lang("api_error_1029"), 1029);}
-
             $fields = array("RutaOrigen" => $values["Key"], "Archivo"=> $values["File"]);
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPIGet("/Utilidades/BridgeFileGet?RutaOrigen=".$values["Key"]."&Archivo=". $values["File"], $headers, json_encode($fields));
+            $url="/Utilidades/BridgeFileGet?RutaOrigen=".$values["Key"]."&Archivo=". $values["File"];
+            $ret = API_callAPIGet($url."&Archivo=". $values["File"], $headers, json_encode($fields));
             $ret = json_decode($ret, true);
-
             $merged["code"] = "200";
             $merged["error"] = "";
             $merged["status"] = "OK";
