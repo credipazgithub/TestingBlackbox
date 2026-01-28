@@ -81,7 +81,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <div class="col-12 ml-auto m-auto p-auto bg-white" style="max-height:47px;">
                 <div class='float-left p-0 m-0 mt-2' style='font-size:12px;'>
                     <span class='text-monospace text-break font-weight-lighter badge badge-light mx-0 px-1 elapsed-time d-none d-sm-inline'></span>
-                    <span class='text-monospace text-break font-weight-lighter badge badge-info mx-0 px-1 execution-mode d-sm-inline'><?php echo strtoupper(ENVIRONMENT);?>"</span>
+                    <span class='text-monospace text-break font-weight-lighter badge badge-info mx-0 px-1 execution-mode d-sm-inline'><?php echo strtoupper(ENVIRONMENT);?></span>
                     <span class='text-monospace text-break font-weight-lighter badge badge-success mx-0 px-1 status-last-call d-none d-sm-inline'></span>
                     <span class='text-monospace text-break font-weight-lighter badge badge-danger mx-0 px-1 status-message d-none'></span>
                 </div>
