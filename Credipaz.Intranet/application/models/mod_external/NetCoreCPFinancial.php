@@ -12,6 +12,43 @@ class NetCoreCPFinancial extends MY_Model {
         parent::__construct();
     }
 
+    public function BridgeAuthenticateMobile($values)
+    {
+        try {
+            if (!isset($values["name"])) {$values["name"] = "";}
+            if ($values["field"] == "username") {$values["dni"] = explode("@", @$values["value"])[0];}
+            $headers = $this->Authenticate();
+            $fields=array(
+                "Password"=>md5($values["password"]),
+                "PasswordPlain"=>$values["password"],
+                "Id_app"=>(int) $values["id_app"],
+                "Dni"=>$values["dni"],
+                "Sex"=>$values["sex"],
+                "Usuario"=>$values["email"],
+                "Area"=>$values["area"],
+                "Telefono"=>$values["phone"],
+                "Nombre"=>$values["name"]
+            );
+            $url = (CPFINANCIALS . "/Intranet/BridgeAuthenticateMobile");
+            $result = $this->callAPI($url, $headers, json_encode($fields));
+            $result = json_decode($result, true);
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "verificated" =>  ($result["records"][0]["verified"] != null),
+                "token_authentication" => $result["records"][0]["token_authentication"],
+                "userdata" => $result["records"][0],
+                "clubredondo" => getIdUserClubRedondo($this, $values["dni"])["message"],
+                "id" => $result["records"][0]["id"]
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
     public function BridgeLookup($params)
     {
         try {
@@ -1501,7 +1538,6 @@ class NetCoreCPFinancial extends MY_Model {
                     break;
             }
             $url = (CPFINANCIALS . "/Credito/GetCuotas?" . $params);
-            //$t = "NroDocumento=8207505&Sexo=M&ModoCuotas=V&Format=pdf";
             $result = $this->cUrlRestful($url, $headers);
             return $result;
 
@@ -1521,16 +1557,14 @@ class NetCoreCPFinancial extends MY_Model {
     public function saveCardCred($values)
     {
         try {
-            
             $headers = $this->Authenticate();
             $url = (CPFINANCIALS . "/CardCred/Webhook");
             $result = $this->callAPI($url, $headers, json_encode($values));
             $result = json_decode($result, true);
             return $result;
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
+        } catch (Exception $e) {return logError($e, __METHOD__);}
     }
+
     public function saveVisa($values)
     {
         try {
@@ -1564,7 +1598,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-
     public function MessageTelemedicina($values)
     {
         try {
@@ -1578,7 +1611,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
-
 
     private function Authenticate(){
         return array('Content-Type:application/json');

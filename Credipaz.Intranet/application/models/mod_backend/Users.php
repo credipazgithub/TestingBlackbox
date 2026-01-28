@@ -11,9 +11,7 @@ class Users extends MY_Model
     }
    	public function getUserAreas($values){
         try {
-			$seconds=9999;
 			$users=parent::get(array("order"=>"2 ASC","where"=>"last_area='".$values["last_area"]."'","fields"=>"last_area,datediff(second,last_access_area,getdate()) as seconds"));
-			if ((int)$users["totalrecords"]!=0){$seconds=$users["data"][0]["seconds"];}
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
@@ -31,9 +29,7 @@ class Users extends MY_Model
     {
         try {
             $this->view = "vw_users";
-            if ($values["where"] != "") {
-                $values["where"] .= " AND ";
-            }
+            if ($values["where"] != "") {$values["where"] .= " AND ";}
             $values["where"] .= "id_type_user IN (81,85,87)";
             $values["order"] = "username ASC";
             $values["records"] = $this->get($values);
@@ -44,7 +40,6 @@ class Users extends MY_Model
                 "offline" => false,
             );
             $values["columns"] = array(
-                //array("field"=>"id","format"=>"number"),
                 array("field" => "image", "format" => "image"),
                 array("field" => "username", "format" => "email"),
                 array("field" => "type_user", "format" => "type"),
@@ -449,114 +444,9 @@ class Users extends MY_Model
             return logError($e, __METHOD__);
         }
     }
-    public function createTokenMobile($length, $id_user)
-    {
-        $characters = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0987654321' . time();
-        $charactersLength = strlen($characters);
-        $randomString = '';
-        for ($i = $length; $i > 0; $i--) {
-            $randomString .= $characters[rand(0, $charactersLength - 1)];
-        }
-        $token_authentication = md5($randomString);
-        $this->save(array("id" => $id_user), array("token_authentication" => $token_authentication));
-        return $token_authentication;
-    }
-    
-    /**
-     * encarar el reemplazo por metodo unico de cpfinancials!
-     */
     public function authenticateMobile($values)
     {
-        try {
-            if (isset($values["password"])) {$values["password"] = md5($values["password"]);} else {$values["password"] = "";}
-            if ($values["field"] == "username") {$values["dni"] = explode("@", @$values["value"])[0];}
-            $id = 0;
-            $verificated = false;
-            $id_app = (int) $values["id_app"];
-            $id_type_user = 0;
-            $username = $values["email"];
-            $password = $values["password"];
-            $dni = $values["dni"];
-            $sex = $values["sex"];
-            $area = $values["area"];
-            $phone = $values["phone"];
-            if (!isset($values["name"])) {$values["name"] = "";}
-            if (trim($values["name"]) == "") {
-                $sql = "SELECT * FROM DBClub.dbo.Persona WHERE NroDocumento='" . $values["dni"] . "'";
-                $persona = $this->getRecordsAdHoc($sql);
-                if (sizeof($persona) != 0) {
-                    $values["name"] = $persona[0]["Nombre"] . " " . $persona[0]["Apellido"];
-                } else {
-                    $sql = "SELECT Nombre FROM DBCentral.dbo.AFIPpadron WHERE nDoc=" . $values["dni"];
-                    $persona = $this->getRecordsAdHoc($sql);
-                    if (sizeof($persona) != 0) {
-                        $values["name"] = end(explode(" ", trim($persona[0]["Nombre"])));
-                    }
-                }
-            }
-            $documentName = $values["name"];
-            switch ($id_app) {
-                case 2: // credipaz, mobile
-                    $id_type_user = 80;
-                    break;
-                case 5: // mediya, mobile
-                    $id_type_user = 82;
-                    break;
-            }
-
-            $sql = "UPDATE mod_backend_users SET documentnumber=username WHERE id_type_user=" . $id_type_user . " AND documentNumber='" . $dni . "'";
-            $this->dbLayerExecuteWS("nothing", $sql, "", null);
-
-            $user = $this->get(array("where" => "UPPER(username)='" . strtoupper($username) . "' AND id_type_user=" . $id_type_user));
-            $token_authentication = "void";
-
-            if ((int) $user["totalrecords"] != 0) {
-                //con control de password
-                //$user=$this->get(array("where"=>"username='".$username."' AND password='".$password."' AND id_type_user=".$id_type_user));
-                //sin control de password
-                $user = $this->get(array("where" => "UPPER(username)='" . strtoupper($username) . "' AND id_type_user=" . $id_type_user));
-                $verificated = ($user["data"][0]["verified"] != null);
-                $id = $user["data"][0]["id"];
-                $user["data"][0]["documentName"] = $documentName;
-            } else {
-                $data = array(
-                    'uid_firecloud' => '',
-                    'username' => $username,
-                    'documentType' => 'dni',
-                    'documentNumber' => $dni,
-                    'documentSex' => $sex,
-                    'documentArea' => $area,
-                    'documentPhone' => $phone,
-                    'password' => $password,
-                    'id_type_user' => $id_type_user,
-                    'created' => $this->now,
-                    'verified' => $this->now,
-                    'fum' => $this->now,
-                    'viable' => 0,
-                    'documentName' => $documentName,
-                    'IdSolicitud' => 0,
-                    'id_application' => $id_app
-                );
-                $saved = $this->save(array("id" => 0), $data);
-                if ($saved["status"] != "OK") {throw new Exception($saved["message"], (int) $saved["code"]);}
-                if (isset($saved["data"]["id"])) {$id = $saved["data"]["id"];}
-            }
-            $token_authentication = $this->createTokenMobile(30, $id);
-            $data = array('token_authentication' => $token_authentication, 'documentName' => $documentName);
-            if ((int) $id != 0) {$saved = $this->save(array("id" => $id), $data);}
-            return array(
-                "code" => "2000",
-                "status" => "OK",
-                "message" => "",
-                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
-                "verificated" => $verificated,
-                "token_authentication" => $token_authentication,
-                "userdata" => $user["data"][0],
-                "clubredondo" => getIdUserClubRedondo($this, $dni)["message"],
-                "id" => $id
-            );
-        } catch (Exception $e) {
-            return logError($e, __METHOD__);
-        }
+        $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+        return $NETCORECPFINANCIAL->BridgeAuthenticateMobile($values);
     }
 }
