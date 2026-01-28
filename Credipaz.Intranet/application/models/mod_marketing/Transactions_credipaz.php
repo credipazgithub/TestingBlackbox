@@ -9,10 +9,10 @@ class Transactions_credipaz extends MY_Model {
         parent::__construct();
     }
 
-    private function getConvertidaSql($canal, $fecha_desde)
+    private function getConvertidaSql($canal, $fecha_desde,$fecha_hasta)
     {
         $sqlConvertidas = "SELECT count(t.id) as total FROM DBCentral.dbo.Transaccion as t LEFT JOIN DBCentral.dbo.Producto as p ON p.id=t.tipo";
-        $sqlConvertidas .= " WHERE t.tipo IN (1,2,3,4) AND t.idEstadoTransaccion=7 AND ";
+        $sqlConvertidas .= " WHERE t.tipo IN (1,2,3,4,5,6,7,8,9,10) AND t.FechaAlta>='".$fecha_desde."' AND t.FechaAlta<='".$fecha_hasta."' AND t.idEstadoTransaccion=7 AND ";
         $sqlConvertidas .= " t.NroDocumento IN (SELECT t1.NroDocumento FROM dbCentral.dbo.Transaccion as t1 WHERE t1.tipo IN (". $canal.") AND t1.FechaAlta>DATEADD(month,-1,'" . $fecha_desde . "'))";
         return $sqlConvertidas;
     }
@@ -63,8 +63,8 @@ class Transactions_credipaz extends MY_Model {
 
             $retenidas = $this->getRecordsAdHoc($sql . $where . " AND t.idEstadoTransaccion=10" . $group . $order);
 
-            $s14 = $this->getConvertidaSql(14, $fecha_desde);
-            $s241 = $this->getConvertidaSql(241, $fecha_desde);
+            $s14 = $this->getConvertidaSql(14, $fecha_desde,$fecha_hasta);
+            $s241 = $this->getConvertidaSql(241, $fecha_desde,$fecha_hasta);
             $convertidas14 = $this->getRecordsAdHoc($s14);
             $convertidas241 = $this->getRecordsAdHoc($s241);
 
@@ -91,7 +91,7 @@ class Transactions_credipaz extends MY_Model {
                 foreach($accedidasEfectivo as $acc){if ((int)$acc["Id"]==(int)$item["Id"]) {$accTot=(int)$acc["total"];}}
                 foreach($rechazadas as $rech){if ((int)$rech["Id"]==(int)$item["Id"]) {$no=(int)$rech["total"];}}
                 foreach ($retenidas as $rech) {if ((int) $rech["Id"] == (int) $item["Id"]) {$nogestion = (int) $rech["total"];}}
-                $si=($all-$no-$nogestion);
+                $si=($all-$no);
 
                 $conv = 0;
                 $sidTD = "";
@@ -105,7 +105,6 @@ class Transactions_credipaz extends MY_Model {
                     case 241:
                         $conv = (int) $convertidas241[0]["total"];
                         break;
-
                 }
 
                 $html.="    <tr>";
@@ -144,14 +143,13 @@ class Transactions_credipaz extends MY_Model {
                         $sql4 = "SELECT count(id) as total FROM dbCentral.dbo.transaccion WHERE tipo IN (1,2,3,4) AND idEstadoTransaccion=7 AND IdSucursal=" . $item2["IdSucursal"]. " AND fechaalta>='" . $fecha_desde . "' AND fechaalta<='" . $fecha_hasta . "' AND NroDocumento IN (SELECT t.NroDocumento FROM dbCentral.dbo.Transaccion as t WHERE t.tipo IN (14,141,241) AND t.FechaAlta>DATEADD(month,-1,'" . $fecha_desde . "'))";
                         $convertidasSucursal = $this->getRecordsAdHoc($sql4);
 
-
                         $total=$item2["total"];
                         $reject=(int)$rechazosSucursal[0]["total"];
                         $accesos = (int) $accesosSucursal[0]["total"];
                         $nogestion = (int) $retenidasSucursal[0]["total"];
                         $convertidas = (int) $convertidasSucursal[0]["total"];
                         $totalConvertidasSucursales += $convertidas;
-                        $accept=$total-$reject- $nogestion;
+                        $accept=($total-$reject);
                         $html.="    <tr>";
                         $html.="       <td align='left' class='pl-5'>".$item2["sDescripcion"]."</td>";
                         $html.="       <td align='left'>".$item2["sEmail"]."</td>";
@@ -192,7 +190,7 @@ class Transactions_credipaz extends MY_Model {
                 foreach($accedidasTarjeta as $acc){if ((int)$acc["Id"]==(int)$item["Id"]) {$accTot=(int)$acc["total"];}}
                 foreach($rechazadas as $rech){if ((int)$rech["Id"]==(int)$item["Id"]) {$no=(int)$rech["total"];}}
                 foreach ($retenidas as $rech) {if ((int) $rech["Id"] == (int) $item["Id"]) {$nogestion = (int) $rech["total"];}}
-                $si = ($all - $no - $nogestion);
+                $si = ($all - $no);
 
                 $html.="    <tr>";
                 $html.="       <td align='left'>".$item["producto"]." </td>";
@@ -202,6 +200,7 @@ class Transactions_credipaz extends MY_Model {
                 $html .= "       <td align='right' style='color:red;'>" . $no . "</td>";
                 $html .= "       <td align='right' style='color:darkred;'>" . $nogestion . "</td>";
                 $html.="       <td align='right' style='color:green;'>".$si."</td>";
+                $html.="       <td align='right' style='color:blue;'<b>0</b></td>";
                 $html.="    </tr>";
                 if ((int)$item["Id"]==151){
                     $html.="    <tr>";
@@ -229,7 +228,7 @@ class Transactions_credipaz extends MY_Model {
                         $reject=(int)$rechazosSucursal[0]["total"];
                         $accesos=(int)$accesosSucursal[0]["total"];
                         $nogestion = (int) $retenidasSucursal[0]["total"];
-                        $accept = $total - $reject - $nogestion;
+                        $accept = ($total - $reject);
                         $html.="    <tr>";
                         $html.="       <td align='left' class='pl-5'>".$item2["sDescripcion"]."</td>";
                         $html.="       <td align='left'>".$item2["sEmail"]."</td>";
