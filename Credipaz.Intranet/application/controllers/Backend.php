@@ -334,7 +334,8 @@ class Backend extends MY_Controller {
                    $_POST["ccbrand"]="VISA";
                    $_POST["bname"]="Gómez Lorena elisab";
                    $_POST["cardnumber"]="(VISA) ... 6022";
-                case "fiserv-ok":
+               case "fiserv-notify":
+               case "fiserv-ok":
                case "fiserv-error":
                    $data["get"]=$_GET;
                    $data["post"]=$_POST;
