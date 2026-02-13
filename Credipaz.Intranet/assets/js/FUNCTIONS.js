@@ -1853,7 +1853,7 @@ _FUNCTIONS = {
 																	} else {
 																		$(".barTelemedicina").remove();
 																	}
-																	if (_auth.data.tiendamil_rol) {
+																	if (_auth.data.tiendamil_rol=="1") {
 																		_FUNCTIONS.onEvalTiendaMilQueue({});
 																		clearInterval(_FUNCTIONS._TIMER_TIENDAMIL);
 																		_FUNCTIONS._TIMER_TIENDAMIL = setInterval(function () { _FUNCTIONS.onEvalTiendaMilQueue({}); }, 15000);
