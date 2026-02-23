@@ -87,6 +87,8 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
                     _AJAX._justSign = true;
                     _AJAX._init_page = "get-firmar";
                     break;
+                case "adhesiongrupofamiliarmediya":
+                case "adhesionamutramediya":
                 case "adhesionmediya": //formulario
                     _AJAX._formularioFirma = _parameters.monopage;
                     _AJAX._formularioPrefijoCarpetaDigital = "MEDIYA";

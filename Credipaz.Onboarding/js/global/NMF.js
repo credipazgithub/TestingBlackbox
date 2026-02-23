@@ -619,11 +619,16 @@ var _NMF = {
         _AJAX._BPAM["segmento_carpeta_digital"] = segmento_carpeta_digital;
         /*Override de posiciones de firma */
         switch (_AJAX._BPAM["Formulario"]) {
+            case "adhesionamutramediya":
+                y = 350;
+                break;
+            case "adhesiongrupofamiliarmediya":
+                y = 420;
+                break;
             case "adhesionmediya":
                 y = 420;
                 break;
         }
-
         _AJAX._BPAM["pageToAlter"] = pageToAlter;
         _AJAX._BPAM["x"] = x;
         _AJAX._BPAM["y"] = y;

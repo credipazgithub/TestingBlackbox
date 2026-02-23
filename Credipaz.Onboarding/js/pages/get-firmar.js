@@ -6,6 +6,8 @@ oAppGetFirmar.onShow = function () {
     _AJAX._BPAM["ValueForRetrieve"] = _AJAX._KEY;
 
     switch (_AJAX._formularioFirma) {
+        case "adhesionamutramediya":
+        case "adhesiongrupofamiliarmediya":
         case "adhesionmediya":
             $(".headerBar").css({ "background": "#0dabff"});
             $(".imgHeaderFirma").attr("src", "img/logo-mediya.png");
@@ -16,10 +18,9 @@ oAppGetFirmar.onShow = function () {
             break;
     }
 
-
-
-
     _API.UiGetFormulario(_AJAX._BPAM).then(function (data) {
+
+        console.log(data);
         _NMF.onBuildFirmaDocumento(data, _AJAX._formularioPrefijoCarpetaDigital, "", 1, 50, 380);
     });
 }
