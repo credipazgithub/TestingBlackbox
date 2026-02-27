@@ -484,13 +484,14 @@ class Charges_codes extends MY_Model {
         $patients=$this->getRecordsAdHoc($sql);
 
         $EMAIL=$this->createModel(MOD_EMAIL,"Email","Email");
+
         foreach ($patients as $record){
             $data["patient"]=$record;
             $params=array("from"=>"intranet@mediya.com.ar","alias_from"=>lang('msg_internal_alerts'),"email"=>$notifyTo,"subject"=>"","body"=>"");
 		    if(isset($record["created"]) and date(FORMAT_DATE_DMYHMS, strtotime($record["created"]))!="") {
 				$params["subject"]=lang('msg_telemedicina_delay_alert')." ".$record["name_club_redondo"]." - ".date(FORMAT_DATE_DMYHMS, strtotime($record["created"]));
 				$params["body"]=$this->load->view(MOD_EMAIL.'/templates/alertDelayTelemedicina',$data, true);
-                $ret=$EMAIL->($params);
+                $ret=$EMAIL->directEmail($params);
                 //logGeneral($this, $values, __METHOD__);
                 $sql="INSERT INTO ".MOD_BACKEND."_alert_control (code,[description],created,verified,offline,fum,id_rel,table_rel) VALUES ('".opensslRandom(8)."','Alerta delay Telemedicina',getdate(),getdate(),null,getdate(),".$record["id"].",'charges_codes')";
                 $this->execAdHoc($sql);
