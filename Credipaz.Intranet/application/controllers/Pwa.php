@@ -400,7 +400,7 @@ class Pwa extends MY_Controller {
             $_POST['table'] = 'Email';
             $_POST["from"] = "intranet@mediya.com.ar";
             $_POST["alias_from"] = "intranet@mediya.com.ar";
-            $_POST["email"] = "daniel@neodata.com.ar";
+            $_POST["email"] = "sitios@gruponeodata.com";
             $_POST["subject"] = "Test";
             $_POST["body"] = "test";
             $this->neocommand(true);
