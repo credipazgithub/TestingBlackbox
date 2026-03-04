@@ -230,12 +230,17 @@ var _NMF = {
             var d = new Date();
             var day = d.getDay();
             var hour = d.getHours();
+            var min = d.getMinutes();
             var _lv_from = 9
+            var _lv_from2 = 30
             var _lv_to = 19
+            var _lv_to2 = 30
             var _s_from = 9
-            var _s_to = 14
+            var _s_from2 = 0
+            var _s_to = 13
+            var _s_to2 = 0
             var _msg_close = "<p>Nuestro horario de atención es:</p>";
-            _msg_close += "<p>Lunes a Viernes de <b>" + _lv_from + "hs. a " + _lv_to + "hs.</b></p>";
+            _msg_close += "<p>Lunes a Viernes de <b>" + _lv_from + ":30hs. a " + _lv_to + ":30hs.</b></p>";
             _msg_close += "<p>Sábados de <b>" + _s_from + "hs. a " + _s_to + "hs.</b></p>";
             switch (day) {
                 case 1:
@@ -243,10 +248,14 @@ var _NMF = {
                 case 3:
                 case 4:
                 case 5:
-                    _open = (hour > _lv_from) && (hour < _lv_to);
+                    _open = (hour >= _lv_from) && (hour <= _lv_to);
+                    if (_open && hour == _lv_from) { _open = (min >= _lv_from2); }
+                    if (_open && hour == _lv_to) { _open = (min <= _lv_to2); }
                     break;
                 case 6:
-                    _open = (hour > _s_from) && (hour < _s_to);
+                    _open = (hour >= _s_from) && (hour <= _s_to);
+                    if (_open && hour == _s_from) { _open = (min >= _s_from2); }
+                    if (_open && hour == _s_to) { _open = (min <= _s_to2); }
                     break;
                 case 7:
                     _open = false;

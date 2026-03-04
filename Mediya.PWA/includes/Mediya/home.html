@@ -61,10 +61,14 @@
         if (!_NMF._credentialsReady) {
             setTimeout(function () {
                 _API.UiGetCredenciales({ "Tipo": "SWISS", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                    console.log("SWISS");
+                    console.log(datajson);
                     _NMF._dataSwiss = datajson;
                     _NMF.drawCredentialSwiss(_NMF._dataSwiss);
                 }).catch(function (error) { });
                 _API.UiGetCredenciales({ "Tipo": "GERDANNA", "NroDocumento": _NMF._auth_user_data.dni, "Sexo": _NMF._auth_user_data.sex }).then(function (datajson) {
+                    console.log("GERDANNA");
+                    console.log(datajson);
                     _NMF._dataGerdanna = datajson;
                     _NMF.drawCredentialGerdanna(_NMF._dataGerdanna);
                 }).catch(function (error) { });
