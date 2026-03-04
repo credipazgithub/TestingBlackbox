@@ -26,6 +26,10 @@ oAppFirmaCreditos.onShow = function () {
                 case 8: // credito Amutra Vivienda
                 case 9: // credito Amutra Hogar
                 case 10: // credito Amutra Consumo
+                case 2: // refinanciacion credito Credipaz
+                case 4: // refinanciacion credito Amutra 
+                case 562: // refinanciacion tarjeta VISA
+                case 563: // refinanciacion tarjeta CABAL
                     switch (parseInt(_NMF._ClientData._solicitudData.id_type_modo_pago)) {
                         case 1: // efectivo
                             $(".EfectivoArea").removeClass("d-none");
