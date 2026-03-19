@@ -14,9 +14,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
             <br/>
             <h5><b>Por favor cierre esta solapa de su navegador para continuar</b></h5>
             <div class="">
-			    <?php echo "POST: ".serialize($post)."<br/>";?>
-			    <?php echo "GET: ".serialize($get)."<br/>";?>
+			    <!--
+                <php echo "POST: ".serialize($post)."<br/>";?>
+			    <php echo "GET: ".serialize($get)."<br/>";?>
+                -->
             </div>
         </div>
     </div>
 </div>
+<script>clearInterval(_FUNCTIONS._TMR_PAY_BOTONPAGO):</script>

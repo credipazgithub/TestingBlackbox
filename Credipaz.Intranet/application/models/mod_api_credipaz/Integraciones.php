@@ -270,9 +270,6 @@ class Integraciones extends MY_Model {
         }
     }
 
-
-
-
     public function GetCreditCardCurrentBalances($values){
         try {
             $values["IdCliente"] = keySecureZero($values, "IdCliente");

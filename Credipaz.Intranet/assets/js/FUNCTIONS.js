@@ -4089,7 +4089,7 @@ _FUNCTIONS = {
 					_FUNCTIONS.onWindowComprobante(response, _fulldata, _raw_request);
 				} else {
 					_FUNCTIONS.onAlert({ "class": "alert-danger", "message": "Su pago no ha podido ser procesado.  Reintente con otro medio de pago." });
-					setTimeout(function () { window.location.reload(); }, 3000);
+					//setTimeout(function () { window.location.reload(); }, 3000);
 				}
 			}
 		}).catch(function (error) {
