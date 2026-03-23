@@ -115,11 +115,11 @@ class Payments_fiserv extends MY_Model {
 		    if(!isset($values["responseFailURL"])){$values["responseFailURL"]="";}
 		    if(!isset($values["responseSuccessURL"])){$values["responseSuccessURL"]="";}
 		    if(!isset($values["targetFrame"])){$values["targetFrame"]="iframe_fiserv";}
-		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://intranet.credipaz.com/linkDirect/fiserv-error";}
-		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://intranet.credipaz.com/linkDirect/fiserv-ok";}
+		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-error";}
+		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-ok";}
 
 			$checkoutoption="classic";
-			$hostURI="https://intranet.credipaz.com/linkDirect/fiserv-notify";
+			$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
 			$txntype="sale";
 			$timezone="America/Buenos_Aires";
 			$txndatetime=date("Y:m:d-H:i:s");
@@ -141,7 +141,7 @@ class Payments_fiserv extends MY_Model {
 			$identificacion=$values["itemsPagos"][0]["Identificacion"];
 			$responseFailURL=$values["responseFailURL"];
 			$responseSuccessURL=$values["responseSuccessURL"];
-			$transactionNotificationURL="https://intranet.credipaz.com/linkDirect/fiserv-notify";
+			$transactionNotificationURL="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
 			$authenticateTransaction="false";
 			$mode="payonly";
 			$cardFunction="";
