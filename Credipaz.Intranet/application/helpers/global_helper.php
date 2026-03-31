@@ -66,6 +66,11 @@ function getHeader($id){
     }
     return "";
 }
+function get_client_ip() {
+    $keys = ['HTTP_CLIENT_IP', 'HTTP_X_FORWARDED_FOR', 'HTTP_X_FORWARDED', 'HTTP_FORWARDED_FOR', 'HTTP_FORWARDED', 'REMOTE_ADDR'];
+    foreach ($keys as $key) {if (!empty($_SERVER[$key])) {return trim(explode(',', $_SERVER[$key])[0]);}}
+    return '0.0.0.0';
+}
 function getServer(){
     $protocol = (!empty($_SERVER['HTTPS']) && $_SERVER['HTTPS'] !== 'off' || $_SERVER['SERVER_PORT'] == 443) ? "https://" : "http://";
     $host=$_SERVER['SERVER_NAME'];
