@@ -553,6 +553,7 @@
     <Content Include="application\models\mod_dbcentral\tarMovimiento.php" />
     <Content Include="application\models\mod_dbcentral\wrkRequerimiento.php" />
     <Content Include="application\models\mod_dbcentral\wrkRequerimiento_userview.php" />
+    <Content Include="application\controllers\Welcome.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
@@ -670,9 +671,6 @@
   <ItemGroup>
     <Content Include="application\.htaccess" />
     <Content Include="application\config\appcrypto.key" />
-    <Content Include="application\config\credipaz-club-redondo-firebase-adminsdk-6wi9f-331a12014e.json" />
-    <Content Include="application\config\credipaz-servicios-financieros-firebase-adminsdk-7b1ba-114df7b6d0.json" />
-    <Content Include="application\config\notifier-credipaz-firebase-adminsdk-5gv2b-e3cfc8395a.json" />
     <Content Include="application\config\openssl.cnf" />
     <Content Include="application\config\private_key.pem" />
     <Content Include="application\config\public_key.pem" />

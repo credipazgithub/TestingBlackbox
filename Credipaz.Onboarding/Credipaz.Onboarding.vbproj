@@ -144,7 +144,6 @@
     <Content Include="img\wait.gif" />
     <Content Include="img\xlogo.png" />
     <Content Include="head.html" />
-    <Content Include="js\global\CONDITIONAL.js" />
     <Content Include="js\global\TOOLS.js" />
     <Content Include="js\pages\get-tokenizar.js" />
     <Content Include="js\pages\get-foto.js" />

@@ -157,7 +157,6 @@ _AJAX.readConfigServers("Intranet").then(function (data) {
         var _val = { "id": _AJAX._KEY, "idtx": _AJAX._idtx, "decision": _AJAX._decision, "externalid": _AJAX._externalid, "end": "NAK" };
         _API.UiOnboardingGetRequest(_val).then(function (data) {
             /* Asigna los datos obtenidos del request a la estructura interna */
-            _CONDITIONAL.onPrevalidationSplit(data);
             _NMF.onSetSolicitudData(data);
 
             /* Evalua si es respuesta de idemia y si es solamente una verificacion */

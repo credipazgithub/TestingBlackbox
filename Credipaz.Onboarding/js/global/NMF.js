@@ -19,7 +19,6 @@ var _NMF = {
         "_verifyData": {},
         "_solicitudData": {},
     },
-    _preValidationSelected: "",
     /*
      * Controlinterface properties
      * */

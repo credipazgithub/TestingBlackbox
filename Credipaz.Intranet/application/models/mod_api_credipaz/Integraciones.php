@@ -145,6 +145,27 @@ class Integraciones extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+    public function GetLoanPayments($values) {
+        try {
+            $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
+            if ($values["IdSolicitud"] == 0) {throw new Exception(lang("api_error_1040"), 1040);}
+            $IdSolicitud = (int) $values["IdSolicitud"];
+
+            $fields = array("IdSolicitud" => $IdSolicitud);
+            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
+            $ret = API_callAPI("/Integraciones/GetLoanPayments/", $headers, json_encode($fields));
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function GetLoanRates($values) {
         try {
             $values["IdSolicitud"] = keySecureZero($values, "IdSolicitud");
