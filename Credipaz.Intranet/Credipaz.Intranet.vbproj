@@ -589,6 +589,7 @@
     <Content Include="documentacion\integraciones\GetExchangeRateTransaction.html" />
     <Content Include="documentacion\integraciones\GetLoan.html" />
     <Content Include="documentacion\integraciones\GetLoanFees.html" />
+    <Content Include="documentacion\integraciones\GetLoanPayments.html" />
     <Content Include="documentacion\integraciones\GetLoanRates.html" />
     <Content Include="documentacion\integraciones\GetPendingServiceBills.html" />
     <Content Include="documentacion\integraciones\GetProductBankStatementFile.html" />
