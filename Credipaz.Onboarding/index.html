@@ -24,7 +24,6 @@
                     $.getScript("js/global/API.js?" + _tk).done(function (script, textStatus) {
                         $.getScript("js/global/INDEX.js?" + _tk).done(function (script, textStatus) {
                             $.getScript("configuration.js?" + _tk).done(function (script, textStatus) {
-                                alert(9);
                                 _NMF.onGetLocation().then(function (data) {
                                     _AJAX._BPAM["lat"] = data.latitude;
                                     _AJAX._BPAM["lng"] = data.longitude;
