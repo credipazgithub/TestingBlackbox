@@ -123,7 +123,7 @@ class Payments_fiserv extends MY_Model {
         
             //172.16 si viene del ip que empieza asi, mandar fiserv.credipaz.com
             $ips=get_client_ip();
-            if (str_contains($ips,'172.16.')){
+            if (str_starts_with($ips,'172.16.')){
 		        if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-error";}
 		        if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-ok";}
     			$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
