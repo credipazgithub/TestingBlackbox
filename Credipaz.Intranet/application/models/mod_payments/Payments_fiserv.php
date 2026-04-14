@@ -121,6 +121,7 @@ class Payments_fiserv extends MY_Model {
    			$hostURI="https://intranet.credipaz.com/linkDirect/fiserv-notify";
 			$transactionNotificationURL="https://intranet.credipaz.com/linkDirect/fiserv-notify";
         
+            /*
             //172.16 si viene del ip que empieza asi, mandar fiserv.credipaz.com
             $ips=get_client_ip();
             if (str_starts_with($ips,'172.16.')){
@@ -129,6 +130,7 @@ class Payments_fiserv extends MY_Model {
     			$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
     			$transactionNotificationURL="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
             }
+            */
 			$checkoutoption="classic";
 			$txntype="sale";
 			$timezone="America/Buenos_Aires";
