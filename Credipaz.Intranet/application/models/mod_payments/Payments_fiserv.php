@@ -116,21 +116,18 @@ class Payments_fiserv extends MY_Model {
 		    if(!isset($values["responseSuccessURL"])){$values["responseSuccessURL"]="";}
 		    if(!isset($values["targetFrame"])){$values["targetFrame"]="iframe_fiserv";}
 
-		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://intranet.credipaz.com/linkDirect/fiserv-error";}
+		    /*
+            if($values["responseFailURL"]==""){$values["responseFailURL"]="https://intranet.credipaz.com/linkDirect/fiserv-error";}
 		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://intranet.credipaz.com/linkDirect/fiserv-ok";}
    			$hostURI="https://intranet.credipaz.com/linkDirect/fiserv-notify";
 			$transactionNotificationURL="https://intranet.credipaz.com/linkDirect/fiserv-notify";
-        
-            /*
-            //172.16 si viene del ip que empieza asi, mandar fiserv.credipaz.com
-            $ips=get_client_ip();
-            if (str_starts_with($ips,'172.16.')){
-		        if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-error";}
-		        if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-ok";}
-    			$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
-    			$transactionNotificationURL="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
-            }
             */
+
+		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-error";}
+		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-ok";}
+    		$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
+    		$transactionNotificationURL="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
+       
 			$checkoutoption="classic";
 			$txntype="sale";
 			$timezone="America/Buenos_Aires";
