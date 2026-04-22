@@ -194,6 +194,12 @@
                         _NMF.onEvalLoginStatus();
                         $(".inactive-paycode").removeClass("d-none");
                         $(".btn-generate-paycode").removeClass("d-none");
+
+                        $.getScript(("./js/PAY.js"), function () {
+                            $.getScript("./js/PHOTO.js", function () {
+                            });
+                        });
+
                     });
                 });
             });
