@@ -170,9 +170,10 @@ var _PAY = {
                 return false;
             };
             $(".body-pago-form").html("");
-            if (_NMF._session_data.TeleMedConsultasResto == 0) {
+            if (parseInt(_NMF._session_data.TeleMedConsultasResto) == 0) {
                 var _total = $(".importe").val();
                 if (_total > 0) {
+                    alert(1);
                     _NMF._itemsPagos = [{ "Tipo": "TELEMED", "Identificacion": _NMF._session_data.ClubRedondo, "Importe": _total, "idTransfer": 0 }];
                     var _sandbox = 0;
                     var _visible = 0;
@@ -187,7 +188,10 @@ var _PAY = {
                         "visible": _visible,
                         "parentUri": _location
                     };
+                    alert(2);
                     _API.UiBuildFormFiserv(_json).then(function (data) {
+                        alert(3);
+
                         data.data += "<iframe id='iframe_fiserv' name='iframe_fiserv' class='iframe_fiserv d-none' src='' frameborder='0' style='height:100vh;width:100%;' />";
                         $(".body-pago-form").html(data.data).removeClass("d-none");
                         $(".hrFiserv").addClass("d-none");
@@ -197,6 +201,9 @@ var _PAY = {
                             $(".tbl-fiserv").addClass("d-none");
                             $(".btn-pagar-fiserv").click();
                         }
+                    }).catch(function (eerr) {
+                        alert("Error");
+                        console.log(eerr);
                     });
                 }
             } else {

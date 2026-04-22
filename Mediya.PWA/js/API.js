@@ -65,7 +65,7 @@ var _API = {
                 _json["module"] = "mod_telemedicina";
                 _json["table"] = "messages";
                 _json["model"] = "messages";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -109,7 +109,7 @@ var _API = {
                 _json["module"] = "mod_telemedicina";
                 _json["table"] = "charges_codes";
                 _json["model"] = "charges_codes";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -120,7 +120,7 @@ var _API = {
                 _json["module"] = "mod_legal";
                 _json["table"] = "charges_codes";
                 _json["model"] = "charges_codes";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -152,7 +152,7 @@ var _API = {
                 _json["module"] = "mod_telemedicina";
                 _json["table"] = "messages";
                 _json["model"] = "messages";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -212,7 +212,7 @@ var _API = {
                 _json["module"] = "mod_backend";
                 _json["table"] = "Polls";
                 _json["model"] = "Polls";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -223,7 +223,7 @@ var _API = {
                 _json["module"] = "mod_backend";
                 _json["table"] = "Consents";
                 _json["model"] = "Consents";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -234,7 +234,7 @@ var _API = {
                 _json["module"] = "mod_payments";
                 _json["table"] = "payments_fiserv";
                 _json["model"] = "payments_fiserv";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -245,7 +245,7 @@ var _API = {
                 _json["module"] = "mod_payments";
                 _json["table"] = "Transactions";
                 _json["model"] = "Transactions";
-                _json["method"] = "api.backend/neocommand"; //method
+                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
