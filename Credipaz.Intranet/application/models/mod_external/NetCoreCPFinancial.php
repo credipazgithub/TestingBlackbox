@@ -516,7 +516,8 @@ class NetCoreCPFinancial extends MY_Model {
                 "cvv"=>$values["wCVV"],
                 "numero"=>$values["wNumero"],
                 "documento" => $values["wDocumento"],
-                "nombre" => $values["wNombre"]
+                "nombre" => $values["wNombre"],
+                "Id_empresa_origen" => $values["wIdEmpresaOrigen"]
                 );
             $url = (CPFINANCIALS . "/CardCred/AltaTarjetaAlt/");
             $result = $this->callAPI($url, $headers, json_encode($fields));
