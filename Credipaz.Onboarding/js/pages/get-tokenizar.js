@@ -13,18 +13,22 @@ oAppGetTokenizar.onShow = function () {
         }
         switch (_AJAX._formularioFirma) {
             case "tokenizar-tdnt": //Tokenizaciones-tarjetas debito Neutrales
+                $(".wIdEmpresaOrigen").val("1");
                 $(".areaDocumento").removeClass("d-none");
                 $(".areaMensaje").html("Los datos se registrarán solo para el uso autorizado por el cliente.");
                 break;
             case "tokenizar-tdcp": //Tokenizaciones-tarjetas debito Credipaz
                 _API.UiOnboardingGetRequest({ "id": _AJAX._KEY, "end": "AK" }).then(function (data) {
+                    $(".wIdEmpresaOrigen").val("1");
                     $(".IdTransaccion").val(data.data.IdTransaccion);
                     $(".areaMensaje").html("Los datos se registrarán a la transacción " + data.data.IdTransaccion);
                 });
                 break;
             case "tokenizar-tdmy": //Tokenizaciones-tarjetas debito Mediya
                 $(".headerBar").css({ "background": "#0dabff" });
-                $(".imgHeaderFirma").attr("src", "img/logo-mediya.png");               $(".IdSocio").val(_AJAX._KEY);
+                $(".imgHeaderFirma").attr("src", "img/logo-mediya.png");
+                $(".IdSocio").val(_AJAX._KEY);
+                $(".wIdEmpresaOrigen").val("3");
                 $(".areaMensaje").html("Los datos se registrarán al socio " + _AJAX._KEY);
                 break;
         }
