@@ -4093,7 +4093,7 @@ _FUNCTIONS = {
 				}
 			}
 		}).catch(function (error) {
-			alert(error.message);
+			alert("id:" + _idTransfer_botonpago + " " + error.message);
 		});
 	},
 	onVerCredencialesMediya: function (_this) {

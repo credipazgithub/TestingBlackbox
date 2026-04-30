@@ -38,6 +38,7 @@ oAppFirmaCreditos.onShow = function () {
                             $(".CBUArea").removeClass("d-none");
                             break;
                     }
+                case 566: // refinanciacion tarjeta CABAL/CABAL
                 case 351: // Tarjeta titular
                 case 451: // Tarjeta adicional
                     const canvas = document.querySelector('#sketchpad');
@@ -80,6 +81,8 @@ oAppFirmaCreditos.onShow = function () {
                     _AJAX._responseTitle = "¡Gracias por confiar en nosotros!";
                     _AJAX._responseMessage = "Proceso de verificación de identidad finalizado.";
                     _NMF.onTryPage(null, "msg-ok");
+                    break;
+                default:
                     break;
             }
         }).catch(function (err) {
