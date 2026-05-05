@@ -222,7 +222,10 @@ _AJAX = {
 									_body += "<li>Desde administración, se ha modificado su perfil de seguridad</li>";
 									_body += "</p > ";
 									_body += "<p class='text-monospace'>Por favor autentíquese nuevamente, para seguir en este dispositivo.</p>";
-									_FUNCTIONS.onInfoModal({ "close": true, "title": _title, "body": _body }, null, function () { window.location = "/"; });
+									_FUNCTIONS.onInfoModal({ "close": true, "title": _title, "body": _body }, null, function () {
+										window.location.reload();
+										//window.location = "/";
+									});
 									_FUNCTIONS.onReloadInit();
 									break;
 								default:

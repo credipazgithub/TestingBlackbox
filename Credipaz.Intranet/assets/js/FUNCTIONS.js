@@ -56,7 +56,12 @@ _FUNCTIONS = {
 	},
 	onReloadInit: function () {
 		$(".sidebar-wrapper").fadeOut("slow");
-		$(".dyn-area").fadeOut("slow", function () { setTimeout(function () { window.location = "/"; }, 10000); });
+		$(".dyn-area").fadeOut("slow", function () {
+			setTimeout(function () {
+				window.location.reload();
+				//window.location = "/";
+			}, 10000);
+		});
 	},
 
 	onAlert: function (_json) {
