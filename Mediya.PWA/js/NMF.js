@@ -263,7 +263,7 @@ var _NMF = {
             setTimeout(function () {
                 if (_NMF._showPopup) {
                     var _html = "<a href='#' class='btn-data-page initAsociate btnAsociate' data-direction='normal' data-href='./includes/MediYa/asociarme.html'>";
-                    _html += "<img src='img/banner.jpg' style='width:100%;'/>"
+                    _html += "<img src='img/banner.jpg?" + _TOOLS.UUID() + "' style='width:100%;'/>";
                     _html += "</a>";
                     _NMF.onShowHtmlModal(_html, function () {
                         _NMF._showPopup = false;

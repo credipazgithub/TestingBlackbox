@@ -339,12 +339,12 @@ class Backend extends MY_Controller {
                case "fiserv-error":
                    $data["get"]=$_GET;
                    $data["post"]=$_POST;
-        	       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
             	   $CLUBREDONDOWS=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
 				   $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
+        	       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+                   $NETCORECPFINANCIAL->Webhook($_POST);
 				   $comments=json_decode($_POST["comments"], true);
 				   $id=$comments[0]["idTransfer"];
-
 				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
 				   $dni_request=$record["data"][0]["dni_request"];
                    $status=$record["data"][0]["status"];

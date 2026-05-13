@@ -607,10 +607,6 @@ class ClubRedondoWS extends MY_Model {
             logGeneralCustom($this, $params, "Payments::setItemPago", "idpt: " . $params["id"] . " Servicio:" . $params["servicioPago"] . " Tipo:" . $params["Tipo"] . " Identificacion:" . $params["Identificacion"] . " Importe:" . $params["Importe"] . " Resultado:" . $params["Resultado"] . " Transaccion:" . $params["Transaccion"] . " Respuesta:" . $params["Respuesta"]);
             $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             $result = $NETCORECPFINANCIAL->ProcesarItemPago($params);
-
-        log_message("error", "RELATED setItemPago result xxx " . json_encode($result, JSON_PRETTY_PRINT));
-
-
             logGeneralCustom($this, $params, "Payments::setItemPagoResponse", $result);
             /*Saving receipt for dni + payment*/
             $this->generateReceipt($params);

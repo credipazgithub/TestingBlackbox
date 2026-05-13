@@ -561,8 +561,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function GetFormulario($values)
     {
         try {
-            
-
             $headers = $this->Authenticate();
             $fields = array(
                 "Format" => (string)$values["Format"],
@@ -1215,6 +1213,31 @@ class NetCoreCPFinancial extends MY_Model {
 			$url=(CPFINANCIALS."/Pagos/IniciarTransaccion/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
 			$result = json_decode($result, true);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function Webhook($values){
+        try {
+			$headers = $this->Authenticate();
+ 			$fields = array(
+                'scope' => "fiserv",
+                'raw_data' => json_encode($values),
+                'referrer' => (string)$_SERVER["REMOTE_ADDR"]
+			);
+            $url=(CPFINANCIALS."/Pagos/Webhook/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
             return array(
                 "code"=>"2000",
                 "status"=>"OK",
