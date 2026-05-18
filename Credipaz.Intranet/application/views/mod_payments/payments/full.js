@@ -12,7 +12,6 @@ $("body").off("click", ".btn-deuda-fiserv").on("click", ".btn-deuda-fiserv", fun
 $("body").off("click", ".btn-copySimple").on("click", ".btn-copySimple", function () {
 	_TOOLS.copySimple($(this).attr("data-source"));
 });
-
 $("body").off("click", ".btn-pagar-fiserv").on("click", ".btn-pagar-fiserv", function (e) {
 	$(".btn-pagar-fiserv").hide();
 	$(".paymentMethod").val($(this).attr("data-tc"));
