@@ -467,6 +467,18 @@ var _NMF = {
             _NMF._ClientData._solicitudData.img_additional = data.data.img_additional;
             _NMF._ClientData._solicitudData.CBU = data.data.CBU;
             _NMF._ClientData._solicitudData.id_type_request = data.data.id_type_request;
+
+            _NMF._ClientData._solicitudData.Capital = data.data.Capital;
+            _NMF._ClientData._solicitudData.Cuenta = "N/A";
+            _NMF._ClientData._solicitudData.Pago_Total_Cierre = data.data.Pago_Total_Cierre;
+            _NMF._ClientData._solicitudData.Deuda_Futura_Cierre = data.data.Deuda_Futura_Cierre;
+            _NMF._ClientData._solicitudData.Deuda_Total_Cierre = data.data.Deuda_Total_Cierre;
+            _NMF._ClientData._solicitudData.Pagos_Periodo = data.data.Pagos_Periodo;
+            _NMF._ClientData._solicitudData.Consumos_Periodo = data.data.Consumos_Periodo;
+            _NMF._ClientData._solicitudData.created = data.data.created;
+
+
+
             _NMF._ClientData.bienvenida = ("Hola " + _NMF._ClientData._solicitudData.Nombre + ", bienvenido/a a Credipaz");
         } catch (ex) {
             console.log(ex);
@@ -503,19 +515,33 @@ var _NMF = {
                         data = _TOOLS.tagReplace(data, /\[IMPORTE\]/g, _TOOLS.toCurr(_NMF._ClientData._solicitudData.importe));
                         data = _TOOLS.tagReplace(data, /\[CUOTAS\]/g, _NMF._ClientData._solicitudData.cuotas);
 
-                        /* Agregado 8/1/2024 */
-                        data = _TOOLS.tagReplace(data, /\[MONTO\]/g, _TOOLS.toCurr(_NMF._ClientData._solicitudData.monto));
                         data = _TOOLS.tagReplace(data, /\[TNA\]/g, _NMF._ClientData._solicitudData.TNA + "%");
                         data = _TOOLS.tagReplace(data, /\[TEA\]/g, _NMF._ClientData._solicitudData.TEA + "%");
                         data = _TOOLS.tagReplace(data, /\[CFTNA\]/g, _NMF._ClientData._solicitudData.CFTNA + "%");
                         data = _TOOLS.tagReplace(data, /\[CFTEA\]/g, _NMF._ClientData._solicitudData.CFTEA + "%");
 
-                        /* Agregado 29/8/2025 */
                         if (_NMF._ClientData._solicitudData.IdCliente != "") {
                             data = _TOOLS.tagReplace(data, /\[SUCURSAL\]/g, _NMF._ClientData._solicitudData.Sucursal);
                             if (_NMF._ClientData._solicitudData.IdCliente != null) { data = _TOOLS.tagReplace(data, /\[LEGAJO\]/g, _NMF._ClientData._solicitudData.IdCliente); }
                             if (_NMF._ClientData._solicitudData.Nacionalidad != null) { data = _TOOLS.tagReplace(data, /\[NACIONALIDAD\]/g, _NMF._ClientData._solicitudData.Nacionalidad); }
                             if (_NMF._ClientData._solicitudData.EstadoCivil != null) { data = _TOOLS.tagReplace(data, /\[ESTADOCIVIL\]/g, _NMF._ClientData._solicitudData.EstadoCivil); }
+                        }
+
+                        switch (parseInt(_NMF._ClientData._solicitudData.Tipo)) {
+                            case 566://REfinanciacion
+                                data = _TOOLS.tagReplace(data, /\[MONTO\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Capital));
+                                data = _TOOLS.tagReplace(data, /\[CUENTA\]/g, _NMF._ClientData._solicitudData.Cuenta);
+                                data = _TOOLS.tagReplace(data, /\[PAGO_TOTAL_ULTIMO_RESUMEN\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Pago_Total_Cierre));
+                                data = _TOOLS.tagReplace(data, /\[DEUDA_A_VENCER_ULTIMO_RESUMEN\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Deuda_Futura_Cierre));
+                                data = _TOOLS.tagReplace(data, /\[DEUDA_TOTAL_EXIGIDA\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Deuda_Total_Cierre));
+                                data = _TOOLS.tagReplace(data, /\[PAGOS_EFECTUADOS_MES\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Pagos_Periodo));
+                                data = _TOOLS.tagReplace(data, /\[CONSUMOS_EFECTUADOS_PERIODO\]/g, _TOOLS.toFormat(_NMF._ClientData._solicitudData.Consumos_Periodo));
+                                data = _TOOLS.tagReplace(data, /\[FECHAVTO1\]/g, _NMF._ClientData._solicitudData.created);
+
+                                break;
+                            default:
+                                data = _TOOLS.tagReplace(data, /\[MONTO\]/g, _TOOLS.toCurr(_NMF._ClientData._solicitudData.monto));
+                                break;
                         }
 
                         _NMF._ClientData._solicitudData.pdf_solicitud = _TOOLS.utf8_to_b64(data);

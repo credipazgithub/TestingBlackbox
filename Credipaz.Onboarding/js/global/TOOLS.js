@@ -52,6 +52,9 @@ var _TOOLS = {
     toCurr: function (val) {
         return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ars', currencyDisplay: 'narrowSymbol' }).format(val);
     },
+    toFormat: function (val) {
+        return new Intl.NumberFormat('es-AR', { style: 'decimal', minimumFractionDigits: 2, maximumFractionDigits: 2, }).format(val);
+    },
     todayYYYYMMDD: function (_separator) {
         var currentDate = new Date();
         var day = currentDate.getDate();
