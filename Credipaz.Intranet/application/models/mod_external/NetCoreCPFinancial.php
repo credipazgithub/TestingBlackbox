@@ -508,19 +508,8 @@ class NetCoreCPFinancial extends MY_Model {
         try {
             
             $headers = $this->Authenticate();
-            $fields = array(
-                "idTransaccion"=>$values["IdTransaccion"],
-                "idSocio"=>$values["IdSocio"],
-                "month"=>$values["wMM"],
-                "year"=>$values["wYY"],
-                "cvv"=>$values["wCVV"],
-                "numero"=>$values["wNumero"],
-                "documento" => $values["wDocumento"],
-                "nombre" => $values["wNombre"],
-                "Id_empresa_origen" => $values["wIdEmpresaOrigen"]
-                );
-            $url = (CPFINANCIALS . "/CardCred/AltaTarjetaAlt/");
-            $result = $this->callAPI($url, $headers, json_encode($fields));
+            $url = (CPFINANCIALS . "/CardCred/SaveMediosCobro/");
+            $result = $this->callAPI($url, $headers, json_encode($values));
             $result = json_decode($result, true);
             //if ($result["logica"]=="false") {throw new Exception($result["mensaje"], 9999);}
             return array(
