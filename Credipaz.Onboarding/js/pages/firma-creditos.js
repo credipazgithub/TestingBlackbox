@@ -19,16 +19,15 @@ oAppFirmaCreditos.onShow = function () {
             }
             switch (parseInt(data.data.id_type_request)) {
                 case 1: // credito Credipaz
+                case 2: // refinanciacion credito Credipaz
+                case 3: // refinanciacion credito Amutra
+                case 4: // refinanciacion credito Amutra 
                 case 5: // credito Credipaz Vivienda
                 case 6: // credito Credipaz Hogar
                 case 7: // credito Credipaz Consumo
-                case 3: // credito Amutra
                 case 8: // credito Amutra Vivienda
                 case 9: // credito Amutra Hogar
                 case 10: // credito Amutra Consumo
-                case 2: // refinanciacion credito Credipaz
-                case 4: // refinanciacion credito Amutra 
-                case 562: // refinanciacion tarjeta VISA
                 case 563: // refinanciacion tarjeta CABAL
                     switch (parseInt(_NMF._ClientData._solicitudData.id_type_modo_pago)) {
                         case 1: // efectivo
@@ -39,8 +38,6 @@ oAppFirmaCreditos.onShow = function () {
                             break;
                     }
                 case 566: // refinanciacion tarjeta CABAL/CABAL
-                case 351: // Tarjeta titular
-                case 451: // Tarjeta adicional
                     const canvas = document.querySelector('#sketchpad');
                     const sketchpad = new Atrament(canvas, { width: 250, height: 200, color: 'black' });
                     sketchpad.clear();
