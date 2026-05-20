@@ -19,8 +19,6 @@ oAppGetFirmar.onShow = function () {
     }
 
     _API.UiGetFormulario(_AJAX._BPAM).then(function (data) {
-
-        console.log(data);
         _NMF.onBuildFirmaDocumento(data, _AJAX._formularioPrefijoCarpetaDigital, "", 1, 50, 380);
     });
 }

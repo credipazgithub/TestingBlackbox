@@ -651,7 +651,8 @@ var _NMF = {
                 y = 420;
                 break;
             case "adhesionmediya":
-                y = 420;
+                x = 150;
+                y = 500;
                 break;
         }
         _AJAX._BPAM["pageToAlter"] = pageToAlter;
