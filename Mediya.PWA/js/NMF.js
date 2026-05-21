@@ -580,14 +580,16 @@ var _NMF = {
 
     },
     onActionLogin: function (_this) {
-        if (!$("#chkTerminos").prop("checked")) {
+        var _step = _this.attr("data-step");
+        if (!$("#chkTerminos").prop("checked") && _step != "firstforced" && _step != "lastforced") {
             _NMF.onModalAlert("Alerta", "Debe aceptar los términos y condiciones de uso.", "info");
             return false;
         }
         var _dni = $(".dni").val();
         var _password = $(".password").val();
         var _email = (_dni + _HTTPREQUEST._sufixEmail);
-        switch (_this.attr("data-step")) {
+        switch (_step) {
+            case "firstforced":
             case "first":
                 _API.UiTestUserValuePWA({ "type": "document", "documentNumber": _dni })
                     .then(function (data) {
@@ -603,8 +605,13 @@ var _NMF = {
                         } else {
                             $(".lastStep").removeClass("d-none");
                         }
+                        $("body").remove(".clickLog");
+                        $("body").append("<button class='clickLog2' data-step='lastforced'/>");
+                        _NMF.onActionLogin($(".clickLog2"));
+
                     });
                 break;
+            case "lastforced":
             case "last":
                 _NMF._auth_user_data.id = 0;
                 _NMF._auth_user_data.email = _email;

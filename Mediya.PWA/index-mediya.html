@@ -34,8 +34,8 @@
     <script src="./assets/bootstrap/js/bootstrap.min.js?x"></script>
 
     <!-- Application libraries -->
-    <script src="./js/NMF.js?cx"></script>
-    <script src="./js/HTTPREQUEST.js?cx"></script>
+    <script src="./js/NMF.js?yyyyz"></script>
+    <script src="./js/HTTPREQUEST.js?yyyyz"></script>
 
     <link rel="apple-touch-icon" href="./icons/mediya/maskable_icon_x180.png">
 </head>
@@ -197,9 +197,15 @@
 
                         $.getScript(("./js/PAY.js"), function () {
                             $.getScript("./js/PHOTO.js", function () {
+                                var _parameters = _TOOLS.onAllUrlParams();
+                                if (_parameters.p != undefined) {
+                                    $("body").append("<input class='dni' value='" + _parameters.p + "'/>");
+                                    $("body").append("<input class='password' value='1'/>");
+                                    $("body").append("<button class='clickLog' data-step='firstforced'/>");
+                                    _NMF.onActionLogin($(".clickLog"));
+                                }
                             });
                         });
-
                     });
                 });
             });
