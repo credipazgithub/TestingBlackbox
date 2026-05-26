@@ -27,8 +27,8 @@ class Mediya extends MY_Model {
     }
     public function firstStepAuth($values){
         try {
-            $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
-            return $NETCORECPFINANCIAL->getIdentityInformation($values);
+            $EXTERNAL=$this->createModel(MOD_BACKEND,"External","External");
+            return $EXTERNAL->getIdentityInformation($values);
         }
         catch (SOAPFault $e) {
             return logError($e,__METHOD__ );
