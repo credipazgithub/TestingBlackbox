@@ -344,11 +344,11 @@ class Backend extends MY_Controller {
         	       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
                    $NETCORECPFINANCIAL->Webhook($_POST);
 				   $comments=json_decode($_POST["comments"], true);
-				   $id=$comments[0]["idTransfer"];
-				   $record=$TRANSACTIONS->get(array("where"=>"id=".$id));
-				   $dni_request=$record["data"][0]["dni_request"];
-                   $status=$record["data"][0]["status"];
-                    if ($status=="INICIADO") {
+				   $identificacion=$comments[0]["Identificacion"];
+				   $record=$TRANSACTIONS->get(array("where"=>"Identificacion='".$identificacion."' AND status='INICIADO'","order"=>"id desc"));
+                   if ((int)$record["totalrecords"]!=0) {
+    				   $id=$record["data"][0]["id"];
+    				   $dni_request=$record["data"][0]["dni_request"];
                        $registro_externo=explode(":",$_POST["approval_code"])[1];
                        $params=array(
 			               'id'=>$id,
