@@ -2200,7 +2200,36 @@ class NetCoreCPFinancial extends MY_Model {
 		);
 		return $FILES_BASE64->save($data);
 	}
-
+    private function getPaymentsByType($values, $type)
+    {
+        $sql = "EXEC DBCentral.dbo.NS_Get_DeudaAPagar ";
+        $sql .= " @sTipo='D'";
+        $sql .= ", @sValor=" . $values["dni"];
+        $sql .= ", @sTipodoc='DNI'";
+        $sql .= ", @TipoDeuda='" . $type . "'";
+        $result = $this->getRecordsAdHoc($sql);
+        return $result;
+    }
+    private function setItemPago($params)
+    {
+        try {
+            if (!isset($params["id"])) {$params["id"] = 0;}
+            $params["Importe"] = (float) $params["Importe"];
+            $params["type_rel"] = $params["Tipo"];
+            $params["identify_rel"] = $params["Identificacion"];
+            $params["amount_rel"] = $params["Importe"];
+            $params["Id_mod_payments_transactions"] = (int) $params["id"];
+            logGeneralCustom($this, $params, "Payments::setItemPago", "idpt: " . $params["id"] . " Servicio:" . $params["servicioPago"] . " Tipo:" . $params["Tipo"] . " Identificacion:" . $params["Identificacion"] . " Importe:" . $params["Importe"] . " Resultado:" . $params["Resultado"] . " Transaccion:" . $params["Transaccion"] . " Respuesta:" . $params["Respuesta"]);
+            $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
+            $result = $NETCORECPFINANCIAL->ProcesarItemPago($params);
+            logGeneralCustom($this, $params, "Payments::setItemPagoResponse", $result);
+            /*Saving receipt for dni + payment*/
+            $this->generateReceipt($params);
+            return $result;
+        } catch (Exception $e) {
+            logGeneralCustom($this, $params, "Payments::setItemPagoResponseError", $e);
+        }
+    }
     private function Authenticate(){
         return array('Content-Type:application/json');
 	}
