@@ -46,11 +46,11 @@ class Charges_codes extends MY_Model {
                   break;
                case -999: //Atención espontánea
                   if ($values["id_club_redondo"]==""){
-                       $club_redondo=getIdUserClubRedondo($this,$values["dni"]);
+                       $club_redondo=getIdUserMediya($this,$values["dni"]);
 					   if($club_redondo["message"]==null){throw new exception("El DNI ingresado no pertenece a un cliente Mediya");}
                        $values["id_club_redondo"]=$club_redondo["message"]["ClubRedondo"];
 				  }
-                  $club_redondo=getUserClubRedondo($this,$values["id_club_redondo"]);
+                  $club_redondo=getUserMediya($this,$values["id_club_redondo"]);
                   $values["id_payment"]=null;
                   $values["code_payment"]="ATENCION_ESPONTANEA";
                   $values["importe_total"]=0;
@@ -165,7 +165,7 @@ class Charges_codes extends MY_Model {
             if($values["id_credipaz"]=="0"){$values["id_credipaz"]=0;}
 
             $bSkipPush=((int)$values["code"]==-999);
-            $club_redondo=getUserClubRedondo($this,(int)$values["id_club_redondo"]);
+            $club_redondo=getUserMediya($this,(int)$values["id_club_redondo"]);
             $id_club_redondo=secureEmptyNull($values,"id_club_redondo");
 
             $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
@@ -240,7 +240,7 @@ class Charges_codes extends MY_Model {
             $FILES_BASE64=$this->createModel(MOD_BACKEND,"Files_base64","Files_base64");
 			$recibos=$FILES_BASE64->get(array("fields"=>"created,base64_2","where"=>"code='".$values["NroDocumento"]."'","order"=>"created DESC"));
 
-            $CLUB_REDONDO=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
+            $CLUB_REDONDO=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
 			$values["origen"]="MEDIYA";
 			//$values["codigo"]=85992;
 			//$values["codigo"]=66800;

@@ -26,16 +26,16 @@ class Club_redondo extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
-    public function getClubRedondoSocioByDni(){
+    public function getMediyaSocioByDni(){
         try {
             $raw=$this->rawInput();
             if ($raw!=null)  {throw new Exception($raw);}
             $this->status=$this->init();
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'GetClubRedondoSocioByDni';
+            $_POST['function'] = 'getMediyaSocioByDni';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){

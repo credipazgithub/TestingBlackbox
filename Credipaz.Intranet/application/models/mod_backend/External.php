@@ -4,13 +4,6 @@ if ( ! defined('BASEPATH')) exit('No direct script access allowed');
 /*---------------------------------*/
 
 class External extends MY_Model {
-    //Desarrollo y testing
-    private $cargavirtualTest=array("server"=>"http://10.0.0.80:8088/rtcargavirtual/cargavirtual.asmx?wsdl","username"=>"wscredipaz","password"=>"wscredipaz2019*","idPtoVta"=>"54120");
-   
-    //Primaria produccion
-    private $cargavirtual=array("server"=>"http://172.16.20.1:8080/rtcargavirtual/cargavirtual.asmx?wsdl","username"=>"credipsa","password"=>"credi1806","idPtoVta"=>"96045");
-    private $cargavirtual_alt=array("server"=>"http://172.16.30.1:8080/rtcargavirtual/cargavirtual.asmx?wsdl","username"=>"credipsa","password"=>"credi1806","idPtoVta"=>"96045");
-    
     public function __construct()
     {
         parent::__construct();
@@ -26,8 +19,8 @@ class External extends MY_Model {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   return $MOBILE->getIfaceConfiguration($values);
-               case 5: // Club Redondo
-                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
+               case 5: // Mediya
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                   return $MOBILE->getIfaceConfiguration($values);
                default:
                   return null;
@@ -46,8 +39,8 @@ class External extends MY_Model {
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   $r=$MOBILE->firstStepAuth($values);
                   return $r;
-               case 5: // Club Redondo
-                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
+               case 5: // Mediya
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                   $r=$MOBILE->firstStepAuth($values);
                   return $r;
                 default:
@@ -67,8 +60,8 @@ class External extends MY_Model {
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   $r=$MOBILE->secondStepAuth($values);
                     return $r;
-               case 5: // Club Redondo
-                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
+               case 5: // Mediya
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                     $r=$MOBILE->secondStepAuth($values);
                     return $r;
                default:
@@ -88,9 +81,9 @@ class External extends MY_Model {
                   $values["id_type_user"]=80;
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   return $MOBILE->saveNewUser($values);
-               case 5: // Club Redondo
+               case 5: // Mediya
                   $values["id_type_user"]=82;
-                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                   return $MOBILE->saveNewUser($values);
                default:
                   return null;
@@ -108,8 +101,8 @@ class External extends MY_Model {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   return $MOBILE->forgotPassword($values);
-               case 5: // Club Redondo
-                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Club_redondo","Club_redondo");
+               case 5: // Mediya
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                   return $MOBILE->forgotPassword($values);
                default:
                   return null;
@@ -207,18 +200,6 @@ class External extends MY_Model {
                     $SORTEOS=$this->createModel(MOD_CLUB_REDONDO,"Sorteos","Sorteos");
                     $SORTEOS->participar($values);
                     break;
-                case "recargar-tarjeta":
-                    $save=false;
-                    if ((int)$id==0){throw new Exception("La operación no ha podido ser procesada. Por favor cierre la sesión actual y vuelva a ingresar poniendo su documento y contraseña.");}
-                    $RTCARGAVIRTUAL=$this->createModel(MOD_EXTERNAL,"RtCargaVirtual","RtCargaVirtual");
-                    $ret=$RTCARGAVIRTUAL->cargaVirtual($values);
-                    if ($ret["status"]=="OK") {
-                        $mode=$ret["mode"];
-                        $ticket=$ret["ticket"];
-                    } else {
-                        $result=$ret["result"];
-                    }
-                    break;
                 case "baja-club-redondo":
                     $save=false;
                     $result="¡Se ha procesado el pedido de baja a Mediya!";
@@ -245,8 +226,8 @@ class External extends MY_Model {
                     $save=false;
                     $result="¡Se ha procesado la presentación a Mediya!";
                     $subject="Presentar socio a Mediya";
-                    $CLUBREDONDOWS=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
-                    $CLUBREDONDOWS->referirProspecto($values);
+                    $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+                    $NETCORECPFINANCIAL->referirProspecto($values);
                     break;
                 case "landing-club-redondo":
                     $id_contact_channel=11;
@@ -327,47 +308,6 @@ class External extends MY_Model {
                     if ($user[0]["viable"]==1) {$user[0]["viable"]="ES VIABLE";}else{$user[0]["viable"]="NO ES VIABLE";}
                     $data["viable"]=$user[0]["viable"];
                 }
-                $data["function"]=$function;
-                $body=$this->load->view(MOD_BACKEND."/external/mobile_action",$data,true);
-
-                $result="¡Muchas gracias!. Tu solicitud fue exitosa. Nos comunicaremos a la brevedad.";
-                $OPERATORS_TASKS=$this->createModel(MOD_CRM,"Operators_tasks","Operators_tasks");
-                $exists=$OPERATORS_TASKS->get(array("page"=>1,"where"=>"id_user='".$id."' AND code='".$function."' AND id_type_task_close IS null"));
-                if(!isset($exists["data"][0]["id"])) {
-                    if ($data["documentName"]==""){
-                        if($id_credipaz==0 or $id_credipaz=="") {
-                            $data["documentName"]="¡No se pudo obtener nombre con el DNI!";
-                        } else {
-                            $sql="SELECT sNombre,sSexo,nDoc FROM dbCentral.dbo.wrkClienteTitular WHERE nID=".$id_credipaz;
-                            $ret=$this->getRecordsAdHoc($sql);
-                            $data["documentName"]=$ret[0]["sNombre"];
-                            $data["documentSex"]=$ret[0]["sSexo"];
-                            $data["documentNumber"]=$ret[0]["nDoc"];
-                            $arrData=array("documentName"=>$data["documentName"],"documentSex"=>$ret[0]["sSexo"],"documentNumber"=>$data["documentNumber"]);
-                            $USERS->save(array("id"=>$id,$arrData));
-                        }
-                    }
-                    $fields=array(
-                        'code' => $function,
-                        'description' => $subject,
-                        'created' => $this->now,
-                        'verified' => $this->now,
-                        'fum' => $this->now,
-                        'id_contact_channel' => $id_contact_channel,
-                        'username' => $user[0]["documentName"],
-                        'subject' => $subject,
-                        'body' => $body,
-                        'from' => $user[0]["documentName"],
-                        'id_client_credipaz' => $id_credipaz,
-                        'id_user' => $id,
-                    );
-                    if ($user[0]["viable"]=="NO ES VIABLE") {
-                        $fields["id_type_task_close"]=1;
-                        $fields["processed"]=$this->now;
-                        $fields["tag_processed"]="Sin gestión por no ser viable";
-                    }
-                    $OPERATORS_TASKS->save(array("id"=>0),$fields);
-                }
             }
             return array('status'=>'OK','mode'=>$mode,'message'=>$result,'ticket'=>$ticket,'additional'=>$additional);
         }
@@ -410,8 +350,8 @@ class External extends MY_Model {
                     setFileBinSSH($targetRemote, $binData);
                     break;
                 case "consultadni":
-                    $CLUBREDONDOWS = $this->createModel(MOD_EXTERNAL, "ClubRedondoWS", "ClubRedondoWS");
-                    $data = $CLUBREDONDOWS->autorizarPrestacion($values);
+                    
+                    $data = $NETCORECPFINANCIAL->autorizarPrestacion($values);
                     break;
                 case "GetCuotasPdf":
                     $NETCORECPFINANCIALS = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
@@ -524,7 +464,7 @@ class External extends MY_Model {
 			$values["overtext2"]=ucwords(strtolower($values["overtext2"]));
 			$values["overtext3"]="";
 			if ((int)$values["id_club_redondo"]!=0) {
-				$club_redondo=getUserClubRedondo($this,$values["id_club_redondo"]);
+				$club_redondo=getUserMediya($this,$values["id_club_redondo"]);
 				$values["overtext3"]="DNI ".$club_redondo["message"]["DNI"];
 			}
             $file="";

@@ -60,7 +60,7 @@ function comboTypeExecutions($obj,$get=array("order"=>"description ASC","pagesiz
     return getCombo($parameters,$obj);
 }
 
-function getUserClubRedondo($obj,$id){
+function getUserMediya($obj,$id){
     $result=[];
     $sql="SELECT * FROM DBClub.dbo.Socio WHERE IdSocio=".$id;
     $socio=$obj->getRecordsAdHoc($sql);
@@ -133,7 +133,7 @@ function getUserClubRedondo($obj,$id){
         "compressed"=>false
     );
 }
-function getIdUserClubRedondo($obj,$doc){
+function getIdUserMediya($obj,$doc){
     $result=[];
     if($doc==""){$doc=-999999;}
     $sql="SELECT * FROM DBClub.dbo.Persona WHERE nrodocumento=".$doc;

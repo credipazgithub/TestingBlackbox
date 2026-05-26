@@ -28,8 +28,8 @@ class Credipaz extends MY_Model {
     }
     public function firstStepAuth($values)
     {
-        $CLUBREDONDOWS=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
-        return $CLUBREDONDOWS->getIdentityInformation($values);
+        $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+        return $NETCORECPFINANCIAL->getIdentityInformation($values);
     }
     public function secondStepAuth($values)
     {
@@ -45,8 +45,8 @@ class Credipaz extends MY_Model {
                 $values["IdSolicitud"]=$ret[0]["IdSolicitud"];
             }
         }
-        $CLUBREDONDOWS=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
-        $result=$CLUBREDONDOWS->getUserInformation($values,"CP");
+        $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+        $result=$NETCORECPFINANCIAL->getUserInformation($values,"CP");
 
         $APPLICATIONS=$this->createModel(MOD_BACKEND,"Applications","Applications");
         $ret=$APPLICATIONS->get(array("id"=>2));

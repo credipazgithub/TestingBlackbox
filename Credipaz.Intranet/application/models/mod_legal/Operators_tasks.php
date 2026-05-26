@@ -145,8 +145,8 @@ class Operators_tasks extends MY_Model {
                 "motivo"=>("<p>".$ot["records"]["data"][0]["motivo"]."</p>"),
             );
 
-            $club_redondo=getUserClubRedondo($this,(int)$ot["records"]["data"][0]["id_club_redondo"]);
-			//$club_redondo=getIdUserClubRedondo($this,(int)$ot["records"]["data"][0]["documentNumber"]);
+            $club_redondo=getUserMediya($this,(int)$ot["records"]["data"][0]["id_club_redondo"]);
+			//$club_redondo=getIdUserMediya($this,(int)$ot["records"]["data"][0]["documentNumber"]);
             $values["club_redondo"]=$club_redondo["message"];
             $values["lawyer"]=$lawyer["data"][0];
 			$values["operators_tasks_items"]=$operators_tasks_items["data"];

@@ -184,7 +184,7 @@ class Operators_tasks extends MY_Model {
             $values["chat_platformname"]="Videoconsulta";
             $values["chat_roomname"]=("CHARGECODEID".$values["charges_codes"]["data"][0]["id"]);
             $values["chat_domain"]=SERVER_SUB;
-            $club_redondo=getUserClubRedondo($this,(int)$values["records"]["data"][0]["id_club_redondo"]);
+            $club_redondo=getUserMediya($this,(int)$values["records"]["data"][0]["id_club_redondo"]);
             $values["club_redondo"]=$club_redondo["message"];
             $CREDENTIALS=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
             $nDoc=$club_redondo["message"]["DNI"];

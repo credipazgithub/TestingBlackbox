@@ -334,7 +334,7 @@ class Users extends MY_Model
             /***************************/
             switch ((int) $values["id_app"]) {
                 case 2: // credipaz, mobile
-                case 5: // club redondo, mobile
+                case 5: // Mediya, mobile
                     /*para moviles*/
                     return $this->authenticateMobile($values);
                 default:
@@ -373,7 +373,7 @@ class Users extends MY_Model
                     $id_type_user = 80;
                     $sufix = "credipaz.com";
                     break;
-                case 5: // club redondo, mobile
+                case 5: // Mediya, mobile
                     $id_type_user = 82;
                     $sufix = "clubredondo.com";
                     break;

@@ -186,29 +186,6 @@ class Email extends MY_Model {
             if(!isset($values["priority"])){$values["priority"]=0;}
             if(!isset($values["names"])){$values["names"]=null;}
             if(!isset($values["attachs"])){$values["attachs"]=null;}
-
-            //$values["from"]="lansweeper@credipaz.com";
-
-            if (isset($values["id_operator_task"])) {
-                $REL_THREADS_TARGETS_CONTACT_CHANNELS=$this->createModel(MOD_CHANNELS,"Rel_threads_targets_contact_channels","Rel_threads_targets_contact_channels");
-                $OPERATORS_TASKS=$this->createModel(MOD_CRM,"Operators_tasks","Operators_tasks");
-                $record=$OPERATORS_TASKS->get(array("where"=>("id=".$values["id_operator_task"])));
-                $values["from"]=$record["data"][0]["username"];
-                $values["from"]=str_replace('bufferin.','',$values["from"]);
-                $arrData=array(
-                    "id_thread_target"=>null,
-                    "id_thread"=>2,
-                    "id_contact_channel"=>$record["data"][0]["id_contact_channel"],
-                    "processed"=>$this->now,
-                    "username"=>$values["email"],
-                    "subject"=>$values["subject"],
-                    "body"=>$values["body"],
-                    "from"=>$values["from"],
-                    "to"=>$values["email"],
-					"priority"=>$values["priority"]
-                );
-                $REL_THREADS_TARGETS_CONTACT_CHANNELS->save(array("id"=>0),$arrData);
-            }
             if ($values["email"]!="") {
                 $params=array(
                     "from"=>$values["from"],

@@ -217,15 +217,6 @@
 								$("body").off("click", ".external_operator").on("click", ".external_operator", function (e) {
 									_FUNCTIONS.onCheckExternalOperator($(this));
 								});
-								$("body").off("click", ".btn-buffer-assign").on("click", ".btn-buffer-assign", function (e) {
-									_FUNCTIONS.onAssignBuffer($(this));
-								});
-								$("body").off("click", ".btn-crm-assign").on("click", ".btn-crm-assign", function (e) {
-									_FUNCTIONS.onAssignOperator($(this));
-								});
-								$("body").off("click", ".btn-reply-email").on("click", ".btn-reply-email", function () {
-									_FUNCTIONS.onProcessDirectEmail($(this));
-								});
 								$("body").off("change", ".id_type_task_close").on("change", ".id_type_task_close", function () {
 									_FUNCTIONS.onTypeTaskClose($(this));
 								});

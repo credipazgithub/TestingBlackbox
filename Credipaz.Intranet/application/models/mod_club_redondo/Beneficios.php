@@ -655,7 +655,6 @@ class Beneficios extends MY_Model {
                 }
                 $saved=$this->save($values,$fields);
 				$id_beneficio=(int)$saved["data"]["id"];
-				//$this->Sync_log(array("id"=>0,"code"=>$saved["data"]["id"],"description"=>"Beneficios:syncBeneficiosCredipaz"));
             } catch(Exception $e){
 
             }
@@ -698,8 +697,4 @@ class Beneficios extends MY_Model {
         $response = $jsonResponse;
         return $response;
     }
-	private function Sync_log($values){
-        $SYNC_LOG=$this->createModel(MOD_CLUB_REDONDO,"Sync_log","Sync_log");
-		$SYNC_LOG->save($values);
-	}
 }

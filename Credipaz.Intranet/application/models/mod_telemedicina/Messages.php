@@ -95,7 +95,7 @@ class Messages extends MY_Model {
                   $CHARGES_CODES=$this->createModel(MOD_TELEMEDICINA,"Charges_codes","Charges_codes");
                   $charges_code=$CHARGES_CODES->get(array("page"=>1,"where"=>"id=".$values["id_charge_code"]));
                   $id_club_redondo=$charges_code["data"][0]["id_club_redondo"];
-                  $club_redondo=getUserClubRedondo($this,$id_club_redondo);
+                  $club_redondo=getUserMediya($this,$id_club_redondo);
                   if ((int)$charges_code["totalrecords"]!=0){
                       $REL_PERSONA_ADICIONALES=$this->createModel(MOD_TELEMEDICINA,"Rel_persona_adicionales","Rel_persona_adicionales");
                       $rel=$REL_PERSONA_ADICIONALES->get(array("page"=>1,"where"=>"id=".$id_club_redondo));

@@ -12,7 +12,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <ul>
             <li>Contact Center: 0810 666 2582</li>
             <li>Whatsapp: 1161602019</li>
-            <li>Mail: info@clubredondo.com.ar</li>
+            <li>Mail: info@mediya.com.ar</li>
             <li>Redes Sociales: Facebook e Instagram</li>
         </ul>
         <hr/>

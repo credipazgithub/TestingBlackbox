@@ -18,16 +18,6 @@ function buildLogin($mode,$hide,$show,$lblUsername){
 	switch($mode) {
 		case "integracion":
 			$html.="<input style='visibility:hidden;' type='checkbox' data-type='checkbox' value='1' class='external_operator dbase' id='external_operator' name='external_operator'/>";
-			$html.="<table class='d-none' style='width:100%;'>";
-			$html.="   <tr>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='forgot' class='d-none btn-ResetPassword btn btn-block btn-md btn-warning text-uppercase'>Olvidé mi clave</a>";
-			$html.="      </td>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='change' class='d-none btn-ResetPassword btn btn-block btn-md btn-info text-uppercase'>Cambiar mi clave</a>";
-			$html.="      </td>";
-			$html.="   </tr>";
-			$html.="</table>";
 			$html.="<hr class='my-2' />";
             $html .= "<div class='text-center'>";
             $html.="<input type='button' data-hide='".$hide."' data-show='".$show."' data-mode='".$mode."' class='btn-login-".$mode." btn btn-md btn-primary btn-raised btn-block text-uppercase' value='".lang('b_login')."'/>";
@@ -40,14 +30,6 @@ function buildLogin($mode,$hide,$show,$lblUsername){
             $html.="      <td width='50%'><label class='d-none' for='external_operator'>¿Operador externo?</label></td>";
             $html.="      <td width='50%'>";
 			$html.="         <input type='checkbox' ".$externo." data-type='checkbox' value='1' class='form-control external_operator dbase' id='external_operator' name='external_operator'/>";
-			$html.="      </td>";
-			$html.="   </tr>";
-			$html.="   <tr>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='forgot' class='d-none btn-ResetPassword btn btn-block btn-md btn-warning text-uppercase'>Olvidé mi clave</a>";
-			$html.="      </td>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='change' class='d-none btn-ResetPassword btn btn-block btn-md btn-info text-uppercase'>Cambiar mi clave</a>";
 			$html.="      </td>";
 			$html.="   </tr>";
 			$html.="</table>";
@@ -64,14 +46,6 @@ function buildLogin($mode,$hide,$show,$lblUsername){
 			$html.="         <input type='checkbox' ".$externo." data-type='checkbox' value='1' class='form-control external_operator dbase' id='external_operator' name='external_operator'/>";
 			$html.="      </td>";
 			$html.="   </tr>";
-			$html.="   <tr>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='forgot' class='d-none btn-ResetPassword btn btn-block btn-md btn-warning text-uppercase'>Olvidé mi clave</a>";
-			$html.="      </td>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='change' class='d-none btn-ResetPassword btn btn-block btn-md btn-info text-uppercase'>Cambiar mi clave</a>";
-			$html.="      </td>";
-			$html.="   </tr>";
 			$html.="</table>";
 			$html.="<hr class='my-2' />";
             $html .= "<div class='text-center'>";
@@ -84,14 +58,6 @@ function buildLogin($mode,$hide,$show,$lblUsername){
             $html.="      <td width='50%' align='center'><label for='external_operator'>¿Operador externo?</label></td>";
             $html.="      <td width='50%' align='center'>";
 			$html.="         <input type='checkbox' data-type='checkbox' value='1' class='external_operator dbase' id='external_operator' name='external_operator' style='height:25px;width:25px !important;'/>";
-			$html.="      </td>";
-			$html.="   </tr>";
-			$html.="   <tr>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='forgot' class='d-none btn-ResetPassword btn btn-block btn-md btn-warning text-uppercase'>Olvidé mi clave</a>";
-			$html.="      </td>";
-			$html.="      <td width='50%'>";
-			$html.="         <a data-mode='change' class='d-none btn-ResetPassword btn btn-block btn-md btn-info text-uppercase'>Cambiar mi clave</a>";
 			$html.="      </td>";
 			$html.="   </tr>";
 			$html.="</table>";
@@ -107,14 +73,6 @@ function buildLogin($mode,$hide,$show,$lblUsername){
             $html.="         <td width='50%'><label class='d-none' for='external_operator'>¿Operador externo?</label></td>";
             $html.="         <td width='50%'>";
 			$html.="            <input type='checkbox' data-type='checkbox' value='1' class='external_operator dbase' id='external_operator' name='external_operator'/>";
-			$html.="         </td>";
-			$html.="      </tr>";
-			$html.="      <tr>";
-			$html.="         <td width='50%'>";
-			$html.="            <a data-mode='forgot' class='d-none btn-ResetPassword btn btn-block btn-md btn-warning btn-raised text-uppercase'>Olvidé mi clave</a>";
-			$html.="         </td>";
-			$html.="         <td width='50%'>";
-			$html.="            <a data-mode='change' class='d-none btn-ResetPassword btn btn-block btn-md btn-info btn-raised text-uppercase'>Cambiar mi clave</a>";
 			$html.="         </td>";
 			$html.="      </tr>";
 			$html.="   </table>";
@@ -1425,7 +1383,7 @@ function formatHtmlValue($value,$format,$ops=null){
     if(isset($ops["col"])){$value="<div class='".$ops["col"]."'>".$value."</div>";}
     return $value;
 }
-function getStyleforClubRedondo($state){
+function getStyleforMediya($state){
     $styleEstado="";
 	switch(trim($state)) {
 		case "VIG":

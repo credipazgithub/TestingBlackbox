@@ -601,70 +601,6 @@ _AJAX = {
 		
 	/**
 	 * /
-	 * MOD_CHANNELS
-	 */
-	UiAssignBuffer: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "assign";
-				_json["module"] = "mod_channels";
-				_json["table"] = "buffer_in";
-				_json["model"] = "buffer_in";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiDirectEmail: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "directEmail";
-				_json["module"] = "mod_email";
-				_json["table"] = "email";
-				_json["model"] = "email";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiDirectEmailTransparent: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "directEmail";
-				_json["module"] = "mod_email";
-				_json["table"] = "email";
-				_json["model"] = "email";
-				_json["method"] = "api.backend/neocommandTransparent"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-
-	/**
-	 * /
-	 * MOD_CRM
-	 */
-	UiCRM: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["module"] = "mod_crm";
-				_json["table"] = "operators_tasks";
-				_json["model"] = "operators_tasks";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiAssignOperator: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "assign";
-				_json["module"] = "mod_crm";
-				_json["table"] = "operators_tasks";
-				_json["model"] = "operators_tasks";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	
-	/**
-	 * /
 	 * MOD_VALIDATE_CBU
 	 */
 	UiValidateCBU: function (_json) {
@@ -920,7 +856,6 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-
 	UiInitTransactionFiservNet: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
@@ -975,22 +910,22 @@ _AJAX = {
 	 * /
 	 * MOD_EXTERNAL
 	 */
-	UiClubRedondoWSTransparent: function (_json) {
+	UiMediyaTransparent: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
 				_json["module"] = "mod_external";
-				_json["table"] = "ClubRedondoWS";
-				_json["model"] = "ClubRedondoWS";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
 				_json["method"] = "api.backend/neocommandTransparent"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-	UiClubRedondoWS: function (_json) {
+	UiMediya: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
 				_json["module"] = "mod_external";
-				_json["table"] = "ClubRedondoWS";
-				_json["model"] = "ClubRedondoWS";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
 				_json["method"] = "api.backend/neocommand"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
@@ -1000,8 +935,8 @@ _AJAX = {
 			function (resolve, reject) {
 				_json["function"] = "registrarCobranza";
 				_json["module"] = "mod_external";
-				_json["table"] = "ClubRedondoWS";
-				_json["model"] = "ClubRedondoWS";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
 				_json["method"] = "api.backend/neocommandTransparent"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});

@@ -62,8 +62,7 @@ class Log_general extends MY_Model {
                 switch($fields["action"]){
                    case "Charges_codes::alertDelayTelemedicina":
                    case "Charges_codes::generatePaycode":
-                   case "ClubRedondo::referirProspecto":
-                   case "ClubRedondoWS::autorizarPrestacion":
+                   case "NetCoreCPFinancial::autorizarPrestacion":
                    case "controlDuplicidad::generatePaycode":
                    case "Devices::form_device":
                    case "Devices::form_vendor":
@@ -86,8 +85,6 @@ class Log_general extends MY_Model {
                    case "Payments_fiserv::form":
                    case "Payments_fiserv::form_cr":
                    case "Payments_fiserv::form_full":
-                   case "RtCargaVirtual::anularCargaVirtual":
-                   case "RtCargaVirtual::cargaVirtual":
                    case "Users::authenticate":
                    case "Users::logout":
                    case "Users::TryLogin":

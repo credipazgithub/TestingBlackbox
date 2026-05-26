@@ -15,7 +15,7 @@ $title="<span class='badge badge-secondary'>Código de pago activo:</span> <span
 $html=buildHeaderAbmStd($parameters,$title);
 
 $styleEstado="font-weight:bold;color:black;";
-$styleEstado=getStyleforClubRedondo($parameters["club_redondo"]["Estado"]);
+$styleEstado=getStyleforMediya($parameters["club_redondo"]["Estado"]);
 
 $html.="<div class='body-abm d-flex border border-light p-2 rounded shadow-sm'>";
 $html.="<div class='row d-none'>";

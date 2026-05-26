@@ -35,7 +35,7 @@ class Webhooks extends MY_Controller {
             $data["get"] = $_GET;
             $data["post"] = $_POST;
             $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-            $CLUBREDONDOWS = $this->createModel(MOD_EXTERNAL, "ClubRedondoWS", "ClubRedondoWS");
+            
             $TRANSACTIONS = $this->createModel(MOD_PAYMENTS, "Transactions", "Transactions");
             $comments = json_decode($_POST["comments"], true);
             $id = $comments[0]["idTransfer"];
@@ -77,7 +77,7 @@ class Webhooks extends MY_Controller {
                             "posProceso" => "pagosonline",
                             "Registro_externo" => (string) $registro_externo
                         );
-                        $CLUBREDONDOWS->registrarCobranza($params2);
+                        $NETCORECPFINANCIAL->registrarCobranza($params2);
                     }
                 }
             }

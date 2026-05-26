@@ -27,7 +27,7 @@ class Farmalink extends MY_Model {
             $CHARGES_CODES = $this->createModel(MOD_TELEMEDICINA, "Charges_codes", "Charges_codes");
             $cCode=$CHARGES_CODES->get(array("where"=>"id=".$id_charge_code));
 			if ((int)$cCode["totalrecords"]==0) {throw new Exception("No se encontró el beneficiario");}
-			$asociado=getUserClubRedondo($this,(int)$cCode["data"][0]["id_club_redondo"]);
+			$asociado=getUserMediya($this,(int)$cCode["data"][0]["id_club_redondo"]);
             if (!filter_var($asociado["message"]["Email"], FILTER_VALIDATE_EMAIL)) {$asociado["message"]["Email"] = "telemedicina@credipaz.com";}
 
             $OPERATORS_TASKS = $this->createModel(MOD_TELEMEDICINA, "Operators_tasks", "Operators_tasks");

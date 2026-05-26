@@ -101,8 +101,8 @@ class Backend extends MY_Controller {
             //$_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'EvaluarDocumento';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){
@@ -339,7 +339,7 @@ class Backend extends MY_Controller {
                case "fiserv-error":
                    $data["get"]=$_GET;
                    $data["post"]=$_POST;
-            	   $CLUBREDONDOWS=$this->createModel(MOD_EXTERNAL,"ClubRedondoWS","ClubRedondoWS");
+            	   $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
 				   $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
         	       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
                    $NETCORECPFINANCIAL->Webhook($_POST);
@@ -382,7 +382,7 @@ class Backend extends MY_Controller {
 						          "posProceso"=>"pagosonline",
                                   "Registro_externo"=>(string)$registro_externo
 					           );
-					           $CLUBREDONDOWS->registrarCobranza($params2);
+					           $NETCORECPFINANCIAL->registrarCobranza($params2);
 				           }
                        }
                    }
@@ -1184,8 +1184,8 @@ class Backend extends MY_Controller {
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'AFIPalameEsta';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){
@@ -1200,8 +1200,8 @@ class Backend extends MY_Controller {
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'EventoActual';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){
@@ -1216,8 +1216,8 @@ class Backend extends MY_Controller {
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'CheckInvitado';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){
@@ -1232,8 +1232,8 @@ class Backend extends MY_Controller {
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'RegistrarIngreso';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){
@@ -1248,8 +1248,8 @@ class Backend extends MY_Controller {
             $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'responseTransactionAsync';
             $_POST['module'] = MOD_EXTERNAL;
-            $_POST['model'] = 'ClubRedondoWS';
-            $_POST['table'] = 'ClubRedondoWS';
+            $_POST['model'] = 'NetCoreCPFinancial';
+            $_POST['table'] = 'NetCoreCPFinancial';
             $this->neocommand(true);
         }
         catch (Exception $e){

@@ -25,11 +25,11 @@ class Charges_codes extends MY_Model {
                   break;
                case -999: //Atención espontánea
                   if ($values["id_club_redondo"]==""){
-                       $club_redondo=getIdUserClubRedondo($this,$values["dni"]);
+                       $club_redondo=getIdUserMediya($this,$values["dni"]);
 					   if($club_redondo["message"]==null){throw new exception("El DNI ingresado no pertenece a un cliente Mediya");}
                        $values["id_club_redondo"]=$club_redondo["message"]["ClubRedondo"];
 				  }
-                  $club_redondo=getUserClubRedondo($this,$values["id_club_redondo"]);
+                  $club_redondo=getUserMediya($this,$values["id_club_redondo"]);
                   $values["id_payment"]=null;
                   $values["code_payment"]="ATENCION_ESPONTANEA";
                   $values["importe_total"]=0;
@@ -113,7 +113,7 @@ class Charges_codes extends MY_Model {
     public function generatePaycode($values){
         try {
 		    if (isset($values["DNI"])) {
-			   $club_redondo=getIdUserClubRedondo($this,$values["DNI"]);
+			   $club_redondo=getIdUserMediya($this,$values["DNI"]);
                $values["id_club_redondo"]=$club_redondo["message"]["ClubRedondo"];
 			}
 		    if(!isset($values["amount"])){$values["amount"]=0;}
@@ -125,7 +125,7 @@ class Charges_codes extends MY_Model {
 			if($id_club_redondo==null){$id_club_redondo=0;}
             $bSkipPush=((int)$values["code"]==-999);
 			if ($id_user==0 or $id_club_redondo==0){throw new exception(lang("error_5118"),5118);}
-			$club_redondo=getUserClubRedondo($this,(int)$id_club_redondo);
+			$club_redondo=getUserMediya($this,(int)$id_club_redondo);
 
             $data=array(
                 'code' => $values["code"],

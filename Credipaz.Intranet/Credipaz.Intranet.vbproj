@@ -204,7 +204,6 @@
     <Content Include="application\models\mod_club_redondo\Type_beneficios.php" />
     <Content Include="application\models\mod_club_redondo\Type_categories.php" />
     <Content Include="application\models\mod_club_redondo\Type_executions.php" />
-    <Content Include="application\models\mod_club_redondo\Sync_log.php" />
     <Content Include="application\models\mod_club_redondo\Type_products.php" />
     <Content Include="application\models\mod_club_redondo\Type_status_canjes.php" />
     <Content Include="application\models\mod_direct_sale\Products.php" />
@@ -231,8 +230,6 @@
     <Content Include="application\models\mod_sms\SMS.php" />
     <Content Include="application\models\mod_external\NeoSignature.php" />
     <Content Include="application\models\mod_external\External_forms.php" />
-    <Content Include="application\models\mod_external\ClubRedondoWS.php" />
-    <Content Include="application\models\mod_external\RtCargaVirtual.php" />
     <Content Include="application\models\mod_external\Reorganizer.php" />
     <Content Include="application\models\mod_folders\Folders.php" />
     <Content Include="application\models\mod_folders\Folders_log.php" />
@@ -268,7 +265,7 @@
     <Content Include="application\models\mod_onboarding\Type_rejects.php" />
     <Content Include="application\models\mod_legal\Type_status.php" />
     <Content Include="application\models\mod_legal\Type_tasks_close.php" />
-    <Content Include="application\models\mod_mobile_apps\Club_redondo.php" />
+    <Content Include="application\models\mod_mobile_apps\Mediya.php" />
     <Content Include="application\models\mod_mobile_apps\Credipaz.php" />
     <Content Include="application\models\mod_mobile_apps\Intranet.php" />
     <Content Include="application\models\mod_mobile_apps\Notifier.php" />
@@ -528,9 +525,7 @@
     <Content Include="application\models\mod_api_credipaz\Credipaz.php" />
     <Content Include="application\models\mod_external\Cesiones.php" />
     <Content Include="application\models\mod_push\Telegram.php" />
-    <Content Include="application\helpers\mod_channels_helper.php" />
     <Content Include="application\helpers\mod_club_redondo_helper.php" />
-    <Content Include="application\helpers\mod_crm_helper.php" />
     <Content Include="application\helpers\mod_dbcentral_helper.php" />
     <Content Include="application\controllers\Webhooks.php" />
     <Content Include="application\controllers\Verify.php" />
@@ -544,7 +539,6 @@
     <Content Include="application\models\mod_dbcentral\EmpresaComercializadora.php" />
     <Content Include="application\models\mod_dbcentral\filesystem.php" />
     <Content Include="application\models\mod_dbcentral\Ingresos.php" />
-    <Content Include="application\models\mod_dbcentral\logCargaVirtual.php" />
     <Content Include="application\models\mod_dbcentral\Mediya.php" />
     <Content Include="application\models\mod_dbcentral\Mstfraude.php" />
     <Content Include="application\models\mod_dbcentral\prospecto.php" />

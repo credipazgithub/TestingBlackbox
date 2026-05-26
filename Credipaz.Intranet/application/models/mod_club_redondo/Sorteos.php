@@ -16,7 +16,7 @@ class Sorteos extends MY_Model {
                case 2: // Credipaz
                   $code="SORTEO-CREDIPAZ";
                   break;
-               case 5: // Club Redondo
+               case 5: // Mediya
                   $code="SORTEO-CLUB REDONDO";
                   break;
                default:

@@ -82,34 +82,3 @@ $("body").off("click", ".btn-deattach").on("click", ".btn-deattach", function ()
 	if (!confirm("¿Confirma la operación?")) { return false; }
 	$("." + $(this).attr("data-id")).remove();
 });
-
-
-$("body").off("click", ".btn-send-reply").on("click", ".btn-send-reply", function () {
-	$(".btn-send-reply").fadeOut("slow");
-	var _body = $("#reply_body").val();
-	var _names = "";
-	var _attachs = "";
-	$(".attach").each(function () {
-		_names += $(this).attr("data-name") + "[NAME]";
-		_attachs += $(this).attr("data-url") + "[FILE]";
-	});
-	var _json = {
-		"id_operator_task": $("#id").val(),
-		"email": $("#email").val(),
-		"body": _body,
-		"subject": "Contacto CREDIPAZ",
-		"from": "info@credipaz.com",
-		"names": _names,
-		"attachs": _attachs
-	};
-	_AJAX.UiDirectEmail(_json).then(function (datajson) {
-		if (datajson.status == "OK") {
-			alert("¡La respuesta ha sido enviada!");
-			$(".btn-send-reply").fadeIn("fast");
-			$("#emailModal").modal("toggle");
-		} else {
-			alert(datajson.message);
-			$(".btn-send-reply").fadeIn("fast");
-		}
-	}).catch(function (error) { alert(error.message); });
-});

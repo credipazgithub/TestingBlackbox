@@ -14,7 +14,7 @@ $title="".$supervision.lang('msg_legal_care');
 $html=buildHeaderAbmStd($parameters,$title);
 
 $styleEstado="font-weight:bold;color:black;";
-$styleEstado=getStyleforClubRedondo($parameters["club_redondo"]["Estado"]);
+$styleEstado=getStyleforMediya($parameters["club_redondo"]["Estado"]);
 
 $html.="<span class='badge badge-primary' style='font-size:18px;'>".$parameters["records"]["data"][0]["type_request"]."</span>";
 $html.="<div class='body-abm'>";

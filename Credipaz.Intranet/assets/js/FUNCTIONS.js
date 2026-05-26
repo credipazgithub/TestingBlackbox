@@ -246,167 +246,6 @@ _FUNCTIONS = {
 		if (_body == "" || _body == null || _body == undefined) { _body = ""; } else { _body = _TOOLS.b64_to_utf8(_body); }
 		_FUNCTIONS.onInfoModal({ "title": _title, "body": _body, "close": true, "size": "modal-xl", "center": false });
 	},
-
-	onEmailModal: function (_json) {
-		try {
-			_FUNCTIONS.onDestroyModal("#emailModal");
-			if (_json["close"] == undefined) { _json["close"] = false; }
-			if (_json["size"] == undefined) { _json["size"] = "modal-lg"; }
-			if (_json["center"] == undefined) { _json["center"] = ""; }
-			var _html = "<div class='modal fade' id='emailModal' role='dialog'>";
-			_html += " <div class='modal-dialog modal-dialog-centered " + _json["size"] + "' role='document'>";
-			_html += "  <div class='modal-content'>";
-			_html += "    <div class='modal-header'>";
-			_html += "      <h4 class='modal-title'>" + _json["title"] + "</h4>";
-			if (_json["close"]) { _html += "<button type='button' class='close btn-close-modal' data-dismiss='modal'>&times;</button>"; }
-			_html += "    </div>";
-			_html += "    <div class='modal-body'>";
-			_html += _json["body"];
-			if (!_json["close"]) {
-				_html += "       <div class='progress' style='height:5px;'>";
-				_html += "          <div class='progress-bar progress-bar-striped progress-bar-animated' role='progressbar' aria-valuenow='100' aria-valuemin='0' aria-valuemax='100' style='width:100%;'></div>";
-				_html += "       </div>";
-			}
-			_html += "    </div>";
-			_html += "    <div class='modal-footer font-weight-light'>";
-			_html += _FUNCTIONS._defaultProviderFooter;
-			_html += "</div>";
-			_html += "  </div>";
-			_html += " </div>";
-			_html += "</div>";
-			$("body").append(_html);
-			$('.trumbo').trumbowyg({ lang: 'es_ar' });
-			$("body").off("drop", ".drop_zone").on("drop", ".drop_zone", function (ev) {
-				$(this).removeClass("drop_zone_over");
-				ev.preventDefault();
-				if (ev.originalEvent.dataTransfer.items) {
-					for (var i = 0; i < ev.originalEvent.dataTransfer.items.length; i++) {
-						if (ev.originalEvent.dataTransfer.items[i].kind === 'file') {
-							var file = ev.originalEvent.dataTransfer.items[i].getAsFile();
-							if (file.size > (_FUNCTIONS._ATTACH_LIMIT * 1024000)) {
-								$(".ls-images").append("<li class='list-group-item' style='padding:10px;'>¡No se adjuntará <span class='label label-danger'>" + file.name + "</span> porque excede los " + _FUNCTIONS._ATTACH_LIMIT + "mb!</li>");
-							} else {
-								var reader = new FileReader();
-								reader.onloadend = (function (data) { return function (evt) { $(".ls-images").append(_TOOLS.createFileItem(data.name, evt.target.result)); } })(ev.originalEvent.dataTransfer.items[i].getAsFile());
-								reader.readAsDataURL(file);
-							}
-						}
-					}
-				} else {
-					for (var i = 0; i < ev.originalEvent.dataTransfer.files.length; i++) {
-						var file = ev.originalEvent.dataTransfer.files[i].getAsFile();
-						if (file.size > (_FUNCTIONS._ATTACH_LIMIT * 1024000)) {
-							$(".ls-images").append("<li class='list-group-item' style='padding:10px;'>¡No se adjuntará <span class='label label-danger'>" + file.name + "</span> porque excede los " + _FUNCTIONS, _ATTACH_LIMIT + "mb!</li>");
-						} else {
-							var reader = new FileReader();
-							reader.onloadend = (function (data) { return function (evt) { $(".ls-images").append(createFileItem(data.name, evt.target.result)); } })(ev.originalEvent.dataTransfer.files[i].getAsFile());
-							reader.readAsDataURL(file);
-						}
-					}
-				}
-				if (ev.originalEvent.dataTransfer.items) {
-					ev.originalEvent.dataTransfer.items.clear();
-				} else {
-					ev.originalEvent.dataTransfer.clearData();
-				}
-			});
-			$("body").off("dragover", ".drop_zone").on("dragover", ".drop_zone", function (ev) {
-				$(this).addClass("drop_zone_over");
-				ev.preventDefault();
-			});
-			$("body").off("dragleave", ".drop_zone").on("dragleave", ".drop_zone", function (ev) {
-				$(this).removeClass("drop_zone_over");
-				ev.preventDefault();
-			});
-			$("body").off("click", ".btn-deattach").on("click", ".btn-deattach", function () {
-				if (!confirm("¿Confirma la operación?")) { return false; }
-				$("." + $(this).attr("data-id")).remove();
-			});
-			$("body").off("click", ".btn-send-reply").on("click", ".btn-send-reply", function () {
-				$(".btn-send-reply").fadeOut("slow");
-				var _body = $("#reply_body").val();
-				var _names = "";
-				var _attachs = "";
-				$(".attach").each(function () {
-					_names += $(this).attr("data-name") + "[NAME]";
-					_attachs += $(this).attr("data-url") + "[FILE]";
-				});
-				var _json = {
-					"id_operator_task": $("#id").val(),
-					"email": $("#email").val(),
-					"body": _body,
-					"subject": "Contacto CREDIPAZ",
-					"from": "info@credipaz.com",
-					"names": _names,
-					"attachs": _attachs
-				};
-				_AJAX.UiDirectEmail(_json).then(function (datajson) {
-					if (datajson.status == "OK") {
-						alert("¡La respuesta ha sido enviada!");
-						$(".btn-send-reply").fadeIn("fast");
-						$("#emailModal").modal("toggle");
-					} else {
-						alert(datajson.message);
-						$(".btn-send-reply").fadeIn("fast");
-					}
-				}).catch(function (error) { alert(error.message); });
-			});
-
-			$("#emailModal").modal({ backdrop: false, keyboard: true, show: true });
-			return true;
-		} catch (rex) {
-			alert(rex.message);
-			return false;
-		}
-	},
-	onResetPassword: function (_json) {
-		try {
-			_FUNCTIONS.onDestroyModal("#resetModal");
-			var _html = "<div class='modal fade' id='resetModal' role='dialog'>";
-			_html += " <div class='modal-dialog modal-dialog-centered role='document'>";
-			_html += "  <div class='modal-content'>";
-			_html += "    <div class='modal-header'>";
-			_html += "      <h4 class='modal-title'>Blanqueo de clave</h4>";
-			_html += "      <button type='button' class='close btn-close-modal' data-dismiss='modal'>&times;</button>";
-			_html += "    </div>";
-			_html += "    <div class='modal-body'>";
-			_html += "       <label for='emailReset'>Ingrese su nombre de usuario<br/> (debe ser un email)</label>";
-			_html += "       <input type='email' id='emailReset' name='emailReset form-control' class='emailReset' value=''/>";
-			_html += "       <hr/>";
-			_html += "       <a href='#' class='btn btn-raised btn-success btn-send-reset'>Enviar</a>";
-			_html += "    </div>";
-			_html += "    <div class='modal-footer font-weight-light'>";
-			_html += _FUNCTIONS._defaultProviderFooter;
-			_html += "</div>";
-			_html += "  </div>";
-			_html += " </div>";
-			_html += "</div>";
-			$("body").append(_html);
-			$("body").off("click", ".btn-send-reset").on("click", ".btn-send-reset", function () {
-				$(".btn-send-reset").fadeOut("slow");
-				var _email = $("#emailReset").val();
-				var _body = "<h2>Blanqueo de claves - Credipaz</h2>";
-				_body += "<h4>Haga click <a href='" + _AJAX.server + "linkDirect/resetPassword/" + btoa(_email) + "' class='btn btn-primary'>aquí</a> para proceder al blanqueo de su clave</h4>";
-				var _json = { "email": _email, "body": _body, "subject": "Contacto CREDIPAZ", "from": "info@credipaz.com" };
-				_AJAX.UiDirectEmailTransparent(_json).then(function (datajson) {
-					if (datajson.status == "OK") {
-						alert("¡Se ha enviado correo con instrucciones para el blanqueo de la clave!");
-						$(".btn-send-reset").fadeIn("fast");
-						$("#resetModal").modal("toggle");
-					} else {
-						alert(datajson.message);
-						$(".btn-send-reset").fadeIn("fast");
-					}
-				}).catch(function (error) { alert(error.message); });
-			});
-
-			$("#resetModal").modal({ backdrop: false, keyboard: true, show: true });
-			return true;
-		} catch (rex) {
-			alert(rex.message);
-			return false;
-		}
-	},
 	onLegalesAutoRecord: function (_this) {
 		if (!confirm("Se registrará una llamada sin contacto.  Al llegar a 3 registros de este tipo se cerrará el caso como sin contacto.  ¿Confirma?")) { return false; }
 		var _id_operator_task = _this.attr("data-id_operator_task");
@@ -486,7 +325,6 @@ _FUNCTIONS = {
 			return false;
 		}
 	},
-
 	onTelemedicinaModal: function (_json) {
 		try {
 			_FUNCTIONS._first_vademecum = "";
@@ -1177,20 +1015,6 @@ _FUNCTIONS = {
 				}
 			});
 	},
-	onProcessDirectEmail: function (_this) {
-		var _body = "";
-		_body += "<label>Email</label><input type='text' id='email' name='email' class='form-control' value='" + _this.attr("data-email") + "'/>"
-		_body += "<label>Mensaje</label><textarea id='reply_body' name='reply_body' class='shadow trumbo' style='width:100%;'></textarea> ";
-		_body += "<hr/>";
-		_body += "<div id='drop_zone' class='drop_zone'>";
-		_body += "<p>Arrastre y suelte archivos a adjuntar en esta zona</p>";
-		_body += "</div>";
-		_body += "<hr/>";
-		_body += "<ul class='ls-images' style='padding:0px;'></ul>";
-		_body += "<hr/>";
-		_body += "<a href='#' class='btn btn-raised btn-lg btn-success btn-send-reply'>Enviar!</a>";
-		_FUNCTIONS.onEmailModal({ "close": true, "title": "Responder", "body": _body });
-	},
 	onProcessDirectTelemedicinaPDF: function (_this) {
 		
 		var _iface = _this.attr("data-iface");
@@ -1257,7 +1081,6 @@ _FUNCTIONS = {
 				_body += "   <tr><td>RX</td><td align='right'><b>ORIGINAL</b></td></tr>";
 				_body += "   <tr><td>Paciente</td><td align='right' class='nombrepaciente editable' contenteditable style='font-weight:bold;border-bottom:dotted 1px silver;'><b>" + _nombre_paciente + "</b></td></tr>";
 				_body += "   <tr><td>Nº de documento</td><td align='right' class='documentopaciente editable' contenteditable style='font-weight:bold;border-bottom:dotted 1px silver;'><b>" + _nro_documento + "</b></td></tr>";
-				//_body += "   <tr><td class='cNCRLabel'>Nº de Club Redondo</td><td align='right'><b class='cNCR' data-cr='" + _nro_club_redondo + "' data-sw='" + _nro_swiss + "'>" + _nro_club_redondo + "</b></td></tr>";
 				_body += "</table>";
 				_body += "<table style='border:solid 1px grey;'>";
 				_body += "   <tr>";
@@ -1912,7 +1735,7 @@ _FUNCTIONS = {
 		return new Promise(
 			function (resolve, reject) {
 				var _json = { "function": "traerLookUp", "tabla": _table, "key": _key };
-				_AJAX.UiClubRedondoWSTransparent(_json).then(function (_data) {
+				_AJAX.UiMediyaTransparent(_json).then(function (_data) {
 					resolve(_data);
 				}).catch(function (error) {
 					reject(error);
@@ -2627,52 +2450,6 @@ _FUNCTIONS = {
 		$(".btn-ResetPassword").addClass("d-none");
 		if ($(".external_operator").prop("checked")) { $(".btn-ResetPassword").removeClass("d-none"); }
 	},
-	onAssignBuffer: function (_this) {
-		return new Promise(
-			function (resolve, reject) {
-				try {
-					var _mode = _this.attr("data-id");
-					var _ids = [];
-					var _id_operator = _this.attr("data-status");
-					if (_mode == 0) {
-						$(".btn-record-check").each(function () { if ($(this).prop("checked")) { _ids.push($(this).val()); } });
-					} else {
-						_ids.push(_mode);
-					}
-					_ids.forEach(function (_id) { $(".record-" + _id).fadeOut("slow"); });
-					_AJAX.UiAssignBuffer({ "ids": _ids, "id_operator": _id_operator }).then(function (datajson) {
-						_ids.forEach(function (_id) { $(".record-" + _id).remove(); });
-						resolve(datajson);
-					});
-				} catch (rex) {
-					_FUNCTIONS.onAlert({ "message": rex.message, "class": "alert-danger" });
-					reject(rex);
-				}
-			});
-	},
-	onAssignOperator: function (_this) {
-		return new Promise(
-			function (resolve, reject) {
-				try {
-					var _mode = _this.attr("data-id");
-					var _ids = [];
-					var _id_operator = _this.attr("data-status");
-					if (_mode == 0) {
-						$(".btn-record-check").each(function () { if ($(this).prop("checked")) { _ids.push($(this).val()); } });
-					} else {
-						_ids.push(_mode);
-					}
-					_ids.forEach(function (_id) { $(".record-" + _id).fadeOut("slow"); });
-					_AJAX.UiAssignOperator({ "ids": _ids, "id_operator": _id_operator }).then(function (datajson) {
-						_ids.forEach(function (_id) { $(".record-" + _id).remove(); });
-						resolve(datajson);
-					});
-				} catch (rex) {
-					_FUNCTIONS.onAlert({ "message": rex.message, "class": "alert-danger" });
-					reject(rex);
-				}
-			});
-	},
 	onTypeTaskClose: function (_this) {
 		var _is_cash = (_this.find(':selected').attr('data-is_cash'));
 		var _is_reschedule = (_this.find(':selected').attr('data-is_rescheduled'));
@@ -2783,48 +2560,6 @@ _FUNCTIONS = {
 				break;
 		}
 	},
-	onReportsCRM: function (_this) {
-		if (_TOOLS.validate(".validate")) {
-			var _json = {
-				"function": "Reports",
-				"from": $("#report_from").val(),
-				"to": $("#report_to").val(),
-				"report": _this.attr("data-report"),
-				"username": $("#username").val(),
-				"id_type_task_close": $("#id_type_task_close").val(),
-				"id_type_contact_channel": $("#id_type_contact_channel").val(),
-				"id_tarjeta": $("#id_tarjeta").val(),
-				"id_otro": $("#id_otro").val(),
-				"id_myd": $("#id_myd").val(),
-				"id_mil": $("#id_mil").val(),
-				"id_credito": $("#id_credito").val(),
-				"id_club_redondo": $("#id_club_redondo").val(),
-			};
-			_AJAX._waiter = true;
-			_AJAX.UiCRM(_json).then(function (data) {
-				var _html = ("<h3>" + _this.attr("data-title") + "</h3>");
-				_html += "<table class='table table-condensed'>";
-				_html += " <tr>";
-				_html += "   <th>Operador</th>";
-				_html += "   <th>Tarea</th>";
-				_html += "   <th>Tipo de canal</th>";
-				_html += "   <th>Tipo de cierre</th>";
-				_html += " </tr>";
-				$.each(data.data, function (i, val) {
-					_html += "<tr>";
-					_html += "   <td>" + val.operator + "</td>";
-					_html += "   <td>" + val.description + "</td>";
-					_html += "   <td>" + val.type_contact_channel + "</td>";
-					_html += "   <td>" + val.type_task_close + "</td>";
-					_html += "</tr>";
-				});
-				_html += "</table>";
-				$(".resultado").html(_html);
-			});
-		} else {
-			_FUNCTIONS.onShowAlert("Complete los datos requeridos", "Datos faltantes");
-		}
-	},
 	onFreeTelemedicina: function (_this) {
 		if (confirm("El paciente volverá a la sala de espera, sin médico asignado.  ¿Confirma?")) {
 			var _id = _this.attr("data-id");
@@ -2922,7 +2657,7 @@ _FUNCTIONS = {
 			$(".div-msg-web").html("").hide();
 			var _dni = $("#dni").val();
 			var _json = { "form": _form, "gateway": _gateway, "dni": _dni, "function": "dataForPaymentsByType" };
-			_AJAX.UiClubRedondoWSTransparent(_json).then(function (data) {
+			_AJAX.UiMediyaTransparent(_json).then(function (data) {
 				var _inhabilitadaT = false;
 				var _inhabilitadaC = false;
 				if (data.status == "OK") {

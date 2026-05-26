@@ -186,12 +186,12 @@ var _API = {
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    UiClubRedondoWSTransparent: function (_json) {
+    UiNetCoreCPFinancialTransparent: function (_json) {
         return new Promise(
             function (resolve, reject) {
                 _json["module"] = "mod_external";
-                _json["table"] = "ClubRedondoWS";
-                _json["model"] = "ClubRedondoWS";
+                _json["table"] = "NetCoreCPFinancial";
+                _json["model"] = "NetCoreCPFinancial";
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
@@ -200,8 +200,8 @@ var _API = {
             function (resolve, reject) {
                 _json["function"] = "registrarCobranza";
                 _json["module"] = "mod_external";
-                _json["table"] = "ClubRedondoWS";
-                _json["model"] = "ClubRedondoWS";
+                _json["table"] = "NetCoreCPFinancial";
+                _json["model"] = "NetCoreCPFinancial";
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
