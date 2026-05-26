@@ -376,3 +376,5 @@ $lang['m_api_integraciones_GetProductBankStatements'] = "Integraciones GetProduc
 $lang['m_api_integraciones_GetProductBankStatementFile'] = "Integraciones GetProductBankStatementFile";
 $lang['m_documentos_firmables'] = "Documentos firmables";
 $lang['m_api_integraciones_GetLoanPayments'] = "Integraciones GetLoanPayments";
+$lang['m_gestion_alertas'] = "Gestión de alertas";
+$lang['m_resolver_alertas'] = "Resolver alertas";
