@@ -28,8 +28,8 @@ class Credipaz extends MY_Model {
     }
     public function firstStepAuth($values)
     {
-        $EXTERNAL=$this->createModel(MOD_BACKEND,"External","External");
-        return $EXTERNAL->getIdentityInformation($values);
+       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+        return $NETCORECPFINANCIAL->getIdentityInformation($values);
     }
     public function secondStepAuth($values)
     {
@@ -45,8 +45,8 @@ class Credipaz extends MY_Model {
                 $values["IdSolicitud"]=$ret[0]["IdSolicitud"];
             }
         }
-        $EXTERNAL=$this->createModel(MOD_BACKEND,"External","External");
-        $result=$EXTERNAL->getUserInformation($values,"CP");
+        $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
+        $result=$NETCORECPFINANCIAL->getUserInformation($values,"CP");
 
         $APPLICATIONS=$this->createModel(MOD_BACKEND,"Applications","Applications");
         $ret=$APPLICATIONS->get(array("id"=>2));

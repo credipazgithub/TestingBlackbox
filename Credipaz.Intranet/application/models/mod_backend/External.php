@@ -55,6 +55,8 @@ class External extends MY_Model {
     /*Second identification with additional data, retrieve data structure for interface interaction*/
     public function getUserInformation($values){
         try {
+
+log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
             switch((int)$values["id_app"]) {
                case 2: // Credipaz
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");

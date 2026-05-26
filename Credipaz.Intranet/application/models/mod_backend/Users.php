@@ -357,6 +357,9 @@ class Users extends MY_Model
     public function testUserValuePWA($values)
     {
         try {
+
+log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
+
             $sql = "";
             $posibles = true;
             if (!isset($values["password"])) {
