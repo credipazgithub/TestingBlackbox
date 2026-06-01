@@ -1350,7 +1350,17 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-
+	UiImportarSocios: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "ImportarSocios";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
 	/**
 	 * /
 	 * MOD_ONBOARDING

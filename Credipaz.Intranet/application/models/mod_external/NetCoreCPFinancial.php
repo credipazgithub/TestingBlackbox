@@ -1624,6 +1624,25 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
+    public function ImportarSocios($values)
+    {
+        try {
+            
+            $headers = $this->Authenticate();
+
+
+            log_message("error", "RELATED importarSocios ".json_encode($values,JSON_PRETTY_PRINT));
+
+            $url = (CPFINANCIALS . "/Mediya/ImportarSocios");
+            $result = $this->callAPI($url, $headers, json_encode($values));
+            $result = json_decode($result, true);
+            return $result;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
     public function autorizarPrestacion($values){
         try {
 		    $token=$this->Authenticate();

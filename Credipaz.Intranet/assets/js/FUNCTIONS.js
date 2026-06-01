@@ -4218,5 +4218,55 @@ _FUNCTIONS = {
 	onResetCaptura: function (_this) {
 		$(_this.attr("data-target")).html("");
 	},
+
+	onImportarSocios: function (_this) {
+		try {
+			var _id = _this.attr("data-id");
+			var _record = JSON.parse(_TOOLS.b64_to_utf8(_this.attr("data-record")));
+			_FUNCTIONS.onDestroyModal("#mediyaModalImportarSocios");
+			var _html = "<div class='modal fade' id='mediyaModalImportarSocios'>";
+			_html += " <div class='modal-dialog modal-md'>";
+			_html += "  <div class='modal-content'>";
+			_html += "    <div>";
+			_html += "       <h4>Seleccione archivo a importar por la empresa <b>" + _record["RazonSocial"] +"</b>:</h4>";
+			_html += "    </div>";
+			_html += "    <button type='button' class='close btn-close-modal' data-dismiss='modal' style='color:red;font-size:42px;position:absolute;right:15px;top:2px;z-index:999999;'>&times;</button>";
+			_html += "    <div class='modal-body p-0 m-0'>";
+			_html += "       <input data-id='" + _id + "' class='btn-upload-socios btn btn-dark' type='file' id='importarSocios' name='importarSocios' accept='text/plain, text/csv'>";
+			_html += "    </div>";
+			_html += "    <div class='modal-footer font-weight-light'>";
+			_html += _FUNCTIONS._defaultProviderFooter;
+			_html += "</div>";
+			_html += "  </div>";
+			_html += " </div>";
+			_html += "</div>";
+			$("body").append(_html);
+
+			$("body").off("click", ".btn-upload-socios").on("click", ".btn-upload-socios", function (event) {
+				$(this).val(null);
+			});
+			$("body").off("change", ".btn-upload-socios").on("change", ".btn-upload-socios", function (event) {
+				if (!confirm("¿Confirma la importación?")) { return false; }
+				var _id_empresa = $(this).attr("data-id");
+				var base64 = "";
+				var reader = new FileReader();
+				reader.readAsDataURL($(".btn-upload-socios").prop('files')[0]);
+				reader.onload = function () {
+					base64 = reader.result;
+					var _json = { "base64": base64, "IdEmpresa": _id_empresa, "Username": _AJAX._username_active };
+					_AJAX.UiImportarSocios(_json).then(function (datajson) {
+						alert(datajson.error);
+						_FUNCTIONS.onDestroyModal("#mediyaModalImportarSocios");
+					}).catch(function (error) { alert(error.message); });
+				};
+			});
+			$("#mediyaModalImportarSocios").modal({ backdrop: false, keyboard: true, show: true });
+			return true;
+		} catch (rex) {
+			alert(rex.message);
+			return false;
+		}
+	},
+
 }
 

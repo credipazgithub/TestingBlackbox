@@ -36,6 +36,10 @@ class Empresa extends MY_Model {
             $values["columns"]=array(
                 //array("field"=>"id","format"=>"number"),
                 array("field"=>"RazonSocial","format"=>"text"),
+                array(
+                    "field"=>"modo","forcedlabel"=>"",
+                    "html"=>"<a href='#' class='btn btn-sm btn-raised btn-success btn-ImportarSocios' data-record='|RECORD|' data-id='|ID|'>Importar socios</a>",
+                    "format"=>"html#record"),
                 array("field"=>"CUIT","format"=>"number"),
                 array("field"=>"Estado","format"=>"status"),
                 array(
