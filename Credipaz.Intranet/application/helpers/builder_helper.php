@@ -1244,11 +1244,11 @@ function compareRecordValue($record,$condition){
 function formatHtmlValue($value,$format,$ops=null){
     switch($format) {
 	    case "yesno":
-		    if ((string)$value=="1" or strtoupper((string)$value)=="SI" or strtoupper((string)$value)=="YES"){
+		    if ((string)$value=="1" or strtoupper((string)$value)=="SI" or strtoupper((string)$value)=="YES"  or strtoupper((string)$value)=="S"){
 	            $value="Si";
 	            $value=("<span class='badge badge-primary' style='display:block;font-size:0.80rem;'>".$value."</span>");
 			} else {
-    		    if ((string)$value=="0" or strtoupper((string)$value)=="NO"){
+    		    if ((string)$value=="0" or strtoupper((string)$value)=="NO" or strtoupper((string)$value)=="N"){
 	               $value="No";
 	               $value=("<span class='badge badge-secondary' style='display:block;font-size:0.80rem;'>".$value."</span>");
 				} else {

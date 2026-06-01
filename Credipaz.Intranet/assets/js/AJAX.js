@@ -1439,4 +1439,15 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
+	UiStopGo: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "StopGo";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "Empresa";
+				_json["model"] = "Empresa";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
 };

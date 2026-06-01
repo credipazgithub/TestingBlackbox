@@ -3,6 +3,20 @@
 /*---------------------------------*/
 
 //HTML COMBOS
+function comboPlanes($obj){
+    $parameters=array(
+        "model"=>(MOD_DBCENTRAL."/Planes"),
+        "table"=>"Planes",
+        "name"=>"browser_id_plan",
+        "class"=>"form-control",
+        "empty"=>true,
+        "id_actual"=>"",
+        "id_field"=>"id",
+        "description_field"=>"nombre",
+        "sql"=>"SELECT * dbclub.dbo.Planes ORDER BY nombre ASC",
+    );
+    return getCombo($parameters,$obj);
+}
 function comboTicketsSectores($obj){
     $parameters=array(
         "model"=>(MOD_DBCENTRAL."/wrkRequerimiento"),

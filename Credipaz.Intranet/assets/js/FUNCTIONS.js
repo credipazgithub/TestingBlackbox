@@ -3382,6 +3382,13 @@ _FUNCTIONS = {
 			$(".area-priority").addClass("d-none");
 		}
 	},
+	onStopGo: function (_this) {
+		if (!confirm("Se cambiará el modeo STOP / GO de la empresa. ¿Confirma?")) { return false; }
+		var _json = { "id": _this.attr("data-id") };
+		_AJAX.UiStopGo(_json).then(function (datajson) {
+			$(".btn-browser-search").click();
+		});
+	},
 	onTestPush: function (_this) {
 		if ($(".dni").val() == "") {
 			_FUNCTIONS.onShowAlert("Debe poner un DNI de usuario válido para la prueba de envío", "Datos faltantes");

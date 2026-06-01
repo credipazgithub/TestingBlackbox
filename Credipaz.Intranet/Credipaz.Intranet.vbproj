@@ -548,6 +548,8 @@
     <Content Include="application\models\mod_dbcentral\wrkRequerimiento.php" />
     <Content Include="application\models\mod_dbcentral\wrkRequerimiento_userview.php" />
     <Content Include="application\controllers\Welcome.php" />
+    <Content Include="application\models\mod_dbcentral\Planes.php" />
+    <Content Include="application\models\mod_dbcentral\EmpresaFactura.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
