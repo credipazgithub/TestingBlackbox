@@ -89,7 +89,7 @@ $lang['error_5116'] = "Falta el parámetro 'code'";
 $lang['error_5117'] = "No se ha podido identificar al usuario.  Por favor vuelva a autenticarse.";
 $lang['error_5118'] = "El documento no corresponde con un usuario de Mediya.";
 $lang['error_5119'] = "Falta el parámetro 'id_type_post'";
-$lang['error_5020'] = "Falta el parámetro 'id_app'";
+$lang['error_5120'] = "Falta el parámetro 'id_app'";
 
 $lang['error_5200'] = "No se pueden autenticar estas credenciales";
 $lang['error_5201'] = "No se puede generar el token de autenticación";
