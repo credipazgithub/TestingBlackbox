@@ -28,11 +28,6 @@ class Validate_cbu extends My_Model {
                 case "validate_alias":
                     break;
             }
-
-            /*
-            Build, the consult to external ws here!
-            Auth, first... send bearer, second!
-            */
             $data["data_type"]=$values["type"];
             $html=$this->load->view(MOD_VALIDATE_CBU."/validate_cbu/report",$data,true);
             return array("status"=>"OK","message"=>compress($this,$html),"compressed"=>true);

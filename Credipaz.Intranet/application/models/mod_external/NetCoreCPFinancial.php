@@ -11,7 +11,6 @@ class NetCoreCPFinancial extends MY_Model {
     {
         parent::__construct();
     }
-
     public function BridgeAuthenticateMobile($values)
     {
         try {
@@ -1132,18 +1131,11 @@ class NetCoreCPFinancial extends MY_Model {
     }
 	public function ValidateCBU($values){
         try {
-            $sql=(string)"EXEC DBCentral.dbo.NS_CBU_Verificar @sCBU='".$values["valorConsulta"]."'";
-            $result=$this->getRecordsAdHoc($sql);
-
-		    /*
-			
 			$headers = $this->Authenticate();
  		    $fields=array("TipoConsulta"=>strtoupper($values["tipoConsulta"]),"ValorConsulta"=>$values["valorConsulta"]);
 			$url=(CPFINANCIALS."/Utilidades/ValidarCBU/");
 			$result = $this->callAPI($url,$headers,json_encode($fields));
 			$result = json_decode($result, true);
-			*/
-
             return array(
                 "code"=>"2000",
                 "status"=>"OK",

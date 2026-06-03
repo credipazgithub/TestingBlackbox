@@ -62,3 +62,4 @@ $lang['b_out']="Salir";
 $lang['b_verify']="Verificar";
 $lang['b_activity_record']="Registrar actividad";
 $lang['b_activity_record_nocontact']="Llamada sin contacto";
+$lang['b_by_dni']="Por DNI";
