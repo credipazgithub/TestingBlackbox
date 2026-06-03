@@ -1034,8 +1034,13 @@ _FUNCTIONS = {
 		}
 		_AJAX._waiter = true;
 		_AJAX.UiFarmaLinkRecetas(_params).then(function (datajson) {
-			var _body = "<iframe src='" + datajson.url + "' style='width:100%;height:1000px;border:solid 0px red;'></iframe>";
-			_FUNCTIONS.onTelemedicinaModalPDF({ "body": _body, "id_charge_code": _id_charge_code });
+			if (datajson.url != null) {
+				var _body = "<iframe src='" + datajson.url + "' style='width:100%;height:1000px;border:solid 0px red;'></iframe>";
+				_FUNCTIONS.onTelemedicinaModalPDF({ "body": _body, "id_charge_code": _id_charge_code });
+			} else {
+				var _j = JSON.parse(datajson.validation);
+				alert("no se ha podido acceder a la plataforma externa de emisión de recetas. " + _j[0]["errorMessage"]);
+			}
 		});
 	},
 	onProcessDirectTelemedicina: function (_this) {

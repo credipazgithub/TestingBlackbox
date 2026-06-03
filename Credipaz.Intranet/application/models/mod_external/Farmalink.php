@@ -76,7 +76,6 @@ class Farmalink extends MY_Model {
 						"especialidad"=> (string)"GENERALISTA"
 					)
 				);
-
             $b64= base64_encode(json_encode($fields));
             $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             $params=array("base64"=>$b64);
