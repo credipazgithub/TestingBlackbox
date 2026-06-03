@@ -379,4 +379,5 @@ $lang['m_api_integraciones_GetLoanPayments'] = "Integraciones GetLoanPayments";
 $lang['m_gestion_alertas'] = "Gestión de alertas";
 $lang['m_resolver_alertas'] = "Resolver alertas";
 $lang['m_empresa']="Empresa";
-$lang['m_acciones_generales_mediya']="Acciones generales Mediya";
+$lang['m_acciones_generales_mediya']="Acciones Mediya";
+$lang['m_acciones_generales_mesa_ayuda']="Acciones Mesa de ayuda";
