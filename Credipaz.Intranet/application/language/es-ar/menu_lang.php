@@ -381,3 +381,4 @@ $lang['m_resolver_alertas'] = "Resolver alertas";
 $lang['m_empresa']="Empresa";
 $lang['m_acciones_generales_mediya']="Acciones Mediya";
 $lang['m_acciones_generales_mesa_ayuda']="Acciones Mesa de ayuda";
+$lang['m_tiendamil_manual']="Operaciones manuales";
