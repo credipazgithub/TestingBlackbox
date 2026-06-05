@@ -40,7 +40,7 @@ class Operators_tasks extends MY_Model {
                 //array("field"=>"nocontact","format"=>"danger"),
             );
 
-            $values["title"]=lang('m_legal_requests');
+            $values["title"]="Consultas";
             if (!$is_lawyer){
                 $values["where"]=("1=2");
                 $values["alert_message"]="<div class='alert alert-danger fade show' role='alert'>".lang('msg_is_not_lawyer')."</div>";
@@ -82,7 +82,7 @@ class Operators_tasks extends MY_Model {
 		    $id=$values["id"];
             if(!isset($values["forced"])){$values["forced"]="";}
             $values["readonly"]=false;
-            $values["title"]=lang('m_legal_requests');
+            $values["title"]="Consultas";
             $profile=getUserProfile($this,$values["id_user_active"]);
             //$external=(evalPermissions("EXTERNAL",$profile["data"][0]["groups"]));
             $this->view="vw_operators_tasks";

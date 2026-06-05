@@ -12,7 +12,7 @@ class External_forms extends MY_Model {
     public function add_creditcard($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_add_credit_cards"));
+            $data["title"] = "Alta de tarjetas";
             $html=$this->load->view(MOD_EXTERNAL."/external_forms/add_creditcard",$data,true);
             
             return array(

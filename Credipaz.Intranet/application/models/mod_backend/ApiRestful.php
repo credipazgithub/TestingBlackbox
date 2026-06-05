@@ -14,7 +14,7 @@ class ApiRestful extends MY_Model {
 
             $FUNCTIONS=$this->createModel(MOD_BACKEND,"Functions","Functions");
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_add_credit_cards"));
+            $data["title"] = "Alta de tarjetas";
             $data["menu"] = $FUNCTIONS->menuAPI($values);
             $html=$this->load->view(MOD_BACKEND."/apirestful/form",$data,true);
             

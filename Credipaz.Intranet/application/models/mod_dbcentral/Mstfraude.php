@@ -39,7 +39,7 @@ class Mstfraude extends MY_Model {
             $this->view="DBCentral.dbo.mstfraude";
             $values["fields"]="*, nId as id, CASE WHEN lVigente IS null THEN getdate() ELSE null END as offline";
             $values["order"]="nDoc ASC";
-            $values["title"]=lang('m_fraudulento');
+            $values["title"]="Fraudes";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

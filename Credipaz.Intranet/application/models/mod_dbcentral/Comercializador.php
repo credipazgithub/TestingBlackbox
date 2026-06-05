@@ -19,7 +19,7 @@ class Comercializador extends MY_Model {
             $this->view="DBCentral.dbo.Comercializador";
             $values["fields"]="Id as id,Nombre,NroDocumento,Password,Estado,Email,Admin,IdEmpresa";
             $values["order"]="Nombre ASC";
-            $values["title"]=lang('m_CR_Vendedor');
+            $values["title"]="Vendedor";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

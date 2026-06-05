@@ -12,7 +12,7 @@ class Rel_modulos extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Módulos por usuario";
             $html=$this->load->view(MOD_CLUB_REDONDO."/rel_modulos/form",$data,true);
             
             return array(

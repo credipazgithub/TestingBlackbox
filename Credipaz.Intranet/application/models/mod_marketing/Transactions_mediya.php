@@ -11,7 +11,7 @@ class Transactions_mediya extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Transacciones Mediya";
             $html=$this->load->view(MOD_MARKETING."/transactions_mediya/form",$data,true);
             return array(
                 "code"=>"2000",

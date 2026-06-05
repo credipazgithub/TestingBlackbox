@@ -4,7 +4,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*---------------------------------*/
 ?>
 <div class="container-flex" style="padding:5px;">
-    <h4><?php echo lang('m_mark_user_read');?></h4>
+    <h4>Marcar todo leído por usuario</h4>
     <div id="legajo" class="container">
         <form class="form-horizontal">
             <fieldset>

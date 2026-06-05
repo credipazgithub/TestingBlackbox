@@ -19,7 +19,7 @@ class Products extends MY_Model {
     public function brow($values){
         try {
             $profile=getUserProfile($this,$values["id_user_active"]);
-            $values["title"]=lang('m_shopping_items');
+            $values["title"]="Productos MIL";
             $values["buttons"]=array(
                 "new"=>true,
                 "edit"=>true,

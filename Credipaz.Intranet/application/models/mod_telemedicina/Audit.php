@@ -39,8 +39,8 @@ class Audit extends MY_Model {
             $auditor=(evalPermissions("X_AUDITORIA_MEDICOS",$profile["data"][0]["groups"]));
             $auditor=(evalPermissions("FULLSYSTEM",$profile["data"][0]["groups"]));
             $data["auditor"] = $auditor;
-            $data["title"] = ucfirst(lang("m_cancelaciones"));
-            if (!$auditor) {$data["title"] = ucfirst(lang("m_medical_monitoring"));}
+            $data["title"] = "Cancelación de atenciones";
+            if (!$auditor) {$data["title"] = "Monitoreo general";}
             $data["espera"] = $CHARGES_CODES->get(array("pagesize"=>"-1","fields"=>"*,datediff(second,created,getdate()) as seconds,dbo.fc_formatSeconds(datediff(second,created,getdate()),'s') as elapsed","where"=>"id_operator_task IS null","order"=>"id DESC"));
             $data["encurso"] = $OPERATORS_TASKS->get(array("pagesize"=>"-1","fields"=>"*,datediff(second,verified,getdate()) as seconds,dbo.fc_formatSeconds(datediff(second,verified,getdate()),'s') as elapsed","where"=>"id_type_task_close IS null","order"=>"id DESC"));
             $data["finalizadas"] = $OPERATORS_TASKS->get(array("pagesize"=>"20","fields"=>"*,datediff(second,verified,fum) as seconds,dbo.fc_formatSeconds(datediff(second,verified,fum),'s') as elapsed","where"=>"id_type_task_close IS NOT null","order"=>"id DESC"));

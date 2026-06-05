@@ -12,14 +12,14 @@ defined('BASEPATH') OR exit('No direct script access allowed');
            foreach ($menu["data"] as $item) {
                $id=$item["id"];
                $key = ("item" . $id);
-               $html.="<div><a class='btn btn-".$item["brief"]." btn-raised btn-md mb-1' data-toggle='collapse' href='#". $key."'>". ucfirst(lang($item["code"]))."</a></div>";
+               $html.="<div><a class='btn btn-".$item["brief"]." btn-raised btn-md mb-1' data-toggle='collapse' href='#". $key."'>". ucfirst($item["code"])."</a></div>";
 
                $html.="  <div id='" . $key . "' class='collapse' data-parent='#accordionAPI'>";
                $html .= '  <ul class="list-group p-0 m-0">';
                foreach ($item["submenu"] as $subitem) {
                    $server = getServer();
                    if (strpos($server, "localhost") === false) {$server = "https://api.credipaz.com";}
-                   $html .= '   <li class="list-group-item"><a href="#" class="btn-link" data-link="' . $server . $subitem["data_module"] . '?' . opensslRandom(8) . '" data-endpoint="' . $server . $subitem["data_model"] . '">' . ucfirst(lang($subitem["code"])) . '</a></li>';
+                   $html .= '   <li class="list-group-item"><a href="#" class="btn-link" data-link="' . $server . $subitem["data_module"] . '?' . opensslRandom(8) . '" data-endpoint="' . $server . $subitem["data_model"] . '">' . ucfirst($subitem["code"]) . '</a></li>';
                }
                $html .= '  </ul>';
                $html .= "</div>";

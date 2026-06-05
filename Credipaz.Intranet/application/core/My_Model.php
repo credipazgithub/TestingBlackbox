@@ -390,7 +390,7 @@ class My_Model extends CI_Model
                 $values["interface"] = ("form");
             }
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
+            $data["title"] = "Formulario";
             $html = $this->load->view($values["interface"], $data, true);
             
             return array(
@@ -422,7 +422,7 @@ class My_Model extends CI_Model
             }
             $data["parameters"] = $values;
             if (!isset($values["title"])) {
-                $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
+                $data["title"] = "Grilla de datos";
             } else {
                 $data["title"] = ucfirst($values["title"]);
             }
@@ -450,7 +450,7 @@ class My_Model extends CI_Model
                 $values["interface"] = ("excel");
             }
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
+            $data["title"] = "Exportación a Excel";
             $html = $this->load->view($values["interface"], $data, true);
             
             $ret = array("message" => $html, "mime" => "text/csv", "mode" => $values["mode"], "indisk" => false);
@@ -477,7 +477,7 @@ class My_Model extends CI_Model
                 $data["attached_messages"] = $values["attached_messages"];
             }
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_" . strtolower($values["model"])));
+            $data["title"] = "Editar";
             $html = $this->load->view($values["interface"], $data, true);
             
             return array(

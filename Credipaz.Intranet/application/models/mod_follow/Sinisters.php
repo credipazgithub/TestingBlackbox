@@ -11,7 +11,7 @@ class Sinisters extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_statics"));
+            $data["title"] = "Estadísticas";
 			$data["cboDoctors"] = comboDoctorsUsername($this,array("where"=>"offline is null and test!=1","order"=>"username ASC","pagesize"=>-1));
             $html=$this->load->view(MOD_FOLLOW."/sinisters/form",$data,true);
             return array(

@@ -19,7 +19,7 @@ class EmpresaComercializadora extends MY_Model {
             $this->view="DBCentral.dbo.EmpresaComercializadora";
             $values["fields"]="Id as id,Nombre,RazonSocial,CUIT,Telefono,Direccion,Localidad,Estado";
             $values["order"]="RazonSocial ASC";
-            $values["title"]=lang('m_Empresa');
+            $values["title"]="Empresa";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

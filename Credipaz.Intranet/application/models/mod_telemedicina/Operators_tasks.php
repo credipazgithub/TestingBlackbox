@@ -70,7 +70,7 @@ class Operators_tasks extends MY_Model {
             if(!isset($values["forced"])){$values["forced"]="";}
             $audit=($values["forced"]=="audit");
             if ($audit) {
-                $values["title"]=lang('m_doctor_audit');
+                $values["title"]="Supervisión";
                 $btnNext="";
                 $values["filters"]=array(
                     array("name"=>"browser_search", "operator"=>"like","fields"=>array("code","description")),
@@ -83,7 +83,7 @@ class Operators_tasks extends MY_Model {
                 );
                 $values["buttons"]["edit"]=true;
             } else {
-                $values["title"]=lang('m_operators_tasks_telemedicina');
+                $values["title"]="Consultas realizadas";
                 $data=array("videoDoctorStatus"=>0,"videoPatientStatus"=>0);
                 $where="id_operator_task IN (SELECT id FROM ".MOD_TELEMEDICINA."_operators_tasks WHERE id_operator=".$values["id_user_active"].")";
                 $CHARGES_CODES->updateByWhere($data,$where);
@@ -137,7 +137,7 @@ class Operators_tasks extends MY_Model {
             if(!isset($values["forced"])){$values["forced"]="";}
             $audit=($values["forced"]=="audit");
             $values["readonly"]=$audit;
-            $values["title"]=lang('m_operators_tasks_telemedicina');
+            $values["title"]="Consultas realizadas";
             $profile=getUserProfile($this,$values["id_user_active"]);
             //$external=(evalPermissions("EXTERNAL",$profile["data"][0]["groups"]));
             $this->view="vw_operators_tasks";

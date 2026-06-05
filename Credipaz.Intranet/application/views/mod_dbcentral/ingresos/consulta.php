@@ -10,7 +10,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     </div>
     <div class="form-row">
         <div class="col-6 p-1 pt-3">
-            <h4><?php echo lang('m_salary_request');?></h4>
+            <h4>Ingresos</h4>
         </div>
         <div class="col-6 p-1 pt-3 m-0">
             <div class="filtros">

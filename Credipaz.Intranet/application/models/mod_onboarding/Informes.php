@@ -11,7 +11,7 @@ class Informes extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Informes";
             $html=$this->load->view(MOD_ONBOARDING."/Informes/form",$data,true);
             
             return array(

@@ -234,7 +234,7 @@ class Functions extends MY_Model {
             );
 
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_permissions_map"));
+            $data["title"] = "Mapa de permisos";
             $html=$this->load->view(MOD_BACKEND."/functions/form",$data,true);
 
             

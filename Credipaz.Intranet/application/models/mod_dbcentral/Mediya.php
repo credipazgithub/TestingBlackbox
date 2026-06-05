@@ -11,7 +11,7 @@ class Mediya extends MY_Model {
     public function subdiario($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Subdiario Mediya";
             $html=$this->load->view(MOD_DBCENTRAL."/mediya/subdiario",$data,true);
             logGeneral($this,$values,__METHOD__);
             return array(
@@ -29,7 +29,7 @@ class Mediya extends MY_Model {
     }
 	public function reportSubdiario($values) {
 	   try {
-			$titleCSV=array("Subdiario MEDIya del ".date(FORMAT_DATE_DMY, strtotime($values["FechaDesde"]))." al ".date(FORMAT_DATE_DMY, strtotime($values["FechaHasta"])));
+			$titleCSV=array("Subdiario Mediya del ".date(FORMAT_DATE_DMY, strtotime($values["FechaDesde"]))." al ".date(FORMAT_DATE_DMY, strtotime($values["FechaHasta"])));
 			$title="<h3>".$titleCSV[0]." <a href='#' target='_blank' class='btn-download btn btn-md btn-primary'><span class='material-icons'>download</span> Descargar CSV</a></h3>";
 			$headerCSV=array("Fecha","Prefijo","Tipo","NroComprobante","Nombre","NroDocumento","Concepto","Importe");
 

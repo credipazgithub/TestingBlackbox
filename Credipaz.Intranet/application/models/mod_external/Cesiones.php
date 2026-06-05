@@ -14,7 +14,7 @@ class Cesiones extends MY_Model {
         try {
             $profile=getUserProfile($this,$values["id_user_active"]);
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_" . $values["model"]));
+            $data["title"] = "Cesiones";
             $data["interno"] = "S";
             $sql = "SELECT * FROM DBCentral.dbo.NS_vw_descuentoCarteraBanco ORDER BY Nombre ASC";
             $data["bancos"] = $this->getRecordsAdHoc($sql);

@@ -11,7 +11,7 @@ class Ingresos extends MY_Model {
     public function consulta($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Ingresos";
             $html=$this->load->view(MOD_DBCENTRAL."/ingresos/consulta",$data,true);
             logGeneral($this,$values,__METHOD__);
             return array(

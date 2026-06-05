@@ -25,7 +25,7 @@ class Empresa extends MY_Model {
             $this->view="dbclub.dbo.Empresa";
             $values["fields"]="Id as id,*";
             $values["order"]="RazonSocial ASC";
-            $values["title"]=lang('m_Empresa');
+            $values["title"]="Empresa";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

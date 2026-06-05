@@ -19,7 +19,7 @@ class CR_Vendedor extends MY_Model {
             $this->view="dbclub.dbo.CR_Vendedor";
             $values["fields"]="Id as id,Nombre,NroDocumento,Password,Estado,Email,Admin,IdEmpresa";
             $values["order"]="Nombre ASC";
-            $values["title"]=lang('m_CR_Vendedor');
+            $values["title"]="Vendedor";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

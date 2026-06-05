@@ -20,7 +20,7 @@ class Transactions_credipaz extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Transacciones Credipaz";
             $html=$this->load->view(MOD_MARKETING."/transactions_credipaz/form",$data,true);
             return array(
                 "code"=>"2000",

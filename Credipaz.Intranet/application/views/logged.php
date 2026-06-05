@@ -28,7 +28,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                 $html.="      <table style='width:100%;'>";
                 $html.="         <tr>";
                 $html.="            <td valign='middle' style='width:30px;'><i class='material-icons'>".$item["icon"]."</i></td>";
-                $html.="            <td valign='middle'>".ucfirst(lang($item["code"]))."</td>";
+                $html.="            <td valign='middle'>".ucfirst($item["code"])."</td>";
                 $html.="         </tr>";
                 $html.="         <tr>";
                 $html.="            <td colspan='2' align='right' valign='middle'>".$running."</td>";
@@ -49,7 +49,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $html.="      <table style='width:100%;'>";
                     $html.="         <tr>";
                     $html.="            <td valign='middle' style='width:30px;'><i class='material-icons'>".$subitem["icon"]."</i></td>";
-                    $html.="            <td valign='middle' class='label-menu'>".ucfirst(lang($subitem["code"]))."</td>";
+                    $html.="            <td valign='middle' class='label-menu'>".ucfirst($subitem["code"])."</td>";
                     $html.="         </tr>";
                     $html.="         <tr>";
                     if($subitem["alert_build"]==1) {

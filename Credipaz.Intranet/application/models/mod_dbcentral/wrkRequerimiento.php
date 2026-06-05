@@ -14,7 +14,7 @@ class wrkRequerimiento extends MY_Model {
             $this->view="dbcentral.dbo.wrkRequerimiento";
             $values["fields"]="*, nID as id";
             $values["order"]="dFechaIngreso DESC";
-            $values["title"]=lang('m_wrkRequerimiento');
+            $values["title"]="Solicitudes";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>false,

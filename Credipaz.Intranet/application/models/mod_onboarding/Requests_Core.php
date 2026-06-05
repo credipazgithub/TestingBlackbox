@@ -11,7 +11,7 @@ class Requests_Core extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Formulario";
             $html=$this->load->view(MOD_ONBOARDING."/requests_core/form",$data,true);
             
             return array(

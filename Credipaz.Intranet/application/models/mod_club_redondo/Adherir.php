@@ -12,7 +12,7 @@ class Adherir extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Adherir";
             $html=$this->load->view(MOD_CLUB_REDONDO."/adherir/form",$data,true);
             
             return array(

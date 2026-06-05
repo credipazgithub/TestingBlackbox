@@ -17,7 +17,7 @@ class wrkRequerimiento_userview extends MY_Model {
             $values["where"].="sUsuarioSolicitante='".$profile["data"][0]["username"]."'";
             $values["fields"]="*, nID as id";
             $values["order"]="dFechaIngreso DESC";
-            $values["title"]=lang('m_wrkRequerimiento_userview');
+            $values["title"]="Mis solicitudes";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(
                 "new"=>true,

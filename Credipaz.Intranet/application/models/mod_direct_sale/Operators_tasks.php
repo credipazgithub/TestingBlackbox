@@ -12,7 +12,7 @@ class Operators_tasks extends MY_Model {
     public function brow($values){
         try {
             $profile=getUserProfile($this,$values["id_user_active"]);
-            $values["title"]=lang('m_mil');
+            $values["title"]="MIL Tienda en Vivo";
             $values["buttons"]=array(
                 "new"=>false,
                 "edit"=>false,
@@ -50,7 +50,7 @@ class Operators_tasks extends MY_Model {
 			   $values["id"]=$saved["data"]["id"];
 			}
 		    $chat_roomname=opensslRandom(8);
-            $values["title"]=lang('m_mil');
+            $values["title"]="MIL Tienda en Vivo";
             $profile=getUserProfile($this,$values["id_user_active"]);
             $values["chat_fullname"]=$profile["data"][0]["username"];
             $values["chat_alias"]=$profile["data"][0]["username"];
@@ -143,7 +143,7 @@ class Operators_tasks extends MY_Model {
     public function form($values){
         try {
             $data["parameters"] = $values;
-            $data["title"] = ucfirst(lang("m_".$values["model"]));
+            $data["title"] = "Tareas asignadas";
             $CAMERAS = $this->createModel(MOD_DIRECT_SALE, "Cameras", "Cameras");
             $cams=$CAMERAS->get(array("order"=>"description ASC"));
             $data["cams"] = $cams["data"];
