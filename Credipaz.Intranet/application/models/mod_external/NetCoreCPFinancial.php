@@ -1129,26 +1129,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
-	public function ValidateCBU($values){
-        try {
-			$headers = $this->Authenticate();
- 		    $fields=array("TipoConsulta"=>strtoupper($values["tipoConsulta"]),"ValorConsulta"=>$values["valorConsulta"]);
-			$url=(CPFINANCIALS."/Utilidades/ValidarCBU/");
-			$result = $this->callAPI($url,$headers,json_encode($fields));
-			$result = json_decode($result, true);
-            return array(
-                "code"=>"2000",
-                "status"=>"OK",
-                "message"=>$result,
-                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
-                "data"=>$result[0]["resultado"],
-                "compressed"=>false
-            );        
-		}
-        catch (Exception $e) {
-            return logError($e,__METHOD__ );
-        }
-	}
     public function GetDeudaAPagar($values){
         try {
 		    

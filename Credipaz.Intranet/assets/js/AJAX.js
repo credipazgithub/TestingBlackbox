@@ -600,21 +600,6 @@ _AJAX = {
 	},
 		
 	/**
-	 * /
-	 * MOD_VALIDATE_CBU
-	 */
-	UiValidateCBU: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "ValidateCBU";
-				_json["module"] = "mod_external";
-				_json["table"] = "NetCoreCPFinancial";
-				_json["model"] = "NetCoreCPFinancial";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	/**
 
  	 * /
 	 * MOD_PROVIDERS

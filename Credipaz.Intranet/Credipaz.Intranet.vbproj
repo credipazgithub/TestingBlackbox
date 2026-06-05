@@ -312,7 +312,6 @@
     <Content Include="application\models\mod_telemedicina\Type_vademecum.php" />
     <Content Include="application\models\mod_telemedicina\Type_tasks_close.php" />
     <Content Include="application\models\mod_telemedicina\Vademecum.php" />
-    <Content Include="application\models\mod_validate_cbu\Validate_cbu.php" />
     <Content Include="application\models\mod_web_posts\Rel_web_posts_groups.php" />
     <Content Include="application\models\mod_web_posts\Rel_web_posts_sections.php" />
     <Content Include="application\models\mod_web_posts\Sections.php" />
@@ -497,8 +496,6 @@
     <Content Include="application\views\mod_telemedicina\operators_tasks\abm.php" />
     <Content Include="application\views\mod_telemedicina\type_tasks_close\abm.php" />
     <Content Include="application\views\mod_telemedicina\videochat\form.php" />
-    <Content Include="application\views\mod_validate_cbu\validate_cbu\form.js" />
-    <Content Include="application\views\mod_validate_cbu\validate_cbu\form.php" />
     <Content Include="application\views\mod_web_posts\web_posts\abm.php" />
     <Content Include="application\views\mod_web_posts\web_posts\credipaz-dev-support.php" />
     <Content Include="application\views\mod_web_posts\web_posts\credipaz-privacy-policy.php" />
