@@ -153,7 +153,6 @@
     <Content Include="application\language\es-ar\errors_lang.php" />
     <Content Include="application\language\es-ar\fields_lang.php" />
     <Content Include="application\language\es-ar\index.html" />
-    <Content Include="application\language\es-ar\menu_lang.php" />
     <Content Include="application\language\es-ar\messages_lang.php" />
     <Content Include="application\language\es-ar\profiler_lang.php" />
     <Content Include="application\language\index.html" />
