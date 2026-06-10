@@ -3330,54 +3330,6 @@ _FUNCTIONS = {
 			});
 		});
 	},
-	onFollowAccept: function (_this) {
-		_FUNCTIONS._scrollY = window.scrollY;
-		if (_TOOLS.validate(".validateQuestion", true)) {
-			var _json = _TOOLS.getFormValues(".dbquestion", null);
-			_json["module"] = "mod_follow";
-			_json["table"] = "Rel_sinisters_questions";
-			_json["model"] = "Rel_sinisters_questions";
-			_AJAX.UiSave(_json).then(function (data) {
-				if (data.status == "OK") {
-					$(".btn-abm-cancel").click();
-					setTimeout(function () { window.scrollTo(0, _FUNCTIONS._scrollY); }, 250);
-				}
-			});
-		}
-	},
-	onDischargeAccept: function (_this) {
-		if (_TOOLS.validate(".validateDischarge", true)) {
-			var _json = _TOOLS.getFormValues(".dbaseDischarge", null);
-			_json["id_sinister"] = _this.attr("data-id-sinister");
-			_json["module"] = "mod_follow";
-			_json["table"] = "Discharges";
-			_json["model"] = "Discharges";
-			_AJAX.UiSave(_json).then(function (data) {
-				if (data.status == "OK") {
-					window.scrollTo(0, 0);
-					$(".btn-abm-cancel").click();
-				}
-			});
-		}
-	},
-	onValidateModuleSinister: function (_this) {
-		clearTimeout(_FUNCTIONS._TIMER_LAZY);
-		var _id_type_art = $("#id_type_art").val();
-		var _module_sinister = $("#module_sinister").val();
-		var _version = $("#version").val();
-		if (_version == '') { _version = 0; }
-		if (_id_type_art != -1 && _module_sinister != "") {
-			_FUNCTIONS._TIMER_LAZY = setTimeout(function () {
-				var _data = { "module": "mod_follow", "table": "Sinisters", "model": "Sinisters", "page": -1, "pagesize": -1, "where": ("id_type_art=" + _id_type_art + " AND version='" + _version + "' AND module_sinister='" + _module_sinister + "'") };
-				_AJAX.UiGet(_data).then(function (datajson) {
-					$.each(datajson.data, function (i, item) {
-						_FUNCTIONS.onShowAlert("Ya existe un registro con este número de siniestro para la ART seleccionada.", "Control de numeración");
-						//$("#module_sinister").val("");
-					});
-				});
-			}, 500);
-		}
-	},
 	onPassToReview: function (_this) {
 		if (_this.prop("checked")) {
 			$(".id_type_priority").val(5);

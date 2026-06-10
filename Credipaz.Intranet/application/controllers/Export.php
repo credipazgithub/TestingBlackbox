@@ -21,49 +21,4 @@ class Export extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
 	}
-    function altamedicaArt($id_sinister,$mode,$id_user=null){
-        try {
-			$SINISTERS=$this->createModel(MOD_FOLLOW,"sinisters","sinisters");
-            $this->outPdf($SINISTERS->buildAltaMedica($id_sinister,$mode,$id_user));
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-	}
-    function altamedicalaboralArt($id_sinister,$mode,$id_user=null){
-        try {
-			$SINISTERS=$this->createModel(MOD_FOLLOW,"sinisters","sinisters");
-            $this->outPdf($SINISTERS->buildAltaMedicaLaboral($id_sinister,$mode,$id_user));
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-	}
-    function revisionArt($id_sinister,$nRevision,$mode,$id_user=null){
-        try {
-			$SINISTERS=$this->createModel(MOD_FOLLOW,"sinisters","sinisters");
-            $this->outPdf($SINISTERS->buildRevision($id_sinister, $nRevision, $mode, $id_user));
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-	}
-    function siniestroArt($id_sinister,$mode,$id_user=null){
-        try {
-			$SINISTERS=$this->createModel(MOD_FOLLOW,"sinisters","sinisters");
-            $this->outPdf($SINISTERS->buildSiniestro($id_sinister,$mode,$id_user));
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-	}
-    function siniestrocasoleveArt($id_sinister,$mode,$id_user=null){
-        try {
-			$SINISTERS=$this->createModel(MOD_FOLLOW,"sinisters","sinisters");
-            $this->outPdf($SINISTERS->buildSiniestroCasoLeve($id_sinister, $mode, $id_user));
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-	}
 }
