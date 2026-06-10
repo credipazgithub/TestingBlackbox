@@ -300,12 +300,8 @@
     <Content Include="application\models\mod_telemedicina\Operators_tasks.php" />
     <Content Include="application\models\mod_telemedicina\Rel_persona_adicionales.php" />
     <Content Include="application\models\mod_telemedicina\Type_emergency.php" />
-    <Content Include="application\models\mod_telemedicina\Type_families.php" />
-    <Content Include="application\models\mod_telemedicina\Type_monodrugs.php" />
     <Content Include="application\models\mod_backend\Polls.php" />
-    <Content Include="application\models\mod_telemedicina\Type_vademecum.php" />
     <Content Include="application\models\mod_telemedicina\Type_tasks_close.php" />
-    <Content Include="application\models\mod_telemedicina\Vademecum.php" />
     <Content Include="application\models\mod_web_posts\Rel_web_posts_groups.php" />
     <Content Include="application\models\mod_web_posts\Rel_web_posts_sections.php" />
     <Content Include="application\models\mod_web_posts\Sections.php" />
