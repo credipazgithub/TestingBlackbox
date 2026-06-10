@@ -206,13 +206,9 @@
     <Content Include="application\models\mod_club_redondo\Type_products.php" />
     <Content Include="application\models\mod_club_redondo\Type_status_canjes.php" />
     <Content Include="application\models\mod_direct_sale\Products.php" />
-    <Content Include="application\models\mod_direct_sale\Devices.php" />
-    <Content Include="application\models\mod_direct_sale\Type_actions.php" />
     <Content Include="application\models\mod_direct_sale\Cameras.php" />
     <Content Include="application\models\mod_email\Email.php" />
     <Content Include="application\models\mod_direct_sale\Operators_tasks.php" />
-    <Content Include="application\models\mod_direct_sale\Type_status.php" />
-    <Content Include="application\models\mod_direct_sale\Type_tasks_close.php" />
     <Content Include="application\models\mod_external\Mercado_pago.php" />
     <Content Include="application\models\mod_external\Farmalink.php" />
     <Content Include="application\models\mod_external\NetCoreCPFinancial.php" />
@@ -226,7 +222,6 @@
     <Content Include="application\models\mod_providers\Rel_type_limits_aprovals_groups.php" />
     <Content Include="application\models\mod_providers\Type_status_contables.php" />
     <Content Include="application\models\mod_providers\Type_pay_conditions.php" />
-    <Content Include="application\models\mod_sms\SMS.php" />
     <Content Include="application\models\mod_external\NeoSignature.php" />
     <Content Include="application\models\mod_external\External_forms.php" />
     <Content Include="application\models\mod_external\Reorganizer.php" />
@@ -426,10 +421,6 @@
     <Content Include="application\views\mod_backend\upload\form.php" />
     <Content Include="application\views\mod_backend\users\abm.php" />
     <Content Include="application\views\mod_backend\users\reset.php" />
-    <Content Include="application\views\mod_direct_sale\devices\form_device.js" />
-    <Content Include="application\views\mod_direct_sale\devices\form_device.php" />
-    <Content Include="application\views\mod_direct_sale\devices\form_vendor.js" />
-    <Content Include="application\views\mod_direct_sale\devices\form_vendor.php" />
     <Content Include="application\views\mod_email\templates\alertCloseOnBoarding.php" />
     <Content Include="application\views\mod_email\templates\forPayedEmail.php" />
     <Content Include="application\views\mod_email\templates\legalRequestNew.php" />

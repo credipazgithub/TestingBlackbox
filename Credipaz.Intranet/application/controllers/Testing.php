@@ -150,25 +150,6 @@ class Testing extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
-    public function testSMS(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
-            $_POST['function'] = 'send';
-            $_POST['module'] = MOD_SMS;
-            $_POST['model'] = 'sms';
-            $_POST['table'] = 'sms';
-            $_POST['mensaje'] = 'Test SMS Neodata, via Teleprom';
-            $_POST['telefono'] = '+5491161603238'; // Fernando
-            $_POST['identificador'] = 'idxxxxxx';
-            $this->neocommand(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
     public function getReverse(){
         try {
             $raw=$this->rawInput();
