@@ -117,7 +117,7 @@ class Payments_fiserv extends MY_Model {
 		    if(!isset($values["targetFrame"])){$values["targetFrame"]="iframe_fiserv";}
 
 		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/webhooks/FiservError";}
-		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/webhooks/FiservOkTest";}
+		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/webhooks/FiservOk";}
     		$hostURI="https://fiserv.credipaz.com/webhooks/FiservNotify";
     		$transactionNotificationURL="https://fiserv.credipaz.com/webhooks/FiservNotify";
        
