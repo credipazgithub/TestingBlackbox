@@ -323,7 +323,6 @@
     <Content Include="application\views\mod_dbcentral\ingresos\consulta.js" />
     <Content Include="application\views\mod_dbcentral\mediya\subdiario.js" />
     <Content Include="application\views\mod_external\cesiones\form.js" />
-    <Content Include="application\views\mod_external\external_forms\tarjeta.js" />
     <Content Include="application\views\mod_club_redondo\arrepentimiento\form.js" />
     <Content Include="application\views\mod_club_redondo\arrepentimiento\form.php" />
     <Content Include="application\views\mod_club_redondo\legales\form.js" />
@@ -723,7 +722,6 @@
     <Content Include="application\models\mod_marketing\Transactions_credipaz.php" />
     <Content Include="application\models\mod_marketing\Transactions_mediya.php" />
     <Content Include="application\views\mod_marketing\transactions_mediya\form.php" />
-    <Content Include="application\views\mod_external\external_forms\tarjeta.php" />
     <Content Include="application\controllers\ApiRestful.php" />
     <Content Include="application\models\mod_backend\ApiRestful.php" />
     <Content Include="application\views\mod_onboarding\informes\form.php" />

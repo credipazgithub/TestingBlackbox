@@ -208,40 +208,6 @@ class Backend extends MY_Controller {
             $data["pre"]="";
 
             switch ($page) {
-               case "tarjeta-admin":
-               case "tarjeta-admin-auth":
-                   $data["title"]="Tarjeta de crédito";
-                   $data["auth"]=($page=="tarjeta-admin-auth");
-                   if($additional==null){
-                       $additional=0;
-                   } else {
-                       $data["pre"]="../";
-                   }
-                   //$data["id"]=$additional;
-                   $data["additional"]=$additional;
-                   $this->load->view("common/_external_header",$data);
-                   $this->load->view(MOD_EXTERNAL."/external_forms/tarjeta",$data);
-                   $this->load->view("common/_external_footer",$data);
-                   break;
-
-                case "mediya-adherir":
-                case "mediya-adherir-auth":
-                    $data["pUser"] = $_GET["u"];
-                    $data["pSucursal"] = $_GET["s"];
-                    $data["title"] = "Adhesión Mediya";
-                    $data["auth"] = ($page == "mediya-adherir-auth");
-                    if ($additional == null) {
-                        $additional = 0;
-                    } else {
-                        $data["pre"] = "../";
-                    }
-                    //$data["id"]=$additional;
-                    $data["additional"] = $additional;
-                    $this->load->view("common/_external_header", $data);
-                    $this->load->view(MOD_EXTERNAL . "/external_forms/mediya", $data);
-                    $this->load->view("common/_external_footer", $data);
-                    break;
-
                 case "pagos-mora":
                 case "pagos-mediya":
                 case "pagos-tarjeta":
@@ -323,81 +289,6 @@ class Backend extends MY_Controller {
                           break;
                    }
 			       $this->pagosOutput($data,$additional);
-				   break;
-
-               case "fiserv-ok-test":
-                   $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
-                   $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";
-                   $_POST["status"]="APROBADO";
-                   $_POST["currency"]="032";
-                   $_POST["chargetotal"]="457947,00";
-                   $_POST["ccbrand"]="VISA";
-                   $_POST["bname"]="Gómez Lorena elisab";
-                   $_POST["cardnumber"]="(VISA) ... 6022";
-               case "fiserv-notify":
-               case "fiserv-ok":
-               case "fiserv-error":
-                   $data["get"]=$_GET;
-                   $data["post"]=$_POST;
-            	   $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
-				   $TRANSACTIONS=$this->createModel(MOD_PAYMENTS,"Transactions","Transactions");
-        	       $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
-                   $NETCORECPFINANCIAL->Webhook($_POST);
-				   $comments=json_decode($_POST["comments"], true);
-
-				   $idTransfer=$comments[0]["idTransfer"];
-				   $identificacion=$comments[0]["Identificacion"];
-                   /*Primer intento por id del registro abierto*/
-				   $record=$TRANSACTIONS->get(array("where"=>"id=".$idTransfer." AND status='INICIADO'"));
-                   if ((int)$record["totalrecords"]==0) {
-				      /*Segundo intento basado en Identificacion y dias activos*/
-                      $record=$TRANSACTIONS->get(array("pagesize"=>1,"where"=>"Identificacion='".$identificacion."' AND status='INICIADO' AND created>(getdate()-3)","order"=>"id desc"));
-                   }
-                   if ((int)$record["totalrecords"]!=0) {
-    				   $id=$record["data"][0]["id"];
-    				   $dni_request=$record["data"][0]["dni_request"];
-                       $registro_externo=explode(":",$_POST["approval_code"])[1];
-                       $params=array(
-			               'id'=>$id,
-                           'status' => $_POST["status"],
-                           'currency_response' => $_POST["currency"],
-                           'dni_response' => "",
-                           'amount_response' => str_replace(',','.',$_POST["chargetotal"]),
-                           'card_response' => $_POST["ccbrand"],
-                           'card_name' => $_POST["bname"],
-                           'partial_card_number' => $_POST["cardnumber"],
-                           'message' => $_POST["approval_code"],
-                           'raw_response' => serialize($_POST),
-                           'registro_externo' => $registro_externo,
-			           );
-                        $saved=$NETCORECPFINANCIAL->PagosTerminarTransaccion($params);
-				       logGeneral($this,$_POST,__METHOD__);
-
-                       if(($page=="fiserv-ok" or $page=="fiserv-ok-test" ) and $id!=null) {
-				           if ($_POST["status"]=="APROBADO") {
-					           $params2=array(
-                                  "id"=>$id,
-						          "servicioPago"=>"FSRV",
-						          "NroDocumento"=>$dni_request,
-						          "TipoUsuario"=>"CP",
-						          "itemsPagos"=>$comments,
-						          "origen"=>7, //Web intranet - Btn de pago implementado!
-						          "MedioPago"=>$_POST["ccbrand"],
-						          "Resultado"=>$_POST["status"],
-						          "Transaccion"=>$registro_externo,
-						          "Respuesta"=>serialize($_POST),
-						          "posProceso"=>"pagosonline",
-                                  "Registro_externo"=>(string)$registro_externo
-					           );
-					           $NETCORECPFINANCIAL->registrarCobranza($params2);
-				           }
-                       }
-                   }
-                   $this->load->view("common/_external_header",$data);
-				   $data["post"]=$_POST;
-				   $data["get"]=$_GET;
-                   $this->load->view(MOD_PAYMENTS."/payments/".$page,$data);
-                   $this->load->view("common/_external_footer",$data);
 				   break;
 
 			   case "resetPassword":

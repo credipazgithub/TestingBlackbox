@@ -116,17 +116,10 @@ class Payments_fiserv extends MY_Model {
 		    if(!isset($values["responseSuccessURL"])){$values["responseSuccessURL"]="";}
 		    if(!isset($values["targetFrame"])){$values["targetFrame"]="iframe_fiserv";}
 
-		    /*
-            if($values["responseFailURL"]==""){$values["responseFailURL"]="https://intranet.credipaz.com/linkDirect/fiserv-error";}
-		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://intranet.credipaz.com/linkDirect/fiserv-ok";}
-   			$hostURI="https://intranet.credipaz.com/linkDirect/fiserv-notify";
-			$transactionNotificationURL="https://intranet.credipaz.com/linkDirect/fiserv-notify";
-            */
-
-		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-error";}
-		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/linkDirect/fiserv-ok";}
-    		$hostURI="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
-    		$transactionNotificationURL="https://fiserv.credipaz.com/linkDirect/fiserv-notify";
+		    if($values["responseFailURL"]==""){$values["responseFailURL"]="https://fiserv.credipaz.com/webhooks/FiservError";}
+		    if($values["responseSuccessURL"]==""){$values["responseSuccessURL"]="https://fiserv.credipaz.com/webhooks/FiservOkTest";}
+    		$hostURI="https://fiserv.credipaz.com/webhooks/FiservNotify";
+    		$transactionNotificationURL="https://fiserv.credipaz.com/webhooks/FiservNotify";
        
 			$checkoutoption="classic";
 			$txntype="sale";

@@ -1212,6 +1212,29 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+
+    public function PagoFiserv($page, $values, $comments){
+        try {
+			$headers = $this->Authenticate();
+			$fields = array("_Post"=>json_encode($values), "_Page"=>$page, "_Comments"=>$comments);
+            $url=(CPFINANCIALS."/Pagos/PagoFiserv/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+
     public function PagosTerminarTransaccion($values){
         try {
 			$headers = $this->Authenticate();
