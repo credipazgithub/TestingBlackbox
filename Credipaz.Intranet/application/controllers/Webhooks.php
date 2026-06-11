@@ -12,14 +12,37 @@ class Webhooks extends MY_Controller {
     public function FiservOkTest()
     {
         try {
+
+        /*
+{"txndate_processed":"11\/06\/26 9:06:13","ccbin":"551792","timezone":"America\/Buenos_Aires","number_of_installments":"1",
+"oid":"C-9b47d431-cd42-42d0-b65b-21372a3f4df9","cccountry":"ARG","expmonth":"04","3747855e980890d84b1f":"","hash_algorithm":"SHA256",
+"endpointTransactionId":"2413474179","currency":"032","processor_response_code":"00","chargetotal":"76328,00","terminal_id":"98254715",
+"associationResponseCode":"00","approval_code":"Y:584498:0219204693:PPXX:2413474179","comments":"
+"expyear":"2029","response_hash":"e3bad2da81a3c8cf21496082c02006f181f042736aedd94bf7e9f1be2a7ae758","tdate":"1781179573",
+"installments_interest":"false","associationResponseMessage":"Approved or completed successfully","bname":"Antivero Pamela Adriana",
+"ccbrand":"MASTERCARD","customerid":"0107137938","refnumber":"      241347","txntype":"sale","paymentMethod":"M",
+"referencedMerchantTransactionID":"324767","merchantAdviceCodeIndicator":"  ","txndatetime":"2026:06:11-09:04:28","cardnumber":"(MASTERCARD) ... 1003",
+"ipgTransactionId":"850219204693","cardFunction":"debit","status":"APROBADO"}
+*/
+
+            $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0107137938","Importe":"19228.00","idTransfer":324767},{"Tipo":"CRE","Identificacion":1524183,"Importe":"57100.00"}]';
+            $_POST["approval_code"]="Y:584498:0219204693:PPXX:2413474179";
+            $_POST["status"]="APROBADO";
+            $_POST["currency"]="032";
+            $_POST["chargetotal"]="76328,00";
+            $_POST["ccbrand"]="VISA";
+            $_POST["bname"]="Gómez Lorena elisab";
+            $_POST["cardnumber"]="(VISA) ... 1003";
+            /*
             $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
             $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";
             $_POST["status"]="APROBADO";
             $_POST["currency"]="032";
-            $_POST["chargetotal"]="457947,00";
+            $_POST["chargetotal"]="592659,43";
             $_POST["ccbrand"]="VISA";
             $_POST["bname"]="Gómez Lorena elisab";
             $_POST["cardnumber"]="(VISA) ... 6022";
+            */
             $this->FiservOk();
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));
