@@ -119,8 +119,6 @@ log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
     public function applicationMobileFunction($values){
         try {
             $id_contact_channel=8;
-            $save=true;
-            $forcedData=false;
             $mode="MESSAGE";
             $ticket="";
             if (!isset($values["api_key"])){$values["api_key"]="";}
@@ -133,34 +131,10 @@ log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
             if($id==""){$id=0;}
             $api_key=$values["api_key"];
             $function=$values["data_function"];
-            $subject="";
             $result="¡Nos contactaremos a la brevedad para que puedas";
             $additional=array();
             switch($function) {
-                case "arrepentimiento-tarjeta":
-                    $save=false;
-					//$values["bajaapenom"]
-					//$values["bajasexo"]
-					//$values["bajadni"]
-					//$values["bajaemail"]
-					//$values["bajacelular"]
-					//$values["bajamotivo"]
-                    $TARGESTIONBAJA=$this->createModel(MOD_DBCENTRAL,"tarGestionBaja","tarGestionBaja");
-                    $params=array("id"=>"0","codigo_tarjeta"=>$values["codigo_tarjeta"],"telefono"=>$values["bajacelular"],"sMotivos"=>17,"sComentarios"=>"BOTÓN DE ARREPENTIMIENTO");
-                    $ret=$TARGESTIONBAJA->save($params);
-                    $result="Nos pondremos en contacto con vos a la brevedad.  Tu código de trámite es #".$ret["data"]["id"];
-                    $subject="Tu pedido de arrepentimiento ha sido enviado.";
-                    break;
-                case "baja-tarjeta":
-                    $save=false;
-                    $TARGESTIONBAJA=$this->createModel(MOD_DBCENTRAL,"tarGestionBaja","tarGestionBaja");
-                    $params=array("id"=>"0","codigo_tarjeta"=>$values["codigo_tarjeta"],"telefono"=>$values["bajacelular"],"sMotivos"=>0,"sComentarios"=>"BAJA SOLICITADA POR LA APP DE CREDIPAZ");
-                    $ret=$TARGESTIONBAJA->save($params);
-                    $result="Nos pondremos en contacto con vos a la brevedad.  Tu código de trámite es #".$ret["data"]["id"];
-                    $subject="Tu pedido de baja ha sido enviado";
-                    break;
                 case "canjear-beneficio":
-                    $save=false;
                     $mode="CANJE";
                     $BENEFICIOS=$this->createModel(MOD_CLUB_REDONDO,"Beneficios","Beneficios");
 					$ret=$BENEFICIOS->procesarCanje($values);
@@ -177,139 +151,15 @@ log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
                     );
                     break;
                 case "reimprimir-canje":
-                    $save=false;
                     $mode="CANJE";
                     $BENEFICIOS=$this->createModel(MOD_CLUB_REDONDO,"Beneficios","Beneficios");
                     $BENEFICIOS->reimprimirCanje($values);
                     break;
                 case "confirmar-canje":
-                    $save=false;
                     $mode="CANJE";
                     $BENEFICIOS=$this->createModel(MOD_CLUB_REDONDO,"Beneficios","Beneficios");
                     $BENEFICIOS->confirmarCanje($values);
                     break;
-                case "participar-sorteo":
-                    $save=false;
-                    $result="Gracias por inscribirte.  ¡Ya estás participando del sorteo!  ¡Recordá que solo es necesario que te inscribas para los sorteos, una sola vez por mes!";
-                    $subject="Solicitud de Participar en sorteo";
-                    $SORTEOS=$this->createModel(MOD_CLUB_REDONDO,"Sorteos","Sorteos");
-                    $SORTEOS->participar($values);
-                    break;
-                case "participar-sorteo-libre":
-                    $save=false;
-                    $result="Gracias por inscribirte.  ¡Ya estás participando del sorteo!  ¡Te contactaremos en caso de que ganes alguno de los premios! ";
-                    $subject="Solicitud de Participar en sorteo libre";
-                    $SORTEOS=$this->createModel(MOD_CLUB_REDONDO,"Sorteos","Sorteos");
-                    $SORTEOS->participar($values);
-                    break;
-                case "baja-club-redondo":
-                    $save=false;
-                    $result="¡Se ha procesado el pedido de baja a Mediya!";
-			        $EMAIL=$this->createModel(MOD_EMAIL,"Email","Email");
-					$params=array("from"=>"intranet@mediya.com.ar","alias_from"=>"","email"=>"","subject"=>"","body"=>"");
-					$params["alias_from"]=lang('msg_internal_alerts');
-					$params["email"]="retencion@credipaz.com";
-					$params["subject"]="Solicitud de baja Mediya";
-					$params["body"]=$this->load->view(MOD_EMAIL.'/templates/bajaClubRedondo',$values, true);
-					$EMAIL->directEmail($params);
-                    break;
-                case "arrepentimiento-club-redondo":
-                    $save=false;
-                    $result="¡Se ha procesado el pedido de arrepentimiento a Mediya!";
-			        $EMAIL=$this->createModel(MOD_EMAIL,"Email","Email");
-					$params=array("from"=>"intranet@mediya.com.ar","alias_from"=>"","email"=>"","subject"=>"","body"=>"");
-					$params["alias_from"]=lang('msg_internal_alerts');
-					$params["email"]="retencion@credipaz.com";
-					$params["subject"]="Solicitud de arrepentimiento Mediya";
-					$params["body"]=$this->load->view(MOD_EMAIL.'/templates/arrepentimientoClubRedondo',$values, true);
-					$EMAIL->directEmail($params);
-                    break;
-                case "presentar-club-redondo":
-                    $save=false;
-                    $result="¡Se ha procesado la presentación a Mediya!";
-                    $subject="Presentar socio a Mediya";
-                    $NETCORECPFINANCIAL=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
-                    $NETCORECPFINANCIAL->referirProspecto($values);
-                    break;
-                case "landing-club-redondo":
-                    $id_contact_channel=11;
-                    $result.=" solicitar promotor Mediya!";
-                    $subject="Solicitud de Mediya";
-                    $forcedData=true;
-                    break;
-                case "comodin-credito":
-                    $result.=" usar tu Comodí­n!";
-                    $subject="Solicitud de usar Comodí­n en Crédito";
-                    break;
-                case "renova-credito":
-                    $result.=" renovar tu Crédito!";
-                    $subject="Solicitud de renovar Crédito";
-                    break;
-                case "regulariza-credito":
-                    $result.=" regularizar tu Crédito!";
-                    $subject="Solicitud de regularizar Crédito";
-                    break;
-                case "comodin-tarjeta":
-                    $result.=" usar tu Comodí­n!";
-                    $subject="Solicitud de usar Comodí­n en Tarjeta";
-                    break;
-                case "aumentar-limite":
-                    $result.=" aumentar tu lí­mite de Tarjeta!";
-                    $subject="Solicitud de aumentar lí­mite en Tarjeta";
-                    break;
-                case "pedir-adicional":
-                    $result.=" pedir adicional en Tarjeta!";
-                    $subject="Solicitud de adicional en Tarjeta";
-                    break;
-                case "pedir-credito":
-                    $result.=" pedir Crédito!";
-                    $subject="Solicitud de Crédito";
-                    break;
-                case "pedir-adelanto-tarjeta":
-                    $result.=" pedir adenlanto Tarjeta!";
-                    $subject="Solicitud de adelanto Tarjeta";
-                    break;
-                case "pedir-tarjeta":
-                    $result.=" pedir Tarjeta!";
-                    $subject="Solicitud de Tarjeta";
-                    break;
-                case "pedir-clubredondo":
-                    $result.=" pedir Mediya!";
-                    $subject="Solicitud de Mediya";
-                    break;
-                case "pedir-mil":
-                    $result.=" pedir MIL!";
-                    $subject="Solicitud de MIL";
-                    break;
-                case "pedir-promociones":
-                    $result.=" pedir Promociones!";
-                    $subject="Solicitud de Promociones";
-                    break;
-            }
-            if ($save) {
-                if ($forcedData) {
-                    $data["documentNumber"]=$values["dni"];
-                    $data["documentSex"]=$values["sexo"];
-                    $data["documentArea"]="";
-                    $data["documentPhone"]=$values["telefono"];
-                    $data["documentName"]=$values["nombre"];
-                    $data["email"]=$values["email"];
-                    $data["es_cliente"]="NO PUDO SER EVALUADO";
-                    $data["VIABLE"]="NO PUDO SER EVALUADO";
-                } else {
-                    $USERS=$this->createModel(MOD_BACKEND,"Users","Users");
-                    $user=$USERS->get(array("page"=>1,"where"=>"token_authentication='".$api_key."'"));
-                    $id=$user["data"][0]["id"];
-                    $data["documentNumber"]=$user[0]["documentNumber"];
-                    $data["documentSex"]=$user[0]["documentSex"];
-                    $data["documentArea"]=$user[0]["documentArea"];
-                    $data["documentPhone"]=$user[0]["documentPhone"];
-                    $data["documentName"]=$user[0]["documentName"];
-                    $data["email"]="";
-                    if ($id_credipaz==null) {$data["es_cliente"]="NO ES CLIENTE";}else{$data["es_cliente"]="ES CLIENTE #ID ".$id_credipaz;}
-                    if ($user[0]["viable"]==1) {$user[0]["viable"]="ES VIABLE";}else{$user[0]["viable"]="NO ES VIABLE";}
-                    $data["viable"]=$user[0]["viable"];
-                }
             }
             return array('status'=>'OK','mode'=>$mode,'message'=>$result,'ticket'=>$ticket,'additional'=>$additional);
         }

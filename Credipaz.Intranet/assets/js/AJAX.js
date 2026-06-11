@@ -1111,22 +1111,6 @@ _AJAX = {
 
 	/**
 	 * /
-	 * MOD_LEGAL
-	 */
-	UiDirectLegales: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "save";
-				_json["module"] = "mod_legal";
-				_json["table"] = "Operators_tasks_items";
-				_json["model"] = "Operators_tasks_items";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-
-	/**
-	 * /
 	 * MOD_DBCENTRAL
 	 */
 	UiMediYaSubdiario: function (_json) {
