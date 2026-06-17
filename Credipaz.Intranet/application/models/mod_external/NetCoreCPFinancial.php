@@ -1479,6 +1479,27 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+	public function GetCredenciales($values){
+        try {
+			$headers = $this->Authenticate();
+            if (strpos($values["NroDocumento"], "@") !== false) {$values["NroDocumento"] = explode("@", $values["NroDocumento"])[0];} 
+ 		    $fields=array("Tipo"=>strtoupper($values["Tipo"]),"NroDocumento"=>$values["NroDocumento"],"Sexo"=>$values["Sexo"]);
+			$url=(CPFINANCIALS."/Mediya/GetCredencialesAlt/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>$result["records"],
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
 	public function generateReceipt($params){
 	    $filename="Comprobante de pago ".opensslRandom(8).".pdf";
 		$html = "<div style='max-width:540px;width:100%;font-family:arial;border:solid 2px black;padding:5px;' class='data-pdf'>";
