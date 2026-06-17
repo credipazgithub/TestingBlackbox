@@ -11,6 +11,7 @@ class Doctors extends MY_Model {
 
     public function brow($values){
         try {
+            $values["title"]="Listado de doctores/as";
             $values["order"]="surname ASC, name ASC";
             $values["records"]=$this->get($values);
             $values["buttons"]=array(

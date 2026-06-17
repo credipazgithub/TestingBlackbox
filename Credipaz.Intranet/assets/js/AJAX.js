@@ -1113,39 +1113,6 @@ _AJAX = {
 	 * /
 	 * MOD_DBCENTRAL
 	 */
-	UiMediYaSubdiario: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "reportSubdiario";
-				_json["module"] = "mod_dbcentral";
-				_json["table"] = "mediya";
-				_json["model"] = "mediya";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiIngresosConsulta: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "reportConsulta";
-				_json["module"] = "mod_dbcentral";
-				_json["table"] = "ingresos";
-				_json["model"] = "ingresos";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiIngresosUpdate: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "reportUpdate";
-				_json["module"] = "mod_dbcentral";
-				_json["table"] = "ingresos";
-				_json["model"] = "ingresos";
-				_json["method"] = "api.backend/neocommand"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},	
 	UiAlertTelegramTiendaMil: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
@@ -1154,17 +1121,6 @@ _AJAX = {
 				_json["table"] = "Telegram";
 				_json["model"] = "Telegram";
 				_json["method"] = "api.backend/neocommandTransparent"; //method
-				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-			});
-	},
-	UiStopGo: function (_json) {
-		return new Promise(
-			function (resolve, reject) {
-				_json["function"] = "StopGo";
-				_json["module"] = "mod_dbcentral";
-				_json["table"] = "Empresa";
-				_json["model"] = "Empresa";
-				_json["method"] = "api.backend/neocommand"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},

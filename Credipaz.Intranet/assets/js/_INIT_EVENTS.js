@@ -31,15 +31,6 @@
 								window.addEventListener("dragover", function (e) { e = e || event; e.preventDefault(); }, false);
 								window.addEventListener("drop", function (e) { e = e || event; e.preventDefault(); }, false);
 
-
-								$("body").off("click", ".btn-ImportarSocios").on("click", ".btn-ImportarSocios", function () {
-									_FUNCTIONS.onImportarSocios($(this));
-								});
-								
-								$("body").off("click", ".btn-stop-go").on("click", ".btn-stop-go", function () {
-									_FUNCTIONS.onStopGo($(this));
-								});
-
 								$("body").off("click", ".btn-test-push").on("click", ".btn-test-push", function () {
 									_FUNCTIONS.onTestPush($(this));
 								});
