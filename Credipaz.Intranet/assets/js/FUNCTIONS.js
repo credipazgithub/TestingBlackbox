@@ -960,8 +960,13 @@ _FUNCTIONS = {
 				_FUNCTIONS.onTelemedicinaModalPDF({ "body": _body, "id_charge_code": _id_charge_code });
 			} else {
 				var _j = JSON.parse(datajson.validation);
-				alert("no se ha podido acceder a la plataforma externa de emisión de recetas. " + _j[0]["errorMessage"]);
+				alert("No se ha podido acceder a la plataforma externa de emisión de recetas. " + _j[0]["errorMessage"]);
 			}
+		}).catch(function (err) {
+			alert("No se ha podido acceder a la plataforma externa de emisión de recetas. Error de gateway externo.");
+			console.log("erro!!!!");
+			console.log(err);
+
 		});
 	},
 	onProcessDirectTelemedicina: function (_this) {
