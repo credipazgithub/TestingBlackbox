@@ -288,6 +288,7 @@
     <Content Include="application\views\mod_direct_sale\products\abm.php" />
     <Content Include="application\views\mod_email\templates\alertCheckIntranet.php" />
     <Content Include="application\views\mod_email\templates\notifyEmailPriority.php" />
+    <Content Include="application\views\mod_external\external_forms\mediya.js" />
     <Content Include="application\views\mod_marketing\transactions_mediya\form.js" />
     <Content Include="application\views\mod_marketing\transactions_credipaz\form.js" />
     <Content Include="application\views\mod_onboarding\requests_core\form.php" />
@@ -650,6 +651,7 @@
     <Content Include="application\views\mod_push\type_actions\abm.php" />
     <Content Include="application\views\mod_email\templates\verificacionEmail.php" />
     <Content Include="application\views\mod_external\formVerify.php" />
+    <Content Include="application\views\mod_external\external_forms\mediya.php" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>

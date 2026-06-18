@@ -124,9 +124,9 @@ _AJAX = {
 						dataType: "json",
 						url: (_AJAX.server + _json.method),
 						data: _json,
-						beforeSend: function () {_AJAX.onBeforeSendExecute(); },
+						beforeSend: function () { _AJAX.onBeforeSendExecute(); },
 						complete: function () { _AJAX.onCompleteExecute(); },
-						error: function (xhr, ajaxOptions, thrownError) {reject(thrownError);},
+						error: function (xhr, ajaxOptions, thrownError) { reject(thrownError); },
 						success: function (datajson) {
 							_AJAX.onSuccessExecute(datajson, _json)
 								.then(function (datajson) { resolve(datajson); })
@@ -178,7 +178,7 @@ _AJAX = {
 		return new Promise(
 			function (resolve, reject) {
 				try {
-					if (datajson["message"] == "Records") { datajson["message"] = "";}
+					if (datajson["message"] == "Records") { datajson["message"] = ""; }
 					$(".raw-raw-response").html(_TOOLS.prettyPrint(datajson));
 					$(".raw-message").html(datajson["code"] + ": " + datajson["message"]);
 					if (datajson["status"] == "OK") {
@@ -473,7 +473,7 @@ _AJAX = {
 	UiMenuLevelOne: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
-				_json["method"] = "api.backend/MenuLevelOne"; 
+				_json["method"] = "api.backend/MenuLevelOne";
 				_AJAX._waiter = true;
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
@@ -598,10 +598,10 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-		
+
 	/**
 
- 	 * /
+	   * /
 	 * MOD_PROVIDERS
 	 */
 	UiGetSectorsByProvider: function (_json) {
@@ -621,7 +621,7 @@ _AJAX = {
 	 * /
 	 * MOD_TELEMEDICINA
 	 */
-	UiCheckPaycode: function(_json) {
+	UiCheckPaycode: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
 				_json["function"] = "checkPaycode";
@@ -1113,6 +1113,39 @@ _AJAX = {
 	 * /
 	 * MOD_DBCENTRAL
 	 */
+	UiMediYaSubdiario: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "reportSubdiario";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "mediya";
+				_json["model"] = "mediya";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiIngresosConsulta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "reportConsulta";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "ingresos";
+				_json["model"] = "ingresos";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiIngresosUpdate: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "reportUpdate";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "ingresos";
+				_json["model"] = "ingresos";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
 	UiAlertTelegramTiendaMil: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
@@ -1121,6 +1154,17 @@ _AJAX = {
 				_json["table"] = "Telegram";
 				_json["model"] = "Telegram";
 				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiStopGo: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "StopGo";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "Empresa";
+				_json["model"] = "Empresa";
+				_json["method"] = "api.backend/neocommand"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},

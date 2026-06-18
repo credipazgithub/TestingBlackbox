@@ -47,6 +47,7 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
     public function BridgeLookup($params)
     {
         try {
@@ -104,6 +105,7 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
     public function GenerarLinkFarmalink($params)
     {
         try {
@@ -259,6 +261,7 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
     public function landing($values)
     {
         try {
@@ -613,6 +616,498 @@ class NetCoreCPFinancial extends MY_Model {
 		   array_push($ret,$this->getRecordsAdHoc($sql));
 	   }
 	   return $ret;
+	}
+    public function LogInVendedor($values){
+        try {
+            $sql="SELECT Id, IdEmpresa, Nombre, Admin AS EsAdmin FROM DBClub..CR_Vendedor WHERE Estado='VIG' AND NroDocumento=".$values["username"]." AND [PASSWORD]='".$values["password"]."'";
+            $vendedor=$this->getRecordsAdHoc($sql);
+			if (sizeof($vendedor)==0){throw new Exception(lang("error_5200"),9999);}
+            
+            $CONSULTA=$this->createModel(MOD_DBCENTRAL,"Consulta","DBCentral.dbo.consulta");
+            $CONSULTA->view="DBCentral.dbo.consulta";
+			$params=array("page"=>-1,"pagesize"=>-1,"order"=>"Descripcion ASC");
+            $consulta=$CONSULTA->get($params);
+
+            $EMPRESA=$this->createModel(MOD_DBCENTRAL,"Empresa","DBClub.dbo.empresa");
+            $EMPRESA->view="DBClub.dbo.empresa";
+			$where="Id not in (997,998,999)";
+
+			if ((int)$vendedor[0]["IdEmpresa"]!=999){$where=("Id=".$vendedor[0]["IdEmpresa"]);}
+
+			$params=array("page"=>-1,"pagesize"=>-1,"order"=>"Nombre ASC", "where"=>$where);
+            $empresa=$EMPRESA->get($params);
+
+			$params=array("page"=>-1,"pagesize"=>-1,"where"=>"Id=".$vendedor[0]["IdEmpresa"]);
+            $additional=$EMPRESA->get($params);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$vendedor,
+                "additional"=>$additional["data"],
+				"consulta"=>$consulta["data"],
+				"empresa"=>$empresa["data"],
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        } 
+    }
+    public function LogInComercializador($values){
+        try {
+            $sql="SELECT C.Id, C.IdEmpresa, E.Nombre AS NombreEmpresa, C.NroDocumento, C.Nombre, C.Estado, C.Email FROM DBCentral.dbo.Comercializador as C INNER JOIN DBCentral.dbo.empresacomercializadora as E ON C.idEmpresa=E.Id WHERE nrodocumento=".$values["username"]." AND password='".$values["password"]."'";
+			$vendedor=$this->getRecordsAdHoc($sql);
+			if (sizeof($vendedor)==0){throw new Exception(lang("error_5200"),9999);}
+
+            $CONSULTA=$this->createModel(MOD_DBCENTRAL,"Consulta","DBCentral.dbo.consulta");
+            $CONSULTA->view="DBCentral.dbo.consulta";
+			$params=array("page"=>-1,"pagesize"=>-1,"order"=>"Descripcion ASC");
+            $consulta=$CONSULTA->get($params);
+
+            $EMPRESA=$this->createModel(MOD_DBCENTRAL,"Empresa","DBClub.dbo.empresa");
+            $EMPRESA->view="DBClub.dbo.empresa";
+			$where="Id not in (997,998,999)";
+
+			/*FORZAR PRUEBA CON caRTASUR */
+			//$vendedor[0]["IdEmpresa"]=14;
+
+			if ((int)$vendedor[0]["IdEmpresa"]!=999){$where=("Id=".$vendedor[0]["IdEmpresa"]);}
+			$params=array("page"=>-1,"pagesize"=>-1,"order"=>"Nombre ASC", "where"=>$where);
+            $empresa=$EMPRESA->get($params);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$vendedor,
+				"consulta"=>$consulta["data"],
+				"empresa"=>$empresa["data"],
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        } 
+    }
+	public function GetHistorialDePagos($values){
+        try {
+			$headers = $this->Authenticate();
+ 		    $fields=array("IdSocio"=>(int)$values["IdSocio"]);
+
+			$url=(CPFINANCIALS."/Mediya/GetHistorialDePagosAlt/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
+	public function GetCredenciales($values){
+        try {
+			$headers = $this->Authenticate();
+            if (strpos($values["NroDocumento"], "@") !== false) {$values["NroDocumento"] = explode("@", $values["NroDocumento"])[0];} 
+ 		    $fields=array("Tipo"=>strtoupper($values["Tipo"]),"NroDocumento"=>$values["NroDocumento"],"Sexo"=>$values["Sexo"]);
+			$url=(CPFINANCIALS."/Mediya/GetCredencialesAlt/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>$result["records"],
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
+    public function GetTitularMediya($values){
+        try {
+			$headers = $this->Authenticate();
+			if ((int)$values["Id"]==0){unset($values["Id"]);}
+			if(isset($values["Id"])) {
+	 		    $fields=array("Id"=>(int)$values["Id"]);
+			} else {
+ 				$fields=array(
+					"NroDocumento"=>(int)$values["NroDocumento"],
+					"Sexo"=>(string)$values["Sexo"]
+				);
+			}
+			$url=(CPFINANCIALS."/Mediya/GetTitular/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function GetAdicionalesMediya($values){
+        try {
+			$headers = $this->Authenticate();
+			if ((int)$values["Id"]==0){unset($values["Id"]);}
+		    $fields=array("Id"=>(int)$values["Id"]);
+			$url=(CPFINANCIALS."/Mediya/GetAdicionales/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function SetTitularMediya($values){
+        try {
+			$headers = $this->Authenticate();
+			if ($values["Latitud"]=="0" && $values["Longitud"]=="0") {
+				$searchAddress=($values["Calle"]." ".$values["Numeracion"]." ".$values["Localidad"]." ".$values["Provincia"].", Argentina");
+				$PLACES=$this->createModel(MOD_PLACES,"Places","Places");
+				$reverse=$PLACES->getReverse(array("address"=>$searchAddress));
+				$values["Latitud"]=$reverse["lat"];
+				$values["Longitud"]=$reverse["lng"];
+			}
+			
+			/*Fuerza el PAN si es enviado a que se asigne a Identificacion!*/
+			$identificacion=(string)$values["CBU"];
+			$PAN=(string)$values["PAN"];
+			if ($PAN!=""){$identificacion=$PAN;}
+            $fields=array(
+			   "IDSocio"=>(int)$values["Id"],
+			   "Nombre"=>(string)$values["Nombre"],
+			   "Apellido"=>(string)$values["Apellido"],
+			   "Sexo"=>(string)$values["Sexo"],
+			   "NroDocumento"=>(int)$values["NroDocumento"],
+			   "IDEstadoCivil"=>(int)$values["IdEstadoCivil"],
+			   "IDNacionalidad"=>(int)$values["IdNacionalidad"],
+			   "IDOcupacion"=>(int)$values["IdOcupacion"],
+			   "CUIL"=>(string)$values["CUIL"],
+			   "FechaNacimiento"=>$values["FechaNacimiento"],
+			   "AreaTelefono"=>(string)$values["AreaTelefonoSocio"],
+			   "Telefono"=>(string)$values["TelefonoSocio"],
+			   "Email"=>(string)$values["Email"],
+			   "Calle"=>(string)$values["Calle"],
+			   "Numeracion"=>(string)$values["Numeracion"],
+			   "Piso"=>(string)$values["Piso"],
+			   "DptoOficLoc"=>(string)$values["DptoOficLoc"],
+			   "Torre"=>(string)$values["Torre"],
+			   "CodigoPostal"=>(string)$values["CodigoPostal"],
+			   "Provincia"=>(string)$values["Provincia"],
+			   "Localidad"=>(string)$values["Localidad"],
+			   "IDModoPago"=>(int)$values["IdModoPago"],
+			   "Identificacion"=>$identificacion,
+			   "Marca"=>(string)$values["Marca"],
+			   "PAN"=>$PAN,
+			   "NombreTarjeta"=>(string)$values["NombreTarjeta"],
+			   "MesVTO"=>(int)$values["MesVTO"],
+			   "AnioVTO"=>(int)$values["AnioVTO"],
+			   "IDEmpresa"=>(int)$values["IDEmpresa"],
+			   "IDVendedor"=>(int)$values["IDVendedor"],
+			   "IDSucursal"=>(int)$values["IDSucursal"],
+			   "IDCanal"=>1, //Canal ?
+			   "Username"=>(string)$values["username"],
+			   "Latitud"=>(string)$values["Latitud"],
+			   "Longitud"=>(string)$values["Longitud"],
+			);
+			log_message("error", "RELATED ".json_encode($fields,JSON_PRETTY_PRINT));
+			$url=(CPFINANCIALS."/Mediya/SetTitular/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+			log_message("error", "RELATED result ".json_encode($result,JSON_PRETTY_PRINT));
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function SetAdicionalMediya($values){
+        try {
+			$headers = $this->Authenticate();
+            $fields = array(
+                "IDFamiliar" => (int) $values["a_IDFamiliar"],
+                "idTipoAdicional" => (int) $values["a_IdTipoAdicional"],
+                "IDSocio" => (int) $values["a_IDSocio"],
+                "Nombre" => (string) $values["a_Nombre"],
+                "Apellido" => (string) $values["a_Apellido"],
+                "NroDocumento" => (int) $values["a_NroDocumento"],
+                "Sexo" => (string) $values["a_Sexo"],
+                "IDParentesco" => (int) $values["a_IdParentesco"],
+                "FechaNacimiento" => $values["a_FechaNacimiento"],
+                "AreaTelefono" => (string) $values["a_AreaTelefonoSocio"],
+                "Telefono" => (string) $values["a_TelefonoSocio"],
+                "sMail" => (string) $values["a_Email"],
+                "Username" => (string) $values["a_username"],
+            );
+			$url=(CPFINANCIALS."/Mediya/SetAdicional/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function DelAdicionalMediya($values){
+        try {
+			$headers = $this->Authenticate();
+            $fields=array(
+			   "IDFamiliar"=>(int)$values["id"],
+			   "Username"=>(string)$values["username"],
+			);
+			$url=(CPFINANCIALS."/Mediya/DelAdicional/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function VerifySolicitudTarjeta($values){
+        try {
+			/*Controla el modo de acceso a la api, es en testing o en produccion*/
+		    if (!isset($values["test"])){$values["test"]="N";}
+			if ($values["username_active"]==""){$values["username_active"]="web";}
+
+		    $origen=(int)$values["origen"]; // 1 sucursal
+			$id_type_request=(int)$values["id_type_request"]; // 351 Tarjeta de credito
+			$headers = $this->Authenticate();
+            $fields=array(
+			    "Origen"=>$origen,
+				"Tipo"=>$id_type_request,
+				"Documento"=>(int)$values["nDoc"],
+				"Nombre"=>(string)$values["sNombre"],
+				"Sexo"=>(string)$values["sSexo"],
+				"Email"=>(string)$values["sEmail"],
+				"CUIL"=>$values["nCUIL"],
+				"Telefono"=>(string)$values["sDomiTETelediscado"]."".(string)$values["sDomiTE"],
+			    "IDVendedor"=>(int)$values["nIDVendedor"],
+			    "nIDSucursal"=>(int)$values["nIDSucursal"],
+				"Usuario"=>(string)$values["username_active"]
+			);
+			$url=(CPFINANCIALS."/Onboarding/VerifySolicitudTarjeta/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+		    //log_message("error", "RELATED LOGICA error ".json_encode($e,JSON_PRETTY_PRINT));
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function GetTarjeta($values){
+        try {
+			if ($values["username_active"]==""){$values["username_active"]="web";}
+            $headers = $this->Authenticate();
+            $fields=array(
+				 "Codigo"=>(string)$values["Codigo"],
+				 "Usuario"=>(string)$values["Usuario"]
+			);
+			$url=(CPFINANCIALS."/Tarjetas/GetTarjeta/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
+	public function GetAdicionalesTarjeta($values){
+        try {
+            $headers = $this->Authenticate();
+            if ((int)$values["Codigo"]==0){unset($values["Codigo"]);}
+		    $fields=array("Codigo"=>(int)$values["Codigo"]);
+			$url=(CPFINANCIALS."/Tarjetas/GetAdicionales/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function SetAdicionalTarjeta($values){
+        try {
+		    
+			$headers = $this->Authenticate();
+            $fields=array(
+			   "nId"=>(int)$values["a_nId"],
+			   "nIDSucursal"=>(int)$values["nIDSucursal"],
+			   "_codigo"=>(string)$values["a_codigo"],
+			   "sNombre"=>(string)$values["a_sNombre"],
+			   "nDoc"=>(int)$values["a_nDoc"],
+			   "sLKParentesco"=>(string)$values["a_sLKParentesco"],
+			   "dFechaNacimiento"=>$values["a_dFechaNacimiento"],
+			   "Username"=>(string)$values["a_username"],
+			);
+			$url=(CPFINANCIALS."/Tarjetas/SetAdicional/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+	public function SetEmitirTarjeta($values){
+        try {
+			/*Controla el modo de acceso a la api, es en testing o en produccion*/
+		    if (!isset($values["test"])){$values["test"]="N";}
+			if ($values["username"]==""){$values["username"]="web";}
+
+		    
+			$headers = $this->Authenticate();
+			
+            $fields=array(
+			    "Origen"=>$origen,
+				"Tipo"=>$id_type_request,
+				"nDoc"=>(int)$values["nDoc"],
+				"sSexo"=>(string)$values["sSexo"],
+				"sNombre"=>(string)$values["sNombre"],
+				"sEmail"=>(string)$values["sEmail"],
+				"nCUIL"=>$values["nCUIL"],
+				"sDomiTETelediscado"=>(string)$values["sDomiTETelediscado"],
+				"sDomiTE"=>(string)$values["sDomiTE"],
+			    "nIDVendedor"=>(int)$values["nIDVendedor"],
+			    "nIDSucursal"=>(int)$values["nIDSucursal"],
+				"nIDComercializadora"=>(int)$values["nIDComercializadora"],
+				"sLKEstadoCivil"=>(string)$values["sLKEstadoCivil"],
+				"sLKNacionalidad"=>(string)$values["sLKNacionalidad"],
+				"sLKOcupacion"=>(string)$values["sLKOcupacion"],
+				"dFechaNac"=>$values["dFechaNac"],
+				"sCBU"=>(string)$values["sCBU"],
+				"sLKTipoVivienda"=>(string)$values["sLKTipoVivienda"],
+				"nImporteAlquiler"=>(int)$values["nImporteAlquiler"],
+				"sDomiCalle"=>(string)$values["sDomiCalle"],
+				"sDomiNro"=>(string)$values["sDomiNro"],
+				"sDomiPisoDpto"=>(string)$values["sDomiPisoDpto"],
+				"sDomiCP"=>(string)$values["sDomiCP"],
+				"sDomiEntre"=>(string)$values["sDomiEntre"],
+				"sDomiBarrio"=>(string)$values["sDomiBarrio"],
+				"sLKDomiLocalidad"=>(string)$values["sLKDomiLocalidad"],
+				"sDomiPcia"=>(string)$values["sDomiPcia"],
+				"sRazonSocial"=>(string)$values["sRazonSocial"],
+				"nCUIT1"=>(string)$values["nCUIT1"],
+				"sDomiCalle1"=>(string)$values["sDomiCalle1"],
+				"sDomiNro1"=>(string)$values["sDomiNro1"],
+				"sDomiPisoDpto1"=>(string)$values["sDomiPisoDpto1"],
+				"sDomiCP1"=>(string)$values["sDomiCP1"],
+				"sDomiEntre1"=>(string)$values["sDomiEntre1"],
+				"sLKDomiLocalidad1"=>(string)$values["sLKDomiLocalidad1"],
+				"sDomiPcia1"=>(string)$values["sDomiPcia1"],
+				"sCargo"=>(string)$values["sCargo"],
+				"sLegajo"=>(string)$values["sLegajo"],
+				"sSeccion"=>(string)$values["sSeccion"],
+				"nIngresoMensual"=>(int)$values["nIngresoMensual"],
+				"dFechaIngreso1"=>$values["dFechaIngreso1"],
+				"sLKRubroLaboral"=>(string)$values[""],
+				"nOtrosIngresos"=>(int)$values["sLKRubroLaboral"],
+				"sAntiguedad"=>(string)$values["sAntiguedad"],
+				"Latitud"=>(string)$values["Latitud"],
+				"Longitud"=>(string)$values["Longitud"],
+				"Usuario"=>(string)$values["username_active"]
+			);
+			$url=(CPFINANCIALS."/Tarjetas/SetEmitirTarjeta/");
+			$result = $this->callAPI($url,$headers,json_encode($fields));
+			$result = json_decode($result, true);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );        
+		}
+        catch (Exception $e) {
+		    //log_message("error", "RELATED LOGICA error ".json_encode($e,JSON_PRETTY_PRINT));
+            return logError($e,__METHOD__ );
+        }
 	}
     public function lookup($values){
         try {
@@ -1077,6 +1572,7 @@ class NetCoreCPFinancial extends MY_Model {
             return $result;
         } catch (Exception $e) {return logError($e, __METHOD__);}
     }
+
     public function saveVisa($values)
     {
         try {
@@ -1123,6 +1619,25 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+
+    public function ImportarSocios($values)
+    {
+        try {
+            
+            $headers = $this->Authenticate();
+
+
+            log_message("error", "RELATED importarSocios ".json_encode($values,JSON_PRETTY_PRINT));
+
+            $url = (CPFINANCIALS . "/Mediya/ImportarSocios");
+            $result = $this->callAPI($url, $headers, json_encode($values));
+            $result = json_decode($result, true);
+            return $result;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
     public function autorizarPrestacion($values){
         try {
 		    $token=$this->Authenticate();
@@ -1215,6 +1730,31 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+    public function EvaluarDocumento($values){
+        try {
+            if(!isset($values["Documento"])){$values["Documento"]="0";}
+            if(!isset($values["Sexo"])){$values["Sexo"]="";}
+            if (strtoupper($values["Sexo"])!="M" && strtoupper($values["Sexo"])!="F") {throw new Exception(lang("error_5218"),5218);}
+            $sql="SELECT count(wt.nID) as total FROM dbCentral.dbo.wrkClienteTitular as wt ";
+	        $sql.=" LEFT JOIN dbHistorico.dbo.CalificacionClientes as cc ON cc.nIDCliente=wt.nCliente ";
+	        $sql.=" WHERE wt.sLKDocTipo='DNI' AND wt.nDoc='".$values["Documento"]."' AND wt.sSexo='".$values["Sexo"]."' AND ";
+            $sql.=" (ISNULL(cc.nCreCasosPeriodo,0)!=0 OR ISNULL(cc.nTarResumenesUlt6Meses,0)!=0)";
+            $cliente=$this->getRecordsAdHoc($sql);
+            $data=array("EsCliente"=>((int)$cliente[0]["total"]!=0));
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>$data,
+                "compressed"=>false
+            );
+        }
+        catch (SOAPFault $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
     public function AFIPalameEsta(){
         try {
 		    $token=$this->Authenticate();
@@ -1246,6 +1786,99 @@ class NetCoreCPFinancial extends MY_Model {
 			"function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT)
 		);
 	}
+	public function traerLookUp($values){
+        try {
+            $sql="SELECT sItem AS id, sDescripcion AS description FROM DBCentral.dbo.stdlookup WHERE stabla='".$values["tabla"]."'";
+            switch($values["tabla"]){
+                 case "ModoPago":
+                    //$sql="SELECT Id,Descripcion FROM DBClub.dbo.ModoPago";
+                    break;
+                 case "OpcionModoPago":
+                    $sql="SELECT Id,Descripcion FROM DBClub.dbo.OpcionModoPago WHERE IdModoPago=".$values["key"];
+                    break;
+                case "Sucursales":
+                case "Usuarios":
+                    $sql="EXEC DBCentral.dbo.NS_lk_Sucursales_Activas";
+                    break;
+                case "EmpresaVentaCR":
+                    $sql="EXEC DBClub.dbo.NS_GetEmpresasSel";
+                    break;
+                case "Ocupacion":
+                    $sql="EXEC DBClub.dbo.NS_lkOcupacion";
+                    break;
+            }
+            $result=$this->getRecordsAdHoc($sql);
+            
+			return array(
+				"code"=>"2000",
+				"status"=>"OK",
+				"message"=>"",
+				"function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+				"data"=>$result,
+				"compressed"=>false
+			);
+		}
+		catch (Exception $e) {
+			return logError($e,__METHOD__ );
+		}
+	}
+    public function EventoActual($values){
+        try {
+            $sql="SELECT * FROM DBCentral.dbo.Evento WHERE CAST(FLOOR(CAST(FechaEvento AS FLOAT)) AS DATETIME) = CAST(FLOOR(CAST(GETDATE() AS FLOAT)) AS DATETIME)";
+            $result=$this->getRecordsAdHoc($sql);
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function CheckInvitado($values){
+        try {
+
+			$segments = explode('/', $values["NroDocumento"]);
+			$numSegments = count($segments); 
+			$values["NroDocumento"] = ($segments[$numSegments - 1]);
+            $sql="EXEC DBCentral.dbo.NS_CheckInvitado @IdEvento=".$values["IdEvento"].", @NroDocumento=".$values["NroDocumento"];
+            $result=$this->getRecordsAdHoc($sql);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function RegistrarIngreso($values){
+        try {
+            $sql="EXEC DBCentral.dbo.NS_AsistenciaEvento_I @IdEvento=".$values["IdEvento"].", @Tipo='".$values["Tipo"]."', @NroDocumento=".$values["NroDocumento"];
+            $result=$this->getRecordsAdHoc($sql);
+
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }    
 	public function FacturasPorPersona($values){
         try {
             $sql="EXEC DBClub.dbo.NS_FacturasPorPersona @Origen='".$values["origen"]."', @Identificacion=".$values["codigo"];
@@ -1370,6 +2003,28 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+    public function referirProspecto($values){
+        try {
+            if(!isset($values["IdSocio"])){$values["IdSocio"]=0;}
+            if(!isset($values["DocumentoSocio"])){$values["DocumentoSocio"]=0;}
+            $socio=$this->getClubRedondoSocioByDni(array("NroDocumento"=>$values["DocumentoSocio"]));
+            if ($socio[0]!=null){
+                $sql="EXEC DBClub.dbo.NS_ReferirSocio @IdSocio=".$values["IdSocio"].", @Documento=".$values["DNI"].", @Sexo='".$values["Sexo"]."'";
+                $result=$this->getRecordsAdHoc($sql);
+            }
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "message"=>$result,
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+                "data"=>null,
+                "compressed"=>false
+            );
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
     public function registrarCobranza($values){
         try {
             if(!isset($values["servicioPago"])){$values["servicioPago"]="COIN";}
@@ -1479,27 +2134,6 @@ class NetCoreCPFinancial extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
-	public function GetCredenciales($values){
-        try {
-			$headers = $this->Authenticate();
-            if (strpos($values["NroDocumento"], "@") !== false) {$values["NroDocumento"] = explode("@", $values["NroDocumento"])[0];} 
- 		    $fields=array("Tipo"=>strtoupper($values["Tipo"]),"NroDocumento"=>$values["NroDocumento"],"Sexo"=>$values["Sexo"]);
-			$url=(CPFINANCIALS."/Mediya/GetCredencialesAlt/");
-			$result = $this->callAPI($url,$headers,json_encode($fields));
-			$result = json_decode($result, true);
-            return array(
-                "code"=>"2000",
-                "status"=>"OK",
-                "message"=>$result,
-                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
-                "data"=>$result["records"],
-                "compressed"=>false
-            );        
-		}
-        catch (Exception $e) {
-            return logError($e,__METHOD__ );
-        }
-	}
 	public function generateReceipt($params){
 	    $filename="Comprobante de pago ".opensslRandom(8).".pdf";
 		$html = "<div style='max-width:540px;width:100%;font-family:arial;border:solid 2px black;padding:5px;' class='data-pdf'>";

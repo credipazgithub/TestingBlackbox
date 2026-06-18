@@ -208,6 +208,23 @@ class Backend extends MY_Controller {
             $data["pre"]="";
 
             switch ($page) {
+                case "mediya-adherir":
+                case "mediya-adherir-auth":
+                    $data["pUser"] = $_GET["u"];
+                    $data["pSucursal"] = $_GET["s"];
+                    $data["title"] = "Adhesión Mediya";
+                    $data["auth"] = ($page == "mediya-adherir-auth");
+                    if ($additional == null) {
+                        $additional = 0;
+                    } else {
+                        $data["pre"] = "../";
+                    }
+                    //$data["id"]=$additional;
+                    $data["additional"] = $additional;
+                    $this->load->view("common/_external_header", $data);
+                    $this->load->view(MOD_EXTERNAL . "/external_forms/mediya", $data);
+                    $this->load->view("common/_external_footer", $data);
+                    break;
                 case "pagos-mora":
                 case "pagos-mediya":
                 case "pagos-tarjeta":

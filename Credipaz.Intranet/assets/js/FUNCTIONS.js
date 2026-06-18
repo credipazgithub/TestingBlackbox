@@ -3723,4 +3723,26 @@ _FUNCTIONS = {
 	onResetCaptura: function (_this) {
 		$(_this.attr("data-target")).html("");
 	},
+	onTraerLookUp2: function (_table, _key = null) {
+		return new Promise(
+			function (resolve, reject) {
+				var _json = { "Tipo": _table, "key": _key };
+				_AJAX.UiLookUp(_json).then(function (_data) {
+					resolve(_data);
+				}).catch(function (error) {
+					reject(error);
+				});
+			});
+	},
+	onTraerLookUp: function (_table, _key = null) {
+		return new Promise(
+			function (resolve, reject) {
+				var _json = { "function": "traerLookUp", "tabla": _table, "key": _key };
+				_AJAX.UiMediyaTransparent(_json).then(function (_data) {
+					resolve(_data);
+				}).catch(function (error) {
+					reject(error);
+				});
+			});
+	},
 }
