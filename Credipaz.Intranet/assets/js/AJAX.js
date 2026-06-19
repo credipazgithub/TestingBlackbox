@@ -600,6 +600,21 @@ _AJAX = {
 	},
 
 	/**
+	 * /
+	 * MOD_VALIDATE_CBU
+	 */
+	UiValidateCBU: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "ValidateCBU";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	/**
 
 	   * /
 	 * MOD_PROVIDERS
@@ -937,6 +952,143 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
+	UiGetVerifySolicitudTarjeta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "VerifySolicitudTarjeta";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiSetEmitirTarjeta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "SetEmitirTarjeta";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiGetTarjeta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "GetTarjeta";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	/**
+	 * /
+	 * MOD_FOLLOW
+	 */
+	UiFollowAssignDoctor: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "assignDoctor";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowAddOccurs: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "addOccurs";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowChangeMedicalNote: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "changeMedicalNotes";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowChangePriority: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "changePriority";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowChangeAudit: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "changeAudit";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowChangeFullVacuna: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "changeFullVacuna";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters";
+				_json["model"] = "sinisters";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowStatics: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "rpt_seguimientoCOVID";
+				_json["module"] = "mod_dbcentral";
+				_json["table"] = "consulta";
+				_json["model"] = "consulta";
+				_json["system"] = "storedprocedure";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowRegisterSends: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "registerSends";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters_sends";
+				_json["model"] = "sinisters_sends";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiFollowStatusSends: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "statusSends";
+				_json["module"] = "mod_follow";
+				_json["table"] = "sinisters_sends";
+				_json["model"] = "sinisters_sends";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
 
 	/**
 	 * /
@@ -1074,10 +1226,10 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
-	UiImportarSocios: function (_json) {
+	UiUsuarioMediya: function (_json) {
 		return new Promise(
 			function (resolve, reject) {
-				_json["function"] = "ImportarSocios";
+				_json["function"] = "usuarioMediya";
 				_json["module"] = "mod_external";
 				_json["table"] = "NetCoreCPFinancial";
 				_json["model"] = "NetCoreCPFinancial";
@@ -1085,6 +1237,120 @@ _AJAX = {
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
 	},
+	UiGetTitularMediya: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "GetTitularMediya";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiGetAdicionalesMediya: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "GetAdicionalesMediya";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiDelAdicionalMediya: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "DelAdicionalMediya";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiSetAdicionalMediya: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "SetAdicionalMediya";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiSetTitularMediya: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "SetTitularMediya";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiLoginVendedor: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "LogInVendedor";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiLoginComercializador: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "LoginComercializador";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiGetCredenciales: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["method"] = "api.pwa/GetCredenciales"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiGetHistorialDePagos: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["method"] = "api.pwa/GetHistorialDePagos"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiGetAdicionalesTarjeta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "GetAdicionalesTarjeta";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+	UiSetAdicionalTarjeta: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "SetAdicionalTarjeta";
+				_json["module"] = "mod_external";
+				_json["table"] = "NetCoreCPFinancial";
+				_json["model"] = "NetCoreCPFinancial";
+				_json["method"] = "api.backend/neocommandTransparent"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+
 	/**
 	 * /
 	 * MOD_ONBOARDING
@@ -1104,6 +1370,22 @@ _AJAX = {
 				_json["module"] = "mod_onboarding";
 				_json["table"] = "Informes";
 				_json["model"] = "Informes";
+				_json["method"] = "api.backend/neocommand"; //method
+				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+			});
+	},
+
+	/**
+	 * /
+	 * MOD_LEGAL
+	 */
+	UiDirectLegales: function (_json) {
+		return new Promise(
+			function (resolve, reject) {
+				_json["function"] = "save";
+				_json["module"] = "mod_legal";
+				_json["table"] = "Operators_tasks_items";
+				_json["model"] = "Operators_tasks_items";
 				_json["method"] = "api.backend/neocommand"; //method
 				_AJAX.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
 			});
