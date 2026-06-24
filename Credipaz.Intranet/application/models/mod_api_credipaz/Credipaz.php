@@ -47,59 +47,21 @@ class Credipaz extends MY_Model {
             $NroDocumento = null;
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
             if ($values["NroDocumento"] != 0) {$NroDocumento = (int) $values["NroDocumento"];}
+            $values["IdEntidad"] = keySecureZero($values, "IdEntidad");
+            if ($values["IdEntidad"] == 0) {throw new Exception(lang("api_error_1049"), 1049);}
 
-            //$values["Sexo"] = keySecureSexo($values, "Sexo");
-            //if ($values["Sexo"] == "") {
-            //    throw new Exception(lang("api_error_1002"), 1002);
-            //}
             $fields = array(
                 "NroDocumento" => $NroDocumento,
-                "Sexo" => $values["Sexo"],
-                "Id_user" => $values["id_user_active"],
-                "Interno" => $values["interno"],
-                "Download" => ($values["download"]=="true"),
-                "FechaCesion" => $values["FechaCesion"]
+                "Id_user_cedido" => $values["IdEntidad"],
+                "Interno" => "N",
+                "Download" => "false",
+                "FechaCesion" => $values["Cesion"]
             );
-
 
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetCedido/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
 
-            if ($NroDocumento != null) {
-                $i = 0;
-                foreach ($ret["records"] as $item) {
-                    $idSolicitud = (int) $item["IdSolicitud"];
-                    $idTransaccion = (int) $item["IdentificadorInformes"];
-                    $idRequest = (int) $item["IdRequest"];
-                    $fcd = array("idTransaccion" => $idTransaccion, "idRequest" => $idRequest, "dni" => (string) $NroDocumento, "segmento" => (string) $idSolicitud);
-                    $url = ("/Utilidades/TraerCarpetaDigitalGet?_skip=true&idTransaccion=" . $idTransaccion . "&idRequest=" . $idRequest . "&dni=" . (string) $NroDocumento . "&segmento=" . (string) $idSolicitud);
-                    $retCarpeta = API_callAPIGet($url, $headers, json_encode($fcd));
-                    $retCarpeta = json_decode($retCarpeta, true);
-
-                    $i2 = 0;
-                    foreach ($retCarpeta["records"] as $item) {
-                        $retCarpeta["records"][$i2]["title"] = $retCarpeta["records"][$i2]["filename"];
-                        $retCarpeta["records"][$i2]["filename"] = $retCarpeta["records"][$i2]["fullFilename"];
-                        $retCarpeta["records"][$i2]["key"] = base64_encode($retCarpeta["records"][$i2]["path"]);
-
-                        unset($retCarpeta["records"][$i2]["fullFilename"]);
-                        unset($retCarpeta["records"][$i2]["created"]);
-                        unset($retCarpeta["records"][$i2]["mimeType"]);
-                        unset($retCarpeta["records"][$i2]["path"]);
-                        unset($retCarpeta["records"][$i2]["size"]);
-
-                        $fcd = array("RutaOrigen" => base64_decode($retCarpeta["records"][$i2]["key"]), "Archivo" => $retCarpeta["records"][$i2]["title"]);
-                        $retFile = API_callAPI("/Utilidades/BridgeFilePost/", $headers, json_encode($fields));
-                        $retFile = json_decode($retFile, true);
-
-                        $i2++;
-                    }
-                    $ret["records"][$i]["CarpetaDigital"] = $retCarpeta["records"];
-                    $i++;
-                }
-            }
-            $merged["link"] = $ret["mensaje"];
             $merged["code"] = "200";
             $merged["error"] = "";
             $merged["status"] = "OK";
@@ -113,7 +75,10 @@ class Credipaz extends MY_Model {
     public function cesiones($values)
     {
         try {
-            $fields = array("Id_user" => $values["id_user_active"]);
+            $values["IdEntidad"] = keySecureZero($values, "IdEntidad");
+            if ($values["IdEntidad"] == 0) {throw new Exception(lang("api_error_1049"), 1049);}
+
+            $fields = array("Id_user_cedido" => $values["IdEntidad"]);
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Credito/GetCesiones/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);

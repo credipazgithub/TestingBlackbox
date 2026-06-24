@@ -1,16 +1,7 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\Daniel\\www\\credipaz.code\\Externos\\Credipaz.SIA\\",
-  "Documents": [
-    {
-      "AbsoluteMoniker": "D:0:0:{9DDF2C35-AD47-4AA5-A767-F5A03185AB1B}|Credipaz.SIA.vbproj|d:\\daniel\\www\\credipaz.code\\externos\\credipaz.sia\\js\\global\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{9DDF2C35-AD47-4AA5-A767-F5A03185AB1B}|Credipaz.SIA.vbproj|solutionrelative:js\\global\\nmf.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{9DDF2C35-AD47-4AA5-A767-F5A03185AB1B}|Credipaz.SIA.vbproj|d:\\daniel\\www\\credipaz.code\\externos\\credipaz.sia\\js\\global\\tools.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
-      "RelativeMoniker": "D:0:0:{9DDF2C35-AD47-4AA5-A767-F5A03185AB1B}|Credipaz.SIA.vbproj|solutionrelative:js\\global\\tools.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
-    }
-  ],
+  "Documents": [],
   "DocumentGroupContainers": [
     {
       "Orientation": 0,
@@ -18,7 +9,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 15,
+          "SelectedChildIndex": -1,
           "Children": [
             {
               "$type": "Bookmark",
@@ -79,32 +70,6 @@
             {
               "$type": "Bookmark",
               "Name": "ST:132:0:{116d2292-e37d-41cd-a077-ebacac4c8cc4}"
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "NMF.js",
-              "DocumentMoniker": "D:\\Daniel\\www\\credipaz.code\\Externos\\Credipaz.SIA\\js\\global\\NMF.js",
-              "RelativeDocumentMoniker": "js\\global\\NMF.js",
-              "ToolTip": "D:\\Daniel\\www\\credipaz.code\\Externos\\Credipaz.SIA\\js\\global\\NMF.js",
-              "RelativeToolTip": "js\\global\\NMF.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAABIAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-12-16T19:33:40.706Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 1,
-              "Title": "TOOLS.js",
-              "DocumentMoniker": "D:\\Daniel\\www\\credipaz.code\\Externos\\Credipaz.SIA\\js\\global\\TOOLS.js",
-              "RelativeDocumentMoniker": "js\\global\\TOOLS.js",
-              "ToolTip": "D:\\Daniel\\www\\credipaz.code\\Externos\\Credipaz.SIA\\js\\global\\TOOLS.js",
-              "RelativeToolTip": "js\\global\\TOOLS.js",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAKAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
-              "WhenOpened": "2025-12-16T19:31:56.254Z",
-              "EditorCaption": ""
             }
           ]
         },

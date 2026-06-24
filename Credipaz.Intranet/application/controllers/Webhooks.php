@@ -24,15 +24,14 @@ class Webhooks extends MY_Controller {
 "referencedMerchantTransactionID":"324767","merchantAdviceCodeIndicator":"  ","txndatetime":"2026:06:11-09:04:28","cardnumber":"(MASTERCARD) ... 1003",
 "ipgTransactionId":"850219204693","cardFunction":"debit","status":"APROBADO"}
 */
-
-            $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0107137938","Importe":"19228.00","idTransfer":324767},{"Tipo":"CRE","Identificacion":1524183,"Importe":"57100.00"}]';
-            $_POST["approval_code"]="Y:584498:0219204693:PPXX:2413474179";
+  $_POST["comments"]='[{"Tipo":"CRE","Identificacion":1535048,"Importe":"130026.10","idTransfer":325307}]';
+           $_POST["approval_code"]="Y:502266:0273224030:PPXX:8173094432";
             $_POST["status"]="APROBADO";
             $_POST["currency"]="032";
-            $_POST["chargetotal"]="76328,00";
-            $_POST["ccbrand"]="VISA";
+            $_POST["chargetotal"]="130026,10";
+            $_POST["ccbrand"]="MASTERCARD";
             $_POST["bname"]="Gómez Lorena elisab";
-            $_POST["cardnumber"]="(VISA) ... 1003";
+            $_POST["cardnumber"]="(MASTERCARD) ... 5687";
             /*
             $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
             $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";

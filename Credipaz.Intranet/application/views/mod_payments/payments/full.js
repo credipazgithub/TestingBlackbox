@@ -161,7 +161,10 @@ function totalizePayment(_this) {
 	for (let item of _FUNCTIONS._itemsPagos) {_total_consolidado += (item["Importe"]*1);}
 	_total = _total_consolidado;
 	$(".coinTotal").html(_TOOLS.formatMoney(_total, 2));
-	if (_total.toString().indexOf(".")==-1) { _total += ".00"; }
+	if (_total.toString().indexOf(".") == -1) { _total += ".00"; }
+
+	var part = _total.split(".");
+	$chargetotal = (part[0]+"."+part[1].slice(0, 2));
 	$(".importe").val(_total);
 	if (_total_consolidado > 0) {
 		var _dni = parseInt($(".dni_tarjeta").val());

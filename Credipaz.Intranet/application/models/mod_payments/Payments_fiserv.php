@@ -126,7 +126,8 @@ class Payments_fiserv extends MY_Model {
 			$timezone="America/Buenos_Aires";
 			$txndatetime=date("Y:m:d-H:i:s");
 		    $currency=$values["currency"];
-			$chargetotal=$values["total"];
+            $part=explode(".",$values["total"]);
+			$chargetotal=($part[0].".".substr($part[1], 0, 2));
 		    if(!isset($values["itemsPagos"])){
 			   $values["itemsPagos"]=array(
 					array(

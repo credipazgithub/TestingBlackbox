@@ -457,6 +457,7 @@
     <Content Include="application\models\mod_dbcentral\filesystem.php" />
     <Content Include="application\controllers\Welcome.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
+    <Content Include="documentacion\credipaz\auxiliares\entidadesCesion.html" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />
     <Content Include="documentacion\credipaz\auxiliares\nacionalidades.html" />
     <Content Include="documentacion\credipaz\auxiliares\ocupaciones.html" />
@@ -466,6 +467,7 @@
     <Content Include="documentacion\credipaz\auxiliares\productos.html" />
     <Content Include="documentacion\credipaz\auxiliares\sucursales.html" />
     <Content Include="documentacion\credipaz\archivo.html" />
+    <Content Include="documentacion\credipaz\cesiones.html" />
     <Content Include="documentacion\credipaz\cedidos.html" />
     <Content Include="documentacion\credipaz\infoCreditoDeuda.html" />
     <Content Include="documentacion\credipaz\infoCreditoCuotas.html" />

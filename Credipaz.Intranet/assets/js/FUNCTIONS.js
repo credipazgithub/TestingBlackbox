@@ -2557,6 +2557,7 @@ _FUNCTIONS = {
 		});
 		$("#blockModal").modal({ backdrop: false, keyboard: false, show: true });
 	},
+
 	onLoadPaymentData: function (_interval, _form, _gateway, _importe_forzado = 0) {
 		if (_importe_forzado == "") { _importe_forzado = 0; }
 		_timer = setTimeout(function () {
