@@ -258,6 +258,18 @@ function keySecureSexo($array, $key)
     }
     return $array[$key];
 }
+function keySecureChannel($array, $key)
+{
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "FSRV":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
 function keySecureProducto($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}

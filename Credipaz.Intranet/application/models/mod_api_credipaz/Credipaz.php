@@ -9,6 +9,134 @@ class Credipaz extends MY_Model {
         parent::__construct();
     }
 
+    public function iniciarTransaccionPago($values){
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $values["Id_type_channel"] = keySecureZero($values, "Id_type_channel");
+            if ($values["Id_type_channel"] == 0) {throw new Exception(lang("api_error_1050"), 1050);}
+            $values["Identificacion"]=keySecureString($values,"Identificacion");
+            if ($values["Identificacion"] == "") {throw new Exception(lang("api_error_1051"), 1051);}
+            $values["Moneda"]=keySecureString($values,"Moneda");
+            if ($values["Moneda"] == "") {throw new Exception(lang("api_error_1052"), 1052);}
+            $values["Monto"]=keySecureString($values,"Monto");
+            if ($values["Monto"] == "") {throw new Exception(lang("api_error_1053"), 1053);}
+            $values["Raw_request"]=keySecureString($values,"Raw_request");
+            if ($values["Raw_request"] == "") {throw new Exception(lang("api_error_1054"), 1054);}
+            $values["Channel"]=keySecureChannel($values,"Channel");
+            if ($values["Channel"] == "") {throw new Exception(lang("api_error_1055"), 1055);}
+            $fields = array(
+				'Code' => opensslRandom(8),
+				'Description' => 'Pago vía agente externo',
+				'Id_type_channel' => $values["Id_type_channel"],
+				'Identificacion' => $values["Identificacion"],
+				'Currency_request' => $values["Moneda"],
+				'Dni_request' => (string)$values["NroDocumento"],
+				'Amount_request' => $values["Monto"],
+				'Raw_request' => $values["Raw_request"],
+				'Channel' => $values["Channel"],
+			);
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Pagos/IniciarTransaccion/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function consultarEstadoTransaccionPago($values){
+        try {
+            $values["IdTransaccion"] = keySecureZero($values, "IdTransaccion");
+            if ($values["IdTransaccion"] == 0) {throw new Exception(lang("api_error_1056"), 1056);}
+            $fields = array('IdTransaccion' => $values["IdTransaccion"]);
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Pagos/ConsultarTransaccion/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+    public function terminarTransaccionPago($values){
+        try {
+            $values["IdTransaccion"] = keySecureZero($values, "IdTransaccion");
+            if ($values["IdTransaccion"] == 0) {throw new Exception(lang("api_error_1056"), 1056);}
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $values["Status"]=keySecureString($values,"Status");
+            if ($values["Status"] == "") {throw new Exception(lang("api_error_1063"), 1063);}
+            $values["Moneda"]=keySecureString($values,"Moneda");
+            if ($values["Moneda"] == "") {throw new Exception(lang("api_error_1052"), 1052);}
+            $values["Monto"]=keySecureString($values,"Monto");
+            if ($values["Monto"] == "") {throw new Exception(lang("api_error_1053"), 1053);}
+            $values["Card_name"]=keySecureString($values,"Card_name");
+            if ($values["Card_name"] == "") {throw new Exception(lang("api_error_1057"), 1057);}
+            $values["Card_response"]=keySecureString($values,"Card_response");
+            if ($values["Card_response"] == "") {throw new Exception(lang("api_error_1058"), 1058);}
+            $values["Partial_card_number"] = keySecureZero($values, "Partial_card_number");
+            if ($values["Partial_card_number"] == 0) {throw new Exception(lang("api_error_1059"), 1059);}
+            $values["Message"]=keySecureString($values,"Message");
+            if ($values["Message"] == "") {throw new Exception(lang("api_error_1060"), 1060);}
+            $values["Raw_response"]=keySecureString($values,"Raw_response");
+            if ($values["Raw_response"] == "") {throw new Exception(lang("api_error_1061"), 1061);}
+            $values["Registro_externo"]=keySecureString($values,"Registro_externo");
+            if ($values["Registro_externo"] == "") {throw new Exception(lang("api_error_1062"), 1062);}
+
+            $fields = array(
+				"Id"=>$values["IdTransaccion"],
+                'Status' => $values["Status"],
+                'Dni_response' => $values["NroDocumento"],
+                'Currency_response' => $values["Moneda"],
+                'Amount_response' => $values["Monto"],
+                'Card_name' => $values["Card_name"],
+                'Card_response' => $values["Card_response"],
+                'Partial_card_number' => $values["Partial_card_number"],
+                'Message' => $values["Message"],
+                'Raw_response' => $values["Raw_response"],
+                'Registro_externo' => $values["Registro_externo"],
+			);
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Pagos/TerminarTransaccion/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+    public function segmentosDeuda($values){
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $NroDocumento = (int) $values["NroDocumento"];
+            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            if ($values["Sexo"] == ""){$values["Sexo"]=null;}
+            $values["Platform"]=keySecureString($values,"Platform");
+            $values["Interface"]=keySecureString($values,"Interface");
+            $values["Gateway"]=keySecureString($values,"Gateway");
+            $values["Segmentos"]=keySecureString($values,"Segmentos");
+
+            $fields=array(
+                "Documento" => $NroDocumento,
+                "Sexo" => $values["Sexo"],
+                "Platform" => $values["Platform"],
+                "Interface" => $values["Interface"],
+                "Gateway" => $values["Gateway"],
+                "Segmentos" => $values["Segmentos"]
+            );
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Pagos/InterfaceSegmentosDeDeuda/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
     public function resumenTarjeta($values){
         try {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");

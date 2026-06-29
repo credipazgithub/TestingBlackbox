@@ -467,6 +467,10 @@
     <Content Include="documentacion\credipaz\auxiliares\productos.html" />
     <Content Include="documentacion\credipaz\auxiliares\sucursales.html" />
     <Content Include="documentacion\credipaz\archivo.html" />
+    <Content Include="documentacion\credipaz\terminarTransaccionPago.html" />
+    <Content Include="documentacion\credipaz\iniciarTransaccionPago.html" />
+    <Content Include="documentacion\credipaz\consultarEstadoTransaccionPago.html" />
+    <Content Include="documentacion\credipaz\segmentosDeuda.html" />
     <Content Include="documentacion\credipaz\cesiones.html" />
     <Content Include="documentacion\credipaz\cedidos.html" />
     <Content Include="documentacion\credipaz\infoCreditoDeuda.html" />
@@ -534,6 +538,7 @@
     <Content Include="documentacion\mediya\ocupaciones.html" />
     <Content Include="documentacion\mediya\estadosCiviles.html" />
     <Content Include="documentacion\mediya\nacionalidades.html" />
+    <Content Include="documentacion\seguridad\autenticarexterno.html" />
     <Content Include="documentacion\seguridad\autenticar.html" />
     <Content Include="documentacion\websites\canalesDeAcciones.html" />
     <Content Include="documentacion\websites\canalesDeLandings.html" />

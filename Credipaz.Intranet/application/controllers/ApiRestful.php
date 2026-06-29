@@ -49,12 +49,30 @@ class ApiRestful extends MY_Controller {
             $_POST['table'] = 'users';
             $_POST['id_type_user'] = "all";
             $_POST['callsource'] = "api";
-            //log_message("error", "RELATED 1 " . json_encode($_POST, JSON_PRETTY_PRINT));
 
             $this->neocommand(true);
         }
         catch (Exception $e){
             $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function authenticateexternal() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'authenticate';
+            $_POST['module'] = MOD_BACKEND;
+            $_POST['model'] = 'users';
+            $_POST['table'] = 'users';
+            $_POST['id_type_user'] = "all";
+            $_POST['callsource'] = "api";
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
         }
     }
 }

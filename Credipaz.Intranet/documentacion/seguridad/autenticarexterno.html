@@ -1,7 +1,7 @@
 <form>
     <div class="container-full">
-        <h5>Información xxx dado un IdCliente</h5>
-        <p>Devuelve xxx de un cliente de acuerdo a los datos provistos y dado el <b>token_authentication</b> y <b>id_user_active</b> autenticado.</p>
+        <h5>Autenticar externo</h5>
+        <p>Devuelve datos del usuario externo o LDAP a autenticar dado el <b>token_authentication</b> y <b>id_user_active</b> autenticado.</p>
         <div class="row">
             <div class="col-6 shadow pt-2">
                 <table class="table table-borderless">
@@ -48,42 +48,21 @@
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                         <tr>
-                            <td><b>ID cliente</b></td>
-                            <td><input class="form-control" id="IdCliente" name="IdCliente" type="number" placeholder="ID Cliente" value=""/></td>
-                            <td><i>integer</i></td>
+                            <td><b>Nombre de usuario</b></td>
+                            <td><input class="form-control" id="Username" name="Username" type="text" placeholder="Nombre de usuario" value=""/></td>
+                            <td><i>string</i></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                         <tr>
-                            <td><b>Producto</b></td>
-                            <td><input class="form-control" id="producto" name="producto" type="text" placeholder="Producto" value=""/></td>
-                            <td>
-                                <i>string</i>
-                                <p style="font-size:0.6rem;">Valores permitidos: cabal / visa / credito</p>
-                            </td>
+                            <td><b>Contraseña</b></td>
+                            <td><input class="form-control" id="Password" name="Password" type="text" placeholder="Contraseña" value=""/></td>
+                            <td><i>string</i></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                         <tr>
-                            <td><b>ID tarjeta</b></td>
-                            <td><input class="form-control" id="IdTarjeta" name="IdTarjeta" type="number" placeholder="ID Tarjeta" value=""/></td>
-                            <td><i>integer</i></td>
-                            <td><span class="badge badge-danger">requerido</span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Fecha desde</b></td>
-                            <td><input class="form-control" id="FechaDesde" name="FechaDesde" type="text" placeholder="Fecha desde" value=""/></td>
-                            <td>
-                               <i>string</i>
-                               <p style="font-size:0.6rem;">Formato: YYYY-MM-DD</p>
-                            </td>
-                            <td><span class="badge badge-danger">requerido</span></td>
-                        </tr>
-                        <tr>
-                            <td><b>Fecha hasta</b></td>
-                            <td><input class="form-control" id="FechaHasta" name="FechaHasta" type="text" placeholder="Fecha hasta" value=""/></td>
-                            <td>
-                               <i>string</i>
-                               <p style="font-size:0.6rem;">Formato: YYYY-MM-DD</p>
-                            </td>
+                            <td><b>Operador externo</b></td>
+                            <td><input class="form-control" id="external_operator" name="external_operator" type="number" placeholder="Modo" value=""/></td>
+                            <td style="width:25%;"><i>integer</i><p style="font-size:0.6rem;">Valores permitidos <b>1 para EXTERNO / 0 para LDAP</b></p></td>
                             <td><span class="badge badge-danger">requerido</span></td>
                         </tr>
                     </tbody>
@@ -120,16 +99,12 @@
     $("body").off("click", ".btnExec").on("click", ".btnExec", function () {
         var _json = {
             "token_authentication": $("#token_authentication").val(),
-            "id_user_active": $("#id_user_active").val(),
             "id_app": $("#id_app").val(),
-            "IdCliente": $("#IdCliente").val(),
-            "IdTarjeta": $("#IdTarjeta").val(),
-            "IdCliente": $("#IdCliente").val(),
-            "producto": $("#producto").val(),
-            "FechaDesde": $("#FechaDesde").val(),
-            "FechaHasta": $("#FechaHasta").val()
+            "id_user_active": $("#id_user_active").val(),
+            "Username": $("#Username").val(),
+            "Password": $("#Password").val(),
+            "external_operator": $("#external_operator").val()
         }
-
         docUiExecute(_json).then(function (data) {
             $("#response").html("<pre>" + JSON.stringify(data, undefined, 2) + "</pre>");
             $(".titleCall").removeClass("d-none");

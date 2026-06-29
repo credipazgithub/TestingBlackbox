@@ -11,6 +11,62 @@ class ApiRestfulCredipaz extends MY_Controller {
     public function __construct() {
         parent::__construct();
     }
+
+    public function iniciarTransaccionPago() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'iniciarTransaccionPago';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function consultarEstadoTransaccionPago() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'consultarEstadoTransaccionPago';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+
+
+    public function segmentosDeuda() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'segmentosDeuda';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+
+
     public function resumenTarjeta(){
         try {
             $raw=$this->rawInput();
@@ -26,8 +82,7 @@ class ApiRestfulCredipaz extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
-    public function cedidos()
-    {
+    public function cedidos() {
         try {
             $raw = $this->rawInput();
             if ($raw != null) {
@@ -234,7 +289,6 @@ class ApiRestfulCredipaz extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
-    
     public function infoCreditoPagoLink()
     {
         try {

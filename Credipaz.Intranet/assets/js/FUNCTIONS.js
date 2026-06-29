@@ -703,9 +703,9 @@ _FUNCTIONS = {
 	onAlertSecurity: function (_name) {
 		var _ret = true;
 		switch (_name) {
-			case "xls":
-			case "xlst":
-			case "csv":
+			//case "xls":
+			//case "xlst":
+			//case "csv":
 			case "doc":
 			case "docx":
 			case "pdf":
@@ -717,11 +717,13 @@ _FUNCTIONS = {
 				_ret = false;
 				break;
 		}
+		/*
 		$.getJSON('https://api.ipify.org?format=json', function (data) {
 			var _param = { "id": "0", "code": "ALERTA", "description": "ALERTA", "id_user": _AJAX._id_user_active, "action": "ALERTA", "trace": "ID origen: " + data.ip, "id_rel": "0", "table_rel": "" };
 			_AJAX.UiLogGeneral(_param).then(function (data) { });
 		});
-		alert("¡Tipo de archivo no habilitado! Se ha notificado a seguridad informática");
+		*/
+		if (!_ret) { alert("¡Tipo de archivo no habilitado! Se ha notificado a seguridad informática"); }
 		return _ret;
 	},
 	onProcessSelectedFilesFolders: function (_this) {
