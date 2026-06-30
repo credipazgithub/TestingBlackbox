@@ -518,6 +518,7 @@
     <Content Include="documentacion\mediya\comercializadoras.html" />
     <Content Include="documentacion\mediya\planes.html" />
     <Content Include="documentacion\mediya\socios\infoMediyaPagoLink.html" />
+    <Content Include="documentacion\mediya\socios\autorizar.html" />
     <Content Include="documentacion\mediya\tiposDeCentros.html" />
     <Content Include="documentacion\mediya\centros.html" />
     <Content Include="documentacion\mediya\parentescos.html" />

@@ -245,6 +245,20 @@ function keySecureString($array, $key)
     if (!isset($array[$key])) {$array[$key] = "";}
     return $array[$key];
 }
+function keySecureModoAut($array, $key){
+    if (!isset($array[$key])) {$array[$key] = "";}
+    $array[$key] = strtoupper($array[$key]);
+    switch ($array[$key]) {
+        case "1":
+        case "2":
+        case "3":
+        case "4":
+            break;
+        default:
+            return "";
+    }
+    return $array[$key];
+}
 function keySecureSexo($array, $key)
 {
     if (!isset($array[$key])) {$array[$key] = "";}

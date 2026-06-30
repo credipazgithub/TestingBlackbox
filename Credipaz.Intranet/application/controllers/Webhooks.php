@@ -12,36 +12,27 @@ class Webhooks extends MY_Controller {
     public function FiservOkTest()
     {
         try {
-
         /*
-{"txndate_processed":"11\/06\/26 9:06:13","ccbin":"551792","timezone":"America\/Buenos_Aires","number_of_installments":"1",
-"oid":"C-9b47d431-cd42-42d0-b65b-21372a3f4df9","cccountry":"ARG","expmonth":"04","3747855e980890d84b1f":"","hash_algorithm":"SHA256",
-"endpointTransactionId":"2413474179","currency":"032","processor_response_code":"00","chargetotal":"76328,00","terminal_id":"98254715",
-"associationResponseCode":"00","approval_code":"Y:584498:0219204693:PPXX:2413474179","comments":"
-"expyear":"2029","response_hash":"e3bad2da81a3c8cf21496082c02006f181f042736aedd94bf7e9f1be2a7ae758","tdate":"1781179573",
-"installments_interest":"false","associationResponseMessage":"Approved or completed successfully","bname":"Antivero Pamela Adriana",
-"ccbrand":"MASTERCARD","customerid":"0107137938","refnumber":"      241347","txntype":"sale","paymentMethod":"M",
-"referencedMerchantTransactionID":"324767","merchantAdviceCodeIndicator":"  ","txndatetime":"2026:06:11-09:04:28","cardnumber":"(MASTERCARD) ... 1003",
-"ipgTransactionId":"850219204693","cardFunction":"debit","status":"APROBADO"}
-*/
-  $_POST["comments"]='[{"Tipo":"CRE","Identificacion":1535048,"Importe":"130026.10","idTransfer":325307}]';
-           $_POST["approval_code"]="Y:502266:0273224030:PPXX:8173094432";
+{"txndate_processed":"25\/06\/26 10:51:36","ccbin":"551792","timezone":"America\/Buenos_Aires",
+"number_of_installments":"1","oid":"C-9cddb571-87b1-4934-8bf4-fc37a5c878c6","c8bfbac831f8a5eb709f":"",
+"cccountry":"ARG","expmonth":"12","hash_algorithm":"SHA256","endpointTransactionId":"4198814708",
+"currency":"032","processor_response_code":"00","chargetotal":"267913,01","terminal_id":"98254715",
+"associationResponseCode":"00","approval_code":"Y:554848:0320154219:PPXX:4198814708",
+"comments":"[{"Tipo":"CRE","Identificacion":1556607,"Importe":"102385.01","idTransfer":1},{"Tipo":"CRE","Identificacion":1556607,"Importe":"86328.00"},{"Tipo":"CRE","Identificacion":1556607,"Importe":"79200.00"}]",
+"expyear":"2029","response_hash":"30dbddd588cb5f561bc955f49474a61b9619910bfe8cb5f6cb3c214af985d795","tdate":"1782395496",
+"installments_interest":"false","associationResponseMessage":"Approved or completed successfully",
+"bname":"Ariotti Alberto m","ccbrand":"MASTERCARD","customerid":"1556607","refnumber":"      419881",
+"txntype":"sale","paymentMethod":"M","referencedMerchantTransactionID":"1","merchantAdviceCodeIndicator":"  ",
+"txndatetime":"2026:06:25-10:47:53","cardnumber":"(MASTERCARD) ... 7004","ipgTransactionId":"850320154219",
+"cardFunction":"debit","status":"APROBADO"}*/
+  $_POST["comments"]='[{"Tipo":"CRE","Identificacion":1556607,"Importe":"102385.01","idTransfer":1},{"Tipo":"CRE","Identificacion":1556607,"Importe":"86328.00"},{"Tipo":"CRE","Identificacion":1556607,"Importe":"79200.00"}]';
+           $_POST["approval_code"]="Y:554848:0320154219:PPXX:4198814708";
             $_POST["status"]="APROBADO";
             $_POST["currency"]="032";
-            $_POST["chargetotal"]="130026,10";
+            $_POST["chargetotal"]="267913,01";
             $_POST["ccbrand"]="MASTERCARD";
-            $_POST["bname"]="Gómez Lorena elisab";
-            $_POST["cardnumber"]="(MASTERCARD) ... 5687";
-            /*
-            $_POST["comments"]='[{"Tipo":"TAR","Identificacion":"0114167038","Importe":"71300.00","idTransfer":302446},{"Tipo":"CRE","Identificacion":1547052,"Importe":"386647.00"}]';
-            $_POST["approval_code"]="Y:765956:9012308699:PPXX:9611654723";
-            $_POST["status"]="APROBADO";
-            $_POST["currency"]="032";
-            $_POST["chargetotal"]="592659,43";
-            $_POST["ccbrand"]="VISA";
-            $_POST["bname"]="Gómez Lorena elisab";
-            $_POST["cardnumber"]="(VISA) ... 6022";
-            */
+            $_POST["bname"]="Ariotti Alberto m";
+            $_POST["cardnumber"]="(MASTERCARD) ... 7004";
             $this->FiservOk();
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));

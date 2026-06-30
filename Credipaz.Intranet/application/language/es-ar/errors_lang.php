@@ -63,6 +63,8 @@ $lang['api_error_1060'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1061'] = "No se ha provisto un valor válido para el parámetro 'Raw_response'";
 $lang['api_error_1062'] = "No se ha provisto un valor válido para el parámetro 'Registro_externo'";
 $lang['api_error_1063'] = "No se ha provisto un valor válido para el parámetro 'Status'";
+$lang['api_error_1064'] = "No se ha provisto un valor válido para el parámetro 'Modo'";
+$lang['api_error_1065'] = "No se ha provisto un valor válido para el parámetro 'Sexo'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";
