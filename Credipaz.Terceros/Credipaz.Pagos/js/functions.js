@@ -67,6 +67,7 @@ var _F = {
 				try {
 					/*Automatización de acceso con dni en el parametro code de la url */
 					if (_API.urlParameters["code"] != undefined) {
+						$(".headerImage").addClass("d-none");
 						$(".areaSelector").addClass("d-none");
 						/* url decoding del valor del parametro */
 						var _documento = decodeURIComponent(_API.urlParameters["code"].toString());
@@ -77,7 +78,10 @@ var _F = {
 						/* búsqueda de valor automático */
 						$(".btn-BotonDePagos").click();
 						/* remueve del html el componente que permite la búsqueda */
+						$(".headerImage").remove();
 						$(".areaSelector").remove();
+					} else {
+						$(".logoImage").attr("src", _API.imageLogin);
 					}
 					resolve(null);
 				} catch (err) {
