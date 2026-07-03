@@ -45,7 +45,11 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $ops=array("value"=>$subitem["running"],"dyncolor"=>true);
                     $running=getProgressBar(null,$ops);
                     $html.="  <div style='position:relative;'>";
-                    $html.="    <a href='#' data-area='".$area."' class='list-group-item bg-light btn-menu-click btn-".$subitem["code"]."' data-alert='".$subitem["alert_build"]."' data-module='".$subitem["data_module"]."' data-model='".$subitem["data_model"]."' data-table='".$data_table."' data-action='".$subitem["data_action"]."'>";
+                    if ($subitem["data_module"]=="directLink") {
+                        $html.="    <a href='".$subitem["data_table"]."' target='".$subitem["data_action"]."'>";
+                    } else {
+                        $html.="    <a href='#' data-area='".$area."' class='list-group-item bg-light btn-menu-click btn-".$subitem["code"]."' data-alert='".$subitem["alert_build"]."' data-module='".$subitem["data_module"]."' data-model='".$subitem["data_model"]."' data-table='".$data_table."' data-action='".$subitem["data_action"]."'>";
+                    }
                     $html.="      <table style='width:100%;'>";
                     $html.="         <tr>";
                     $html.="            <td valign='middle' style='width:30px;'><i class='material-icons'>".$subitem["icon"]."</i></td>";
