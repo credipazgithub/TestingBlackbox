@@ -17,7 +17,7 @@ var _F = {
 		return new Promise(
 			function (resolve, reject) {
 				try {
-					$("body").load((_API._ROOT + "/html/index.html"), function () {
+					$("body").load((_API._ROOT + "/html/index.html?" + _API._TS), function () {
 						/* evalua los parámetros y realiza las acciones que correspondan según lo recibido */
 						_F.onEvalParameters().then(function (response) {
 							_API.inited = true;
