@@ -541,6 +541,7 @@
     <Content Include="documentacion\mediya\nacionalidades.html" />
     <Content Include="documentacion\seguridad\autenticarexterno.html" />
     <Content Include="documentacion\seguridad\autenticar.html" />
+    <Content Include="documentacion\seguridad\interfacedocumentacion.html" />
     <Content Include="documentacion\seguridad\verificartoken.html" />
     <Content Include="documentacion\websites\canalesDeAcciones.html" />
     <Content Include="documentacion\websites\canalesDeLandings.html" />

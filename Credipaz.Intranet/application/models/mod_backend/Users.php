@@ -9,6 +9,19 @@ class Users extends MY_Model
     {
         parent::__construct();
     }
+    public function documentationinterface($values){
+        try {
+            $fields = array("Id_app" => $values["id_app"],"Id_user" => $values["id_user_activate"],"Token_authentication" => $values["token_authentication"]);
+            log_message("error", "RELATED ".json_encode($fields,JSON_PRETTY_PRINT));
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Intranet/DocumentationInterface/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
     public function verifytoken($values){
         try {
             $fields = array("Id_app" => $values["id_app"],"Id_user" => $values["id_user_activate"],"Token_authentication" => $values["token_authentication"]);
