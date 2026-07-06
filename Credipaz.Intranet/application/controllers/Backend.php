@@ -906,11 +906,13 @@ class Backend extends MY_Controller {
             if ($raw!=null)  {throw new Exception($raw);}
             $FUNCTIONS=$this->createModel(MOD_BACKEND,"Functions","Functions");
 			$preferences=getPreference($this,$_POST,1);
-
             $menu=$FUNCTIONS->menuTree($_POST);
             $data["title"] = TITLE_GENERAL;
             $data["language"] = $this->language;
             $data["menu"] = $menu["data"];
+            $data["Id_user"] = $_POST["id_user_active"];
+            $data["Token"] = $_POST["token_authentication"];
+            $data["Id_app"] = $_POST["id_app"];
             $html=$this->load->view("logged",$data,true);
             $return=array(
                 "code"=>"2000",

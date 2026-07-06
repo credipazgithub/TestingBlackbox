@@ -46,7 +46,8 @@ defined('BASEPATH') OR exit('No direct script access allowed');
                     $running=getProgressBar(null,$ops);
                     $html.="  <div style='position:relative;'>";
                     if ($subitem["data_module"]=="directLink") {
-                        $html.="    <a href='".$subitem["data_table"]."' class='list-group-item bg-light' target='".$subitem["data_action"]."'>";
+                        $arrData=array("Id_user"=>$Id_user,"Token"=>$Token,"Id_app"=>$Id_app);
+                        $html.="    <a href='".$subitem["data_table"]."?data=".urlencode(base64_encode(json_encode($arrData)))."' class='list-group-item bg-light' target='".$subitem["data_action"]."'>";
                     } else {
                         $html.="    <a href='#' data-area='".$area."' class='list-group-item bg-light btn-menu-click btn-".$subitem["code"]."' data-alert='".$subitem["alert_build"]."' data-module='".$subitem["data_module"]."' data-model='".$subitem["data_model"]."' data-table='".$data_table."' data-action='".$subitem["data_action"]."'>";
                     }

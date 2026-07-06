@@ -80,10 +80,10 @@
 									_FUNCTIONS.onToggleSilence();
 								});
 								$("body").off("click", ".btn-login").on("click", ".btn-login", function () {
-									_FUNCTIONS.onLogin($(this)).then(function (data) { _AJAX.UiLogged({}); });
+									_FUNCTIONS.onLogin($(this)).then(function (data) { _AJAX.UiLogged(data);});
 								});
 								$("body").off("click", ".btn-login-backend").on("click", ".btn-login-backend", function () {
-									_FUNCTIONS.onLogin($(this), "backend").then(function (data) { _AJAX.UiLogged({}); });
+									_FUNCTIONS.onLogin($(this), "backend").then(function (data) { _AJAX.UiLogged(data); });
 								});
 								$("body").off("click", ".btn-login-cesiones").on("click", ".btn-login-cesiones", function () {
 									_FUNCTIONS.onLogin($(this), "cesiones").then(function (data) { _AJAX.UiLoggedCesiones({}); });

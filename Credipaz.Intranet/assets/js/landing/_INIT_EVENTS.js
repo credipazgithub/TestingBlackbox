@@ -6,9 +6,7 @@
 			$.getScript("/assets/js/FUNCTIONS.js?" + _TOOLS.UUID()).done(function (script, textStatus) {
 				moment().tz("America/Montevideo").format();
 				$("body").off("click", ".btn-login").on("click", ".btn-login", function () {
-					_FUNCTIONS.onLogin($(this), "site").then(function (data) {
-						_AJAX.UiLogged({});
-					});
+					_FUNCTIONS.onLogin($(this), "site").then(function (data) { _AJAX.UiLogged(data); });
 				});
 				$("body").off("click", ".btn-logout").on("click", ".btn-logout", function () {
 					_FUNCTIONS.onLogout($(this), "site");

@@ -9,6 +9,20 @@ class Users extends MY_Model
     {
         parent::__construct();
     }
+    public function verifytoken($values){
+        try {
+            $fields = array("Id_app" => $values["id_app"],"Id_user" => $values["id_user_activate"],"Token_authentication" => $values["token_authentication"]);
+            log_message("error", "RELATED ".json_encode($fields,JSON_PRETTY_PRINT));
+            $headers = array('Content-Type:application/json','Authorization: Bearer ');
+	        $ret = API_callAPI("/Intranet/VerifyToken/",$headers,json_encode($fields));
+	        $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
    	public function getUserAreas($values){
         try {
 			$users=parent::get(array("order"=>"2 ASC","where"=>"last_area='".$values["last_area"]."'","fields"=>"last_area,datediff(second,last_access_area,getdate()) as seconds"));
@@ -357,9 +371,6 @@ class Users extends MY_Model
     public function testUserValuePWA($values)
     {
         try {
-
-log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
             $sql = "";
             $posibles = true;
             if (!isset($values["password"])) {

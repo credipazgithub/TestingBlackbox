@@ -75,6 +75,23 @@ class ApiRestful extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
+    public function verifytoken() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST['function'] = 'verifytoken';
+            $_POST['module'] = MOD_BACKEND;
+            $_POST['model'] = 'users';
+            $_POST['table'] = 'users';
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
 }
 
 

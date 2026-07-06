@@ -163,7 +163,7 @@ class Functions extends MY_Model {
             if (!isset($values["id_app"])) {$values["id_app"] = $values["id_application"];}
             if (!isset($values["id_app"])) {$values["id_app"] = 0;}
             if ($values["id_app"] == null or $values["id_app"] == "") {$values["id_app"] = 0;}
-            $params = array("Scope" => "tree", "Id_app" => $values["id_app"], "Id_user" => $values["id_user_active"], "Id_parent" => null, "Id" => null);
+            $params = array("Scope" => "tree", "Id_app" => $values["id_app"], "Id_user" => $values["id_user_active"], "Id_parent" => null, "Id" => null, "Token"=>$values["token_authentication"]);
             $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
             return $this->buildSubMenu($NETCORECPFINANCIAL->BridgeDirectMenu($params), $params);
         }

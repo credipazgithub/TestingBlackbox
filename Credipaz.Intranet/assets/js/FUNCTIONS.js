@@ -1573,7 +1573,7 @@ _FUNCTIONS = {
 												}).catch(function (error) { throw error; });
 												break;
 											case "backend":
-												_AJAX.UiLogged({}).then(function (data) {
+												_AJAX.UiLogged(datajson).then(function (data) {
 													if (data.status == "OK") {
 														var _html = '<ul class="list-group">';
 														var _sucursales = "";

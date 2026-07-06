@@ -96,7 +96,6 @@ $lang['error_5106'] = "Falta el parámetro 'id_channel'";
 $lang['error_5107'] = "No se ha provisto un valor válido para el parámetro 'id_user_active'";
 $lang['error_5108'] = "Falta el parámetro 'id'";
 $lang['error_5109'] = "Falta el parámetro 'token_authentication'";
-$lang['error_5110'] = "Falta el parámetro 'id_app'";
 $lang['error_5111'] = "Falta el parámetro 'uid_firecloud'";
 $lang['error_5112'] = "Falta el parámetro 'phone'";
 $lang['error_5113'] = "Falta el parámetro 'token_transaction'";
