@@ -2312,8 +2312,6 @@
     <Content Include="Credipaz.Terceros\.gitignore" />
     <Content Include="Credipaz.Terceros\Credipaz.Terceros.vbproj" />
     <Content Include="Credipaz.Terceros\README.md" />
-    <Content Include="Credipaz.Terceros\Recursos\configBranches.json" />
-    <Content Include="Credipaz.Terceros\Recursos\configServers.json" />
     <Content Include="Credipaz.Terceros\web.config" />
     <None Include="Credipaz.Terceros\web.Debug.config">
       <DependentUpon>web.config</DependentUpon>
