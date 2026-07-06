@@ -208,6 +208,9 @@ class Backend extends MY_Controller {
             $data["pre"]="";
 
             switch ($page) {
+                //case "pagos-fiserv-pwacp": // descomentar para activar nuevo sitio de pago
+                 //  header("Location: https://pagos.credipaz.com");
+                 //  exit;
                 case "mediya-adherir":
                 case "mediya-adherir-auth":
                     $data["pUser"] = $_GET["u"];
@@ -225,6 +228,7 @@ class Backend extends MY_Controller {
                     $this->load->view(MOD_EXTERNAL . "/external_forms/mediya", $data);
                     $this->load->view("common/_external_footer", $data);
                     break;
+                case "pagos-fiserv-pwacp"://comentar para activar nuevo sitio de pago
                 case "pagos-mora":
                 case "pagos-mediya":
                 case "pagos-tarjeta":
@@ -232,7 +236,6 @@ class Backend extends MY_Controller {
                 case "pagos-fiserv":
                 case "pagos-fiserv-cicr":
                 case "pagos-fiserv-crdo":
-                case "pagos-fiserv-pwacp":
                 case "pagos-fiserv-pwacr":
                 case "pagos-fiserv-mcp":
                 case "pagos-fiserv-mcr":
