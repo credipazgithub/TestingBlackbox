@@ -77,19 +77,19 @@ var _F = {
 						if (_API.urlParameters["data"] != undefined) {
 							var _data = decodeURIComponent(_API.urlParameters["data"].toString());
 							var _json = JSON.parse(_API.b64_to_string(_data));
-							_API.log("Id user->", _json.Id_user);
-							_API.log("Token->", _json.Token);
-							_API.log("Id app->", _json.Id_app);
 							/*Verify id_user & token*/
 							_API.verifytoken(_json).then(function (verify) {
 								$(".logoImage").attr("src", (_API._ROOT + "/img/logoImageBig.png?" + _API._TS));
 							}).catch(function (err) {
-								_API.onShowUnauthorized("Intento de acceso rechazado por el sistema de seguridad.");
-							})
+								_API.onShowUnauthorized("Verificaciones no aprobadas.");
+							});
+						} else {
+							_API.onShowUnauthorized("Parámetros no enviados.");
 						}
 					}
 					resolve(null);
 				} catch (err) {
+					_API.onShowUnauthorized("Parámetros de ejecución incorrectos.");
 					reject(err);
 				}
 			})
