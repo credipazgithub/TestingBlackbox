@@ -21,7 +21,7 @@ class Socios extends MY_Model {
             $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Modo"=>$values["Modo"]);
 
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Mediya/GetProfileSocio/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Mediya/Autorizar/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);
             $second["code"] = $ret["codigo"];
             $second["error"] = $ret["error"];
