@@ -159,7 +159,7 @@ var _API = {
             return false;
         }
     },
-onShowModal: function (_name, _title, _body) {
+    onShowModal: function (_name, _title, _body) {
         return new Promise(
             function (resolve, reject) {
                 try {
@@ -218,6 +218,12 @@ onShowModal: function (_name, _title, _body) {
                 $(".subTitle").html(_message);
             })
         });
+    },
+    onLoginReturn: function (_this, key) {
+        var keyCode = (key.keyCode || key.which);
+        if (keyCode === 13) {
+            $(".btn-AuthenticateExternal").click();
+        }
     },
 
     readConfigServers: function (key, _TS) {

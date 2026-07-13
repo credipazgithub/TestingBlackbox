@@ -18,7 +18,7 @@ class Socios extends MY_Model {
             $values["Modo"]=keySecureModoAut($values,"Modo");
             if ($values["Modo"] == "") {throw new Exception(lang("api_error_1064"), 1064);}
 
-            $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "");
+            $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Modo"=>$values["Modo"]);
 
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Mediya/GetProfileSocio/", $headers, json_encode($fields));
