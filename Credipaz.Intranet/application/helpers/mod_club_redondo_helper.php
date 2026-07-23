@@ -139,7 +139,7 @@ function getIdUserMediya($obj,$doc){
     $sql="SELECT * FROM DBClub.dbo.Persona WHERE nrodocumento=".$doc;
     $persona=$obj->getRecordsAdHoc($sql);
     if(isset($persona[0]["IdPersona"])){
-        $sql="SELECT * FROM DBClub.dbo.Socio WHERE IdPersona=".$persona[0]["IdPersona"]." AND Estado='VIG'";
+        $sql="SELECT * FROM DBClub.dbo.Socio WHERE IdPersona=".$persona[0]["IdPersona"];
         $socio=$obj->getRecordsAdHoc($sql);
         if(isset($socio[0]["IdSocio"])){
             //$REL_PERSONA_ADICIONALES=$obj->createModel(MOD_TELEMEDICINA,"Rel_persona_adicionales","Rel_persona_adicionales");

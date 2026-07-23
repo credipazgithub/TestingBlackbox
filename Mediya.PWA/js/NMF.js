@@ -544,6 +544,9 @@ var _NMF = {
             "IdSolicitud": 0
         }).then(function (data) {
             try {
+                console.log("data->");
+                console.log(data);
+
                 if (data.userdata != null) {
                     _NMF._auth_user_data.id_club_redondo = 0;
                     if (data.clubredondo != undefined) { _NMF._auth_user_data.id_club_redondo = data.clubredondo.ClubRedondo; }
