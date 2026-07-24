@@ -14,8 +14,8 @@ class Socios extends MY_Model {
         try {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
             if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
-            $values["Sexo"]=keySecureSexo($values,"Sexo");
-            $values["Modo"]=keySecureModoAut($values,"Modo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
+            $values["Modo"]=keySecureValInArray($values,"Modo",['1','2','3','4']);
             if ($values["Modo"] == "") {throw new Exception(lang("api_error_1064"), 1064);}
 
             $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Modo"=>$values["Modo"]);

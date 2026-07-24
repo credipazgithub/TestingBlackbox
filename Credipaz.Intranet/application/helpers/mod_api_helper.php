@@ -39,6 +39,22 @@
         curl_close($ch);
         return $response;
     }
+    function API_callAPIfields($url, $headers, $data){
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL, (CPFINANCIALS.$url));
+        curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, 0);
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+        curl_setopt($ch, CURLOPT_POST, 1);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
+        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        $response = curl_exec($ch);
+	    $response=trim($response, "\xEF\xBB\xBF");
+        $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
+        $err=curl_error($ch);
+        curl_close($ch);
+        return $response;
+    }
     function API_callAPIGet($url,$headers){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, (CPFINANCIALS.$url));

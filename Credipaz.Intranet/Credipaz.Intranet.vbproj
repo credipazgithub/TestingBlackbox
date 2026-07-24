@@ -456,6 +456,8 @@
     <Content Include="application\models\mod_api_credipaz\Integraciones.php" />
     <Content Include="application\models\mod_dbcentral\filesystem.php" />
     <Content Include="application\controllers\Welcome.php" />
+    <Content Include="application\controllers\ApiRestfulTelemedicina.php" />
+    <Content Include="application\models\mod_api_telemedicina\Telemedicina.php" />
     <None Include="application\views\mod_backend\apirestful\form.php" />
     <Content Include="documentacion\credipaz\auxiliares\entidadesCesion.html" />
     <Content Include="documentacion\credipaz\auxiliares\estadosCiviles.html" />

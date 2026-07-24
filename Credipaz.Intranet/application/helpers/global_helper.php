@@ -245,83 +245,11 @@ function keySecureString($array, $key)
     if (!isset($array[$key])) {$array[$key] = "";}
     return $array[$key];
 }
-function keySecureModoAut($array, $key){
-    if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "1":
-        case "2":
-        case "3":
-        case "4":
-            break;
-        default:
-            return "";
-    }
-    return $array[$key];
-}
-function keySecureSexo($array, $key)
+function keySecureValInArray($array, $key, $control)
 {
     if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "M":
-        case "F":
-            break;
-        default:
-            return "";
-    }
-    return $array[$key];
-}
-function keySecureChannel($array, $key)
-{
-    if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "FSRV":
-            break;
-        default:
-            return "";
-    }
-    return $array[$key];
-}
-function keySecureProducto($array, $key)
-{
-    if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "CREDITO":
-        case "CABAL":
-        case "VISA":
-            break;
-        default:
-            return "";
-    }
-    return $array[$key];
-}
-function keySecureProductoTAR($array, $key)
-{
-    if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "CABAL":
-        case "VISA":
-            break;
-        default:
-            return "";
-    }
-    return $array[$key];
-}
-function keySecureAccion($array, $key)
-{
-    if (!isset($array[$key])) {$array[$key] = "";}
-    $array[$key] = strtoupper($array[$key]);
-    switch ($array[$key]) {
-        case "BLOCK":
-        case "UNBLOCK":
-            break;
-        default:
-            return "";
-    }
+    $array[$key] = (string)strtoupper($array[$key]);
+    if (!in_array($array[$key], $control, true)) {return "";}
     return $array[$key];
 }
 function keySecureZero($array,$key){

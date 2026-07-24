@@ -17,7 +17,7 @@ class Integraciones extends MY_Model {
 
             if (isset($values["Sexo"])) {
                 if ($values["Sexo"] != "") {
-                    $values["Sexo"] = keySecureSexo($values, "Sexo");
+                    $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
                     if ($values["Sexo"] == "") {
                         throw new Exception(lang("api_error_1002"), 1002);
                     }
@@ -83,7 +83,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProducto($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -254,7 +254,7 @@ class Integraciones extends MY_Model {
 
             if (isset($values["Sexo"])) {
                 if ($values["Sexo"] != "") {
-                    $values["Sexo"] = keySecureSexo($values, "Sexo");
+                    $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
                     if ($values["Sexo"] == "") {
                         throw new Exception(lang("api_error_1002"), 1002);
                     }
@@ -297,7 +297,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -328,7 +328,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -367,7 +367,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -402,7 +402,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -433,7 +433,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -464,7 +464,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -495,7 +495,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -530,7 +530,7 @@ class Integraciones extends MY_Model {
             if ($values["IdCliente"] == 0) {throw new Exception(lang("api_error_1038"), 1038);}
             $IdCliente = (int) $values["IdCliente"];
 
-            $values["producto"] = keySecureProductoTAR($values, "producto");
+            $values["producto"] = keySecureValInArray($values, "producto",['CABAL','VISA']);
             if ($values["producto"] == "") {throw new Exception(lang("api_error_1039"), 1039);}
             $Producto = $values["producto"];
 
@@ -538,7 +538,7 @@ class Integraciones extends MY_Model {
             if ($values["IdTarjeta"] == 0) {throw new Exception(lang("api_error_1043"), 1043);}
             $IdTarjeta = (int) $values["IdTarjeta"];
 
-            $values["accion"] = keySecureAccion($values, "accion");
+            $values["accion"] = keySecureValInArray($values, "accion",['BLOCK','UNBLOCK']);
             if ($values["accion"] == "") {throw new Exception(lang("api_error_1047"), 1047);}
             $Accion=$values["accion"];
 

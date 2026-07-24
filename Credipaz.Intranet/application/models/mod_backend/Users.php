@@ -353,9 +353,6 @@ class Users extends MY_Model
             if ((int) $values["external_operator"] == 1) {
                 $values["id_type_user"] = "80,81,82,85,87,88";
                 $values["try"] = "LOCAL";
-            } else {
-                $values["id_type_user"] = "77,78";
-                $values["try"] = "LDAP";
             }
             logGeneralCustom($this, $values, "Users::TryLogin", "username:" . $values["username"] . " password:" . md5($values["password"]));
 

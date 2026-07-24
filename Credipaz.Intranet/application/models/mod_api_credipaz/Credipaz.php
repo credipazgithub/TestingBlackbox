@@ -23,7 +23,7 @@ class Credipaz extends MY_Model {
             if ($values["Monto"] == "") {throw new Exception(lang("api_error_1053"), 1053);}
             $values["Raw_request"]=keySecureString($values,"Raw_request");
             if ($values["Raw_request"] == "") {throw new Exception(lang("api_error_1054"), 1054);}
-            $values["Channel"]=keySecureChannel($values,"Channel");
+            $values["Channel"]=keySecureValInArray($values, "Channel",['FSRV']);
             if ($values["Channel"] == "") {throw new Exception(lang("api_error_1055"), 1055);}
             $fields = array(
 				'Code' => opensslRandom(8),
@@ -113,7 +113,7 @@ class Credipaz extends MY_Model {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
             if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == ""){$values["Sexo"]=null;}
             $values["Platform"]=keySecureString($values,"Platform");
             $values["Interface"]=keySecureString($values,"Interface");
@@ -143,7 +143,7 @@ class Credipaz extends MY_Model {
             if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == ""){throw new Exception(lang("api_error_1002"), 1002);}
 
             $values["iYear"] = keySecureZero($values, "iYear");
@@ -255,7 +255,7 @@ class Credipaz extends MY_Model {
             }
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {throw new Exception(lang("api_error_1002"), 1002);}
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo"=> $values["Sexo"]);
@@ -300,11 +300,11 @@ class Credipaz extends MY_Model {
             $values["NroDocumentoA"] = keySecureZero($values, "NroDocumentoA");
             $NroDocumentoA = (int) $values["NroDocumentoA"];
 
-            $values["SexoT"] = keySecureSexo($values, "SexoT");
+            $values["SexoT"] = keySecureValInArray($values, "SexoT",['F','M']);
             if ($values["SexoT"] == "") {
                 throw new Exception(lang("api_error_1036"), 1036);
             }
-            $values["SexoA"] = keySecureSexo($values, "SexoA");
+            $values["SexoA"] = keySecureValInArray($values, "SexoA",['F','M']);
             if ($values["SexoA"] == "") {
                 throw new Exception(lang("api_error_1037"), 1037);
             }
@@ -606,7 +606,7 @@ class Credipaz extends MY_Model {
             }
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {
                 throw new Exception(lang("api_error_1002"), 1002);
             }
@@ -638,7 +638,7 @@ class Credipaz extends MY_Model {
             }
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {
                 throw new Exception(lang("api_error_1002"), 1002);
             }
@@ -671,7 +671,7 @@ class Credipaz extends MY_Model {
             }
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {
                 throw new Exception(lang("api_error_1002"), 1002);
             }
@@ -715,7 +715,7 @@ class Credipaz extends MY_Model {
             if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
     
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {throw new Exception(lang("api_error_1002"), 1002);}
 
             $fields = array("NroDocumento" => $NroDocumento,"Sexo"=> $values["Sexo"]);
@@ -756,7 +756,7 @@ class Credipaz extends MY_Model {
             }
             $NroDocumento = (int) $values["NroDocumento"];
 
-            $values["Sexo"] = keySecureSexo($values, "Sexo");
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             if ($values["Sexo"] == "") {
                 throw new Exception(lang("api_error_1002"), 1002);
             }
