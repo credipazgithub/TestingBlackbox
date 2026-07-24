@@ -46,8 +46,8 @@ var _F = {
 		$(".areaResultado").html("Supervisión").removeClass("d-none");
 	},
 	onMonitoreo: function (_this) {
-		var params = { "Modo": _mode, "NroDocumento": $(".DNI").val() };
-		_API.method("/asesores/socios/autorizar", params)
+		var params = { "iModo": 1 };
+		_API.method("/telemedicina/monitoreo", params)
 			.then(function (msg) {
 				_API.log("Content:", msg);
 				var _html = "<table class='table table-condensed'>";
