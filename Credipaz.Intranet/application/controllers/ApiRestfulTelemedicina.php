@@ -11,12 +11,89 @@ class ApiRestfulTelemedicina extends MY_Controller {
     public function __construct() {
         parent::__construct();
     }
+    public function tiposcierre()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'listar';
+            $_POST['module'] = MOD_API_LOOKUPS;
+            $_POST['model'] = "Lookups";
+            $_POST['table'] = "NS_mod_telemedicina_type_tasks_close";
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
     public function monitoreo(){
         try {
             $raw=$this->rawInput();
             if ($raw!=null)  {throw new Exception($raw);}
             $this->status=$this->init();
             $_POST['function'] = 'monitoreo';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function supervision(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'supervision';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function consultas(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'consultas';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function cancelar(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'cancelar';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function postcierre(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'postcierre';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;

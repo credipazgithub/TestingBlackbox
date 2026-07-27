@@ -147,11 +147,11 @@ class Operators_tasks extends MY_Model {
             $values["records"]=$this->get($values);
             if ($values["records"]["data"][0]["refiere"]==""){$values["records"]["data"][0]["refiere"]=lang("msg_empty");}
 
-            $sql = "UPDATE " . MOD_TELEMEDICINA . "_charges_codes SET id_operator_task=".$values["id"]." WHERE id=" . $values["records"]["data"][0]["code"];
-            $this->execAdHoc($sql);
+            //$sql = "UPDATE " . MOD_TELEMEDICINA . "_charges_codes SET id_operator_task=".$values["id"]." WHERE id=" . $values["records"]["data"][0]["code"];
+            //$this->execAdHoc($sql);
 
-            $sql="SELECT DISTINCT stc_mono_presentation,id_type_vademecum,vademecum FROM ".MOD_TELEMEDICINA."_vw_vademecum WHERE isnull(stc_mono_presentation,'') !='' ORDER BY stc_mono_presentation ASC";
-            $values["vademecum"]=$this->getRecordsAdHoc($sql);
+            //$sql="SELECT DISTINCT stc_mono_presentation,id_type_vademecum,vademecum FROM ".MOD_TELEMEDICINA."_vw_vademecum WHERE isnull(stc_mono_presentation,'') !='' ORDER BY stc_mono_presentation ASC";
+            //$values["vademecum"]=$this->getRecordsAdHoc($sql);
 
             $DOCTORS=$this->createModel(MOD_TELEMEDICINA,"Doctors","Doctors");
             $doctor=$DOCTORS->get(array("page"=>1,"where"=>"username='".$profile["data"][0]["username"]."'"));

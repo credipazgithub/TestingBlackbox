@@ -1,0 +1,84 @@
+<div class="container-full px-2 py-1">
+    <h4 class="magenta"><span class="codigo p-2 badge badge-warning"></span> Atención en curso <span class="especialidad p-2 badge badge-info"></span></h4>
+    <div class="row">
+        <div class="col-6">
+            <table class="table table-sm table-condensed table-borderless">
+                <tr><td><label>Motivo:</label></td></tr>
+                <tr><td><textarea id="tMovivo" name="tMotivo" class="form-control tMotivo" rows="2"></textarea></td></tr>
+                <tr><td><label>Evolución:</label></td></tr>
+                <tr><td><textarea id="tEvolucion" name="tEvolucion" class="form-control tEvolucion" rows="2"></textarea></td></tr>
+                <tr><td><label>Diagnóstico presuntivo:</label></td></tr>
+                <tr><td><textarea id="tDiagnostico" name="tDiagnostico" class="form-control tDiagnostico" rows="2"></textarea></td></tr>
+                <tr><td><label>Indicaciones:</label></td></tr>
+                <tr><td><textarea id="tIndicaciones" name="tIndicaciones" class="form-control tIndicaciones" rows="2"></textarea></td></tr>
+            </table>
+            <table class="table table-sm table-condensed table-borderless">
+                <tr>
+                   <td><label>Derivado a consulta presencial:</label></td>
+                   <td><input type="checkbox" id="chkPresencial" name="chkPresencial" class="form-control chkPresencial" value="1" style="width:20px;height:20px;"/></td>
+                </tr>
+                <tr>
+                   <td><label>Derivado a especialista:</label></td>
+                   <td><input type="checkbox" id="chkEspecialista" name="chkEspecialista" class="form-control chkEspecialista" value="1" style="width:20px;height:20px;"/></td>
+                </tr>
+            </table>
+            <table class="table table-sm table-condensed table-borderless">
+                <tr><td><label>Tipo de cierre:</label></td></tr>
+                <tr><td><select id="tCierre" name="tCierre" class="form-control tCierre" data-id="id" data-descripcion="descripcion"/></td></tr>
+                <tr class="areaCierreIrregular d-none"><td><label>Notas por cierre irregular:</label></td></tr>
+                <tr class="areaCierreIrregular d-none"><td><textarea id="tCierreIrregular" name="tCierreIrregular" class="form-control tCierreIrregular" rows="2"></textarea></td></tr>
+            </table>
+        </div>
+        <div class="col-6 shadow">
+            <h5>Datos del asociado</h5>
+            <table class="table table-sm table-condensed table-borderless">
+                <tr>
+                    <td class="bg-magenta d-none esEmpleado" style="font-size:1.15em;font-weight:bold;color:white;"></td>
+                </tr>
+                <tr><td><label>Seleccione paciente:</label></td></tr>
+                <tr><td><select id="cboSwiss" name="cboSwiss" class="form-control cboSwiss" data-id="id" data-descripcion="descripcion"/></td></tr>
+            </table>
+
+            <table class="table table-sm table-condensed table-borderless">
+                <tr>
+                    <td>Nombre</td><td class="tNombre"></td>
+                    <td>Documento</td><td class="tDocumento"></td>
+                </tr>
+                <tr>
+                    <td>Sexo</td><td class="tSexo"></td>
+                    <td>Edad</td><td class="tEdad"></td>
+                </tr>
+                <tr>
+                    <td>Email</td><td class="tEmail"></td>
+                    <td>Teléfono</td><td class="tTelefono"></td>
+                </tr>
+                <tr>
+                    <td>Obra social</td><td class="tObraSocial"></td>
+                    <td>Nº y plan</td><td class="tNumeroPlan"></td>
+                </tr>
+            </table>
+
+            <table class="table table-sm table-condensed table-borderless">
+                <tr>
+                    <td coslpan="2"><h5>Mediya</h5></td>
+                    <td>Estado</td><td class="tEstado"></td>
+                </tr>
+                <tr>
+                    <td>Nºde socio</td><td class="tIdSocio"></td>
+                    <td>NºSwiss</td><td class="tCredencialSwiss"></td>
+                </tr>
+                <tr>
+                    <td>Fecha alta</td><td class="tFechaAlta"></td>
+                    <td>Tipo de socio</td><td class="tTipoSocio"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <hr />
+    <div class="row">
+        <div class="col-12 text-right">
+            <a href="#" data-modal="" class="btn btn-sm btn-danger btn-cancel-modal">Cancelar</a>
+            <a href="#" data-modal="" data-id="" class="btn btn-md btn-success btnSaveAtencion">Aceptar</a>
+        </div>
+    </div>
+</div>

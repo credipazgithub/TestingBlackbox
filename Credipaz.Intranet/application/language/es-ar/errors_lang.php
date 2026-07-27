@@ -66,6 +66,8 @@ $lang['api_error_1063'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1064'] = "No se ha provisto un valor válido para el parámetro 'Modo'";
 $lang['api_error_1065'] = "No se ha provisto un valor válido para el parámetro 'Sexo'";
 $lang['api_error_1066'] = "No se ha provisto un valor válido para el parámetro 'iModo'";
+$lang['api_error_1067'] = "No se ha provisto un valor válido para el parámetro 'idUser'";
+$lang['api_error_1068'] = "No se ha provisto un valor válido para el parámetro 'Nota'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";
