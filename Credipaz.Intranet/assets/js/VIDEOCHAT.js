@@ -50,36 +50,37 @@ function mixer(stream1, stream2) {
 }
 
 $("body").off("click", ".btn-emergency").on("click", ".btn-emergency", function () {
-	var _param = { "module": "mod_web_posts", "table": "web_posts", "model": "web_posts", "order": "id ASC", "page": -1, "pagesize": -1, "where": "id=12" };
-	_AJAX.UiGet(_param).then(function (_speech) {
-		var _data = { "module": "mod_telemedicina", "table": "type_emergency", "model": "type_emergency", "order": "id ASC", "page": -1, "pagesize": -1 };
-		_AJAX.UiGet(_data).then(function (datajson) {
-			var _html = "";
-			_html += _speech["data"][0]["body_post"];
-			_html += "<br/>";
-			_html += "<b>CLASIFICACIÃ“N TRIAGE</b>";
-			_html += "<select id='id_type_emergency' name='id_type_emergency' class='id_type_emergency form-control dbase validate'></select>";
-			_html += "<br/>";
-			_html += "<b>Detalles adicionales</b>";
-			_html += "<textarea class='form-control emergency_details dbase' id='emergency_details' name='emergency_details' style='width:100%;' rows='10'></textarea>";
-			_html += "<br/>";
-			_html += "<a href='#' class='btn btn-success btn-lg btn-confirm-emergency btn-raised btn-block'>La ambulancia estÃ¡ en camino</a>";
-			_FUNCTIONS.onShowInfo(_html, "EMERGENCIA - EnvÃ­o de ambulancia");
-			_FUNCTIONS._cache.type_emergency = datajson;
-			_TOOLS.loadCombo(datajson, { "target": "#id_type_emergency", "selected": -1, "id": "id", "description": "description" });
+	var _data = { "module": "mod_telemedicina", "table": "type_emergency", "model": "type_emergency", "order": "id ASC", "page": -1, "pagesize": -1 };
+	_AJAX.UiGet(_data).then(function (datajson) {
+		var _html = "";
+		var _html = "";
+		_html += "<h4>Servicio de Ambulancias</h4>";
+		_html += "<table class='table table-sm table-borderless'>";
+		_html += "<tr><td><b>0800-222-1441</b></div></td></tr>";
+		_html += "<tr><td><p>Solicito una ambulancia para cubrir un servicio de MEDIYA</p></td></tr>";
+		_html += "</table>";
+		_html += "<b>CLASIFICACIÓN TRIAGE</b>";
+		_html += "<select id='id_type_emergency' name='id_type_emergency' class='id_type_emergency form-control dbase validate'></select>";
+		_html += "<br/>";
+		_html += "<b>Detalles adicionales</b>";
+		_html += "<textarea class='form-control emergency_details dbase' id='emergency_details' name='emergency_details' style='width:100%;' rows='10'></textarea>";
+		_html += "<br/>";
+		_html += "<a href='#' class='btn btn-success btn-lg btn-confirm-emergency btn-raised btn-block'>La ambulancia estÃ¡ en camino</a>";
+		_FUNCTIONS.onShowInfo(_html, "EMERGENCIA - EnvÃ­o de ambulancia");
+		_FUNCTIONS._cache.type_emergency = datajson;
+		_TOOLS.loadCombo(datajson, { "target": "#id_type_emergency", "selected": -1, "id": "id", "description": "description" });
 
-			$("body").off("click", ".btn-confirm-emergency").on("click", ".btn-confirm-emergency", () => {
-				if (_TOOLS.validate(".validate", true)) {
-					var _json = _TOOLS.getFormValues(".dbase");
-					_json["id"] = $(".btn-emergency").attr("data-id");
-					_AJAX.UiEmergency(_json).then(function (data) {
-						$(".ambulance").addClass("card").html(data.data);
-						_FUNCTIONS.onDestroyModal("#modal-info");
-					}).catch(function (err) {
-						alert(err.message);
-					});
-				}
-			});
+		$("body").off("click", ".btn-confirm-emergency").on("click", ".btn-confirm-emergency", () => {
+			if (_TOOLS.validate(".validate", true)) {
+				var _json = _TOOLS.getFormValues(".dbase");
+				_json["id"] = $(".btn-emergency").attr("data-id");
+				_AJAX.UiEmergency(_json).then(function (data) {
+					$(".ambulance").addClass("card").html(data.data);
+					_FUNCTIONS.onDestroyModal("#modal-info");
+				}).catch(function (err) {
+					alert(err.message);
+				});
+			}
 		});
 	});
 });
