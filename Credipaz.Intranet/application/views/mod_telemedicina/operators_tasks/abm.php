@@ -74,7 +74,7 @@ $html.="                  </td>";
 //   $html.="<option data-record='".$record."'>".$gerdanna["Nombre"]." - ".$gerdanna["Tipo"]."</option>";
 //}
 //$html.="                     </select>";
-//$html.="                  </td>";
+//$html.="                  </td>"; 
 
 $html.="               </tr>";
 $html.="            </table>";

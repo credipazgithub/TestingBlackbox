@@ -152,38 +152,31 @@ var _F = {
 						$(".btn-cancel-modal").attr("data-modal", "modalEditChargeCode");
 						$(".btnSaveAtencion").attr("data-modal", "modalEditChargeCode");
 						$(".btnSaveAtencion").attr("data-id", _id);
-						$(".codigo").val(data.records[0].code);
-
-
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tMotivo").val(data.records[0].motivo);
-
-						$(".tIdSocio").val(data.records[0].id_club_redondo);
-						$(".tCredencialSwiss").val(data.records[0].motivo);
-
-						$(".tFechaAlta").val(data.records[0].motivo);
-						$(".tTipoSocio").val(data.records[0].motivo);
-
-
+						$(".codigo").html(data.records[0].code);
+						$(".tNombre").html(data.records[0].Nombre);
+						$(".tDocumento").html(data.records[0].NroDocumento);
+						$(".tSexo").html(data.records[0].Sexo);
+						$(".tIdSocio").html(data.records[0].id_club_redondo);
+						$(".tFechaAlta").html(data.records[0].FechaAlta);
+						$(".tTipoSocio").html(data.records[0].TipoSocio);
 						$(".especialidad").html(data.records[0].especialidad.replaceAll("_", " "));
-						$(".tMotivo").val(data.records[0].motivo);
-						$(".tEvolucion").val(data.records[0].evolucion);
-						$(".tDiagnostico").val(data.records[0].diagnostico);
-						$(".tIndicaciones").val(data.records[0].indicaciones);
-						_F.onCheckFromValue(data.records[0].derivado_consulta,"#chkPresencial");
-						_F.onCheckFromValue(data.records[0].derivado_especialista,"#chkEspecialista");
-						$(".tCierreIrregular").val(data.records[0].note_close);
+						$(".tMotivo").html(data.records[0].motivo);
+						$(".tEvolucion").html(data.records[0].evolucion);
+						$(".tDiagnostico").html(data.records[0].diagnostico);
+						$(".tIndicaciones").html(data.records[0].indicaciones);
+						$(".tCierreIrregular").html(data.records[0].note_close);
+						$(".tEdad").html(data.records[0].Edad);
+						$(".tEmail").html(data.records[0].Email);
+						$(".tTelefono").html(data.records[0].Telefono);
+						$(".tEstado").html(data.records[0].Estado);
+						_F.onCheckFromValue(data.records[0].derivado_consulta, "#chkPresencial");
+						_F.onCheckFromValue(data.records[0].derivado_especialista, "#chkEspecialista");
+
+						/* Faltan datos */
+//						$(".tObraSocial").val(data.records[0].ObraSocial);
+//						$(".tNumeroPlan").val(data.records[0].NumeroPlan);
+//						$(".tCredencialSwiss").val(data.records[0].motivo);
+
 						_API.onLoadComboAjax("/telemedicina/tiposcierre", ".tCierre", data.records[0].type_task_close, "");
 					});
 			})

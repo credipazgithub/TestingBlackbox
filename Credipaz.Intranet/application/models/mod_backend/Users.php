@@ -338,6 +338,8 @@ class Users extends MY_Model
     public function authenticate($values)
     {
         try {
+log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
+
             if (!isset($values["callsource"])) {$values["callsource"] = "";}
             if (!isset($values["id_app"])) {$values["id_app"] = 0;}
             if ((int) $values["id_app"] == 0) {$values["id_app"] = 7;}
@@ -350,14 +352,16 @@ class Users extends MY_Model
             $values["id_user_active"] = 0;
             if (!isset($values["try"])) {$values["try"] = "LOCAL";}
             if (!isset($values["scoope"])) {$values["scoope"] = "backend";}
+
             if ((int) $values["external_operator"] == 1) {
                 $values["id_type_user"] = "80,81,82,85,87,88";
                 $values["try"] = "LOCAL";
-            }// else {
+            } else {
             //    $values["id_type_user"] = "77,78";
-            //    $values["try"] = "LDAP";
-            // }
+                $values["try"] = "LDAP";
+             }
             logGeneralCustom($this, $values, "Users::TryLogin", "username:" . $values["username"] . " password:" . md5($values["password"]));
+log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
 
             /***************************/
             /*Divert for mobile auth!  */
