@@ -103,7 +103,7 @@ var _F = {
 			});
 	},
 	onConsultas: function (_this) {
-		_API.method("/telemedicina/consultas", { "idUser": _API.authentication.data.id })
+		_API.method("/telemedicina/consultas", { "idUser": _API.id_user_log })
 			.then(function (data) {
 				var _html = "";
 				if (data.records.length > 0) {
@@ -152,32 +152,38 @@ var _F = {
 						$(".btn-cancel-modal").attr("data-modal", "modalEditChargeCode");
 						$(".btnSaveAtencion").attr("data-modal", "modalEditChargeCode");
 						$(".btnSaveAtencion").attr("data-id", _id);
+						$(".btnVideo").attr("data-id", _id);
+						$(".btnAmbulancia").attr("data-id", _id);
+						$(".btnReceta").attr("data-id", _id);
+						$(".btnOrden").attr("data-id", _id);
+						if (parseInt(data.records[0].Empresa) == 999) {
+							$(".esEmpleado").removeClass("d-none");
+							$(".empresa").html("Empleado en CREDIPAZ");
+						}
 						$(".codigo").html(data.records[0].code);
-						$(".tNombre").html(data.records[0].Nombre);
-						$(".tDocumento").html(data.records[0].NroDocumento);
-						$(".tSexo").html(data.records[0].Sexo);
-						$(".tIdSocio").html(data.records[0].id_club_redondo);
-						$(".tFechaAlta").html(data.records[0].FechaAlta);
-						$(".tTipoSocio").html(data.records[0].TipoSocio);
 						$(".especialidad").html(data.records[0].especialidad.replaceAll("_", " "));
 						$(".tMotivo").html(data.records[0].motivo);
 						$(".tEvolucion").html(data.records[0].evolucion);
 						$(".tDiagnostico").html(data.records[0].diagnostico);
 						$(".tIndicaciones").html(data.records[0].indicaciones);
 						$(".tCierreIrregular").html(data.records[0].note_close);
-						$(".tEdad").html(data.records[0].Edad);
 						$(".tEmail").html(data.records[0].Email);
 						$(".tTelefono").html(data.records[0].Telefono);
+						$(".tEstado").css({ "background-color": "red" });
+						if (data.records[0].Estado == "VIG") { $(".tEstado").css({ "background-color": "lightgreen" }); }
 						$(".tEstado").html(data.records[0].Estado);
+						$(".tObraSocial").html(data.records[0].ObraSocial);
 						_F.onCheckFromValue(data.records[0].derivado_consulta, "#chkPresencial");
 						_F.onCheckFromValue(data.records[0].derivado_especialista, "#chkEspecialista");
-
-						/* Faltan datos */
-//						$(".tObraSocial").val(data.records[0].ObraSocial);
-//						$(".tNumeroPlan").val(data.records[0].NumeroPlan);
-//						$(".tCredencialSwiss").val(data.records[0].motivo);
-
 						_API.onLoadComboAjax("/telemedicina/tiposcierre", ".tCierre", data.records[0].type_task_close, "");
+
+						_API.method("/asesores/socios/credenciales", { "Tipo": "SWISS", "NroDocumento": data.records[0].NroDocumento, "Sexo": data.records[0].Sexo })
+							.then(function (data) {
+								$.each(data.records, function (i, item) {
+									$(".cboSwiss").append("<option data-record='" + _API.string_to_b64(JSON.stringify(item)) + "' value='" + item["IdSocio"] + "'>" + item["Nombre"] + "</option>");
+								});
+								$('.cboSwiss').find('option:first').prop('selected', true).change();
+							});
 					});
 			})
 		});
@@ -213,5 +219,39 @@ var _F = {
 					break;
 			};
 		};
+	},
+	onChangeCboSwiss: function (_this) {
+		var _rec = JSON.parse(_API.b64_to_string($('.cboSwiss option:selected').attr("data-record")));
+		$(".tNombre").html(_rec.Nombre);
+		$(".tDocumento").html(_rec.NroDocumento);
+		$(".tSexo").html(_rec.sexo);
+		$(".tEdad").html(_rec.Edad);
+		$(".tIdSocio").html(_rec.IdSocio);
+		$(".tFechaAlta").html(_rec.FechaAlta);
+		$(".tTipoSocio").html(_rec.Tipo);
+		$(".tNumeroPlan").html(_rec.Plan);
+		$(".tCredencialSwiss").html(_rec.NroCredencial);
+
+	},
+	onAmbulancia: function (_this) {
+		var _id = _this.attr("data-id");
+		$.get((_API._ROOT + "/html/ambulancia.html?" + _API._TS), function (_html) {
+			_API.onShowModalOverAll("modalAmbulancia", "", _html).then(function (_ret) {
+				$(".wfooter").remove();
+				$(".btn-cancel-modal").attr("data-modal", "modalAmbulancia");
+				$(".btnSaveAmbulancia").attr("data-modal", "modalAmbulancia");
+				$(".btnSaveAmbulancia").attr("data-id", _id);
+				_API.onLoadComboAjax("/telemedicina/tiposemergencia", ".tEmergencia", "", "");
+			})
+		})
+	},
+	onSaveAmbulancia: function (_this) {
+		if (!_API.tools.validate(".validateAmbulancia", false)) { return false; }
+		var _id = _this.attr("data-id");
+		_API.method("/telemedicina/solicitarambulancia", { "Id": _id, "Tipo": $(".tEmergencia").val(), "Nota": $(".tNota").val() })
+			.then(function (data) {
+				$(".btn-cancel-modal").click();
+			});
+
 	},
 }

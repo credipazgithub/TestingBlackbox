@@ -80,4 +80,21 @@ class Telemedicina extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+    public function solicitarambulancia($values){
+        try {
+            $values["Id"] = keySecureNumbers($values, "Id");
+            if ($values["Id"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["Tipo"] = keySecureNumbers($values, "Tipo");
+            if ($values["Tipo"] == "") {throw new Exception(lang("api_error_1069"), 1069);}
+
+            $fields = ["Id_type" => $values["Tipo"],"Id"=>$values["Id"], "Descripcion"=>$values["Nota"]];
+            $headers = array('Content-Type: application/x-www-form-urlencoded', 'Authorization: Bearer ');
+            $ret = API_callAPIfields("/Mediya/SolicitarAmbulancia/", $headers, $fields);
+            $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
 }

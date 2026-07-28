@@ -9,6 +9,31 @@ class Socios extends MY_Model {
         parent::__construct();
     }
 
+    public function credenciales($values)
+    {
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
+            $values["Tipo"]=keySecureValInArray($values,"Tipo",['SWISS','GERDANNA']);
+            if ($values["Tipo"] == "") {throw new Exception(lang("api_error_1069"), 1069);}
+            $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Tipo"=>$values["Tipo"]);
+            $headers = array('Content-Type: application/x-www-form-urlencoded', 'Authorization: Bearer ');
+            $ret = API_callAPIfields("/Mediya/GetCredenciales/", $headers, $fields);
+            $ret = json_decode($ret, true);
+            $second["code"] = $ret["codigo"];
+            $second["error"] = $ret["error"];
+            $second["status"] = $ret["estado"];
+            $second["message"] = $ret["mensaje"];
+            $second["function"] = $ret["function"];
+            $second["timestamp"] = date(FORMAT_DATE);
+            $ret["data"]["records"] = $ret["records"];
+            $last = array_merge($second, $ret["data"]);
+            return $last;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function autorizar($values)
     {
         try {
@@ -17,9 +42,7 @@ class Socios extends MY_Model {
             $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             $values["Modo"]=keySecureValInArray($values,"Modo",['1','2','3','4']);
             if ($values["Modo"] == "") {throw new Exception(lang("api_error_1064"), 1064);}
-
             $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Modo"=>$values["Modo"]);
-
             $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
             $ret = API_callAPI("/Mediya/Autorizar/", $headers, json_encode($fields));
             $ret = json_decode($ret, true);

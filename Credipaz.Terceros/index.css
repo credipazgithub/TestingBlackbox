@@ -10,3 +10,9 @@ body {
 .bg-magenta {
     background-color: #dd127b !important;
 }
+.bg-silver {
+    background-color: silver !important;
+}
+.bold {
+    font-weight:bold !important;
+}

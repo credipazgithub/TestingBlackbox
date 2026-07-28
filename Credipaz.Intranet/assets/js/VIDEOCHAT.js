@@ -65,8 +65,8 @@ $("body").off("click", ".btn-emergency").on("click", ".btn-emergency", function 
 		_html += "<b>Detalles adicionales</b>";
 		_html += "<textarea class='form-control emergency_details dbase' id='emergency_details' name='emergency_details' style='width:100%;' rows='10'></textarea>";
 		_html += "<br/>";
-		_html += "<a href='#' class='btn btn-success btn-lg btn-confirm-emergency btn-raised btn-block'>La ambulancia estÃ¡ en camino</a>";
-		_FUNCTIONS.onShowInfo(_html, "EMERGENCIA - EnvÃ­o de ambulancia");
+		_html += "<a href='#' class='btn btn-success btn-lg btn-confirm-emergency btn-raised btn-block'>La ambulancia está en camino</a>";
+		_FUNCTIONS.onShowInfo(_html, "EMERGENCIA - Enví­o de ambulancia");
 		_FUNCTIONS._cache.type_emergency = datajson;
 		_TOOLS.loadCombo(datajson, { "target": "#id_type_emergency", "selected": -1, "id": "id", "description": "description" });
 

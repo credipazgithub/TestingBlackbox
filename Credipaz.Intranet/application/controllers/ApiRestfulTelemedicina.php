@@ -11,6 +11,23 @@ class ApiRestfulTelemedicina extends MY_Controller {
     public function __construct() {
         parent::__construct();
     }
+    public function tiposemergencia()
+    {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'listar';
+            $_POST['module'] = MOD_API_LOOKUPS;
+            $_POST['model'] = "Lookups";
+            $_POST['table'] = "NS_mod_telemedicina_type_emergency";
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
     public function tiposcierre()
     {
         try {
@@ -94,6 +111,21 @@ class ApiRestfulTelemedicina extends MY_Controller {
             if ($raw!=null)  {throw new Exception($raw);}
             $this->status=$this->init();
             $_POST['function'] = 'postcierre';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function solicitarambulancia(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'solicitarambulancia';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;

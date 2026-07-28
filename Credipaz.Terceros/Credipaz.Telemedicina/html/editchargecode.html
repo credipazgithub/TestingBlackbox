@@ -32,6 +32,9 @@
         <div class="col-6 shadow">
             <h5>Datos del asociado</h5>
             <table class="table table-sm table-condensed table-borderless">
+                <tr class="esEmpleado d-none">
+                   <td class="bg-magenta empresa" style="font-size:1.25em;font-weight:bold;color:white;"></td> 
+                </tr>
                 <tr>
                     <td class="bg-magenta d-none esEmpleado" style="font-size:1.15em;font-weight:bold;color:white;"></td>
                 </tr>
@@ -41,37 +44,111 @@
 
             <table class="table table-sm table-condensed table-borderless">
                 <tr>
-                    <td>Nombre</td><td class="tNombre"></td>
-                    <td>Documento</td><td class="tDocumento"></td>
+                    <td>Nombre</td><td class="tNombre bold"></td>
+                    <td>Documento</td><td class="tDocumento bold"></td>
                 </tr>
                 <tr>
-                    <td>Sexo</td><td class="tSexo"></td>
-                    <td>Edad</td><td class="tEdad"></td>
+                    <td>Sexo</td><td class="tSexo bold"></td>
+                    <td>Edad</td><td class="tEdad bold"></td>
                 </tr>
                 <tr>
-                    <td>Email</td><td class="tEmail"></td>
-                    <td>Teléfono</td><td class="tTelefono"></td>
+                    <td>Email</td><td class="tEmail bold"></td>
+                    <td>Teléfono</td><td class="tTelefono bold"></td>
                 </tr>
                 <tr>
-                    <td>Obra social</td><td class="tObraSocial"></td>
-                    <td>Nº y plan</td><td class="tNumeroPlan"></td>
+                    <td>Obra social</td><td class="tObraSocial bold"></td>
+                    <td>Nº y plan</td><td class="tNumeroPlan bold"></td>
                 </tr>
             </table>
 
             <table class="table table-sm table-condensed table-borderless">
                 <tr>
-                    <td coslpan="2"><h5>Mediya</h5></td>
-                    <td>Estado</td><td class="tEstado"></td>
+                    <td colspan="2"><h5>Mediya</h5></td>
+                    <td>Estado</td><td class="tEstado bold"></td>
                 </tr>
                 <tr>
-                    <td>Nºde socio</td><td class="tIdSocio"></td>
-                    <td>NºSwiss</td><td class="tCredencialSwiss"></td>
+                    <td>Nºde socio</td><td class="tIdSocio bold"></td>
+                    <td>NºSwiss</td><td class="tCredencialSwiss bold"></td>
                 </tr>
                 <tr>
-                    <td>Fecha alta</td><td class="tFechaAlta"></td>
-                    <td>Tipo de socio</td><td class="tTipoSocio"></td>
+                    <td>Fecha alta</td><td class="tFechaAlta bold"></td>
+                    <td>Tipo de socio</td><td class="tTipoSocio bold"></td>
                 </tr>
             </table>
+
+            <div class="text-center container-flex">
+                <div class="btn-group" role="group" aria-label="First group">
+                    <a href="#" class="btn btnVideo btn-primary m-1">Video</a>
+                    <a href="#" class="btn btnAmbulancia btn-warning m-1">Ambulancia</a>
+                    <a href="#" class="btn btnReceta btn-info m-1">Receta</a>
+                    <a href="#" class="btn btnOrden btn-secondary m-1">Orden</a>
+                </div>
+            </div>
+
+            <div class="accordion my-1" id="accordionExample">
+              <div class="card">
+                <div class="card-header" id="headingOne">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                      Imágenes recibidas
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                  <div class="card-body areaImagenes">
+                    Lista de imágenes
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingTwo">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                      Evaluación médica
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionExample">
+                  <div class="card-body areaEvaluaciones">
+                    Datos de la evaluación médica
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingThree">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left collapsed" type="button" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                      Recetas
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordionExample">
+                  <div class="card-body areaRecetas">
+                    Lista de recetas
+                  </div>
+                </div>
+              </div>
+
+              <div class="card">
+                <div class="card-header" id="headingFour">
+                  <h2 class="mb-0">
+                    <button class="btn btn-link btn-block text-left" type="button" data-toggle="collapse" data-target="#collapseFour" aria-expanded="true" aria-controls="collapseFour">
+                      Atenciones anteriores
+                    </button>
+                  </h2>
+                </div>
+                <div id="collapseFour" class="collapse show" aria-labelledby="headingFour" data-parent="#accordionExample">
+                  <div class="card-body areaAtenciones">
+                    Lista de atenciones anteriores
+                  </div>
+                </div>
+              </div>
+
+            </div>
+
+
         </div>
     </div>
     <hr />
