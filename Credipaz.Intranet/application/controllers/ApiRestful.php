@@ -49,7 +49,7 @@ class ApiRestful extends MY_Controller {
             $_POST['table'] = 'users';
             $_POST['id_type_user'] = "all";
             $_POST['callsource'] = "api";
-
+            $_POST['external_operator'] = "1";
             $this->neocommand(true);
         }
         catch (Exception $e){
