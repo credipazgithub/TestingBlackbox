@@ -3,8 +3,7 @@
 /*---------------------------------*/
     function API_EsFuncional($id){
         $fields=array("Id"=>$id);
-	    $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	    $func = API_callAPIGet("/Asesores/EsFuncional?_Id=".$id,$headers,json_encode($fields));
+	    $func = API_callAPIGet("/Asesores/EsFuncional?_Id=".$id,json_encode($fields));
 	    $func = json_decode($func, true);
         $idEmpresario="";
         if (isset($func["records"][0])) {$idEmpresario=(string)$func["records"][0]["idEmpresario"];}
@@ -23,7 +22,7 @@
         }
         return $ret;
     }
-    function API_callAPI($url, $headers, $data){
+    function API_callAPI($url, $data){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, (CPFINANCIALS.$url));
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -31,7 +30,8 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
-        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        $headers = array('Content-Type:application/json','Authorization: Bearer ');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $response = curl_exec($ch);
 	    $response=trim($response, "\xEF\xBB\xBF");
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -39,7 +39,7 @@
         curl_close($ch);
         return $response;
     }
-    function API_callAPIfields($url, $headers, $data){
+    function API_callAPIfields($url, $data){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, (CPFINANCIALS.$url));
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -47,7 +47,8 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_POST, 1);
         curl_setopt($ch, CURLOPT_POSTFIELDS, http_build_query($data));
-        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        $headers = array('Content-Type: application/x-www-form-urlencoded', 'Authorization: Bearer ');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $response = curl_exec($ch);
 	    $response=trim($response, "\xEF\xBB\xBF");
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
@@ -55,7 +56,7 @@
         curl_close($ch);
         return $response;
     }
-    function API_callAPIGet($url,$headers){
+    function API_callAPIGet($url){
         $ch = curl_init();
         curl_setopt($ch, CURLOPT_URL, (CPFINANCIALS.$url));
         curl_setopt($ch, CURLOPT_SSL_VERIFYHOST, 0);
@@ -64,7 +65,8 @@
         curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
         curl_setopt($ch, CURLOPT_TIMEOUT, 0);
         curl_setopt($ch, CURLOPT_POST, 0);
-        if (is_array($headers)) {curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);}
+        $headers = array('Content-Type:application/json','Authorization: Bearer ');
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
         $jsonResponse = curl_exec($ch);
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $err=curl_error($ch);

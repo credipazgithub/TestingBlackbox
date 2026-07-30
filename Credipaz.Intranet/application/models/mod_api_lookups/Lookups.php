@@ -12,8 +12,7 @@ class Lookups extends MY_Model {
     public function listar($values){
         try {
  	        $fields=array("Id"=>(int)$values["id_user_active"]);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPIGet(("/Lookups/GetLookUp/?Tipo=".$values["table"]),$headers,json_encode($fields));
+	        $ret = API_callAPIGet(("/Lookups/GetLookUp/?Tipo=".$values["table"]),json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"]="200";

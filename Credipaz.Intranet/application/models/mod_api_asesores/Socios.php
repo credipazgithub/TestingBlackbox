@@ -43,8 +43,7 @@ class Socios extends MY_Model {
             $values["Modo"]=keySecureValInArray($values,"Modo",['1','2','3','4']);
             if ($values["Modo"] == "") {throw new Exception(lang("api_error_1064"), 1064);}
             $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Modo"=>$values["Modo"]);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Mediya/Autorizar/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Mediya/Autorizar/", json_encode($fields));
             $ret = json_decode($ret, true);
             $second["code"] = $ret["codigo"];
             $second["error"] = $ret["error"];
@@ -92,9 +91,7 @@ class Socios extends MY_Model {
             $first=array();
             $first["data"]["habilitado"]=$eval["habilitado"];
             $first["data"]["detalle"]=$eval["detalle"];
-            
-	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Mediya/GetRowsAsesoresSocios/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Mediya/GetRowsAsesoresSocios/",json_encode($fields));
 	        $ret = json_decode($ret, true);
             $second["code"]=$ret["codigo"];
             $second["error"]=$ret["error"];
@@ -127,9 +124,7 @@ class Socios extends MY_Model {
                 "NroDocumento" => $values["dni"],
                 "Sexo" => $values["sexo"]
             );
-
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Mediya/GetProfileSocio/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Mediya/GetProfileSocio/", json_encode($fields));
             $ret = json_decode($ret, true);
             $second["code"] = $ret["codigo"];
             $second["error"] = $ret["error"];
@@ -230,16 +225,14 @@ class Socios extends MY_Model {
             $fields["IDOcupacion"]=(int)$values["id_ocupacion"];
             $fields["IDModoPago"]=(int)$values["id_modo_pago"];
 
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-            
             /*Solo si es ALTA ! Paso 1 segun respuesta sale por error o continua*/
             if ($idSocio == 0) {
-                $ret = API_callAPI("/Mediya/VerificarReglasAlta/", $headers, json_encode($fields));
+                $ret = API_callAPI("/Mediya/VerificarReglasAlta/", json_encode($fields));
                 $ret = json_decode($ret, true);
                 if ($ret["codigo"] != "200") {throw new Exception($ret["mensaje"], $ret["codigo"]);}
             }
             
-            $ret = API_callAPI("/Mediya/SetTitular/",$headers,json_encode($fields));
+            $ret = API_callAPI("/Mediya/SetTitular/",json_encode($fields));
 	        $ret = json_decode($ret, true);
            
             $ret["timestamp"]=date(FORMAT_DATE);
@@ -259,9 +252,7 @@ class Socios extends MY_Model {
             $NroDocumento = (int) $values["NroDocumento"];
 
             $fields = array("NroDocumento" => $NroDocumento);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-
-            $ret = API_callAPI("/Mediya/GetLinkPago/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Mediya/GetLinkPago/", json_encode($fields));
             $ret = json_decode($ret, true);
             if ($ret["mensaje"] == "") {
                 $ret["mensaje"] = "Link no disponible para este DNI";

@@ -37,9 +37,7 @@ class Integraciones extends MY_Model {
             $telefono = $values["telefono"];
 
             $fields = array("NroDocumento" => $NroDocumento, "email" => $Email, "area" => $area, "telefono" => $telefono);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetClientsByDocument/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetClientsByDocument/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -61,9 +59,7 @@ class Integraciones extends MY_Model {
             $IdCliente = (int) $values["IdCliente"];
             
             $fields = array("IdCliente" => $IdCliente);
-
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetProducts/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetProducts/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -88,9 +84,7 @@ class Integraciones extends MY_Model {
             $Producto = $values["producto"];
 
             $fields = array("IdCliente" => $IdCliente, "Producto"=> $Producto);
-
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetProductsConsolidatedPosition/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetProductsConsolidatedPosition/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -110,8 +104,7 @@ class Integraciones extends MY_Model {
             $IdSolicitud = (int) $values["IdSolicitud"];
 
             $fields = array("IdSolicitud" => $IdSolicitud);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetLoan/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetLoan/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -131,8 +124,7 @@ class Integraciones extends MY_Model {
             $IdSolicitud = (int) $values["IdSolicitud"];
 
             $fields = array("IdSolicitud" => $IdSolicitud);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetLoanFees/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetLoanFees/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -152,8 +144,7 @@ class Integraciones extends MY_Model {
             $IdSolicitud = (int) $values["IdSolicitud"];
 
             $fields = array("IdSolicitud" => $IdSolicitud);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetLoanPayments/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetLoanPayments/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -173,8 +164,7 @@ class Integraciones extends MY_Model {
             $IdSolicitud = (int) $values["IdSolicitud"];
 
             $fields = array("IdSolicitud" => $IdSolicitud);
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetLoanRates/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetLoanRates/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -196,9 +186,7 @@ class Integraciones extends MY_Model {
             $IdCliente = (int) $values["IdCliente"];
             
             $fields = array("IdCliente" => $IdCliente);
-
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetProductBankStatements/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetProductBankStatements/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -223,9 +211,7 @@ class Integraciones extends MY_Model {
             $IdResumen = (int) $values["IdResumen"];
 
             $fields = array("IdResumen" => $IdResumen, "IdCliente"=> $IdCliente);
-
-            $headers = array('Content-Type:application/json', 'Authorization: Bearer ');
-            $ret = API_callAPI("/Integraciones/GetProductBankStatementFile/", $headers, json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetProductBankStatementFile/", json_encode($fields));
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -274,9 +260,7 @@ class Integraciones extends MY_Model {
             $telefono = $values["telefono"];
 
             $fields = array("IdCliente"=>$IdCliente, "Token">=$Token, "NroDocumento" => $NroDocumento, "email" => $Email, "area" => $area, "telefono" => $telefono);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/SendSmsToken/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/SendSmsToken/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -306,9 +290,7 @@ class Integraciones extends MY_Model {
             $IdTarjeta = (int) $values["IdTarjeta"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentBalances/",$headers,json_encode($fields));
+            $ret = API_callAPI("/Integraciones/GetCreditCardCurrentBalances/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -345,9 +327,7 @@ class Integraciones extends MY_Model {
             $FechaHasta=$values["FechaHasta"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "FechaDesde"=>$FechaDesde, "FechaHasta"=>$FechaHasta);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentMovements/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardCurrentMovements/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -380,9 +360,7 @@ class Integraciones extends MY_Model {
             $Resumen=$values["resumen"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardStatementMovements/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardStatementMovements/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -411,9 +389,7 @@ class Integraciones extends MY_Model {
             $IdTarjeta = (int) $values["IdTarjeta"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardDueDate/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardDueDate/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -442,9 +418,7 @@ class Integraciones extends MY_Model {
             $IdTarjeta = (int) $values["IdTarjeta"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardDetails/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardDetails/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -473,9 +447,7 @@ class Integraciones extends MY_Model {
             $IdTarjeta = (int) $values["IdTarjeta"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardExtensions/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardExtensions/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -508,9 +480,7 @@ class Integraciones extends MY_Model {
             $Resumen=$values["resumen"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Resumen"=>$Resumen);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/GetCreditCardStatements/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/GetCreditCardStatements/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -543,9 +513,7 @@ class Integraciones extends MY_Model {
             $Accion=$values["accion"];
 
             $fields = array("IdCliente"=>$IdCliente, "producto"=>$Producto, "IdTarjeta" => $IdTarjeta, "Accion"=>$Accion);
-
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Integraciones/UpdateCreditCards/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Integraciones/UpdateCreditCards/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $merged["code"] = "200";

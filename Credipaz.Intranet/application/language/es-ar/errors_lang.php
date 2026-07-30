@@ -69,6 +69,9 @@ $lang['api_error_1066'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1067'] = "No se ha provisto un valor válido para el parámetro 'idUser'";
 $lang['api_error_1068'] = "No se ha provisto un valor válido para el parámetro 'Nota'";
 $lang['api_error_1069'] = "No se ha provisto un valor válido para el parámetro 'Tipo'";
+$lang['api_error_1070'] = "No se ha provisto un valor válido para el parámetro 'idSocio'";
+$lang['api_error_1071'] = "No se ha provisto un valor válido para el parámetro 'idTypeDirection'";
+$lang['api_error_1072'] = "No se ha provisto un valor válido para el parámetro 'idTypeItem'";
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";

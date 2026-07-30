@@ -74,8 +74,7 @@ class Websites extends MY_Model {
                         break;
                 }
             }
-            $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Landing/Insertar/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Landing/Insertar/",json_encode($fields));
 	        $ret = json_decode($ret, true);
             return $ret;
         }

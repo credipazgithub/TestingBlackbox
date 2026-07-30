@@ -12,8 +12,7 @@ class Asesores extends MY_Model {
     public function listar($values){
         try {
  	        $fields=array("Id"=>(int)$values["id_user_active"]);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Asesores/GetRows/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Asesores/GetRows/",json_encode($fields));
 	        $ret = json_decode($ret, true);
             $ret["code"]=$ret["codigo"];
             $ret["error"]=$ret["error"];
@@ -48,15 +47,15 @@ class Asesores extends MY_Model {
             unset($ret["records"]);
 
             if ($eval["habilitado"]) {
-	            $grafico = API_callAPI("/Asesores/GetGrafico/",$headers,json_encode($fields));
+	            $grafico = API_callAPI("/Asesores/GetGrafico/",json_encode($fields));
 	            $grafico = json_decode($grafico, true);
                 $ret["grafico"]=$grafico["records"];
 
-                $totales = API_callAPI("/Asesores/GetTotales/",$headers,json_encode($fields));
+                $totales = API_callAPI("/Asesores/GetTotales/",json_encode($fields));
 	            $totales = json_decode($totales, true);
                 $ret["totales"]=$totales["records"];
 
-                $nivel = API_callAPI("/Asesores/GetNivel/",$headers,json_encode($fields));
+                $nivel = API_callAPI("/Asesores/GetNivel/",json_encode($fields));
 	            $nivel = json_decode($nivel, true);
                 $ret["nivel"]=$nivel["records"];
             }
@@ -113,8 +112,7 @@ class Asesores extends MY_Model {
                  "documentSurname"=>(string)$values["apellido"],
                  "documentEmail"=>(string)$values["email"]
              );
-	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Asesores/GuardarABM/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Asesores/GuardarABM/",json_encode($fields));
 	        $ret = json_decode($ret, true);
             
             $ret["data"]["idAsesor"]=$ret["records"][0]["id"];
@@ -146,8 +144,7 @@ class Asesores extends MY_Model {
             $values["idAsesor"]=keySecureZero($values,"idAsesor");
             if ($values["idAsesor"]==0){throw new Exception(lang("api_error_1005"),1005);}
  	        $fields=array("Id"=>(int)$values["idAsesor"],"Id_type_user"=>87);
-	        $headers = array('Content-Type:application/json','Authorization: Bearer ');
-	        $ret = API_callAPI("/Asesores/".$values["endpoint"]."/",$headers,json_encode($fields));
+	        $ret = API_callAPI("/Asesores/".$values["endpoint"]."/",json_encode($fields));
 	        $ret = json_decode($ret, true);
 
             $ret["code"]=$ret["codigo"];
