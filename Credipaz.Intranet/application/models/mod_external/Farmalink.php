@@ -8,7 +8,6 @@ class Farmalink extends MY_Model {
     {
         parent::__construct();
     }
-
     public function Generate($values){
         try {
 			$dni=$values["dni"];
@@ -97,6 +96,3 @@ class Farmalink extends MY_Model {
         }
     }
 }
-
-
-

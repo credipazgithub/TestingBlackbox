@@ -165,4 +165,95 @@ class ApiRestfulTelemedicina extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
+    public function farmalinkreceta(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'farmalinkreceta';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function atencionespontanea()
+    {
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'atencionespontanea';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $_POST['code'] = -999;
+            $this->neocommand(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function grabarordenmedica(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'grabarordenmedica';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function grabarreceta(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'grabarreceta';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function grabaratencion(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'grabaratencion';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function cambiarestadodoctor(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'cambiarestadodoctor';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
 }

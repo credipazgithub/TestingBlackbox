@@ -58,7 +58,7 @@ class Charges_codes extends MY_Model {
                   $values["name_club_redondo"]=$club_redondo["message"]["ApellidoNombre"];
                   $values["telefono_contacto"]=$club_redondo["message"]["Telefono"];
                   $values["motivo_consulta"]="";
-                  $new=$this->generatePaycode($values);
+                  $new=$this->generatePaycode($values, null);
                   $values["code"]=$new["data"]["id"];
                default:
                   $sql="SELECT min(id) as id FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id=".$values["code"]." AND isnull(id_operator_task,0)=0 AND verified IS null ";
@@ -157,7 +157,7 @@ class Charges_codes extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
-    public function generatePaycode($values){
+    public function generatePaycode($values, $idUser){
         try {
             $id = 0;
             if(!isset($values["amount"])){$values["amount"]=0;}
@@ -168,9 +168,9 @@ class Charges_codes extends MY_Model {
             $club_redondo=getUserMediya($this,(int)$values["id_club_redondo"]);
             $id_club_redondo=secureEmptyNull($values,"id_club_redondo");
 
-            $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
-            $eval=$this->getRecordsAdHoc($sql);
-            foreach ($eval as $record){$id=(int)$record["id"];}
+           // $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
+           // $eval=$this->getRecordsAdHoc($sql);
+           // foreach ($eval as $record){$id=(int)$record["id"];}
 
             if ($id==0) {
                 if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(8);}
@@ -185,7 +185,7 @@ class Charges_codes extends MY_Model {
                     'id_payment' => secureEmptyNull($values,"id_payment"),
                     'code_payment' => $values["code_payment"],
                     'importe_total' => $values["importe_total"],
-                    'id_operator_task' => null,
+                    'id_operator_task' => $idUser,
                     'accessed' => 0,
                     'id_credipaz' => 0,//secureEmptyNull($values,"id_credipaz"),
                     'id_club_redondo' => $id_club_redondo,

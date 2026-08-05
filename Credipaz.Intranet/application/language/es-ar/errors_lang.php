@@ -72,6 +72,13 @@ $lang['api_error_1069'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1070'] = "No se ha provisto un valor válido para el parámetro 'idSocio'";
 $lang['api_error_1071'] = "No se ha provisto un valor válido para el parámetro 'idTypeDirection'";
 $lang['api_error_1072'] = "No se ha provisto un valor válido para el parámetro 'idTypeItem'";
+$lang['api_error_1073'] = "No se ha provisto un valor válido para el parámetro 'idChargeCode'";
+$lang['api_error_1074'] = "No se ha provisto un valor válido para el parámetro 'panswiss'";
+$lang['api_error_1075'] = "No se ha provisto un valor válido para el parámetro 'Raw_data'";
+$lang['api_error_1076'] = "No se ha provisto un valor válido para el parámetro 'carbonCopy'";
+$lang['api_error_1077'] = "No se ha provisto un valor válido para el parámetro 'idOperatorTask'";
+$lang['api_error_1078'] = "No se ha provisto un valor válido para el parámetro 'Estado'";
+
 
 $lang['error_100'] = "DB Layer error";
 $lang['error_101'] = "AD Layer error";

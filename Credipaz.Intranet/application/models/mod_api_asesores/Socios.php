@@ -17,9 +17,8 @@ class Socios extends MY_Model {
             $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
             $values["Tipo"]=keySecureValInArray($values,"Tipo",['SWISS','GERDANNA']);
             if ($values["Tipo"] == "") {throw new Exception(lang("api_error_1069"), 1069);}
-            $fields = array("NroDocumento" => $values["NroDocumento"],"Sexo" => $values["Sexo"], "Tipo"=>$values["Tipo"]);
-            $headers = array('Content-Type: application/x-www-form-urlencoded', 'Authorization: Bearer ');
-            $ret = API_callAPIfields("/Mediya/GetCredenciales/", $headers, $fields);
+            $fields = ["NroDocumento" => $values["NroDocumento"] ,"Sexo" => $values["Sexo"], "Tipo"=>$values["Tipo"]];
+            $ret = API_callAPIfields("/Mediya/GetCredenciales/", $fields);
             $ret = json_decode($ret, true);
             $second["code"] = $ret["codigo"];
             $second["error"] = $ret["error"];

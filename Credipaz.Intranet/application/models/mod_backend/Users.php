@@ -336,8 +336,6 @@ class Users extends MY_Model
     public function authenticate($values)
     {
         try {
-log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
             if (!isset($values["callsource"])) {$values["callsource"] = "";}
             if (!isset($values["id_app"])) {$values["id_app"] = 0;}
             if ((int) $values["id_app"] == 0) {$values["id_app"] = 7;}
@@ -359,8 +357,6 @@ log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
                 $values["try"] = "LDAP";
              }
             logGeneralCustom($this, $values, "Users::TryLogin", "username:" . $values["username"] . " password:" . md5($values["password"]));
-log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
             /***************************/
             /*Divert for mobile auth!  */
             /***************************/

@@ -183,6 +183,7 @@ class NetCoreCPFinancial extends MY_Model {
             $url = (CPFINANCIALS . "/Intranet/BridgeDirectAuthenticate?Usuario=".$fields["Usuario"]."&Password=". $fields["Password"]."&PasswordPlain=" . $fields["PasswordPlain"] . "&ExternalOperator=".$fields["ExternalOperator"]."&Id_type_user=".$fields["Id_type_user"]."&Version=".$fields["Version"]."&Id_app=".$fields["Id_app"]."&CallSource=".$fields["CallSource"]."&Mode=".$fields["Mode"]."&Scope=".$fields["Scope"]);
             $result = $this->cUrlRestful($url, $headers);
             $result = json_decode($result, true);
+
             if ($result["estado"] == "OK") {
                 $result = $result["records"];
             } else {
@@ -1570,10 +1571,9 @@ class NetCoreCPFinancial extends MY_Model {
     public function MessageTelemedicina($values)
     {
         try {
-            
             $headers = $this->Authenticate();
             $url = (CPFINANCIALS . "/Telemedicina/Message");
-            $result = $this->callAPI($url, $headers, json_encode($values));
+            $result = $this->API_callAPIfields($url, $values);
             $result = json_decode($result, true);
             return $result;
         } catch (Exception $e) {
