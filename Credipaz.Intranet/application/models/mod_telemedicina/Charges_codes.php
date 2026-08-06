@@ -58,7 +58,7 @@ class Charges_codes extends MY_Model {
                   $values["name_club_redondo"]=$club_redondo["message"]["ApellidoNombre"];
                   $values["telefono_contacto"]=$club_redondo["message"]["Telefono"];
                   $values["motivo_consulta"]="";
-                  $new=$this->generatePaycode($values, null);
+                  $new=$this->generatePaycode($values);
                   $values["code"]=$new["data"]["id"];
                default:
                   $sql="SELECT min(id) as id FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id=".$values["code"]." AND isnull(id_operator_task,0)=0 AND verified IS null ";
@@ -157,7 +157,7 @@ class Charges_codes extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
-    public function generatePaycode($values, $idUser){
+    public function generatePaycode($values){
         try {
             $id = 0;
             if(!isset($values["amount"])){$values["amount"]=0;}
@@ -185,7 +185,7 @@ class Charges_codes extends MY_Model {
                     'id_payment' => secureEmptyNull($values,"id_payment"),
                     'code_payment' => $values["code_payment"],
                     'importe_total' => $values["importe_total"],
-                    'id_operator_task' => $idUser,
+                    'id_operator_task' => null,
                     'accessed' => 0,
                     'id_credipaz' => 0,//secureEmptyNull($values,"id_credipaz"),
                     'id_club_redondo' => $id_club_redondo,
