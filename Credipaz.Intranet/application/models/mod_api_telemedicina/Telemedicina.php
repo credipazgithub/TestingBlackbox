@@ -346,47 +346,5 @@ class Telemedicina extends MY_Model {
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
-        /*
-
-
-
-        $CHARGES_CODES=$this->createModel(MOD_TELEMEDICINA,"Charges_codes","Charges_codes");
-        $profile=getUserProfile($this,$values["id_user_active"]);
-        $inGroup="";
-        foreach($profile["data"][0]["groups"] as $group){
-            if ($inGroup!=""){$inGroup.=",";}
-            $inGroup.=("'".$group["code"]."'");
-        };
-        $charge_code=$CHARGES_CODES->get(
-            array(
-                "fields"=>"count(id) as total,datediff(second,min(created),getdate()) as seconds, dbo.fc_formatSeconds(datediff(second,min(created),getdate()),'s') as elapsed",
-                "where"=>"offline IS null AND id_operator_task IS null"
-            )
-        );
-        $seconds=(int)$charge_code["data"][0]["seconds"];
-        $html="<span class='badge badge-primary m-0'>Nadie espera</span>";
-        $pacientes=0;
-        if ($seconds!=0) {
-            $pacientes=$charge_code["data"][0]["total"];
-            $class="badge badge-info";
-            $moreInfo="Normal - menos de 15 minutos";
-            if ($seconds>(60*15)){$class="badge badge-warning m-0 blink_me";$moreInfo="ALERTA - más de 15 minutos";}
-            $html = "<span class='" . $class . "' style='font-size:12px;'>" . $pacientes . " pacientes en espera, desde hace " . $charge_code["data"][0]["elapsed"] . "</span>";
-            $html .= "<span class='badge badge-primary m-0' style='font-size:12px;'>".$moreInfo."</span>";
-        }
-        return array(
-            "code"=>"2000",
-            "status"=>"OK",
-            "message"=>"",
-            "table"=>$this->table,
-            "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
-            "data"=>$html,
-            "pacientes"=>$pacientes,
-            "active"=>$active
-        );
-        */
-
-
-
     }    
 }

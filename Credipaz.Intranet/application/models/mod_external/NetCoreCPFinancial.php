@@ -1571,9 +1571,9 @@ class NetCoreCPFinancial extends MY_Model {
     public function MessageTelemedicina($values)
     {
         try {
-            $headers = $this->Authenticate();
-            $url = (CPFINANCIALS . "/Telemedicina/Message");
-            $result = $this->API_callAPIfields($url, $values);
+log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
+
+            $result = API_callAPIfields("/Telemedicina/Message", $values);
             $result = json_decode($result, true);
             return $result;
         } catch (Exception $e) {
@@ -1584,12 +1584,7 @@ class NetCoreCPFinancial extends MY_Model {
     public function ImportarSocios($values)
     {
         try {
-            
             $headers = $this->Authenticate();
-
-
-            log_message("error", "RELATED importarSocios ".json_encode($values,JSON_PRETTY_PRINT));
-
             $url = (CPFINANCIALS . "/Mediya/ImportarSocios");
             $result = $this->callAPI($url, $headers, json_encode($values));
             $result = json_decode($result, true);

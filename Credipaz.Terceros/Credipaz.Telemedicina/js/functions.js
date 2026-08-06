@@ -15,6 +15,10 @@ var _F = {
 							_API.inited = true;
 							$(".logoImage").attr("src", (_API._ROOT + "/img/logo.png?" + _API._TS));
 							_F.onDrawStatusDoctor();
+							clearInterval(_API._TIMER_ALERT);
+							_API._TIMER_ALERT = setInterval(function () {
+								_F.onEstadoColaAtencion();
+							}, 10000);
 							resolve(null);
 						});
 					}
@@ -50,6 +54,59 @@ var _F = {
 	},
 
 	/* FUNCIONES IMPLEMENTADAS */
+	onMonitoreo: function (_this) {
+		_F._interfaceActiva = "monitoreo";
+		var _html = "";
+		_html += "<div class='row'>";
+		_html += "<div class='col-2 areaResultado-1 p-1 shadow-sm'></div>";
+		_html += "<div class='col-5 areaResultado-2 p-1 shadow-sm'></div>";
+		_html += "<div class='col-5 areaResultado-3 p-1 shadow-sm'></div>";
+		_html += "</div>";
+		$(".areaResultado").html(_html).removeClass("d-none");
+		_F.onBuildArea(1, "En Espera");
+		_F.onBuildArea(2, "Siendo atendidos");
+		_F.onBuildArea(3, "Últimas atenciones");
+	},
+	onSupervision: function (_this) {
+		_F._interfaceActiva = "supervision";
+		_API.method("/telemedicina/supervision", {})
+			.then(function (data) {
+				var _html = "";
+				if (data.records.length > 0) {
+					var vHeaders = ["", "", "Creado", "Paciente", "Código", "Médico", "El paciente refiere", "Cierre"];
+					var vColumns = ["btnEdit", "notas", "f_created", "f_name_club_redondo", "f_code", "f_doctor", "refiere", "f_type_task_close"];
+					var vRules = [];
+					_html = _API.onBuildTable(("tblSupervision"), "Supervisión", data.records, vHeaders, vColumns, vRules, "", "", "");
+				} else {
+					_html = _API.onNoTablaForTable("");
+				}
+				$(".areaResultado").html(_html).removeClass("d-none");
+			});
+	},
+	onConsultas: function (_this) {
+		_F._interfaceActiva = "consultas";
+		_API.method("/telemedicina/consultas", { "idUser": _API.id_user_log })
+			.then(function (data) {
+				var _html = "";
+				if (data.records.length > 0) {
+					var vHeaders = ["", "", "Creado", "Paciente", "Código", "", "Médico", "El paciente refiere", "Cierre"];
+					var vColumns = ["btnEdit", "notas", "f_created", "f_name_club_redondo", "f_code", "enCurso", "f_doctor", "refiere", "f_type_task_close"];
+					var vRules = [];
+					var _preHeader = "<div class='container-full my-2 p-2 shadow-sm' style='border-radius:5px;border:solid 1px gainsboro;'>";
+					_preHeader += "      <div class='row'>";
+					_preHeader += "         <div class='col-2'><label>DNI</label><br/><input type='number' placeholder='DNI' class='form-control onlyNumbers dniEspontanea' name='dniEspontanea' id='dniEspontanea'/></div>";
+					_preHeader += "         <div class='col-2'><label>Socio Mediya</label><br/><input type='number' placeholder='Nºde socio' class='form-control onlyNumbers nroSocioEspontanea' name='nroSocioEspontanea' id='nroSocioEspontanea'/></div>";
+					_preHeader += "         <div class='col-2 mt-2 pt-4'><a href='#' class='btn btn-primary btn-md btnEspontanea'>Espontánea</a></div>";
+
+					_preHeader += "      </div>";
+					_preHeader += "   </div>";
+					_html = _API.onBuildTable(("tblConsultas"), "Consultas", data.records, vHeaders, vColumns, vRules, "", "", _preHeader);
+				} else {
+					_html = _API.onNoTablaForTable("");
+				}
+				$(".areaResultado").html(_html).removeClass("d-none");
+			});
+	},
 	onDrawStatusDoctor: function () {
 		$(".doctorName").html(_API.telemedicina.doctorName);
 		$(".doctorMatricula").html("Mat."+_API.telemedicina.doctorMatricula);
@@ -90,57 +147,10 @@ var _F = {
 							break;
 					}
 					_html = _API.onBuildTable(("tblMonitoreo" + iModo), _title, data.records, vHeaders, vColumns, vRules, "", "", "");
+				} else {
+					_html = _API.onNoTablaForTable("");
 				}
 				$((".areaResultado-" + iModo)).html(_html);
-			});
-	},
-	onMonitoreo: function (_this) {
-		_F._interfaceActiva = "monitoreo";
-		var _html = "";
-		_html += "<div class='row'>";
-		_html += "<div class='col-2 areaResultado-1 p-1 shadow-sm'></div>";
-		_html += "<div class='col-5 areaResultado-2 p-1 shadow-sm'></div>";
-		_html += "<div class='col-5 areaResultado-3 p-1 shadow-sm'></div>";
-		_html += "</div>";
-		$(".areaResultado").html(_html).removeClass("d-none");
-		_F.onBuildArea(1, "En Espera");
-		_F.onBuildArea(2, "Siendo atendidos");
-		_F.onBuildArea(3, "Últimas atenciones");
-	},
-	onSupervision: function (_this) {
-		_F._interfaceActiva = "supervision";
-		_API.method("/telemedicina/supervision", {})
-			.then(function (data) {
-				var _html = "";
-				if (data.records.length > 0) {
-					var vHeaders = ["", "", "Creado", "Paciente", "Código", "Médico", "El paciente refiere", "Cierre"];
-					var vColumns = ["btnEdit", "notas", "f_created", "f_name_club_redondo", "f_code", "f_doctor", "refiere", "f_type_task_close"];
-					var vRules = [];
-					_html = _API.onBuildTable(("tblSupervision"), "Supervisión", data.records, vHeaders, vColumns, vRules, "", "", "");
-				}
-				$(".areaResultado").html(_html).removeClass("d-none");
-			});
-	},
-	onConsultas: function (_this) {
-		_F._interfaceActiva = "consultas";
-		_API.method("/telemedicina/consultas", { "idUser": _API.id_user_log })
-			.then(function (data) {
-				var _html = "";
-				if (data.records.length > 0) {
-					var vHeaders = ["", "", "Creado", "Paciente", "Código", "", "Médico", "El paciente refiere", "Cierre"];
-					var vColumns = ["btnEdit", "notas", "f_created", "f_name_club_redondo", "f_code", "enCurso", "f_doctor", "refiere", "f_type_task_close"];
-					var vRules = [];
-					var _preHeader = "<div class='container-full my-2 p-2 shadow-sm' style='border-radius:5px;border:solid 1px gainsboro;'>";
-					_preHeader += "      <div class='row'>";
-					_preHeader += "         <div class='col-2'><label>DNI</label><br/><input type='number' placeholder='DNI' class='form-control onlyNumbers dniEspontanea' name='dniEspontanea' id='dniEspontanea'/></div>";
-					_preHeader += "         <div class='col-2'><label>Socio Mediya</label><br/><input type='number' placeholder='Nºde socio' class='form-control onlyNumbers nroSocioEspontanea' name='nroSocioEspontanea' id='nroSocioEspontanea'/></div>";
-					_preHeader += "         <div class='col-2 mt-2 pt-4'><a href='#' class='btn btn-primary btn-md btnEspontanea'>Espontánea</a></div>";
-
-					_preHeader += "      </div>";
-					_preHeader += "   </div>";
-					_html = _API.onBuildTable(("tblConsultas"), "Consultas", data.records, vHeaders, vColumns, vRules, "", "", _preHeader);
-				}
-				$(".areaResultado").html(_html).removeClass("d-none");
 			});
 	},
 	onPostClose: function (_this) {
@@ -834,8 +844,6 @@ var _F = {
 			alert(error.message);
 			_API.onWait(false);
 		});
-
-
 	},
 	onUploadReceta: function (_this) {
 		var _message = "";
@@ -879,5 +887,21 @@ var _F = {
 			$(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).removeClass("d-none").fadeIn("fast");
 		}).catch(function (err) { });
 
+	},
+	onEstadoColaAtencion: function () {
+		var _params = {
+			"idUser": _API.id_user_log
+		};
+		_API.method("/telemedicina/estadocolaatencion", _params).then(function (response) {
+			var _total = parseInt(response.records[0].total);
+			$(".conDemora").html("").addClass("d-none");
+			$(".enEspera").html("Nadie en espera").removeClass("blink").removeClass("badge-dark").removeClass("badge-danger").addClass("badge-success");
+			if (_total > 0) {
+				$(".enEspera").html(_total + " en espera").removeClass("badge-success").addClass("badge-danger");
+				$(".conDemora").html(response.records[0].elapsed).removeClass("d-none");
+			}
+		}).catch(function (error) {
+			alert(error.message);
+		});
 	},
 }

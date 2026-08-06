@@ -77,20 +77,13 @@ class Charges_codes extends MY_Model {
                   $refiereArr=json_decode($paycode["data"][0]["serialized"],true);
                   $refiere="";
                   if (is_array($refiereArr)){
-                     //$refiere="estar en el domicilio <b>".$refiereArr["domicilio_contacto"]."</b>";
-                     //if($refiere!=""){$refiere.=", ";};$refiere.="cuyo teléfono es <b>".$refiereArr["telefono_contacto"]."</b>";
                      $refiere="El paciente indica que consulta por: ";
 					 if($refiereArr["fumador"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="ser fumador";}
                      if($refiereArr["alergias"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="tener alergias";}
-                     //if($refiereArr["presionalta"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="ser hipertenso";}
                      if($refiereArr["presionbaja"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="ser hipotenso";}
                      if($refiereArr["colesterol"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="tener colesterol elevado";}
-                     //if($refiereArr["fiebre"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="hipertermia > 38º";}
                      if($refiereArr["secreciones"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="sufrir secreciones";}
                      if($refiereArr["hemorragias"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="cursar hemorragias o pérdidas de sangre";}
-                     //if($refiereArr["dolores"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="tener dolores corporales";}
-
-
 					 if($refiereArr["fiebre"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="fiebre";}
                      if($refiereArr["cefalea"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="cefalea";}
                      if($refiereArr["mareos"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="mareos";}
@@ -103,7 +96,6 @@ class Charges_codes extends MY_Model {
                      if($refiereArr["presionalta"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="presión";}
                      if($refiereArr["urticarias"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="urticarias";}
                      if($refiereArr["otros"]=="on"){if($refiere!=""){$refiere.=", ";};$refiere.="otros";}
-
                   }
                   $fields=array(
                      'code' => $values["code"],
@@ -168,9 +160,9 @@ class Charges_codes extends MY_Model {
             $club_redondo=getUserMediya($this,(int)$values["id_club_redondo"]);
             $id_club_redondo=secureEmptyNull($values,"id_club_redondo");
 
-           // $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
-           // $eval=$this->getRecordsAdHoc($sql);
-           // foreach ($eval as $record){$id=(int)$record["id"];}
+            $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
+            $eval=$this->getRecordsAdHoc($sql);
+            foreach ($eval as $record){$id=(int)$record["id"];}
 
             if ($id==0) {
                 if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(8);}
@@ -559,34 +551,6 @@ class Charges_codes extends MY_Model {
             $bD = 1;
         }
         if ($bD == 0) {$mensaje .= "No hay doctores atendiento\n";}
-
-        //$pacs = $this->getRecordsAdHoc("EXEC dbIntranet.dbo.NS_Telemedicina_VerCola");
-        //$bP = 0;
-        //$mensaje .= "\nPacientes esperando:\n";
-        //foreach ($pacs as $record) {
-        //    $mensaje .= $record["Numero"] . " " . $record["Paciente"] . " " . $record["FechaLlamado"] . "\n";
-        //    $bP = 1;
-        //}
-        //if ($bP == 0) {$mensaje .= "No hay pacientes en espera\n";}
         $TELEGRAM->send("NUEVOPACIENTE", $mensaje);
-
-        /* PUSH a lista de alerta y medicos en atención */
-        /*
-        $server = getServer();
-        if (strpos($server, "localhost") !== false) {$bSkipPush = true;}
-        if (!$bSkipPush) {
-            try {
-                $PUSH_OUT = $this->createModel(MOD_PUSH, "Push_out", "Push_out");
-                $params = array(
-                    "id_group" => 1047, // TELEMEDICINA USUARIOS
-                    "subject" => lang('msg_telemedicina_push_alert'),
-                    "body" => ("El paciente " . $club_redondo["message"]["ApellidoNombre"] . " aguarda ser atendido.  Su consulta se relaciona con: " . $values["motivo_consulta"] . ", para " . $values["cboEspecialidad"] . ".")
-                );
-                $PUSH_OUT->sendToGroup($params);
-            } catch (Exception $ex) {
-            }
-        }
-        */
-
     }
 }
