@@ -37,6 +37,7 @@ var _NMF = {
         "IdSolicitud": 0,
         "id_club_redondo": 0
     },
+    _timerPushAlert:0,
     _timer_telemedicina: 0,
     _id_charge_code: 0,
     _id_credipaz: 0,
@@ -100,6 +101,30 @@ var _NMF = {
         });
         $("#alterFullScreen").modal({ backdrop: false, keyboard: false, show: true });
         return true;
+    },
+    onAlert: function (_json) {
+        try {
+            clearTimeout(_NMF._timerPushAlert);
+            $(".push-alert").remove();
+
+            if (typeof _json["message"] === 'object') {
+                _text = "";
+            } else {
+                _text = _json["message"];
+            }
+            if (_text == undefined) { _text = ""; }
+            if (_text == "") { return false; }
+            var _html = "<div class='push-alert alert " + _json["class"] + " alert-dismissible fade show' role='alert'>";
+            _html += "<button type='button' class='close' style='position:absolute;right:20px;' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button>";
+            _html += _text;
+            _html += "</div>";
+            $(".alert-frame").append(_html);
+            _NMF._timerPushAlert = setTimeout(function () { $(".push-alert").alert('close') }, 7500);
+            return true;
+        } catch (rex) {
+            alert(rex.message);
+            return false;
+        }
     },
     onNoInstallApp: function () {
         _NMF.onDestroyModal("#alterFullScreen", function () {

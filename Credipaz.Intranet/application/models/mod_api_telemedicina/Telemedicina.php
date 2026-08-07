@@ -239,7 +239,6 @@ class Telemedicina extends MY_Model {
             $fields = ["idSocio" => $values["idSocio"],"dni" => $values["dni"],"id_user" => $values["idUser"]];
             $ret = API_callAPIfields("/Mediya/AtencionEspontanea/", $fields);
             $ret = json_decode($ret, true);
-
             return $ret;
         }
         catch(Exception $e){
@@ -247,17 +246,17 @@ class Telemedicina extends MY_Model {
         }
     }
     public function grabarordenmedica($values){
-        $values["idUser"] = keySecureNumbers($values, "idUser");
-        if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
-        $values["idChargeCode"] = keySecureNumbers($values, "idChargeCode");
-        if ($values["idChargeCode"] == "0") {throw new Exception(lang("api_error_1073"), 1073);}
-        $values["carbonCopy"] = keySecureValInArray($values, "carbonCopy",["0","1"]);
-        if ($values["carbonCopy"] == "") {throw new Exception(lang("api_error_1076"), 1076);}
-        $values["Message"]=keySecureString($values,"Message");
-        if ($values["Message"] == "") {throw new Exception(lang("api_error_1060"), 1060);}
-        $values["Raw_data"]=keySecureString($values,"Raw_data");
-        if ($values["Raw_data"] == "") {throw new Exception(lang("api_error_1075"), 1075);}
         try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["idChargeCode"] = keySecureNumbers($values, "idChargeCode");
+            if ($values["idChargeCode"] == "0") {throw new Exception(lang("api_error_1073"), 1073);}
+            $values["carbonCopy"] = keySecureValInArray($values, "carbonCopy",["0","1"]);
+            if ($values["carbonCopy"] == "") {throw new Exception(lang("api_error_1076"), 1076);}
+            $values["Message"]=keySecureString($values,"Message");
+            if ($values["Message"] == "") {throw new Exception(lang("api_error_1060"), 1060);}
+            $values["Raw_data"]=keySecureString($values,"Raw_data");
+            if ($values["Raw_data"] == "") {throw new Exception(lang("api_error_1075"), 1075);}
             $params=[
                 "description"=>"Orden emitida el: ".date(FORMAT_DATE_DMYHMS, strtotime($this->now)),
                 "message"=>$values["Message"],
@@ -279,13 +278,13 @@ class Telemedicina extends MY_Model {
         }
     }
     public function grabarreceta($values){
-        $values["idUser"] = keySecureNumbers($values, "idUser");
-        if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
-        $values["idChargeCode"] = keySecureNumbers($values, "idChargeCode");
-        if ($values["idChargeCode"] == "0") {throw new Exception(lang("api_error_1073"), 1073);}
-        $values["Message"]=keySecureString($values,"Message");
-        if ($values["Message"] == "") {throw new Exception(lang("api_error_1060"), 1060);}
         try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["idChargeCode"] = keySecureNumbers($values, "idChargeCode");
+            if ($values["idChargeCode"] == "0") {throw new Exception(lang("api_error_1073"), 1073);}
+            $values["Message"]=keySecureString($values,"Message");
+            if ($values["Message"] == "") {throw new Exception(lang("api_error_1060"), 1060);}
             $params=[
                 "description"=>"Receta emitida el: ".date(FORMAT_DATE_DMYHMS, strtotime($this->now)),
                 "message"=>$values["Message"],
@@ -308,12 +307,11 @@ class Telemedicina extends MY_Model {
         }
     }
     public function grabaratencion($values){
-        $values["idUser"] = keySecureNumbers($values, "idUser");
-        if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
-        $values["idOperatorTask"] = keySecureNumbers($values, "idOperatorTask");
-        if ($values["idOperatorTask"] == "0") {throw new Exception(lang("api_error_1077"), 1077);}
-
         try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["idOperatorTask"] = keySecureNumbers($values, "idOperatorTask");
+            if ($values["idOperatorTask"] == "0") {throw new Exception(lang("api_error_1077"), 1077);}
             $result = API_callAPIfields("/Mediya/GrabarAtencion", $values);
             $result = json_decode($result, true);
             return $result;
@@ -322,12 +320,12 @@ class Telemedicina extends MY_Model {
         }
     }
     public function cambiarestadodoctor($values){
-        $values["idUser"] = keySecureNumbers($values, "idUser");
-        if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
-        $values["Estado"] = keySecureValInArray($values, "Estado",['ATENDER','DESCANSAR']);
-        if ($values["Estado"] == "") {throw new Exception(lang("api_error_1078"), 1078);}
-        $params=["Id_user"=>$values["idUser"],"Estado"=>$values["Estado"]];
         try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["Estado"] = keySecureValInArray($values, "Estado",['ATENDER','DESCANSAR']);
+            if ($values["Estado"] == "") {throw new Exception(lang("api_error_1078"), 1078);}
+            $params=["Id_user"=>$values["idUser"],"Estado"=>$values["Estado"]];
             $result = API_callAPIfields("/Mediya/CambiarEstadoDoctor", $params);
             $result = json_decode($result, true);
             return $result;
@@ -336,10 +334,10 @@ class Telemedicina extends MY_Model {
         }
     }
     public function estadocolaatencion($values){
-        $values["idUser"] = keySecureNumbers($values, "idUser");
-        if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
-        $params=["Id_user"=>$values["idUser"]];
         try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $params=["Id_user"=>$values["idUser"]];
             $result = API_callAPIfields("/Mediya/EstadoColaAtencion", $params);
             $result = json_decode($result, true);
             return $result;
@@ -347,4 +345,24 @@ class Telemedicina extends MY_Model {
             return logError($e, __METHOD__);
         }
     }    
+    public function generarcodigopago($values){
+        try {
+            $values["idUser"] = keySecureNumbers($values, "idUser");
+            if ($values["idUser"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $values["idSocio"] = keySecureNumbers($values, "idSocio");
+            if ($values["idSocio"] == "0") {throw new Exception(lang("api_error_1070"), 1070);}
+            $values["idCliente"] = keySecureNumbers($values, "idCliente");
+            $values["idPayment"] = keySecureNumbers($values, "idPayment");
+            $values["code"] = keySecureNumbers($values, "code");
+            $values["codePayment"] = keySecureNumbers($values, "codePayment");
+            $values["importe"] = keySecureNumbers($values, "importe");
+            $values["especialidad"] = "ESPECIALIDAD_CLINICA_MEDICA";
+            $result = API_callAPIfields("/Mediya/GenerarCodigoPago", $values);
+            $result = json_decode($result, true);
+            return $result;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
 }

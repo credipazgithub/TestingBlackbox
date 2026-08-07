@@ -1571,8 +1571,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function MessageTelemedicina($values)
     {
         try {
-log_message("error", "RELATED ".json_encode($values,JSON_PRETTY_PRINT));
-
             $result = API_callAPIfields("/Telemedicina/Message", $values);
             $result = json_decode($result, true);
             return $result;

@@ -10,6 +10,93 @@ class Charges_codes extends MY_Model {
     {
         parent::__construct();
     }
+    public function generatePaycode($values){
+        try {
+            $TELEMEDICINA=$this->createModel(MOD_API_TELEMEDICINA,"Telemedicina","Telemedicina");
+            $params=[
+                "idUser"=>$values["id_user_active"],
+                "idSocio"=>$values["id_club_redondo"],
+                "idCliente"=>$values["id_credipaz"],
+                "idPayment"=>$values["id_payment"],
+                "code"=>$values["code"],
+                "codePayment"=>$values["code_payment"],
+                "importe"=>$values["importe_total"],
+                "especialidad"=>$values["cboEspecialidad"]
+            ];
+            return $TELEMEDICINA->generarcodigopago($params);
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+    public function generatePaycode_actual($values){
+        try {
+            $id = 0;
+            if(!isset($values["amount"])){$values["amount"]=0;}
+            if(!isset($values["id_credipaz"])){$values["id_credipaz"]=0;}
+            if($values["id_credipaz"]=="0"){$values["id_credipaz"]=0;}
+
+            $bSkipPush=((int)$values["code"]==-999);
+            $club_redondo=getUserMediya($this,(int)$values["id_club_redondo"]);
+            $id_club_redondo=secureEmptyNull($values,"id_club_redondo");
+
+            $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
+            $eval=$this->getRecordsAdHoc($sql);
+            foreach ($eval as $record){$id=(int)$record["id"];}
+
+            if ($id==0) {
+                if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(8);}
+                $fields = array(
+                    'code' => $values["code"],
+                    'description' => 'Código de pago',
+                    'created' => $this->now,
+                    'verified' => null,
+                    'offline' => null,
+                    'fum' => $this->now,
+                    'id_user' => secureEmptyNull($values,"id_user_active"),
+                    'id_payment' => secureEmptyNull($values,"id_payment"),
+                    'code_payment' => $values["code_payment"],
+                    'importe_total' => $values["importe_total"],
+                    'id_operator_task' => null,
+                    'accessed' => 0,
+                    'id_credipaz' => 0,//secureEmptyNull($values,"id_credipaz"),
+                    'id_club_redondo' => $id_club_redondo,
+                    'serialized' => json_encode($values),
+                    'videoDoctorStatus' => 0,
+                    'videoPatientStatus' => 0,
+                    'especialidad' => $values["cboEspecialidad"],
+                    'name_club_redondo' => $club_redondo["message"]["ApellidoNombre"],
+                    'telefono' => $values["telefono_contacto"],
+                    'motivo_consulta' => $values["motivo_consulta"],
+                );
+                $saved=parent::save(array("id"=>0),$fields);
+    		    logGeneralCustom($this,array("id_rel"=>$saved["data"]["id"]),"Charges_codes::generatePaycode","");
+
+			    /* Update id_charge code in table Consents */
+			    /*id charge code to newest one*/
+			    $sql=("UPDATE ".MOD_BACKEND."_consents SET id_charge_code=".$saved["data"]["id"]." WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null AND id IN (SELECT max(id) FROM ".MOD_BACKEND."_consents WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null)");
+			    $this->execAdHoc($sql);
+			    /*mark with -1 all other constents with no charge code*/
+			    $sql=("UPDATE ".MOD_BACKEND."_consents SET id_charge_code=-1 WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null");
+			    $this->execAdHoc($sql);
+                $this->alertNewPatient();
+                if ($values["telefono"] == null) {$values["telefono"] = "";}
+                if ($values["telefono"] != "") {
+                    $sql = ("EXEC dbclub.dbo.NS_SocioTelefono_Verificar @idSocio=" . $id_club_redondo . ", @area='" . $values["area"] . "', @telefono='" . $values["telefono"] . "'");
+                    $this->execAdHoc($sql);
+                }
+            } else {
+                $saved=$this->save(array("id"=>$id),array("fum"=>$this->now));
+		        $params=array("id_rel"=>$id);
+    		    logGeneralCustom($this,$params,"controlDuplicidad::generatePaycode","");
+            }
+            return $saved;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
 
     public function getIdVideoFromChargeCode($values){
         try {
@@ -144,73 +231,6 @@ class Charges_codes extends MY_Model {
                 "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
                 "id_ot"=>$id_ot,
             );
-        }
-        catch(Exception $e){
-            return logError($e,__METHOD__ );
-        }
-    }
-    public function generatePaycode($values){
-        try {
-            $id = 0;
-            if(!isset($values["amount"])){$values["amount"]=0;}
-            if(!isset($values["id_credipaz"])){$values["id_credipaz"]=0;}
-            if($values["id_credipaz"]=="0"){$values["id_credipaz"]=0;}
-
-            $bSkipPush=((int)$values["code"]==-999);
-            $club_redondo=getUserMediya($this,(int)$values["id_club_redondo"]);
-            $id_club_redondo=secureEmptyNull($values,"id_club_redondo");
-
-            $sql="SELECT * FROM ".MOD_TELEMEDICINA."_charges_codes WHERE id_club_redondo=".$id_club_redondo." AND datediff(minute,created,getdate())<5";
-            $eval=$this->getRecordsAdHoc($sql);
-            foreach ($eval as $record){$id=(int)$record["id"];}
-
-            if ($id==0) {
-                if (!isset($values["code"]) || $values["code"]=="" || $values["code"]==null){$values["code"] = opensslRandom(8);}
-                $fields = array(
-                    'code' => $values["code"],
-                    'description' => 'Código de pago',
-                    'created' => $this->now,
-                    'verified' => null,
-                    'offline' => null,
-                    'fum' => $this->now,
-                    'id_user' => secureEmptyNull($values,"id_user_active"),
-                    'id_payment' => secureEmptyNull($values,"id_payment"),
-                    'code_payment' => $values["code_payment"],
-                    'importe_total' => $values["importe_total"],
-                    'id_operator_task' => null,
-                    'accessed' => 0,
-                    'id_credipaz' => 0,//secureEmptyNull($values,"id_credipaz"),
-                    'id_club_redondo' => $id_club_redondo,
-                    'serialized' => json_encode($values),
-                    'videoDoctorStatus' => 0,
-                    'videoPatientStatus' => 0,
-                    'especialidad' => $values["cboEspecialidad"],
-                    'name_club_redondo' => $club_redondo["message"]["ApellidoNombre"],
-                    'telefono' => $values["telefono_contacto"],
-                    'motivo_consulta' => $values["motivo_consulta"],
-                );
-                $saved=parent::save(array("id"=>0),$fields);
-    		    logGeneralCustom($this,array("id_rel"=>$saved["data"]["id"]),"Charges_codes::generatePaycode","");
-
-			    /* Update id_charge code in table Consents */
-			    /*id charge code to newest one*/
-			    $sql=("UPDATE ".MOD_BACKEND."_consents SET id_charge_code=".$saved["data"]["id"]." WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null AND id IN (SELECT max(id) FROM ".MOD_BACKEND."_consents WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null)");
-			    $this->execAdHoc($sql);
-			    /*mark with -1 all other constents with no charge code*/
-			    $sql=("UPDATE ".MOD_BACKEND."_consents SET id_charge_code=-1 WHERE id_user=".$fields["id_user"]." AND id_charge_code IS null");
-			    $this->execAdHoc($sql);
-                $this->alertNewPatient();
-                if ($values["telefono"] == null) {$values["telefono"] = "";}
-                if ($values["telefono"] != "") {
-                    $sql = ("EXEC dbclub.dbo.NS_SocioTelefono_Verificar @idSocio=" . $id_club_redondo . ", @area='" . $values["area"] . "', @telefono='" . $values["telefono"] . "'");
-                    $this->execAdHoc($sql);
-                }
-            } else {
-                $saved=$this->save(array("id"=>$id),array("fum"=>$this->now));
-		        $params=array("id_rel"=>$id);
-    		    logGeneralCustom($this,$params,"controlDuplicidad::generatePaycode","");
-            }
-            return $saved;
         }
         catch(Exception $e){
             return logError($e,__METHOD__ );

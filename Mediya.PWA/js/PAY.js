@@ -289,6 +289,8 @@ var _PAY = {
             _jsonChargesCodes["telefono"] = _telefono;
             _jsonChargesCodes["telefono_contacto"] = (_area + _telefono);
             _API.UiGeneratePaycode(_jsonChargesCodes).then(function (data) {
+                console.log("Paycode");
+                console.log(data);
                 if (data.status == "OK") {
                     if (_NMF._session_data.TeleMedConsultasResto != 0) { _NMF._session_data.TeleMedConsultasResto -= 1; }
                     _html = ("<b>¡Se ha procesado el pago en forma exitosa! Nº de transacción " + response.apiReference + "</b>");
