@@ -993,6 +993,7 @@
     <Content Include="Credipaz.Terceros\a.Scaffold\js\events.js" />
     <Content Include="Credipaz.Terceros\a.Scaffold\js\functions.js" />
     <Content Include="Credipaz.Terceros\a.Scaffold\js\loader.js" />
+    <Content Include="Credipaz.Terceros\audio\vintage.mp3" />
     <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\ambulancia.html" />
     <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\editchargecode.html" />
     <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\index.html" />
@@ -1013,6 +1014,7 @@
     <Content Include="Credipaz.Terceros\Credipaz.GestionExternaDeuda\js\functions.js" />
     <Content Include="Credipaz.Terceros\Credipaz.GestionExternaDeuda\js\loader.js" />
     <Content Include="Credipaz.Terceros\Credipaz.Pagos\html\index.html" />
+    <Content Include="Credipaz.Terceros\Credipaz.Pagos\img\logoImageBig.png" />
     <Content Include="Credipaz.Terceros\Credipaz.Pagos\js\events.js" />
     <Content Include="Credipaz.Terceros\Credipaz.Pagos\js\functions.js" />
     <Content Include="Credipaz.Terceros\Credipaz.Pagos\js\loader.js" />
