@@ -67,9 +67,6 @@ $("body").off("input", ".onlyNumbers").on("input", ".onlyNumbers", function () {
 $("body").off("click", ".btn-generate-paycode").on("click", ".btn-generate-paycode", function () {
     _PAY.onGeneratePermisoTelemedicina($(this));
 });
-$("body").off("click", ".btn-generate-paycode-legal").on("click", ".btn-generate-paycode-legal", function () {
-    _PAY.onGeneratePaycodeLegal($(this));
-});
 $("body").off("click", ".btn-vercanje").on("click", ".btn-vercanje", function () {
     _NMF.onVerCanje($(this));
 });

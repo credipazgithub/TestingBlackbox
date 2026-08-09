@@ -1471,8 +1471,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function GetDataCliente($values)
     {
         try {
-            
-
             $headers = $this->Authenticate();
             if ((int) $values["Codigo"] == 0) {unset($values["Codigo"]);}
             $fields = array("NroDocumento" => (int) $values["NroDocumento"]);

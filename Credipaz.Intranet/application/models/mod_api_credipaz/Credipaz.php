@@ -764,4 +764,25 @@ class Credipaz extends MY_Model {
             $this->output(logError($e, __METHOD__));
         }
     }
+    public function getdatacliente($values)
+    {
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $NroDocumento = (int) $values["NroDocumento"];
+            $fields = array("NroDocumento" => $NroDocumento);
+            $ret = API_callAPI("/Cliente/GetDataCliente/", json_encode($fields));
+            $ret = json_decode($ret, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $ret,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );        
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
 }

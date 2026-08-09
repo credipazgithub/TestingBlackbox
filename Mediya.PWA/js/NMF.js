@@ -1840,9 +1840,6 @@ var _NMF = {
         _API.UiStatusTelemedicina(_params)
             .then(function (data) {
                 console.log(data);
-                console.log("_NMF._joined " + _NMF._joined);
-                console.log("_bConnect " + _bConnect);
-
                 if (!_NMF._joined) {
                     $(".inactive-paycode").removeClass("d-none");
                     $(".active-paycode").addClass("d-none");

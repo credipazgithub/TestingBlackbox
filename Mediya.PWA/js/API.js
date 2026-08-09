@@ -70,7 +70,6 @@ var _API = {
             });
     },
 
-
     UiDelete: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -92,32 +91,11 @@ var _API = {
                 });
             });
     },
-    UiStatusLegales: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_legal";
-                _json["table"] = "charges_codes";
-                _json["model"] = "charges_codes";
-                _json["function"] = "statusLegales";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
     UiGeneratePaycode: function (_json) {
         return new Promise(
             function (resolve, reject) {
                 _json["function"] = "generatePaycode";
                 _json["module"] = "mod_telemedicina";
-                _json["table"] = "charges_codes";
-                _json["model"] = "charges_codes";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiGeneratePaycodeLegal: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "generatePaycode";
-                _json["module"] = "mod_legal";
                 _json["table"] = "charges_codes";
                 _json["model"] = "charges_codes";
                 _json["method"] = "api.backend/neocommandTransparent"; //method
@@ -202,28 +180,6 @@ var _API = {
                 _json["module"] = "mod_external";
                 _json["table"] = "NetCoreCPFinancial";
                 _json["model"] = "NetCoreCPFinancial";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiPollResponse: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "pollResponse";
-                _json["module"] = "mod_backend";
-                _json["table"] = "Polls";
-                _json["model"] = "Polls";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiRegisterConsent: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "save";
-                _json["module"] = "mod_backend";
-                _json["table"] = "Consents";
-                _json["model"] = "Consents";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
                 _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },

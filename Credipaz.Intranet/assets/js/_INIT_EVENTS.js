@@ -296,12 +296,6 @@
 								$("body").off("click", ".btn-shorcut-ws").on("click", ".btn-shorcut-ws", function () {
 									_FUNCTIONS.onSendShortcutWS($(this));
 								});
-								$("body").off("click", ".btn-operator-task-item").on("click", ".btn-operator-task-item", function () {
-									_FUNCTIONS.onLegalesModal($(this));
-								});
-								$("body").off("click", ".btn-operator-task-item-auto").on("click", ".btn-operator-task-item-auto", function () {
-									_FUNCTIONS.onLegalesAutoRecord($(this));
-								});
 								$("body").off("click", ".btn-clon-receta").on("click", ".btn-clon-receta", function () {
 									_FUNCTIONS.onClonarReceta($(this));
 								});

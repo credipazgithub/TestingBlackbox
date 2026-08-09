@@ -4,6 +4,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 /*---------------------------------*/
 
 class ApiRestful extends MY_Controller {
+    private $module=MOD_API_ROOT;
+    private $model="Base";
+    private $table="Base";
+
     public function __construct() {
         parent::__construct();
     }
@@ -15,19 +19,18 @@ class ApiRestful extends MY_Controller {
             $this->status = $this->init();
             $_POST["id_app"] = 11;
             $_POST["username"] = "neodata";
-            $_POST["password"] = "1";
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
+            $_POST["password"] = "wQ5GEeN5Fz%hSB\$sFeUi";
             $_POST['function'] = 'authenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
             $_POST['id_type_user'] = "77";
-            $this->neocommand(true);
+            $_POST['status'] = 1;
+            $this->neocommandTransparent(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));
         }
     }
-
     public function authenticate(){
         try {
             $raw=$this->rawInput();
@@ -42,15 +45,14 @@ class ApiRestful extends MY_Controller {
 
             if (!isset($_POST["username"])) {throw new Exception(lang("error_5104"),5104);}
             if (!isset($_POST["password"])) {throw new Exception(lang("error_5105"),5105);}
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'authenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
             $_POST['id_type_user'] = "all";
             $_POST['callsource'] = "api";
             $_POST['external_operator'] = "1";
-            $this->neocommand(true);
+            $this->neocommandTransparent(true);
         }
         catch (Exception $e){
             $this->output(logError($e,__METHOD__ ));
@@ -63,14 +65,13 @@ class ApiRestful extends MY_Controller {
                 throw new Exception($raw);
             }
             $this->status = $this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'authenticate';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
             $_POST['id_type_user'] = "all";
             $_POST['callsource'] = "api";
-            $this->neocommand(true);
+            $this->neocommandTransparent(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));
         }
@@ -82,12 +83,11 @@ class ApiRestful extends MY_Controller {
                 throw new Exception($raw);
             }
             $this->status = $this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'verifytoken';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
-            $this->neocommand(true);
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommandTransparent(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));
         }
@@ -99,16 +99,29 @@ class ApiRestful extends MY_Controller {
                 throw new Exception($raw);
             }
             $this->status = $this->init();
-            $_POST['mode'] = bin2hex(getEncryptionKey()); /*Avoid authentication check*/
             $_POST['function'] = 'documentationinterface';
-            $_POST['module'] = MOD_BACKEND;
-            $_POST['model'] = 'users';
-            $_POST['table'] = 'users';
-            $this->neocommand(true);
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommandTransparent(true);
+        } catch (Exception $e) {
+            $this->output(logError($e, __METHOD__));
+        }
+    }
+    public function menuinterface() {
+        try {
+            $raw = $this->rawInput();
+            if ($raw != null) {
+                throw new Exception($raw);
+            }
+            $this->status = $this->init();
+            $_POST['function'] = 'menuinterface';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommandTransparent(true);
         } catch (Exception $e) {
             $this->output(logError($e, __METHOD__));
         }
     }
 }
-
-

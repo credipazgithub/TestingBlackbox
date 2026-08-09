@@ -2,8 +2,6 @@ var _PAY = {
     _autoIn: false,
     _TMR_PAY_TELEMEDICINA: 0,
     _idTransfer_telemedicina: 0,
-    _TMR_PAY_LEGALES: 0,
-    _idTransfer_legales: 0,
     _TEST_DNI: 20734796,
 
     /**
@@ -253,9 +251,6 @@ var _PAY = {
             _NMF.onDestroyModal('#telemedicinaPermiso');
             _NMF.onDestroyModal('#telemedicinaPrevia');
 
-            var _raw_data = JSON.stringify(_NMF._auth_user_data);
-            _API.UiRegisterConsent({ "type_class": "telemedicina", "raw_data": _raw_data });
-
             $("body").append(_PAY.onBuildInterfaceTelemedicina());
             $(".imgDoctor").css({ "background-image": "url(./img/MediYa/telemedicina-close.png)", "background-size": "cover" });
 
@@ -289,8 +284,6 @@ var _PAY = {
             _jsonChargesCodes["telefono"] = _telefono;
             _jsonChargesCodes["telefono_contacto"] = (_area + _telefono);
             _API.UiGeneratePaycode(_jsonChargesCodes).then(function (data) {
-                console.log("Paycode");
-                console.log(data);
                 if (data.status == "OK") {
                     if (_NMF._session_data.TeleMedConsultasResto != 0) { _NMF._session_data.TeleMedConsultasResto -= 1; }
                     _html = ("<b>¡Se ha procesado el pago en forma exitosa! Nº de transacción " + response.apiReference + "</b>");
@@ -336,163 +329,5 @@ var _PAY = {
         }).catch(function (error) {
             _NMF.onAlert({ "class": "alert-danger", "message": error.message });
         });
-
-    },
-
-    /**
-     * /
-     * ACTIVACION Y PAGOS LEGALES
-     */
-    onAddMotivos: function () {
-        var _json = {
-            "module": "mod_legal",
-            "table": "type_request",
-            "model": "type_request",
-            "page": 1,
-            "pagesize": -1,
-            "where": "",
-            "order": "description ASC",
-        };
-        _API.UiGet(_json).then(function (datajson) {
-            _TOOLS.loadCombo(datajson, { "target": "#id_type_request", "selected": -1, "id": "id", "description": "description", "default": "[Elija motivo de la consulta]" });
-        }).catch(function (error) {
-            _NMF.onModalAlert("Alerta", error.message, "danger");
-        });
-    },
-    onBuildInterfaceLegales: function () {
-        var _html = "<div class='modal fade' id='legalesPrevia' role='dialog'>";
-        _html += "       <input type='hidden' class='dbaseprevia id_payment' id='id_payment' name='id_payment' value='0'/>";
-        _html += "       <input type='hidden' class='dbaseprevia code_payment' id='code_payment' name='code_payment' value='0'/>";
-        _html += "       <input type='hidden' class='dbaseprevia importe_total' id='importe_total' name='importe_total' value='0'/>";
-        _html += "       <input type='hidden' id='concepto' name='concepto' value='' class='dbaseprevia concepto'/>";
-        _html += "       <input type='hidden' id='referencia' name='referencia' value='' class='dbaseprevia referencia'/>";
-        _html += "       <input type='hidden' id='importe' name='importe' value='0' class='dbaseprevia importe'/>";
-        _html += " <div class='modal-dialog modal-lg' role='document'>";
-        _html += "  <div class='modal-content' style='color:white;background-color:#0047BA;'>";
-        _html += "    <div class='modal-header'>";
-        _html += "      <div class='inner-title'><b>Consulta legal</b></div>";
-        _html += "    </div>";
-        _html += "    <div class='modal-body body-encuesta open d-none'>";
-        _html += "       <table style='width:100%;'>";
-        _html += "          <tr>";
-        _html += "             <td><label>Motivo de la consulta</label><br/><select class='form-control id_type_request dbaseprevia validatePrevia' id='id_type_request' name='id_type_request'></select></td>";
-        _html += "          </tr>";
-        _html += "          <tr>";
-        _html += "             <td><label>Teléfono para contacto</label><br/><input type='text' class='form-control text dbaseprevia telefono_contacto validatePrevia' id='telefono_contacto' name='telefono_contacto'/></td>";
-        _html += "          </tr>";
-        _html += "          <tr>";
-        _html += "             <td><label>Denos algunos detalles</label><br/><textarea class='text dbaseprevia motivo_consulta validatePrevia' id='motivo_consulta' name='motivo_consulta' rows='8' style='width:100%;'></textarea></td>";
-        _html += "          </tr>";
-        _html += "       </table>";
-        _html += "    </div>";
-        _html += "    <div class='modal-body body-pago body-pago-form d-none'>";
-        _html += "    </div>";
-        _html += "    <div class='body-footer modal-footer font-weight-light' style='margin-bottom:50px;'>";
-        var _lbl1 = "Solicitar";
-        var _lbl2 = "Aceptar";
-        if (_NMF._session_data.LegalesConsultasResto == 0) { _lbl1 = "Ir a pago"; _lbl2 = "Pagar"; }
-        _html += "       <button  class='btn-raised btn-move-open btn btn-info btn-sm openclosemessage'><i class='material-icons'>chevron_right</i></span>Continuar</button>";
-        _html += "       <button  class='btn-raised btn-cancel-previa btn btn-danger btn-sm open d-none'><i class='material-icons'>not_interested</i></span>Cancelar</button>";
-        _html += "       <button  class='btn-raised btn-accept-previa btn btn-success btn-sm open d-none'><i class='material-icons'>done</i></span>" + _lbl1 + "</button>";
-        _html += "       <button  class='btn-raised btn-accept-final btn btn-success btn-sm d-none'><i class='material-icons'>done_all</i></span>" + _lbl2 + "</button>";
-        _html += "    </div>";
-        _html += "  </div>";
-        _html += " </div>";
-        _html += "</div>";
-        return _html;
-    },
-    onEventsLegales: function () {
-        $("body").off("click", ".btn-move-open").on("click", ".btn-move-open", function () {
-            $(".openclosemessage").addClass("d-none");
-            $(".open").removeClass("d-none");
-        });
-        $("body").off("click", ".btn-cancel-previa").on("click", ".btn-cancel-previa", function () {
-            _NMF.onDestroyModal("#legalesPrevia");
-        });
-        $("body").off("click", ".btn-accept-previa").on("click", ".btn-accept-previa", function () {
-            if (!_TOOLS.validate(".validatePrevia")) {return false;};
-            $(".body-pago-form").html("");
-            if (_NMF._session_data.LegalesConsultasResto == 0) {
-                /*Aca va la implementacion de pago!*/
-                _NMF.onModalAlert("Alerta", "¡Próximamente se podrá efectuar el pago!", "info");
-            }
-            $(".btn-accept-previa").addClass("d-none");
-            $(".body-encuesta").addClass("d-none");
-            $(".btn-accept-final").removeClass("d-none");
-            $(".body-pago").removeClass("d-none");
-            /*No last step - */
-            $(".btn-accept-final").click();
-        });
-        $("body").off("click", ".btn-accept-final").on("click", ".btn-accept-final", function () {
-            $(".msg-legales-status").removeClass("d-none");
-            if (_NMF._session_data.LegalesConsultasResto != 0) {
-                $(".id_payment").val(0);
-                $(".code_payment").val("Sin cargo");
-                $(".importe_total").val(0);
-                $(".body-pago").addClass("d-none");
-                $(".body-footer").addClass("d-none");
-                $(".body-wait").removeClass("d-none");
-                _NMF.onModalAlert("Info", "<b>¡Se ha ingresado su solicitud en forma exitosa!</b>", "info");
-                setTimeout(function () {
-                    _PAY.onPaymentRegistrationLegal({ "apiReference": "Sin cargo" }).then(function (data) {
-                        if (data.status == "OK") {
-                            //if (_NMF._session_data.LegalesConsultasResto != 0) { _NMF._session_data.LegalesConsultasResto -= 1; }
-                        } else {
-                            _NMF.onModalAlert("Alerta", data.message, "info");
-                        }
-                    }).catch(function (err) {
-                        alert("err");
-                        console.log(err);
-                    });
-                }, 2000);
-            }
-        });
-    },
-    onGeneratePaycodeLegal: function (_this) {
-        if (_NMF._session_data.ClubRedondo == 0) {
-            _NMF.onIsNotSocio("Debe ser socio para solicitar asesoría legal.");
-            return false;
-        }
-        try {
-            _NMF.onDestroyModal('#legalesPrevia');
-            $("body").append(_PAY.onBuildInterfaceLegales());
-            _PAY.onAddMotivos();
-
-            /*Set payment values and description*/
-            $(".importe").val(_NMF._session_data.MontoLegales);
-            $(".concepto").val("Consulta legal");
-            $(".referencia").val(_TOOLS.UUID());
-            /*----------------------------------*/
-            _PAY.onEventsLegales();
-            $(".btn-move-open").click();
-            $("#legalesPrevia").modal({ backdrop: false, keyboard: true, show: true });
-            return true;
-        } catch (rex) {
-            _NMF.onModalAlert("Alerta", rex.message, "danger");
-            $(".body-wait").addClass("d-none");
-            $(".body-pago").removeClass("d-none");
-            $(".body-footer").removeClass("d-none");
-            return false;
-        }
-    },
-    onPaymentRegistrationLegal: function (response) {
-        /* En _jsonChargesCodes se almacena los valores de la transacción a enviar al server propio.*/
-        var _jsonChargesCodes = _TOOLS.getFormValues(".dbaseprevia");
-        _API.UiGeneratePaycodeLegal(_jsonChargesCodes).then(function (data) {
-            if (data.status == "OK") {
-                //if (_NMF._session_data.LegalesConsultasResto != 0) { _NMF._session_data.LegalesConsultasResto -= 1; }
-                _NMF.onModalAlert("Info", "<b>¡Se ha procesado el pago en forma exitosa!</b>", "info");
-            } else {
-                _NMF.onModalAlert("Alerta", data.message, "info");
-            }
-            $(".btn-cancel-previa").click();
-        }).catch(function (error) {
-            _NMF.onModalAlert("Alerta", error, "danger");
-        });
-        $(".body-wait").addClass("d-none");
-        $(".body-pago").removeClass("d-none");
     },
 };
-
-
-
