@@ -1,0 +1,324 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.50727</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{9DDF2C35-AD47-4AA5-A767-F5A03185AB1B}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{F184B08F-C81C-45F6-A57F-5ABD9991F28F}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <RootNamespace>NeodataNet</RootNamespace>
+    <AssemblyName>NeodataNet</AssemblyName>
+    <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>12.0</OldToolsVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <TargetFrameworkProfile />
+    <UseGlobalApplicationHostFile />
+    <Use64BitIISExpress />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <DefineDebug>true</DefineDebug>
+    <DefineTrace>true</DefineTrace>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>None</DebugType>
+    <DefineDebug>false</DefineDebug>
+    <DefineTrace>false</DefineTrace>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DocumentationFile>
+    </DocumentationFile>
+    <NoWarn>42016,41999,42017,42018,42019,42032,42036,42020,42021,42022,42353,42354,42355</NoWarn>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Data">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Drawing">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Xml">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Configuration">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Services">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.EnterpriseServices">
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.Mobile">
+      <Private>True</Private>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Import Include="Microsoft.VisualBasic" />
+    <Import Include="System" />
+    <Import Include="System.Collections" />
+    <Import Include="System.Collections.Generic" />
+    <Import Include="System.Data" />
+    <Import Include="System.Diagnostics" />
+    <Import Include="System.Collections.Specialized" />
+    <Import Include="System.Configuration" />
+    <Import Include="System.Text" />
+    <Import Include="System.Text.RegularExpressions" />
+    <Import Include="System.Web" />
+    <Import Include="System.Web.Caching" />
+    <Import Include="System.Web.SessionState" />
+    <Import Include="System.Web.Security" />
+    <Import Include="System.Web.Profile" />
+    <Import Include="System.Web.UI" />
+    <Import Include="System.Web.UI.WebControls" />
+    <Import Include="System.Web.UI.WebControls.WebParts" />
+    <Import Include="System.Web.UI.HtmlControls" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="audio\vintage.mp3" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\archivo.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\empresas.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\entidadesCesion.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\estadosCiviles.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\nacionalidades.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\ocupaciones.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\productos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\provincias.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\sexos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\auxiliares\sucursales.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\cedidos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\cesiones.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\consultarEstadoTransaccionPago.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalAdicional.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalFechasImportantes.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalLimites.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalPagoLink.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalPagosPeriodo.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalSaldos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalTitular.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalTracking.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCabalUltimosConsumos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCredito.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCreditoCuotas.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCreditoDeuda.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\infoCreditoPagoLink.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\iniciarTransaccionPago.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\resumenTarjeta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\segmentosDeuda.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\credipaz\terminarTransaccionPago.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\credenciales.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\estadocolaatencion.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\grabaratencion.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\cambiarestadodoctor.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\generarcodigopago.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\grabarreceta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\grabarordenmedica.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\atencionespontanea.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\farmalinkreceta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\mensajes.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\cancelar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\atencionesanteriores.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\solicitarambulancia.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\tiposemergencia.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\tiposcierre.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\postcierre.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\supervision.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\consultas.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\telemedicina\monitoreo.html" />
+    <Content Include="Credipaz.ApiDoc\html\index.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetClientsByDocument.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardCurrentBalances.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardCurrentMovements.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardDetails.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardDueDate.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardExtensions.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardStatementMovements.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetCreditCardStatements.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetExchangeRateTransaction.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetLoan.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetLoanFees.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetLoanPayments.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetLoanRates.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetPendingServiceBills.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetProductBankStatementFile.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetProductBankStatements.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetProducts.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetProductsConsolidatedPosition.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\GetTransactionCost.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\InsertServicePaymentFromData.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\InsertTransaction.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\SendSmsToken.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\integraciones\UpdateCreditCards.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\asesores\alta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\asesores\deshabilitar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\asesores\habilitar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\asesores\listar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\asesores\modificar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\centros.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\comercializadoras.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\estadosCiviles.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\farmacias.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\modosDePago.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\nacionalidades.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\ocupaciones.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\parentescos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\planes.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\activos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\adicionales\alta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\adicionales\listar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\alta.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\autorizar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\caidos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\candidatos.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\infoMediyaPagoLink.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\listar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\modificar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\pendientes.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\socios\profile.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\tarjetasHabilitadas.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\tiposDeAdicionales.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\mediya\tiposDeCentros.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\seguridad\autenticar.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\seguridad\autenticarexterno.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\seguridad\interfacedocumentacion.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\seguridad\verificartoken.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\websites\acciones.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\websites\canalesDeAcciones.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\websites\canalesDeLandings.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\websites\landing.html" />
+    <Content Include="Credipaz.ApiDoc\documentacion\websites\sucursales.html" />
+    <Content Include="Credipaz.ApiDoc\js\events.js" />
+    <Content Include="Credipaz.ApiDoc\js\functions.js" />
+    <Content Include="Credipaz.ApiDoc\js\loader.js" />
+    <Content Include="Credipaz.GestionExternaDeuda\html\index.html" />
+    <Content Include="Credipaz.GestionExternaDeuda\js\events.js" />
+    <Content Include="Credipaz.GestionExternaDeuda\js\functions.js" />
+    <Content Include="Credipaz.GestionExternaDeuda\js\loader.js" />
+    <Content Include="Credipaz.Cesiones\html\index.html" />
+    <Content Include="Credipaz.Cesiones\js\events.js" />
+    <Content Include="Credipaz.Cesiones\js\functions.js" />
+    <Content Include="Credipaz.Cesiones\js\loader.js" />
+    <Content Include="Credipaz.Pagos\img\logoImageBig.png" />
+    <Content Include="Credipaz.SIA\html\index.html" />
+    <Content Include="Credipaz.SIA\img\ambulancia.png" />
+    <Content Include="Credipaz.SIA\img\clubredondo.png" />
+    <Content Include="Credipaz.SIA\img\credipaz.png" />
+    <Content Include="Credipaz.SIA\img\emergencias_banner.png" />
+    <Content Include="Credipaz.SIA\img\farmacia.png" />
+    <Content Include="Credipaz.SIA\img\laboratorio_banner.png" />
+    <Content Include="Credipaz.SIA\img\logo.png" />
+    <Content Include="Credipaz.SIA\img\medico.png" />
+    <Content Include="Credipaz.SIA\img\medico_banner.png" />
+    <Content Include="Credipaz.SIA\img\wait.gif" />
+    <Content Include="Credipaz.SIA\js\events.js" />
+    <Content Include="Credipaz.SIA\js\functions.js" />
+    <Content Include="Credipaz.SIA\js\loader.js" />
+    <Content Include="a.Scaffold\html\index.html" />
+    <Content Include="a.Scaffold\js\events.js" />
+    <Content Include="a.Scaffold\js\functions.js" />
+    <Content Include="a.Scaffold\js\loader.js" />
+    <Content Include="Credipaz.Pagos\html\index.html" />
+    <Content Include="Credipaz.Pagos\js\events.js" />
+    <Content Include="Credipaz.Pagos\js\functions.js" />
+    <Content Include="Credipaz.Pagos\js\loader.js" />
+    <Content Include="Credipaz.AccesoSistemaInterno\html\ambulancia.html" />
+    <Content Include="Credipaz.AccesoSistemaInterno\html\index.html" />
+    <Content Include="Credipaz.AccesoSistemaInterno\html\postclose.html" />
+    <Content Include="Credipaz.AccesoSistemaInterno\html\editchargecode.html" />
+    <Content Include="Credipaz.AccesoSistemaInterno\js\events.js" />
+    <Content Include="Credipaz.AccesoSistemaInterno\js\functions.js" />
+    <Content Include="Credipaz.AccesoSistemaInterno\js\loader.js" />
+    <Content Include="js\media.js" />
+    <Content Include="js\Neodata\NEOAUTHENTICATION.js" />
+    <Content Include="js\Neodata\NEOVIDEO-jvideo1.js" />
+    <Content Include="html\modalDefaultOverAll.html" />
+    <Content Include="html\unauthorized.html" />
+    <Content Include="html\modalDefault.html" />
+    <Content Include="html\login.html" />
+    <Content Include="img\loginDefault.png" />
+    <Content Include="img\clubredondo.png" />
+    <Content Include="img\credipaz.png" />
+    <Content Include="img\mediya.png" />
+    <Content Include="img\wait.gif" />
+    <Content Include="index.css" />
+    <Content Include="index.js" />
+    <Content Include="index.html" />
+    <Content Include="Recursos\configBranches.json" />
+    <Content Include="js\API.js" />
+    <Content Include="js\tools.js" />
+    <Content Include="js\events.js" />
+    <Content Include="verificationQR.png">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="web.config" />
+    <Content Include="Recursos\configServers.json" />
+    <None Include="web.Debug.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+    <None Include="web.Release.config">
+      <DependentUpon>web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Credipaz.AccesoSistemaInterno\img\" />
+    <Folder Include="Credipaz.ApiDoc\img\" />
+    <Folder Include="My Project\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.VisualBasic.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:54443/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

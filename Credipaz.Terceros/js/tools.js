@@ -1,0 +1,277 @@
+var _T = {
+    isUrlAvailable: async function (url) {
+        try {
+            var response = await fetch(url, { mode: 'no-cors', method: 'HEAD' });
+            return true;
+        } catch (error) {
+            return false;
+        }
+    },
+    getNow: function () {
+        var currentDate = new Date();
+        var second = currentDate.getSeconds();
+        var minute = currentDate.getMinutes();
+        var hour = currentDate.getHours();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        if (day < 10) { day = "0" + day; }
+        if (month < 10) { month = "0" + month; }
+        if (hour < 10) { hour = "0" + hour; }
+        if (minute < 10) { minute = "0" + minute; }
+        if (second < 10) { second = "0" + second; }
+        return day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+    },
+    isValidDate: function (dateString) {
+        var timestamp = Date.parse(dateString);
+        return !isNaN(timestamp);
+    },
+    isValidEmail: function (email) {
+        var em = /^[+a-zA-Z0-9._-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}$/i;
+        return em.test(email);
+    },
+    onlyNumbers: function (_this) {
+        _this.val(_this.val().replace(/[^0-9]/g, ''));
+    },
+    dateCompareGreaterThan: function (_dateGreater, _dateBase) {
+        const date1 = new Date(_dateGreater);
+        const date2 = new Date(_dateBase);
+        if (date1 > date2) {
+            return true;
+        } else if (date1 < date2) {
+            return false;
+        } else {
+            return true;
+        }
+    },
+    validate: function (_selector, _seeAlert) {
+        if (_seeAlert == undefined) { _seeAlert = false; }
+        var _ret = true;
+        $(_selector).each(function () { _ret = _API.tools.formatValidation($(this)) && _ret; });
+        if (!_ret && _seeAlert) { alert("Faltan datos."); }
+        return _ret;
+    },
+    formatValidation: function (_obj) {
+        var _ret = true;
+        var _value = _obj.val();
+        var property = _obj.attr('name');
+        switch (_obj.prop("tagName")) {
+            case "TEXTAREA":
+            case "INPUT":
+                var _min = _obj.attr('data-min');
+                var _max = _obj.attr('data-max');
+                switch (_obj.attr("type")) {
+                    case "number":
+                        if (_value == "") { _ret = false; }
+                        if (isNaN(_value)) { _ret = false; }
+                        if (_min !== undefined) {
+                            if (isNaN(_min)) {
+                                _min = $(_min).val();
+                                if (_min != undefined) { if (isNaN(_min)) { _ret = false; } }
+                            }
+                            if (_ret) { _ret = (parseDouble(_value) > parseDouble(_min)); }
+                        }
+                        if (_ret) {
+                            if (_max !== undefined) {
+                                if (isNaN(_max)) {
+                                    _max = $(_max).val();
+                                    if (_max != undefined) { if (isNaN(_max)) { _ret = false; } }
+                                }
+                                if (_ret) { _ret = (parseDouble(_value) < parseDouble(_max)); }
+                            }
+                        }
+                        break;
+                    case "date":
+                    case "datetime-local":
+                        if (!_API.tools.isValidDate(_value)) { _ret = false; }
+                        if (_min !== undefined) {
+                            if (!_API.tools.isValidDate(_min)) {
+                                _min = $(_min).val();
+                                if (_min != undefined) { if (!_API.tools.isValidDate(_min)) { _ret = false; } }
+                            }
+                            if (_ret) { _ret = _API.tools.dateCompareGreaterThan(_value, _min); }
+                        }
+                        if (_ret) {
+                            if (_max !== undefined) {
+                                if (!_API.tools.isValidDate(_max)) {
+                                    _max = $(_max).val();
+                                    if (_max != undefined) { if (!_API.tools.isValidDate(_max)) { _ret = false; } }
+                                }
+                                if (_ret) { _ret = _API.tools.dateCompareGreaterThan(_max, _value); }
+                            }
+                        }
+                        break;
+                    case "email":
+                        if (!_API.tools.isValidEmail(_value)) { _ret = false; }
+                        break;
+                    case "radio":
+                        _ret = ($("input[name='" + property + "']:checked").val() != undefined);
+                        if (!_ret) {
+                            _obj.parent().css("border", "solid 1px red");
+                        } else {
+                            _obj.parent().css("border", "solid 0px transparent");
+                        }
+                        break;
+                    case "checkbox":
+                        var _checked = _obj.is(":checked");
+                        if (!_checked) { _ret = false; }
+                        break;
+                    default:
+                        if (_obj.hasClass("data-list")) {
+                            if (_obj.attr("data-selected-id") == "" || _obj.attr("data-selected-id") == undefined) { _ret = false; }
+                        } else {
+                            if (_value == "") { _ret = false; }
+                        }
+                        break;
+                }
+                break;
+            case "SELECT":
+                if (_value == "0" || _value == "-1" || _value == undefined || _value == null || _value == "") { _ret = false; }
+                break;
+        }
+        if (_ret) {
+            _obj.removeClass("is-invalid").addClass("is-valid");
+            $(".invalid-" + _obj.prop("name")).html("").addClass("d-none");
+        } else {
+            _obj.removeClass("is-valid").addClass("is-invalid");
+        }
+        if (!_ret) { _API.log("formatValidation, elemento en FALSE", property); }
+        return _ret;
+    },
+    getFormValues: function (_selector, _this) {
+        try {
+            var _jsonSave = {};
+            $(_selector).each(function () {
+                var property = $(this).attr('name');
+                var value = "";
+                switch ($(this).attr("data-type")) {
+                    case "select":
+                        if ($(this).length == 0) { value = ""; } else { value = $(this).val(); }
+                        if (value == null || value == "-1" || value == "0") { value = ""; }
+                        break;
+                    case "radio":
+                        value = $("input[name='" + property + "']:checked").val();
+                        if (value == undefined) { value = ""; }
+                        break;
+                    case "checkbox":
+                        if ($(this).prop("checked")) {
+                            value = $(this).val();
+                            if (parseInt(value) == 0 || value == '') { value = 1; }
+                        } else {
+                            value = 0;
+                        }
+                        break;
+                    default:
+                        value = $(this).val();
+                        break;
+                }
+                _jsonSave[property] = value;
+            });
+        } catch (rex) { };
+        return _jsonSave;
+    },
+    formatChargeTotal: function (str) {
+        var part = str.toString().split(".");
+        return (part[0] + "." + part[1].slice(0, 2));
+    },
+    formatMoney: function (_val, _dec = 2) {
+        if (isNaN(_val)) { _val = 0; }
+        return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', minimumFractionDigits: _dec, maximumFractionDigits: _dec }).format(_val);
+    },
+    copyToClipboard: function (_this) {
+        var _id = _this.attr("data-source");
+        var textToCopy = $('#' + _id).val();
+        var tempTextarea = $('<textarea>');
+        $('body').append(tempTextarea);
+        tempTextarea.val(textToCopy).select();
+        document.execCommand('copy');
+        tempTextarea.remove();
+        _API.onAlert({ "message": "Se han copiado los datos al portapapeles.", "class": "alert-info" });
+    },
+    getUrlParams: function (url) {
+        var queryString = url ? url.split('?')[1] : window.location.search.slice(1);
+        var obj = {};
+        if (queryString) {
+            queryString = queryString.split('#')[0];
+            var arr = queryString.split('&');
+            for (var i = 0; i < arr.length; i++) {
+                var a = arr[i].split('=');
+                var paramName = a[0];
+                var paramValue = typeof (a[1]) === 'undefined' ? true : a[1];
+                if (paramName.match(/\[(\d+)?\]$/)) {
+                    var key = paramName.replace(/\[(\d+)?\]/, '');
+                    if (!obj[key]) obj[key] = [];
+                    if (paramName.match(/\[\d+\]$/)) {
+                        var index = /\[(\d+)\]/.exec(paramName)[1];
+                        obj[key][index] = paramValue;
+                    } else {
+                        obj[key].push(paramValue);
+                    }
+                } else {
+                    if (!obj[paramName]) {
+                        obj[paramName] = paramValue;
+                    } else if (obj[paramName] && typeof obj[paramName] === 'string') {
+                        obj[paramName] = [obj[paramName]];
+                        obj[paramName].push(paramValue);
+                    } else {
+                        obj[paramName].push(paramValue);
+                    }
+                }
+            }
+        }
+        return obj;
+    },
+    getNow: function () {
+        var currentDate = new Date();
+        var second = currentDate.getSeconds();
+        var minute = currentDate.getMinutes();
+        var hour = currentDate.getHours();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        if (day < 10) { day = "0" + day; }
+        if (month < 10) { month = "0" + month; }
+        if (hour < 10) { hour = "0" + hour; }
+        if (minute < 10) { minute = "0" + minute; }
+        if (second < 10) { second = "0" + second; }
+        return day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
+    },
+    uuid: function () {
+        var s = [];
+        var hexDigits = "0123456789abcdef";
+        for (var i = 0; i < 36; i++) { s[i] = hexDigits.substr(Math.floor(Math.random() * 0x10), 1); }
+        s[14] = "4";
+        s[19] = hexDigits.substr((s[19] & 0x3) | 0x8, 1);  // bits 6-7 of the clock_seq_hi_and_reserved to 01
+        s[8] = s[13] = s[18] = s[23] = "-";
+        var uuid = s.join("");
+        return uuid;
+    },
+    hash: async function (alg, str) {
+        var msgBuffer = new TextEncoder().encode(str);
+        var hashBuffer = await crypto.subtle.digest(alg, msgBuffer);
+        var hashArray = Array.from(new Uint8Array(hashBuffer));
+        var hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+        return hashHex;
+    },
+    bin2hex: function (str) {
+        var hex = '';
+        for (var i = 0; i < str.length; i++) {
+            var charCode = str.charCodeAt(i);
+            hex += charCode.toString(16).padStart(2, '0');
+        }
+        return hex;
+    },
+    isBase64: function (testString) {
+        try {
+            var isEncoded = (btoa(atob(testString)) == atob(btoa(testString)));
+            return isEncoded;
+        } catch (err) {
+            return false;
+        }
+    },
+    string_to_b64: function (str) { return window.btoa(unescape(encodeURIComponent(str))); },
+    b64_to_string: function (str) {
+        str = str.replace(/\s/g, '');
+        return decodeURIComponent(escape(window.atob(str)));
+    },
+};
