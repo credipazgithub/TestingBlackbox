@@ -993,6 +993,13 @@
     <Content Include="Credipaz.Terceros\a.Scaffold\js\events.js" />
     <Content Include="Credipaz.Terceros\a.Scaffold\js\functions.js" />
     <Content Include="Credipaz.Terceros\a.Scaffold\js\loader.js" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\ambulancia.html" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\editchargecode.html" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\index.html" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\html\postclose.html" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\js\events.js" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\js\functions.js" />
+    <Content Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\js\loader.js" />
     <Content Include="Credipaz.Terceros\Credipaz.ApiDoc\html\index.html" />
     <Content Include="Credipaz.Terceros\Credipaz.ApiDoc\js\events.js" />
     <Content Include="Credipaz.Terceros\Credipaz.ApiDoc\js\functions.js" />
@@ -2490,6 +2497,7 @@
     <Folder Include="Credipaz.SIA\.git\refs\tags\" />
     <Folder Include="Credipaz.SIA\bin\" />
     <Folder Include="Credipaz.SIA\obj\Debug\TempPE\" />
+    <Folder Include="Credipaz.Terceros\Credipaz.AccesoSistemaInterno\img\" />
     <Folder Include="Mediya.PWA\.git\objects\info\" />
     <Folder Include="Mediya.PWA\.git\refs\tags\" />
   </ItemGroup>
