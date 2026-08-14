@@ -181,7 +181,7 @@ class Credipaz extends MY_Model {
                 "FechaCesion" => $values["Cesion"]
             );
 
-            $ret = API_callAPI("/Credito/GetCedido/", json_encode($fields));
+            $ret = API_callAPIfields("/Credito/GetCedido/", $fields);
             $ret = json_decode($ret, true);
 
             $merged["code"] = "200";
@@ -201,7 +201,7 @@ class Credipaz extends MY_Model {
             if ($values["IdEntidad"] == 0) {throw new Exception(lang("api_error_1049"), 1049);}
 
             $fields = array("Id_user_cedido" => $values["IdEntidad"]);
-            $ret = API_callAPI("/Credito/GetCesiones/", json_encode($fields));
+            $ret = API_callAPIfields("/Credito/GetCesiones/", $fields);
             $ret = json_decode($ret, true);
 
             $merged["link"] = $ret["mensaje"];
