@@ -176,8 +176,6 @@ class Credipaz extends MY_Model {
             $fields = array(
                 "NroDocumento" => $NroDocumento,
                 "Id_user_cedido" => $values["IdEntidad"],
-                "Interno" => "N",
-                "Download" => "false",
                 "FechaCesion" => $values["Cesion"]
             );
 
