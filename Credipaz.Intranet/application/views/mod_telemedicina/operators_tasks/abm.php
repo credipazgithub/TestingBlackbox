@@ -40,7 +40,12 @@ $html.=getTextArea($parameters,array("col"=>"col-md-12","name"=>"note_close","cl
 $html.="      </td>";
 $html.="      <td id='patient' class='shadow' style='width:50%;'>";
 $html.="         <div id='client_data' style='width:100%;padding:3px;margin-bottom:5px;' class='card rx-hidden'>";
-$html.="            <h5>Datos del asociado</h5>";
+$actualPhone=$parameters["records"]["data"][0]["telefono"];
+$msgTelefono="";
+if ($actualPhone!="") {
+	$msgTelefono="<span class='badge badge-info p-2'> Teléfono desde la app: ".$actualPhone."</span>";
+}
+$html.="            <h5>Datos del asociado ".$msgTelefono."</h5>";
 
 if((int)$parameters["club_redondo"]["Empresa"]==999){
 	$html.="        <table style='width:100%;'>";
