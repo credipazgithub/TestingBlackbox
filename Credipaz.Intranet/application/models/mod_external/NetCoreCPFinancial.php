@@ -538,7 +538,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function FirmarFormulario($values)
     {
         try {
-            
 
             $headers = $this->Authenticate();
             $fields = array(
