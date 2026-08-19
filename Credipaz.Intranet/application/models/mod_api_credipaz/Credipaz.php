@@ -221,8 +221,7 @@ class Credipaz extends MY_Model {
             if ($values["File"] == "") {throw new Exception(lang("api_error_1030"), 1030);}
             if ($values["Key"] == "") {throw new Exception(lang("api_error_1029"), 1029);}
             $fields = array("RutaOrigen" => $values["Key"], "Archivo"=> $values["File"]);
-            $url="/Utilidades/BridgeFileGet?RutaOrigen=".$values["Key"]."&Archivo=". $values["File"];
-            $ret = API_callAPIGet($url."&Archivo=". $values["File"], json_encode($fields));
+            $ret = API_callAPIfields("/Utilidades/BridgeFile/", $fields);
             $ret = json_decode($ret, true);
             $merged["code"] = "200";
             $merged["error"] = "";
@@ -235,7 +234,34 @@ class Credipaz extends MY_Model {
             return logError($e, __METHOD__);
         }
     }
+    
+    public function carpetadigital($values)
+    {
+        try {
+            $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
+            $values["Segmento"] = keySecureString($values, "Segmento");
+            if ($values["Segmento"] == "") {throw new Exception(lang("api_error_1079"), 1079);}
+            $values["IdSocio"] = keySecureZero($values, "IdSocio");
+            if ($values["IdSocio"] == 0) {$values["IdSocio"]=null;}
+            $values["IdRequest"] = keySecureZero($values, "IdRequest");
+            if ($values["IdRequest"] == 0) {$values["IdRequest"]=null;}
+            $values["IdTransaccion"] = keySecureZero($values, "IdTransaccion");
+            if ($values["IdTransaccion"] == 0) {$values["IdTransaccion"]=null;}
 
+            $fields=["dni"=>$values["NroDocumento"],"segmento" => $values["Segmento"],"idRequest" => $values["IdRequest"],"idTransaccion" => $values["IdTransaccion"],"idSocio" => $values["idSocio"]];
+            $ret = API_callAPIfields("/Utilidades/TraerCarpetaDigital/", $fields);
+            $ret = json_decode($ret, true);
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
     public function infoCabalTitular($values)
     {
         try {

@@ -603,10 +603,6 @@ class Requests_Core extends MY_Model {
             /* Llamada a la emision del producto */
 			$param_emision = array("lat"=>$values["lat"],"lng"=> $values["lng"],"pdf_solicitud" => $values["pdf_solicitud"], "img_additional" => $values["img_additional"], "IdRequest" => $id, "sAltaUsuario" => "onboarding");
             $financial = $NETCORECPFINANCIAL->EmisionProducto($param_emision);
-
-log_message("error", "RELATED ".json_encode($financial,JSON_PRETTY_PRINT));
-
-
             $idSolicitudCredito = (int) $financial["message"]["idSolicitud"];
             $linkExtract = $financial["message"]["link_extract"];
             $linkCertificate = $financial["message"]["link_certificate"];

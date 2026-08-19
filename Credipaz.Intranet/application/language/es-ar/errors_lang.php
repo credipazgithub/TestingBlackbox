@@ -78,6 +78,7 @@ $lang['api_error_1075'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1076'] = "No se ha provisto un valor válido para el parámetro 'carbonCopy'";
 $lang['api_error_1077'] = "No se ha provisto un valor válido para el parámetro 'idOperatorTask'";
 $lang['api_error_1078'] = "No se ha provisto un valor válido para el parámetro 'Estado'";
+$lang['api_error_1079'] = "No se ha provisto un valor válido para el parámetro 'Segmento'";
 
 
 $lang['error_100'] = "DB Layer error";
