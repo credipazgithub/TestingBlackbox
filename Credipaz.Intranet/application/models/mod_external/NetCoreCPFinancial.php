@@ -488,8 +488,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function EmisionProducto($values)
     {
         try {
-
-            
             $headers = $this->Authenticate();
             $fields = array("lat" => $values["lat"], "lng" => $values["lng"],"pdf_solicitud" => $values["pdf_solicitud"],"img_additional" => $values["img_additional"], "IdRequest" => (int) $values["IdRequest"], "sAltaUsuario" => (string) $values["sAltaUsuario"]);
             $url = (CPFINANCIALS . "/Credito/EmisionProducto/");
