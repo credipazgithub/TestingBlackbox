@@ -228,7 +228,28 @@ class Credipaz extends MY_Model {
             $merged["status"] = "OK";
             $merged["timestamp"] = date(FORMAT_DATE);
             $merged["base64"] = $ret["mensaje"];
-            $merged["mime"] = "application/pdf";
+            $merged["mime"] = $ret["mime"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function archivourl($values)
+    {
+        try {
+            if (!isset($values["File"])) {$values["File"] = "";}
+            if (!isset($values["Key"])) {$values["Key"] = "";}
+            if ($values["File"] == "") {throw new Exception(lang("api_error_1030"), 1030);}
+            if ($values["Key"] == "") {throw new Exception(lang("api_error_1029"), 1029);}
+            $fields = array("RutaOrigen" => $values["Key"], "Archivo"=> $values["File"]);
+            $ret = API_callAPIfields("/Utilidades/BridgeFileUrl/", $fields);
+            $ret = json_decode($ret, true);
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["url"] = $ret["url"];
+            $merged["mime"] = $ret["mime"];
             return $merged;
         } catch (Exception $e) {
             return logError($e, __METHOD__);
