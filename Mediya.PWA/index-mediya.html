@@ -34,8 +34,8 @@
     <script src="./assets/bootstrap/js/bootstrap.min.js?x"></script>
 
     <!-- Application libraries -->
-    <script src="./js/NMF.js?yyyyz"></script>
-    <script src="./js/HTTPREQUEST.js?yyyyz"></script>
+    <script src="./js/functions.js?yyyyz"></script>
+    <script src="./js/HTTPREQUEST_deprecated.js?yyyyz"></script>
 
     <link rel="apple-touch-icon" href="./icons/mediya/maskable_icon_x180.png">
 </head>
@@ -180,29 +180,30 @@
                     firebase.initializeApp(firebaseConfig);
                     /*----------------------------------------------------*/
                     var ms = Date.now();
-                    _NMF._default_page = ("./includes/mediya/home.html?" + ms);
-                    _NMF._map_icon = ("./img/Comun/mediya.png?" + ms);
-                    _NMF._actualPage = ("./includes/mediya/home.html?" + ms);
-                    _HTTPREQUEST._id_app = 5;
-                    _HTTPREQUEST._sufixEmail = "@clubredondo.com";
-                    _HTTPREQUEST._id_root = "appClubRedondo";
+                    _F._default_page = ("./includes/mediya/home.html?" + ms);
+                    _F._map_icon = ("./img/Comun/mediya.png?" + ms);
+                    _F._actualPage = ("./includes/mediya/home.html?" + ms);
+                    _HTTPREQUEST_deprecated._id_app = 5;
+                    _HTTPREQUEST_deprecated._sufixEmail = "@clubredondo.com";
+                    _HTTPREQUEST_deprecated._id_root = "appClubRedondo";
 
                     /*Todo va wrapped dentro del llamado a la configuracion de server Blacbox */
-                    _NMF.readConfigServers("Intranet").then(function (data) {
-                        _HTTPREQUEST.server = data.url;
-                        _HTTPREQUEST._mobile = (screen.width < 700 || screen.height < 500);
-                        _NMF.onEvalLoginStatus();
+                    _F.readConfigServers("Intranet").then(function (data) {
+                        _HTTPREQUEST_deprecated.server = data.url;
+                        _HTTPREQUEST_deprecated._mobile = (screen.width < 700 || screen.height < 500);
+
+                        _F.onEvalLoginStatus();
                         $(".inactive-paycode").removeClass("d-none");
                         $(".btn-generate-paycode").removeClass("d-none");
 
                         $.getScript(("./js/PAY.js"), function () {
                             $.getScript("./js/PHOTO.js", function () {
-                                var _parameters = _TOOLS.onAllUrlParams();
+                                var _parameters = _T.onAllUrlParams();
                                 if (_parameters.p != undefined) {
                                     $("body").append("<input class='dni' value='" + _parameters.p + "'/>");
                                     $("body").append("<input class='password' value='1'/>");
                                     $("body").append("<button class='clickLog' data-step='firstforced'/>");
-                                    _NMF.onActionLogin($(".clickLog"));
+                                    _F.onActionLogin($(".clickLog"));
                                 }
                             });
                         });
@@ -218,7 +219,7 @@
 
 <!-- Third party Style Sheets -->
 <script async src="https://cdn.gruponeodata.com/database/DB.js"></script>
-<script async src="./js/TOOLS.js?xxx"></script>
-<script async src="./js/API.js?xxx"></script>
-<script async src="./js/INDEX.js?xxx"></script>
+<script async src="./js/tools.js?xxx"></script>
+<script async src="./js/API_deprecated.js?xxx"></script>
+<script async src="./js/events.js?xxx"></script>
 <script async src="website-movil-mediya-configuration.js"></script>

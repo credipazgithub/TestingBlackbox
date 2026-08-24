@@ -35,8 +35,8 @@
     <div class="row no-gutters msj-credenciales p-1"></div>
 </div>
 <script>
-    _NMF.onPageHeader(".inner-title", "TELEMEDICINA", "./img/MediYa/h_telemedicina.png", _NMF._default_page, false);
-    _NMF.onResizeInner();
+    _F.onPageHeader(".inner-title", "TELEMEDICINA", "./img/MediYa/h_telemedicina.png", _F._default_page, false);
+    _F.onResizeInner();
     $(".imgTitle").remove();
     $(".chevron").css({ "color": "white" });
     $(".dyn-title").css({ "color": "white" });
@@ -44,12 +44,12 @@
     var _msg = "<p><b>En este momento su estado no le permite acceder a nuestros servicios.<br/>";
     _msg += "Por favor, comuníquese con Atención al Socio al 0810-666-1729.</b></p>";
     _msg += "<div class='row'><div class='col-12 mb-1 text-center px-0'><a href='tel:08106661729'><img src='./img/Mediya/boton_0810-2.png' style='width:70%;'/></a></div></div>";
-    //_NMF._session_data.TeleMedicina = "N";
-    if (_NMF._session_data.TeleMedicina == "N") {
+    //_F._session_data.TeleMedicina = "N";
+    if (_F._session_data.TeleMedicina == "N") {
         $(".btn-generate-paycode").remove();
         $(".btnTerminosConsentimiento").remove();
         $(".tel-closed").remove();
-        if (parseInt(_NMF._session_data.IdSocio) != 0) {
+        if (parseInt(_F._session_data.IdSocio) != 0) {
             _msg = "<p>Su servicio está inhabilitado por falta de pago.  Puede recuperarlo abonando la deuda pendiente.</p>";
             _msg += "<a href='" + $(".linkPago").attr("href") +"' class='btn-pagar text-center btn-pagar' target='_blank'>Pagar</a>";
         }
@@ -57,17 +57,17 @@
     } else {
         $(".msj-credenciales").html($(".title-rCredencial").html());
         $(".msj-credenciales").append($(".rCredencial").html());
-        if (!_NMF.onOpenTelemedicina()) {
+        if (!_F.onOpenTelemedicina()) {
             $(".btn-generate-paycode").remove();
             $(".app-telemedicina").css({ "background-image": "url(./img/MediYa/telemedicina-close.png)", "background-size": "cover" });
         } else {
             $(".tel-closed").remove();
         }
         _msg = "Servicio de videoconsulta con un médico clínico, que puede emitir una receta digital que se enviará a su teléfono.<br/>";
-        _msg += _NMF._session_data.TelemedicinaMensajeCerrado + "<br/>";
+        _msg += _F._session_data.TelemedicinaMensajeCerrado + "<br/>";
         _msg += "Fuera de ese horario, comunicarse al 0810 888 1441.<br/>";
         _msg += "Posee tres consultas anuales sin cargo";
-        if (_NMF._session_data.TeleMedicinaRegistrado == 2) {
+        if (_F._session_data.TeleMedicinaRegistrado == 2) {
             _msg += "<br/><b>Le recordamos que el envío de recetas y su descuento del 50% estará disponible a partir del mes próximo.</b>";
         }
     }
@@ -95,9 +95,9 @@
         $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).fadeIn("slow");
         $(".app-footer").addClass("d-none");
     });
-    $.getScript("https://jvideo1.gruponeodata.com/external_api.js").done(function (script, textStatus) {
-        $.getScript(_NMF._cdn_server + "authentication/NEOAUTHENTICATION.js?" + _TOOLS.UUID()).done(function (script, textStatus) {
-            $.getScript(_NMF._cdn_server + "video/NEOVIDEO-jvideo1.js?" + _TOOLS.UUID()).done(function (script, textStatus) {
+    $.getScript("https://jvideo1.gruponeodata.com/external_API_deprecated.js").done(function (script, textStatus) {
+        $.getScript(_F._cdn_server + "authentication/NEOAUTHENTICATION.js?" + _T.UUID()).done(function (script, textStatus) {
+            $.getScript(_F._cdn_server + "video/NEOVIDEO-jvideo1.js?" + _T.UUID()).done(function (script, textStatus) {
                 $(_NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.target).html("");
                 _NEOAUTHENTICATION._SERVER = _authenticationServer;
                 _NEOVIDEO._SERVER = _videoServer;
@@ -118,14 +118,14 @@
                     $(".app-footer").removeClass("d-none");
                     $("#meet").fadeOut("fast");
                     $(".take-picture").addClass("d-none");
-                    _NMF._joined = false;
+                    _F._joined = false;
                 };
                 _NEOVIDEO.onParticipantLeft = function (data) {
                     $(".app-footer").removeClass("d-none");
                     $("#meet").fadeOut("fast");
                     $(".take-picture").addClass("d-none");
                     $(".close-sidebar").click()
-                    _NMF._joined = false;
+                    _F._joined = false;
                 };
                 _NEOVIDEO.onParticipantJoined = function (data) {
                     $('[name ^= "jitsiConferenceFrame"]').css({ "height": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.height, "width": _NEOVIDEO._CONFIG_INIT_VIDEO_DEFAULTS.width });
@@ -136,10 +136,10 @@
                 };
 
                 _NEOVIDEO.onTurnOffVideo({});
-                _NMF.onEvalCallStatus(null);
-                clearInterval(_NMF._TIMER_STATUS);
-                _NMF._TIMER_STATUS = setInterval(function () {
-                    _NMF.onEvalCallStatus(null);
+                _F.onEvalCallStatus(null);
+                clearInterval(_F._TIMER_STATUS);
+                _F._TIMER_STATUS = setInterval(function () {
+                    _F.onEvalCallStatus(null);
                 }, 5000);
             });
         });

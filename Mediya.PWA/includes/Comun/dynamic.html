@@ -5,11 +5,11 @@
     <div class="maparea d-none" style="z-index:9999;"></div>
 </div>
 <script>
-    _NMF.onPageHeader(".inner-title", "", "", _NMF._default_page, true);
+    _F.onPageHeader(".inner-title", "", "", _F._default_page, true);
 
-    _NMF.onResizeInner();
+    _F.onResizeInner();
     setTimeout(function () {
         $(".res-result").html("").hide();
-        _NMF.onGoForBeneficios("categoria", _NMF.id_category, "", 0);
+        _F.onGoForBeneficios("categoria", _F.id_category, "", 0);
     }, 250);
 </script>

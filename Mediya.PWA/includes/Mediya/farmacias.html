@@ -8,15 +8,15 @@
 <script>
     $(".msj-credenciales").html($(".title-rCredencial").html());
     $(".msj-credenciales").append($(".rCredencial").html());
-    _NMF.onPageHeader(".inner-title", "FARMACIAS", "./img/MediYa/h_farmacia.png", _NMF._default_page,true);
-    _NMF.onResizeInner();
+    _F.onPageHeader(".inner-title", "FARMACIAS", "./img/MediYa/h_farmacia.png", _F._default_page,true);
+    _F.onResizeInner();
     setTimeout(function () {
         $(".res-result").html("").hide();
-        _NMF.onGoForBeneficios("categoria", _NMF.id_category, "", 0);
+        _F.onGoForBeneficios("categoria", _F.id_category, "", 0);
         var _h = ($(".app-farmacias").height() - $(".inner-title").height() - $(".msj-credenciales").height());
         $(".results").css("height", (_h + "px"));
     }, 250);
-    _NMF.id_category = "-125";
-    _NMF.showLinkAutorizaciones = false;
-    $(".searcher").attr("data-category", _NMF.id_category);
+    _F.id_category = "-125";
+    _F.showLinkAutorizaciones = false;
+    $(".searcher").attr("data-category", _F.id_category);
 </script>

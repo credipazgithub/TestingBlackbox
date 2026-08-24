@@ -4,13 +4,13 @@ if ('serviceWorker' in navigator) {
     });
 
     window.addEventListener('beforeinstallprompt', (e) => {
-        _HTTPREQUEST._mobile = (screen.width < 700 || screen.height < 500);
+        _HTTPREQUEST_deprecated._mobile = (screen.width < 700 || screen.height < 500);
         var _json = _DB.Get("pwa_install");
         if (_json != null && !_json.ask) { return false; }
-        if (!_NMF._bInstalling && _HTTPREQUEST._mobile) {
-            _NMF._bInstalling = true;
+        if (!_F._bInstalling && _HTTPREQUEST_deprecated._mobile) {
+            _F._bInstalling = true;
             e.preventDefault();
-            _NMF.deferredPrompt = e;
+            _F.deferredPrompt = e;
             var _html = "<div class='container text-center p-3 m-0 colorBack' style='border-radius:25px;'><img src='img/Mediya/logo.png' class='img-logo' alt='Logo' style='width:150px;'/></div>";
             _html += "<hr/>";
             _html += ("<div class='area-install'><p>Utilizamos tecnología PWA para brindar una experiencia de uso fluída y confiable.</p><p>Esta aplicación puede instalarse sin inconvenientes en su dispositivo.</p></div>");
@@ -21,11 +21,11 @@ if ('serviceWorker' in navigator) {
             _html += "      <td align='right'><button id='install' class='btn bt-md btn-primary btn-raised install'>Instalar</button></td>";
             _html += "   </tr>";
             _html += "</table>";
-            _NMF.onModalFullScreen("Instalación", _html);
+            _F.onModalFullScreen("Instalación", _html);
         }
     });
     window.addEventListener('appinstalled', (e) => {
-        _NMF.onModalAlert("Verificación de sistema", "Se ha instalado la aplicación en su dispositivo");
+        _F.onModalAlert("Verificación de sistema", "Se ha instalado la aplicación en su dispositivo");
     });
 
     navigator.serviceWorker.register('website-movil-worker.js')
@@ -47,14 +47,14 @@ if ('serviceWorker' in navigator) {
 }
 async function installApp() {
     $(".hide-install").fadeOut("slow");
-    if (_NMF.deferredPrompt) {
-        _NMF.deferredPrompt.prompt();
-        const { outcome } = await _NMF.deferredPrompt.userChoice;
-        _NMF.deferredPrompt = null;
+    if (_F.deferredPrompt) {
+        _F.deferredPrompt.prompt();
+        const { outcome } = await _F.deferredPrompt.userChoice;
+        _F.deferredPrompt = null;
         if (outcome !== 'accepted') {
             setTimeout(function () {
                 var _ret = { "color": "danger", "html": _LNG._msg_pwa_cancel_install };
-                _NMF.onModalAlert("Verificación de sistema", _ret.html, _ret.color, true);
+                _F.onModalAlert("Verificación de sistema", _ret.html, _ret.color, true);
             }, 100);
         }
     }

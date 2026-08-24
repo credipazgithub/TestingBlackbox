@@ -230,8 +230,9 @@
     <Content Include="includes\Mediya\asociarme.html" />
     <Content Include="includes\Comun\searchResult.html" />
     <Content Include="index.html" />
-    <Content Include="js\HTTPREQUEST.js" />
-    <Content Include="js\NMF.js" />
+    <Content Include="js\API.js" />
+    <Content Include="js\HTTPREQUEST_deprecated.js" />
+    <Content Include="js\functions.js" />
     <Content Include="css\fonts.css" />
     <Content Include="css\index.css" />
     <Content Include="img\Mediya\h_farmacia.png" />
@@ -253,8 +254,8 @@
     <Content Include="includes\Mediya\pagos.html" />
     <Content Include="includes\Mediya\telemedicina.html" />
     <Content Include="index-mediya.html" />
-    <Content Include="js\API.js" />
-    <Content Include="js\INDEX.js" />
+    <Content Include="js\API_deprecated.js" />
+    <Content Include="js\events.js" />
     <Content Include="fonts\Antenna-Black.otf" />
     <Content Include="fonts\Antenna-Bold.otf" />
     <Content Include="fonts\Antenna-BoldItalic.otf" />
@@ -262,9 +263,11 @@
     <Content Include="fonts\Antenna-Medium.otf" />
     <Content Include="fonts\Antenna-MediumItalic.otf" />
     <Content Include="fonts\Antenna-Thin.otf" />
+    <Content Include="js\Neodata\NEOAUTHENTICATION.js" />
+    <Content Include="js\Neodata\NEOVIDEO-jvideo1.js" />
     <Content Include="js\PAY.js" />
     <Content Include="js\PHOTO.js" />
-    <Content Include="js\TOOLS.js" />
+    <Content Include="js\tools.js" />
     <Content Include="lupa.png" />
     <Content Include="img\Comun\placeholder.png" />
     <Content Include="website-movil-mediya-configuration.js" />

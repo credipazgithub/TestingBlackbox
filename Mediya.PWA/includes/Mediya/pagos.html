@@ -8,15 +8,15 @@
     </div>
 </div>
 <script>
-    _NMF.onPageHeader(".inner-title", "BOTÓN DE PAGO", "./img/Comun/h_pagos.png", _NMF._default_page,false);
+    _F.onPageHeader(".inner-title", "BOTÓN DE PAGO", "./img/Comun/h_pagos.png", _F._default_page,false);
 
     setTimeout(function () {
-        if (!_NMF._logged) {
-            _NMF.onModalAlert("Alerta", "Por favor, inicie sesión para solicitar servicios", "warning");
+        if (!_F._logged) {
+            _F.onModalAlert("Alerta", "Por favor, inicie sesión para solicitar servicios", "warning");
         } else {
-            _NMF.onResizeInner();
-            //var _url = "http://localhost:1100/pagos-fiserv-pwacr/" + _TOOLS.utf8_to_b64(_NMF._auth_user_data.dni);
-            var _url = "https://intranet.credipaz.com/pagos-fiserv-pwacr/" + _TOOLS.utf8_to_b64(_NMF._auth_user_data.dni);
+            _F.onResizeInner();
+            //var _url = "http://localhost:1100/pagos-fiserv-pwacr/" + _T.utf8_to_b64(_F._auth_user_data.dni);
+            var _url = "https://intranet.credipaz.com/pagos-fiserv-pwacr/" + _T.utf8_to_b64(_F._auth_user_data.dni);
             $("#ifPago").attr("src", _url).show();
         }
     }, 250);

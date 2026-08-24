@@ -18,10 +18,10 @@ var _PAY = {
             "where": "code like 'ESPECIALIDAD_%'",
             "order": "description ASC",
         };
-        _API.UiGet(_json).then(function (datajson) {
-            _TOOLS.loadCombo(datajson, { "target": "#cboEspecialidad", "selected": "ESPECIALIDAD_CLINICA_MEDICA", "id": "code", "description": "description" });
+        _API_deprecated.UiGet(_json).then(function (datajson) {
+            _T.loadCombo(datajson, { "target": "#cboEspecialidad", "selected": "ESPECIALIDAD_CLINICA_MEDICA", "id": "code", "description": "description" });
         }).catch(function (error) {
-            _NMF.onAlert({ "class": "alert-danger", "message": error.message });
+            _F.onAlert({ "class": "alert-danger", "message": error.message });
         });
     },
     onBuildInterfacePermisosTelemedicina: function (data) {
@@ -52,15 +52,15 @@ var _PAY = {
             _PAY.onGeneratePayCodeTelemedicina($(this));
         });
         $("body").off("click", ".btn-cancel-permiso").on("click", ".btn-cancel-permiso", function () {
-            _NMF.onDestroyModal('#telemedicinaPermiso');
+            _F.onDestroyModal('#telemedicinaPermiso');
         });
     },
     onGeneratePermisoTelemedicina: function (_this) {
-        if (_NMF._session_data.ClubRedondo == 0) {
-            _NMF.onIsNotSocio("Debe ser socio para solicitar atención de Telemedicina.");
+        if (_F._session_data.ClubRedondo == 0) {
+            _F.onIsNotSocio("Debe ser socio para solicitar atención de Telemedicina.");
         } else {
-            _NMF.onDestroyModal('#telemedicinaPermiso');
-            _API.UiGetWebPosts({ "id": 94 }).then(function (data) {
+            _F.onDestroyModal('#telemedicinaPermiso');
+            _API_deprecated.UiGetWebPosts({ "id": 94 }).then(function (data) {
                 $("body").append(_PAY.onBuildInterfacePermisosTelemedicina(data));
                 _PAY.onEventsPermisosTelemedicina();
                 $("#telemedicinaPermiso").modal({ backdrop: false, keyboard: true, show: true });
@@ -86,11 +86,11 @@ var _PAY = {
         _html += "        <div class='col-11 text-center p-0'><b class='dyn-title' style='color:white;'>Telemedicina</b></div>";
         _html += "     </div>";
 
-        _html += "       <div class='alert alert-info openclosemessage' style='font-weight:bold;font-size:26px;color:white;'><b>" + _NMF._session_data.TelemedicinaMensajeCerrado + "</b></div>";
-        if (_NMF.onOpenTelemedicina()) {
+        _html += "       <div class='alert alert-info openclosemessage' style='font-weight:bold;font-size:26px;color:white;'><b>" + _F._session_data.TelemedicinaMensajeCerrado + "</b></div>";
+        if (_F.onOpenTelemedicina()) {
             _html += "       <p class='modal-title open d-none'></p>";
-            if (_NMF._session_data.TeleMedConsultasResto == 0) {
-                _html += "<p class='body-pago body-pago-title d-none'  style='color:white;'>Por favor, efectúe el pago de la consulta $ " + _NMF._session_data.MontoTelemedicina + "</p>";
+            if (_F._session_data.TeleMedConsultasResto == 0) {
+                _html += "<p class='body-pago body-pago-title d-none'  style='color:white;'>Por favor, efectúe el pago de la consulta $ " + _F._session_data.MontoTelemedicina + "</p>";
                 _PAY._autoIn = false;
             } else {
                 _html += "<p class='body-pago body-pago-title d-none' style='color:white;'>¡Aún puede utilizar consultas sin costo!</p>";
@@ -108,17 +108,17 @@ var _PAY = {
             _html += "          </tr>";
             _html += "       </table>";
             _html += "       <p class='mt-3 text-center' style='color:white;'><b>Si consulta por Recetas de patología crónica, tenga a disposición documentación respaldatoria, receta previa y / o estudios realizados.</b></p>";
-            if (_NMF._session_data.Telefono != "") {
+            if (_F._session_data.Telefono != "") {
                 _html += "<p class='mt-2 text-center' style='color:white;'>Verifique el número de teléfono desde el cual está realizando la llamada, para que el médico pueda contactarlo en caso de que se interrumpa la comunicación.</p>";
             } else {
                 _html += "<p class='mt-2 text-center' style='color:white;'>Ingrese el número de teléfono desde el cual está realizando la llamada, para que el médico pueda contactarlo en caso de que se interrumpa la comunicación.</p>";
             }
             _html += "       <div class='row no-gutters mx-2 mt-1'>";
             _html += "           <div class='col-4 text-left'>";
-            _html += "               <input value='" + _NMF._session_data.CodigoArea +"' list='prefijos' inputmode='numeric' maxlength='4' type='number' id='area' name='area' class='form-control area onlyNumbers validatePrevia' placeholder='Área...' />";
+            _html += "               <input value='" + _F._session_data.CodigoArea +"' list='prefijos' inputmode='numeric' maxlength='4' type='number' id='area' name='area' class='form-control area onlyNumbers validatePrevia' placeholder='Área...' />";
             _html += "           </div>";
             _html += "           <div class='col-8 text-left'>";
-            _html += "               <input value='" + _NMF._session_data.Telefono +"' inputmode='numeric' maxlength='8' type='number' id='phone' name='phone' class='form-control phone onlyNumbers validatePrevia' placeholder='Teléfono...' />";
+            _html += "               <input value='" + _F._session_data.Telefono +"' inputmode='numeric' maxlength='8' type='number' id='phone' name='phone' class='form-control phone onlyNumbers validatePrevia' placeholder='Teléfono...' />";
             _html += "           </div>";
             _html += "       </div>";
 
@@ -130,10 +130,10 @@ var _PAY = {
             _html += "             <td align='center'>";
             var _lbl1 = "SOLICITAR VIDEOCONSULTA";
             var _lbl2 = "Aceptar";
-            if (_NMF._session_data.TeleMedConsultasResto == 0) { _lbl1 = "Ir a pago"; _lbl2 = "Pagar"; }
+            if (_F._session_data.TeleMedConsultasResto == 0) { _lbl1 = "Ir a pago"; _lbl2 = "Pagar"; }
             _html += "       <button class='btn-raised btn-move-open btn btn-info btn-sm openclosemessage mb-2' style='display:block;'><i class='material-icons'>chevron_right</i></span>Continuar</button>";
             _html += "       <button class='btn-accept-previa open d-none mb-2 btn-general'  style='display:block;'>" + _lbl1 + "</button>";
-            if (_NMF._session_data.TeleMedConsultasResto != 0) { _html += "<button class='btn-accept-sincargo d-none mb-2 btn-general' style='display:block;'>SOLICITAR VIDEOCONSULTA</button>"; }
+            if (_F._session_data.TeleMedConsultasResto != 0) { _html += "<button class='btn-accept-sincargo d-none mb-2 btn-general' style='display:block;'>SOLICITAR VIDEOCONSULTA</button>"; }
             _html += "             </td>";
             _html += "          </tr>";
             _html += "       </table>";
@@ -156,11 +156,11 @@ var _PAY = {
         $("body").off("click", ".btn-cancel-previa").on("click", ".btn-cancel-previa", function () {
             _PAY._idTransfer_telemedicina = 0;
             clearInterval(_PAY._TMR_PAY_TELEMEDICINA);
-            _NMF.onDestroyModal("#telemedicinaPrevia");
+            _F.onDestroyModal("#telemedicinaPrevia");
             $(".btn-generate-paycode").removeClass("d-none");
         });
         $("body").off("click", ".btn-accept-previa").on("click", ".btn-accept-previa", function () {
-            if (!_TOOLS.validate(".validatePrevia")) {
+            if (!_T.validate(".validatePrevia")) {
                 alert("¡Complete los datos solicitados!");
                 $('.validatePrevia').each(function () {
                     this.style.setProperty('border', 'solid 1px red', 'important');
@@ -168,10 +168,10 @@ var _PAY = {
                 return false;
             };
             $(".body-pago-form").html("");
-            if (parseInt(_NMF._session_data.TeleMedConsultasResto) == 0) {
+            if (parseInt(_F._session_data.TeleMedConsultasResto) == 0) {
                 var _total = $(".importe").val();
                 if (_total > 0) {
-                    _NMF._itemsPagos = [{ "Tipo": "TELEMED", "Identificacion": _NMF._session_data.ClubRedondo, "Importe": _total, "idTransfer": 0 }];
+                    _F._itemsPagos = [{ "Tipo": "TELEMED", "Identificacion": _F._session_data.ClubRedondo, "Importe": _total, "idTransfer": 0 }];
                     var _sandbox = 0;
                     var _visible = 0;
                     var _targetFrame = "_blank";
@@ -179,17 +179,17 @@ var _PAY = {
                     var _json = {
                         "currency": "032",
                         "total": _total,
-                        "dni": _NMF._auth_user_data.dni,
-                        "itemsPagos": JSON.stringify(_NMF._itemsPagos),
+                        "dni": _F._auth_user_data.dni,
+                        "itemsPagos": JSON.stringify(_F._itemsPagos),
                         "sandbox": _sandbox,
                         "visible": _visible,
                         "parentUri": _location
                     };
-                    _API.UiBuildFormFiserv(_json).then(function (data) {
+                    _API_deprecated.UiBuildFormFiserv(_json).then(function (data) {
                         data.data += "<iframe id='iframe_fiserv' name='iframe_fiserv' class='iframe_fiserv d-none' src='' frameborder='0' style='height:100vh;width:100%;' />";
                         $(".body-pago-form").html(data.data).removeClass("d-none");
                         $(".hrFiserv").addClass("d-none");
-                        $("#comments").val(JSON.stringify(_NMF._itemsPagos));
+                        $("#comments").val(JSON.stringify(_F._itemsPagos));
                         if (_visible == 0) {
                             $(".btn-pagar-fiserv").addClass("d-none");
                             $(".tbl-fiserv").addClass("d-none");
@@ -211,17 +211,17 @@ var _PAY = {
             $(".body-pago").removeClass("d-none");
         });
         $("body").off("click", ".btn-accept-sincargo").on("click", ".btn-accept-sincargo", function () {
-            if (!_TOOLS.validate(".validatePrevia")) {
+            if (!_T.validate(".validatePrevia")) {
                 alert("¡Complete los datos del formulario!");
                 return false;
             };
             _PAY.onPaymentRegistrationTelemedicina({ "apiReference": "Sin cargo" });
         });
         $("body").off("click", ".btn-pagar-fiserv").on("click", ".btn-pagar-fiserv", function (e) {
-            var _raw_request = JSON.stringify(_TOOLS.getFormValues(".dataPost", $(this)));
+            var _raw_request = JSON.stringify(_T.getFormValues(".dataPost", $(this)));
             var _json = {
                 "id_type_channel": 1,
-                "identificacion": _NMF._itemsPagos[0]["Identificacion"],
+                "identificacion": _F._itemsPagos[0]["Identificacion"],
                 "status": "INICIADO",
                 "currency_request": $("#currency").val(),
                 "dni_request": $(".dni_tarjeta").val(),
@@ -229,11 +229,11 @@ var _PAY = {
                 "card_request": "",
                 "raw_request": _raw_request
             };
-            _API.UiInitTransactionFiserv(_json).then(function (data) {
+            _API_deprecated.UiInitTransactionFiserv(_json).then(function (data) {
                 //console.log(data.data.id);
                 _PAY._idTransfer_telemedicina = data.data.id;
-                _NMF._itemsPagos[0]["idTransfer"] = _PAY._idTransfer_telemedicina;
-                $("#comments").val(JSON.stringify(_NMF._itemsPagos));
+                _F._itemsPagos[0]["idTransfer"] = _PAY._idTransfer_telemedicina;
+                $("#comments").val(JSON.stringify(_F._itemsPagos));
                 $(".body-pago-title").addClass("d-none");
                 $(".btn-pagar-fiserv").addClass("d-none");
                 $(".iframe_fiserv").removeClass("d-none");
@@ -248,24 +248,24 @@ var _PAY = {
     onGeneratePayCodeTelemedicina: function (_this) {
         try {
             $(".btn-generate-paycode").addClass("d-none");
-            _NMF.onDestroyModal('#telemedicinaPermiso');
-            _NMF.onDestroyModal('#telemedicinaPrevia');
+            _F.onDestroyModal('#telemedicinaPermiso');
+            _F.onDestroyModal('#telemedicinaPrevia');
 
             $("body").append(_PAY.onBuildInterfaceTelemedicina());
             $(".imgDoctor").css({ "background-image": "url(./img/MediYa/telemedicina-close.png)", "background-size": "cover" });
 
             _PAY.onAddEspecialidades(null);
 
-            $(".importe").val(_NMF._session_data.MontoTelemedicina);
+            $(".importe").val(_F._session_data.MontoTelemedicina);
             $(".concepto").val("Teleconsulta médica");
-            $(".referencia").val(_TOOLS.UUID());
+            $(".referencia").val(_T.UUID());
             /*----------------------------------*/
             _PAY.onEventsTelemedicina();
             $(".btn-move-open").click();
             $("#telemedicinaPrevia").modal({ backdrop: false, keyboard: true, show: true });
             return true;
         } catch (rex) {
-            _NMF.onAlert({ "class": "alert-danger", "message": rex.message });
+            _F.onAlert({ "class": "alert-danger", "message": rex.message });
             $(".body-wait").addClass("d-none");
             $(".body-pago").removeClass("d-none");
             $(".body-footer").removeClass("d-none");
@@ -273,8 +273,8 @@ var _PAY = {
         }
     },
     onPaymentRegistrationTelemedicina: function (response) {
-        _NMF.onConnectVideoChat().then(function (data) {
-            var _jsonChargesCodes = _TOOLS.getFormValues(".dbaseprevia");
+        _F.onConnectVideoChat().then(function (data) {
+            var _jsonChargesCodes = _T.getFormValues(".dbaseprevia");
             var _area = $(".area").val();
             var _telefono = $(".phone").val();
             if (_area == undefined) { _area = ""; }
@@ -283,17 +283,17 @@ var _PAY = {
             _jsonChargesCodes["area"] = _area;
             _jsonChargesCodes["telefono"] = _telefono;
             _jsonChargesCodes["telefono_contacto"] = (_area + _telefono);
-            _API.UiGeneratePaycode(_jsonChargesCodes).then(function (data) {
+            _API_deprecated.UiGeneratePaycode(_jsonChargesCodes).then(function (data) {
                 if (data.status == "OK") {
-                    if (_NMF._session_data.TeleMedConsultasResto != 0) { _NMF._session_data.TeleMedConsultasResto -= 1; }
+                    if (_F._session_data.TeleMedConsultasResto != 0) { _F._session_data.TeleMedConsultasResto -= 1; }
                     _html = ("<b>¡Se ha procesado el pago en forma exitosa! Nº de transacción " + response.apiReference + "</b>");
-                    _NMF.onEvalCallStatus({ "id_transaction": _jsonChargesCodes["code"] });
+                    _F.onEvalCallStatus({ "id_transaction": _jsonChargesCodes["code"] });
                 } else {
-                    _NMF.onAlert({ "class": "alert-info", "message": data.message });
+                    _F.onAlert({ "class": "alert-info", "message": data.message });
                 }
                 $(".btn-cancel-previa").click();
             }).catch(function (error) {
-                _NMF.onAlert({ "class": "alert-danger", "message": error });
+                _F.onAlert({ "class": "alert-danger", "message": error });
             });
         });
         $(".body-wait").addClass("d-none");
@@ -310,24 +310,24 @@ var _PAY = {
             "where": ("id=" + _PAY._idTransfer_telemedicina),
             "order": "description ASC",
         };
-        _API.UiGet(_json).then(function (datajson) {
+        _API_deprecated.UiGet(_json).then(function (datajson) {
             if (datajson.data[0].status != "INICIADO") {
                 clearInterval(_PAY._TMR_PAY_TELEMEDICINA);
                 if (datajson.data[0].status == "APROBADO") {
                     $(".id_payment").val(0);
                     $(".code_payment").val(_PAY._idTransfer_telemedicina); //id en mod_payments_transactions
                     _PAY.onPaymentRegistrationTelemedicina({ "apiReference": _PAY._idTransfer_telemedicina });
-                    _NMF.onAlert({ "class": "alert-success", "message": "Su pago se ha registrado.  Aguarde unos instantes, que será atendido." });
+                    _F.onAlert({ "class": "alert-success", "message": "Su pago se ha registrado.  Aguarde unos instantes, que será atendido." });
                     setTimeout(function () { $(".push-alert").remove(); }, 10000);
                 } else {
-                    _NMF.onAlert({ "class": "alert-danger", "message": "Su pago no ha podido ser procesado.  Reintente con otro medio de pago." });
+                    _F.onAlert({ "class": "alert-danger", "message": "Su pago no ha podido ser procesado.  Reintente con otro medio de pago." });
                 }
 
-                _NMF.onDestroyModal("#telemedicinaPrevia");
+                _F.onDestroyModal("#telemedicinaPrevia");
                 //console.log(datajson);
             }
         }).catch(function (error) {
-            _NMF.onAlert({ "class": "alert-danger", "message": error.message });
+            _F.onAlert({ "class": "alert-danger", "message": error.message });
         });
     },
 };

@@ -14,7 +14,6 @@ class Integraciones extends MY_Model {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
             if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
-
             if (isset($values["Sexo"])) {
                 if ($values["Sexo"] != "") {
                     $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);

@@ -1,215 +1,130 @@
-/**
- * /
- * Requerided functions for all applications!
- * Must be customized for each implementation
- */
 var _API = {
-    UiGet: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "get";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiGetWebPosts: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_web_posts";
-                _json["table"] = "web_posts";
-                _json["model"] = "web_posts";
-                _json["function"] = "get";
-                _json["where"] = ("id=" + _json["id"]);
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiApplicationMobileFunction: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _HTTPREQUEST.ExecuteDirect(_json, "api.pwa/getApplicationMobileFunction").then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiAuthenticateMobile: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_backend";
-                _json["table"] = "users";
-                _json["model"] = "users";
-                _json["function"] = "authenticateMobile";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiTestUserValuePWA: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_backend";
-                _json["table"] = "users";
-                _json["model"] = "users";
-                _json["function"] = "testUserValuePWA";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiGetUserInformation: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_backend";
-                _json["table"] = "external";
-                _json["model"] = "external";
-                _json["function"] = "getUserInformation";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiSaveMessage: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "directTelemedicina";
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "messages";
-                _json["model"] = "messages";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
+    _TS: 0,
+    _ROOT: "",
+    _TIMER_ALERT: 0,
+    _TIMER_LAZY: 0,
+    tools: null,
+    id_user_log: null,
+    id_app_external: 0,
+    id_sucursal: 100,
+    sucursal: "CASA CENTRAL",
+    loginRequired: false,
+    postLogin: false,
+    externalUserMode: 0,
+    doctorRequired:false,
+    imageLogin: "./img/loginDefault.png",
+    subsystem: "",
+    configuration: null,
+    authentication: null,
+    telemedicina: { "isDoctor": 0, "doctorName": "", "doctorFirma": "", "doctorMatricula": "" },
+    branchConfiguration: null,
+    urlParameters: null,
+    inited: false,
+    verbose: false,
 
-    UiDelete: function (_json) {
+    /* Funciones core de configuración, carga de archivos y llamadas a servicios externos */
+    call: function (endpoint, data) {
+        /* NO AUTENTICA
+        Función directa para llamadas genéricas, sin autenticación previa 
+        Parámetros:
+        endpoint: punto de acceso a la API
+        data: objeto json con los parámetros a enviar en la llamada, deben incluirse id_user, token y id_app
+        */
         return new Promise(
             function (resolve, reject) {
-                _json["function"] = "delete";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiStatusTelemedicina: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "charges_codes";
-                _json["model"] = "charges_codes";
-                _json["function"] = "statusTelemedicina";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) {
-                    resolve(data);
-                }).catch(function (err) {
-                    reject(err);
+                var _url = (_API.configuration.server + endpoint);
+                _API.log("call->data->" + _url, data);
+                $.ajax({
+                    "type": "POST",
+                    "dataType": "json",
+                    "url": _url,
+                    "data": data,
+                    "success": function (response) {
+                        _API.log("call->response", response);
+                        resolve(response);
+                    },
+                    "error": function (xhr, status, error) { reject(error); }
                 });
             });
     },
-    UiGeneratePaycode: function (_json) {
+    authenticate: function () {
+        /*
+        Función directa para llamadas de autenticación del desarrollador 
+        */
         return new Promise(
             function (resolve, reject) {
-                _json["function"] = "generatePaycode";
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "charges_codes";
-                _json["model"] = "charges_codes";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+                /* Se auto asignan los parámetros basados en los datos de configServers.js */
+                var data = {
+                    "id_app": _API.configuration.id_app,
+                    "username": _API.configuration.username,
+                    "password": _API.configuration.password,
+                    "version": _API.configuration.version
+                };
+                /* Llamada a la autenticación */
+                _API.call("production/authenticate", data)
+                    .then(function (auth) {
+                        /* Asignación de valores de autenticación */
+                        _API.authentication = auth;
+                        resolve(auth);
+                    })
+                    .catch(function (err) {
+                        _API.auth = null;
+                        _API.log("authenticate error", err);
+                        _API.onShowUnauthorized("Servicio de autenticación no disponible.");
+                        reject(err);
+                    });
             });
     },
-    UiGetCupons: function (_json) {
+    method: function (endpoint, data) {
+        /* AUTOAUTENTICA
+        Función genérica para hacer cualquier llamada a la API, 
+        incluyendo la autenticación previa con los datos del desarrollador tomados de configServers.js
+        Parámetros:
+        endpoint: punto de acceso a la API
+        data: objeto json con los parámetros a enviar en la llamada, NO deben incluirse id_user, token y id_app
+        */
         return new Promise(
             function (resolve, reject) {
-                _json["module"] = "mod_club_redondo";
-                _json["table"] = "beneficios";
-                _json["model"] = "beneficios";
-                _json["function"] = "getCuponsRefactored";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+                /* Llamada de auto autenticación */
+                _API.authenticate()
+                    .then(function (auth) {
+                        /* Agregado de valores de la autenticación correcta al objeto data */
+                        data["id_user_active"] = _API.authentication.data.id;
+                        data["token_authentication"] = _API.authentication.data.token_authentication;
+                        data["id_app"] = _API.configuration.id_app;
+                        /* Llamada directa al método de la API con los valores completos */
+                        _API.call(endpoint, data)
+                            .then(function (response) {
+                                resolve(response);
+                            })
+                            .catch(function (err) {
+                                _API.log("method error->" + endpoint, err);
+                                reject(err);
+                            });
+                    }).catch(function (err) {
+                        _API.log("method authenticate error->" + endpoint, err);
+                    });
             });
     },
-    UiGetImage: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_club_redondo";
-                _json["table"] = "beneficios";
-                _json["model"] = "beneficios";
-                _json["function"] = "getImage";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+    loadExternalLibraries: function () {
+        /*Carga de librerias de terceros y configuracion de las mismas */
+        $.getScript("https://jvideo1.gruponeodata.com/external_api.js?" + _API._TS).done(function (script, textStatus) {
+            $.getScript(("js/Neodata/NEOAUTHENTICATION.js?" + _API._TS)).done(function (script, textStatus) {
+                $.getScript("js/Neodata/NEOVIDEO-jvideo1.js?" + _API._TS).done(function (script, textStatus) {
+                    _NEOAUTHENTICATION._SERVER = _API.configuration.authenticationServer;
+                    _NEOVIDEO._SERVER = _API.configuration.videoServer;
+                    _NEOVIDEO._id_application = _API.configuration.id_neo_app;
+                });
             });
+        });
     },
 
-    UiViewMessagesTelemedicina: function (_json) {
+    /* API user spaceballs*/
+    UiGet: function (_params) {
         return new Promise(
             function (resolve, reject) {
-                _json["function"] = "verifyMessage";
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "messages";
-                _json["model"] = "messages";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
+                _API.method("mediya/algo",_params).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
-    },
-    UiComprobantesTelemedicina: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "charges_codes";
-                _json["model"] = "charges_codes";
-                _json["function"] = "comprobantesTelemedicina";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiRecetasTelemedicina: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_telemedicina";
-                _json["table"] = "messages";
-                _json["model"] = "messages";
-                _json["function"] = "recetasTelemedicina";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiTransformedImage: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_backend";
-                _json["table"] = "external";
-                _json["model"] = "external";
-                _json["function"] = "getTransformedImage";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiNetCoreCPFinancialTransparent: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_external";
-                _json["table"] = "NetCoreCPFinancial";
-                _json["model"] = "NetCoreCPFinancial";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiRegistrarCobranza: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "registrarCobranza";
-                _json["module"] = "mod_external";
-                _json["table"] = "NetCoreCPFinancial";
-                _json["model"] = "NetCoreCPFinancial";
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiBuildFormFiserv: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "buildFormFiserv";
-                _json["module"] = "mod_payments";
-                _json["table"] = "payments_fiserv";
-                _json["model"] = "payments_fiserv";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiInitTransactionFiserv: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "save";
-                _json["module"] = "mod_payments";
-                _json["table"] = "Transactions";
-                _json["model"] = "Transactions";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiGetCredenciales: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["method"] = "api.pwa/GetCredenciales"; //method
-                _HTTPREQUEST.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
+    }, //2 
+
 };

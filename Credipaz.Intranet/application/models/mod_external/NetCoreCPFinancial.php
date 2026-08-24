@@ -467,7 +467,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function Tokenizar($values)
     {
         try {
-            
             $headers = $this->Authenticate();
             $url = (CPFINANCIALS . "/CardCred/SaveMediosCobro/");
             $result = $this->callAPI($url, $headers, json_encode($values));

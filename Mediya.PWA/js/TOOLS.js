@@ -1,4 +1,4 @@
-var _TOOLS = {
+var _T = {
     _avalilableLanguages: ["en"],
     onDestroyModal: function (_target, _callback) {
         $(_target).remove();
@@ -8,7 +8,7 @@ var _TOOLS = {
     },
     onModalAlert: function (_title, _body, _class) {
         if (_class == undefined) { _class = "info"; }
-        _TOOLS.onDestroyModal("#alterModal");
+        _T.onDestroyModal("#alterModal");
         var _html = "<div class='modal fade' id='alterModal' role='dialog' style='z-index:999998;'>";
         _html += " <div class='modal-dialog modal-dialog-centered modal-lg m-0 p-0' role='document' style='z-index:999999;'>";
         _html += "  <div class='modal-content mt-2' style='position:absolute;left:0px;top:0px;width:100vw;'>";
@@ -27,7 +27,7 @@ var _TOOLS = {
         _html += "</div>";
         $("body").append(_html);
         $("body").off("click", ".btn-cancel-alert").on("click", ".btn-cancel-alert", function () {
-            _TOOLS.onDestroyModal("#alterModal");
+            _T.onDestroyModal("#alterModal");
         });
         $("#alterModal").modal({ backdrop: true, keyboard: true, show: true });
         return true;
@@ -204,7 +204,7 @@ var _TOOLS = {
     },
     validate: function (_selector) {
         var _ret = true;
-        $(_selector).each(function () { _ret = _TOOLS.formatValidation($(this)) && _ret; });
+        $(_selector).each(function () { _ret = _T.formatValidation($(this)) && _ret; });
         return _ret;
     },
     formatValidation: function (_obj) {
@@ -239,26 +239,26 @@ var _TOOLS = {
                         break;
                     case "date":
                     case "datetime-local":
-                        if (!_TOOLS.isValidDate(_value)) { _ret = false; }
+                        if (!_T.isValidDate(_value)) { _ret = false; }
                         if (_min !== undefined) {
-                            if (!_TOOLS.isValidDate(_min)) {
+                            if (!_T.isValidDate(_min)) {
                                 _min = $(_min).val();
-                                if (_min != undefined) { if (!_TOOLS.isValidDate(_min)) { _ret = false; } }
+                                if (_min != undefined) { if (!_T.isValidDate(_min)) { _ret = false; } }
                             }
-                            if (_ret) { _ret = _TOOLS.dateCompareGreaterThan(_value, _min); }
+                            if (_ret) { _ret = _T.dateCompareGreaterThan(_value, _min); }
                         }
                         if (_ret) {
                             if (_max !== undefined) {
-                                if (!_TOOLS.isValidDate(_max)) {
+                                if (!_T.isValidDate(_max)) {
                                     _max = $(_max).val();
-                                    if (_max != undefined) { if (!_TOOLS.isValidDate(_max)) { _ret = false; } }
+                                    if (_max != undefined) { if (!_T.isValidDate(_max)) { _ret = false; } }
                                 }
-                                if (_ret) { _ret = _TOOLS.dateCompareGreaterThan(_max, _value); }
+                                if (_ret) { _ret = _T.dateCompareGreaterThan(_max, _value); }
                             }
                         }
                         break;
                     case "email":
-                        if (!_TOOLS.isValidEmail(_value)) { _ret = false; }
+                        if (!_T.isValidEmail(_value)) { _ret = false; }
                         break;
                     case "radio":
                         _ret = ($("input[name='" + property + "']:checked").val() != undefined);
@@ -455,7 +455,7 @@ var _TOOLS = {
             });
     },
     createFileItem: function (_name, _result) {
-        var _id = _TOOLS.UUID();
+        var _id = _T.UUID();
         return "<li class='list-group-item attach " + _id + "' data-name='" + _name + "' data-url='" + _result + "' style='padding:10px;'>Se ha adjuntado <span class='badge badge-success'>" + _name + "</span><a href='#' class='btn btn-xs btn-deattach btn-danger pull-right' data-id='" + _id + "' style='margin:0px;'><i class='material-icons'>delete_forever</i></a></li>"
     },
     copyToClipboard: function (_this) {
@@ -487,14 +487,14 @@ var _TOOLS = {
         try { succeed = document.execCommand("copy"); } catch (e) { succeed = false; }
         if (currentFocus && typeof currentFocus.focus === "function") { currentFocus.focus(); }
         if (isInput) { elem.setSelectionRange(origSelectionStart, origSelectionEnd); } else { target.textContent = ""; }
-        _TOOLS.onModalAlert("", "Se han copiado los datos al portapapeles.  Puede utilizarlos donde desee.", "info");
+        _T.onModalAlert("", "Se han copiado los datos al portapapeles.  Puede utilizarlos donde desee.", "info");
         return succeed;
     },
     onTraerLookUp: function (_table, _key = null) {
         return new Promise(
             function (resolve, reject) {
                 var _json = { "function": "traerLookUp", "tabla": _table, "key": _key };
-                _API.UiNetCoreCPFinancialTransparent(_json).then(function (_data) {
+                _API_deprecated.UiNetCoreCPFinancialTransparent(_json).then(function (_data) {
                     resolve(_data);
                 }).catch(function (error) {
                     reject(error);
@@ -580,7 +580,7 @@ var _TOOLS = {
         if ($(selector).length > 0) {
             setTimeout(function () { callback(); }, 1);
         } else {
-            setTimeout(function () { _TOOLS.waitForElement(selector, callback); }, 1);
+            setTimeout(function () { _T.waitForElement(selector, callback); }, 1);
         }
     },
     LPAD: function (str, char, length) {
@@ -687,7 +687,7 @@ var _TOOLS = {
         return formatter.format(_value);
     },
     onGetFirstBrowserLanguage: function () {
-        var _ret = _TOOLS._avalilableLanguages[0];
+        var _ret = _T._avalilableLanguages[0];
         var nav = window.navigator, browserLanguagePropertyKeys = ['language', 'browserLanguage', 'systemLanguage', 'userLanguage'], i, language;
         if (Array.isArray(nav.languages)) {
             for (i = 0; i < nav.languages.length; i++) {
@@ -705,7 +705,7 @@ var _TOOLS = {
                 break;
             }
         }
-        if (!_TOOLS._avalilableLanguages.includes(_ret)) { _ret = _TOOLS._avalilableLanguages[0]; }
+        if (!_T._avalilableLanguages.includes(_ret)) { _ret = _T._avalilableLanguages[0]; }
         return _ret;
     },
     prettyPrint: function (obj, _target) {
