@@ -757,10 +757,6 @@ var _F = {
         } catch (err) {
             console.log("ERR", err);
         }
-        //_F.onShowHtmlModal(_html, function () {
-        //    var _json = { "id": obj.id_canje, "id_beneficio": obj.id_beneficio, "data_function": "confirmar-canje", "verification": "" };
-        //    _API_deprecated.UiApplicationMobileFunction(_json).then(function (data) { }).catch(function (err) { });
-        //});
     },
     onMisRecetas: function (_this) {
         _API_deprecated.UiRecetasTelemedicina({ "id_charge_code": _F._id_charge_code, "request_mode": "actual" })

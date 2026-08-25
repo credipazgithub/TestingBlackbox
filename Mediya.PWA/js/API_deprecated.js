@@ -10,7 +10,9 @@ var _API_deprecated = {
                 _json["function"] = "get";
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
-    }, //2 
+    }, 
+    // llamada desde: onAddEspecialidades => Mediya/auxiliares/especialidades | { }
+    // llamada desde: onCheckStatusPaymentTelemedicina => Credipaz/consultarEstadoTransaccionPago | {IdTransaccion}
     UiGetWebPosts: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -21,13 +23,8 @@ var _API_deprecated = {
                 _json["where"] = ("id=" + _json["id"]);
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
-    }, //+2
-    UiApplicationMobileFunction: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _HTTPREQUEST_deprecated.ExecuteDirect(_json, "api.pwa/getApplicationMobileFunction").then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },//borrar
+    }, 
+    //Websites/funciones/webpost | {id}
     UiAuthenticateMobile: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -38,6 +35,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Production/authenticatemobile | {Username,Password}
     UiTestUserValuePWA: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -48,6 +46,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Production/uservaluepwa | {type,documentNumber}
     UiGetUserInformation: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -58,6 +57,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Production/userinformation | { id_app_ext, email}
     UiSaveMessage: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -69,14 +69,15 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-
+    //Mediya/Telemedicina/enviarimagenalmedico | {idUser,idChargeCode,raw_data}
     UiDelete: function (_json) {
         return new Promise(
             function (resolve, reject) {
                 _json["function"] = "delete";
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
-    },//+1
+    },
+    //Production/resetusermobile | {email}
     UiStatusTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -91,6 +92,7 @@ var _API_deprecated = {
                 });
             });
     },
+    //Mediya/Telemedicina/estadosolicitudmobile | {id_transaction}
     UiGeneratePaycode: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -102,6 +104,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Telemedicina/generarcodigopago | {idUser,idSocio,idCliente,idPayment,importe,code,codePayment,especialidad}
     UiGetCupons: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -112,6 +115,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Credipaz/funciones/beneficios | {dni,mode_categoria,type_categoria,search,coords,near,lat,lng,page}
     UiGetImage: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -122,7 +126,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-
+    //Credipaz/funciones/imagenbeneficio | {id,type}
     UiViewMessagesTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -134,6 +138,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Mediya/Telemedicina/marcarmensajeleido | {id}
     UiComprobantesTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -144,6 +149,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Mediya/Telemedicina/comprobantes | {idUser}
     UiRecetasTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -154,35 +160,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    UiTransformedImage: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_backend";
-                _json["table"] = "external";
-                _json["model"] = "external";
-                _json["function"] = "getTransformedImage";
-                _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiNetCoreCPFinancialTransparent: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["module"] = "mod_external";
-                _json["table"] = "NetCoreCPFinancial";
-                _json["model"] = "NetCoreCPFinancial";
-                _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    UiRegistrarCobranza: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "registrarCobranza";
-                _json["module"] = "mod_external";
-                _json["table"] = "NetCoreCPFinancial";
-                _json["model"] = "NetCoreCPFinancial";
-                _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
+    //Mediya/Telemedicina/mensajes | {idSocio,idChargeCode,idTypeDirection,idTypeItem}
     UiBuildFormFiserv: function (_json) {
         return new Promise(
             function (resolve, reject) {

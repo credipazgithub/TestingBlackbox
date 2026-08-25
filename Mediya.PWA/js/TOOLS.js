@@ -490,17 +490,6 @@ var _T = {
         _T.onModalAlert("", "Se han copiado los datos al portapapeles.  Puede utilizarlos donde desee.", "info");
         return succeed;
     },
-    onTraerLookUp: function (_table, _key = null) {
-        return new Promise(
-            function (resolve, reject) {
-                var _json = { "function": "traerLookUp", "tabla": _table, "key": _key };
-                _API_deprecated.UiNetCoreCPFinancialTransparent(_json).then(function (_data) {
-                    resolve(_data);
-                }).catch(function (error) {
-                    reject(error);
-                });
-            });
-    },
     onSetCookie: function (cname, cvalue, exdays) {
         const d = new Date();
         d.setTime(d.getTime() + (exdays * 24 * 60 * 60 * 1000));
