@@ -605,7 +605,6 @@ var _F = {
             _F.onActionLogout(null);
             _F.onModalAlert("Alerta", "Imposible acceder con el DNI y contraseña provistos.  Reintente o recupere su contraseña desde el menú lateral", "info");
         });
-
     },
     onActionLogin: function (_this) {
         var _step = _this.attr("data-step");

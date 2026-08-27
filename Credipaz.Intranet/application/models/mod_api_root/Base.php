@@ -10,8 +10,38 @@ class Base extends MY_Model {
     }
     public function authenticateMobile($values)
     {
-        $NETCORECPFINANCIAL = $this->createModel(MOD_EXTERNAL, "NetCoreCPFinancial", "NetCoreCPFinancial");
-        return $NETCORECPFINANCIAL->BridgeAuthenticateMobile($values);
+        try {
+            if (!isset($values["nombre"])) {$values["nombre"] = "";}
+            if ($values["field"] == "username") {$values["dni"] = explode("@", @$values["value"])[0];}
+            $fields=array(
+                "Password"=>md5($values["password"]),
+                "PasswordPlain"=>$values["password"],
+                "Id_app"=>(int)$values["id_app_mobile"],
+                "Dni"=>$values["dni"],
+                "Sex"=>$values["sexo"],
+                "Usuario"=>$values["email"],
+                "Area"=>$values["prefijo"],
+                "Telefono"=>$values["telefono"],
+                "Nombre"=>$values["nombre"]
+            );
+            $url = (CPFINANCIALS."/Intranet/BridgeAuthenticateMobile");
+            $result = API_callAPI($url, json_encode($fields));
+            $result = json_decode($result, true);
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => "",
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "verificated" =>  ($result["records"][0]["verified"] != null),
+                "token_authentication" => $result["records"][0]["token_authentication"],
+                "userdata" => $result["records"][0],
+                "clubredondo" => getIdUserMediya($this, $values["dni"])["message"],
+                "id" => $result["records"][0]["id"]
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
     }
     public function authenticate($values)
     {
@@ -34,7 +64,6 @@ class Base extends MY_Model {
                 $values["id_type_user"] = "80,81,82,85,87,88";
                 $values["try"] = "LOCAL";
             } else {
-            //    $values["id_type_user"] = "77,78";
                 $values["try"] = "LDAP";
              }
             logGeneralCustom($this, $values, "Users::TryLogin", "username:" . $values["username"] . " password:" . md5($values["password"]));
@@ -102,6 +131,99 @@ class Base extends MY_Model {
             return $ret;
         }
         catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function userValuePwa($values)
+    {
+        try {
+            $id_app_mobile = (int)keySecureNumbers($values, "id_app_mobile");
+            if ($id_app_mobile==0){ throw new Exception(lang("error_5121"), 5121);}
+            $password=keySecureString($values,"password");
+            $dni=(int)keySecureNumbers($values, "dni");
+            $sexo=keySecureString($values,"sexo");
+
+            $id_type_user = 80; // default Credipaz, mobile
+            $sufix = "credipaz.com"; // default Credipaz, mobile
+            switch ($id_app_mobile) {
+                case 2: // credipaz, mobile
+                    $id_type_user = 80;
+                    $sufix = "credipaz.com";
+                    break;
+                case 5: // Mediya, mobile
+                    $id_type_user = 82;
+                    $sufix = "clubredondo.com";
+                    break;
+            }
+            $fields = array("dni"=>$dni,"sexo"=>$sexo,"Id_type_user"=>$id_type_user,"Username"=>($dni."@".$sufix),"id_type_user"=>$id_type_user,"password"=>md5($password));
+	        $ret = API_callAPIfields("/Intranet/DatosPersona/",$fields);
+	        $ret = json_decode($ret, true);
+            if (count($ret["records"])!=0) {
+                $return=array(
+                    "code" => "2000","status" => "OK","message" => "",
+                    "names" => $ret["records"],
+                    "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                    "exists" => false
+                );
+                if (count($ret["records"])==1) {
+                    if (((int)$ret["records"][0]["exists"]==1)) {
+                        $return["exists"]=true;
+                        $return["message"]="El valor ya existe";
+                        unset("names");
+                    }
+                }
+            }
+            return $return;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function userInformation($values){
+        try {
+            $id_app_mobile = (int)keySecureNumbers($values, "id_app_mobile");
+            if ($id_app_mobile==0){ throw new Exception(lang("error_5121"), 5121);}
+            if (strpos($values["dni"],"@")!==false) {$values["dni"]=explode("@",$dni)[0];}
+            $dni=(int)keySecureNumbers($values, "dni");
+            $sexo=keySecureString($values,"sexo");
+            $fields=array("dni"=>$dni,"sexo"=>$sexo,"id_app_mobile"=>$id_app_mobile);
+            $url="";
+            switch($id_app_mobile){
+                case 2:
+                    $url="/Intranet/DatosGeneralesCP/";
+                    break;
+                case 5:
+                    $url="/Intranet/DatosGeneralesCR/";
+                    break;
+                }
+            }
+	        $ret=API_callAPIfields($url,$fields);
+	        $ret=json_decode($ret, true);
+            if (count($ret["records"])!=0) {
+                $return=array("code"=>"2000","status"=>"OK","message"=>"");
+                $result["registered"]=($ret["records"][0]["id"]!="");
+                $result["userdata"]=$ret["records"][0];
+                $result["message"]=$ret["records"][0];
+                $result["scope"] = $ret["records"][0]["scope"];
+                $result["version"]=999;
+            } else {
+                $result=null;
+            }
+            return $result;
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function resetUserMobile($values){
+        try {
+            $email=keySecureString($values,"email");
+            if ($email==""){ throw new Exception(lang("api_error_1009"), 1009);}
+            $fields=array("email"=>$email);
+	        $ret=API_callAPIfields("/Intranet/ResetUser/",$fields);
+	        $ret=json_decode($ret, true);
+            return $ret;
+        }
+        catch (Exception $e) {
             return logError($e,__METHOD__ );
         }
     }

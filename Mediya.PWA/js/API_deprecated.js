@@ -13,6 +13,7 @@ var _API_deprecated = {
     }, 
     // llamada desde: onAddEspecialidades => Mediya/auxiliares/especialidades | { }
     // llamada desde: onCheckStatusPaymentTelemedicina => Credipaz/consultarEstadoTransaccionPago | {IdTransaccion}
+
     UiGetWebPosts: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -25,6 +26,7 @@ var _API_deprecated = {
             });
     }, 
     //Websites/funciones/webpost | {id}
+
     UiAuthenticateMobile: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -35,7 +37,8 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Production/authenticatemobile | {Username,Password}
+    //Production/authenticateMobile | {Username,Password}
+
     UiTestUserValuePWA: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -47,6 +50,7 @@ var _API_deprecated = {
             });
     },
     //Production/uservaluepwa | {type,documentNumber}
+
     UiGetUserInformation: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -58,6 +62,7 @@ var _API_deprecated = {
             });
     },
     //Production/userinformation | { id_app_ext, email}
+
     UiSaveMessage: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -70,6 +75,7 @@ var _API_deprecated = {
             });
     },
     //Mediya/Telemedicina/enviarimagenalmedico | {idUser,idChargeCode,raw_data}
+
     UiDelete: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -78,6 +84,7 @@ var _API_deprecated = {
             });
     },
     //Production/resetusermobile | {email}
+
     UiStatusTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -93,6 +100,7 @@ var _API_deprecated = {
             });
     },
     //Mediya/Telemedicina/estadosolicitudmobile | {id_transaction}
+
     UiGeneratePaycode: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -105,6 +113,7 @@ var _API_deprecated = {
             });
     },
     //Telemedicina/generarcodigopago | {idUser,idSocio,idCliente,idPayment,importe,code,codePayment,especialidad}
+
     UiGetCupons: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -116,6 +125,7 @@ var _API_deprecated = {
             });
     },
     //Credipaz/funciones/beneficios | {dni,mode_categoria,type_categoria,search,coords,near,lat,lng,page}
+
     UiGetImage: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -127,6 +137,7 @@ var _API_deprecated = {
             });
     },
     //Credipaz/funciones/imagenbeneficio | {id,type}
+
     UiViewMessagesTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -139,6 +150,7 @@ var _API_deprecated = {
             });
     },
     //Mediya/Telemedicina/marcarmensajeleido | {id}
+
     UiComprobantesTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -150,6 +162,7 @@ var _API_deprecated = {
             });
     },
     //Mediya/Telemedicina/comprobantes | {idUser}
+
     UiRecetasTelemedicina: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -161,6 +174,7 @@ var _API_deprecated = {
             });
     },
     //Mediya/Telemedicina/mensajes | {idSocio,idChargeCode,idTypeDirection,idTypeItem}
+
     UiBuildFormFiserv: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -172,6 +186,8 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Credipaz/funciones/armarformfiserv | {total,dni,itemsPagos,parentUri}
+
     UiInitTransactionFiserv: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -183,6 +199,8 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Credipaz/iniciarTransaccionPago | {NroDocumento,Id_type_channel,Identificacion,Raw_request,Channel,Moneda,Monto}
+
     UiGetCredenciales: function (_json) {
         return new Promise(
             function (resolve, reject) {
@@ -190,4 +208,5 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
+    //Asesores/socios/credenciales | {NroDocumento,Sexo,Tipo}
 };

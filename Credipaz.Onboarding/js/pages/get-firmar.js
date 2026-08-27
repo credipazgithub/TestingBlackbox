@@ -2,10 +2,10 @@ var _fnc = new Object();
 var _formulario = "";
 var oAppGetFirmar = new Object();
 oAppGetFirmar.onShow = function () {
-    _AJAX._BPAM["Formulario"] = _AJAX._formularioFirma;
-    _AJAX._BPAM["ValueForRetrieve"] = _AJAX._KEY;
+    _AJAX_deprecated._BPAM["Formulario"] = _AJAX_deprecated._formularioFirma;
+    _AJAX_deprecated._BPAM["ValueForRetrieve"] = _AJAX_deprecated._KEY;
 
-    switch (_AJAX._formularioFirma) {
+    switch (_AJAX_deprecated._formularioFirma) {
         case "adhesionamutramediya":
         case "adhesiongrupofamiliarmediya":
         case "adhesionmediya":
@@ -18,8 +18,8 @@ oAppGetFirmar.onShow = function () {
             break;
     }
 
-    _API.UiGetFormulario(_AJAX._BPAM).then(function (data) {
-        _NMF.onBuildFirmaDocumento(data, _AJAX._formularioPrefijoCarpetaDigital, "", 1, 50, 380);
+    _API_deprecated.UiGetFormulario(_AJAX_deprecated._BPAM).then(function (data) {
+        _F.onBuildFirmaDocumento(data, _AJAX_deprecated._formularioPrefijoCarpetaDigital, "", 1, 50, 380);
     });
 }
 _fnc.getReference = function () {

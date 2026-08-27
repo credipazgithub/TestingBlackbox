@@ -3,7 +3,7 @@ var oXHome = new Object();
 
 oXHome.onShow = function () {
     setTimeout(function () {
-        _NMF.onModalInitial("normal");
+        _F.onModalInitial("normal");
     }, 10);
 };
 

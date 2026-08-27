@@ -19,10 +19,6 @@
           img-src * data: content: blob: 'self' 'unsafe-inline' 'unsafe-eval';
           style-src * 'self' 'unsafe-inline' 'unsafe-eval';" />
 
-    <!--
-        <link rel="manifest" href="manifest.json">
-    -->
-
     <link rel="icon" type="image/png" href="img/favico.ico" />
     <!-- Application Style Sheets -->
     <link rel="stylesheet" href="./css/index.css" />
@@ -40,16 +36,11 @@
     <script src="./js/vendor/bootstrap-4.5.3-dist/js/bootstrap-select.min.js"></script>
     <script src="./js/vendor/material-5-dist/js/mdb.min.js"></script>
 
-    <script src="./js/global/neoLibrary.js"></script>
-    <script src="./js/global/TOOLS.js"></script>
-    <script src="./js/global/NMF.js"></script>
-    <script src="./js/global/AJAX.js"></script>
-    <script src="./js/global/API.js"></script>
-
-    <!--
-        <script src="./configuration.js"></script>
-    -->
-
+    <script src="./js/tools.js"></script>
+    <script src="./js/functions.js"></script>
+    <script src="./js/events.js"></script>
+    <script src="./js/AJAX_deprecated.js"></script>
+    <script src="./js/API_deprecated.js"></script>
 </head>
 <body class="imgBack">
     <div class="container-fluid pr-1 m-0 topMenu d-none">
@@ -57,15 +48,11 @@
     </div>
     <!-- Application navigation pages area -->
     <div class="app"></div>
-    <!--
-    <div class="bg-white p-1 d-none" id="paymentBrick_container" style="height: 100vh; z-index: 99999999; overscroll-behavior: none;"></div>
-    -->
 </body>
 </html>
 
 <script>
     $(function () {
-        _NMF.onInitApplication(null);
+        _F.onInitApplication(null);
     });
 </script>
-<script async src='https://jvideo1.gruponeodata.com/external_api.js'></script>

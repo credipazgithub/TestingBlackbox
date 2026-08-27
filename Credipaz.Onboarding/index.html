@@ -17,23 +17,23 @@
 <script>
     $(document).ready(function () {
         var today = (new Date().getTime() / 1000);
-        $.getScript("js/global/TOOLS.js?" + today.toString()).done(function (script, textStatus) {
-            var _tk = _TOOLS.UUID();
-            $.getScript("js/global/NMF.js?x" + _tk).done(function (script, textStatus) {
-                $.getScript("js/global/AJAX.js?" + _tk).done(function (script, textStatus) {
-                    $.getScript("js/global/API.js?" + _tk).done(function (script, textStatus) {
-                        $.getScript("js/global/INDEX.js?" + _tk).done(function (script, textStatus) {
+        $.getScript("js/tools.js?" + today.toString()).done(function (script, textStatus) {
+            var _tk = _T.UUID();
+            $.getScript("js/functions.js?x" + _tk).done(function (script, textStatus) {
+                $.getScript("js/AJAX_deprecated.js?" + _tk).done(function (script, textStatus) {
+                    $.getScript("js/API_deprecated.js?" + _tk).done(function (script, textStatus) {
+                        $.getScript("js/events.js?" + _tk).done(function (script, textStatus) {
                             $.getScript("configuration.js?" + _tk).done(function (script, textStatus) {
-                                _NMF.onGetLocation().then(function (data) {
-                                    _AJAX._BPAM["lat"] = data.latitude;
-                                    _AJAX._BPAM["lng"] = data.longitude;
-                                    _AJAX._BPAM["latitude"] = data.latitude;
-                                    _AJAX._BPAM["longitude"] = data.longitude;
+                                _F.onGetLocation().then(function (data) {
+                                    _AJAX_deprecated._BPAM["lat"] = data.latitude;
+                                    _AJAX_deprecated._BPAM["lng"] = data.longitude;
+                                    _AJAX_deprecated._BPAM["latitude"] = data.latitude;
+                                    _AJAX_deprecated._BPAM["longitude"] = data.longitude;
                                 }).catch(function () {
-                                    _AJAX._BPAM["lat"] = 0;
-                                    _AJAX._BPAM["lng"] = 0;
-                                    _AJAX._BPAM["latitude"] = 0;
-                                    _AJAX._BPAM["longitude"] = 0;
+                                    _AJAX_deprecated._BPAM["lat"] = 0;
+                                    _AJAX_deprecated._BPAM["lng"] = 0;
+                                    _AJAX_deprecated._BPAM["latitude"] = 0;
+                                    _AJAX_deprecated._BPAM["longitude"] = 0;
                                 });
                             });
                         });

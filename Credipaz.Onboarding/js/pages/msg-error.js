@@ -4,7 +4,7 @@ var oAppMsgError = new Object();
 oAppMsgError.onShow = function () {
     setTimeout(function () {
         $(".topMenu").addClass("d-none");
-        $(".responseMessage").html(_AJAX._responseMessage);
+        $(".responseMessage").html(_AJAX_deprecated._responseMessage);
     }, 250);
 };
 

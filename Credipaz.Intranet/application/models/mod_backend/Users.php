@@ -413,8 +413,21 @@ class Users extends MY_Model
                 $sql = "SELECT * FROM mod_backend_users WHERE id_type_user=" . $id_type_user . " AND documentNumber='" . $values["documentNumber"] . "' AND password='" . md5($values["password"]) . "'";
             }
             $record = $this->getRecordsAdHoc($sql);
-            $EXTERNAL = $this->createModel(MOD_BACKEND, "External", "External");
-            $retNames = $EXTERNAL->getIdentityInformation($values);
+
+            switch((int)$values["id_app"]) {
+               case 2: // Credipaz
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
+                  $r=$MOBILE->firstStepAuth($values);
+                  $retNames = $r;
+               case 5: // Mediya
+                  $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
+                  $r=$MOBILE->firstStepAuth($values);
+                  $retNames = $r;
+                default:
+                  $retNames = null;
+            }
+
+
             if (!isset($record[0]["id"])) {
                 $names = [];
                 if ($posibles) {foreach ($retNames["message"] as $item) {array_push($names, array("name" => $item["Value"], "viable" => 1, "IdSolicitud" => 0));}}

@@ -8,22 +8,24 @@ class Websites extends MY_Model {
     {
         parent::__construct();
     }
-
+    public function webPost($values){
+        try {
+            $Id=(int)keySecureZero($values, "Id");
+            if ($Id == 0) {throw new Exception(lang("api_error_1080"), 1080);}
+            $fields=array("Id"=>$Id);
+	        $ret=API_callAPIfields("/Intranet/ResetUser/",$fields);
+	        $ret=json_decode($ret, true);
+            return $ret;
+        }
+        catch (Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+    }
     public function landing($values){
         try {
             $values["idCanalRegistro"] = keySecureZero($values, "idCanalRegistro");
             if ($values["idCanalRegistro"] == 0) {throw new Exception(lang("api_error_1022"), 1022);}
             $idCanalRegistro = (int) $values["idCanalRegistro"];
-
-            /*
-            $values["area"] = keySecureZero($values, "area");
-            if ($values["area"] == 0) {throw new Exception(lang("api_error_1031"), 1031);}
-            if (strlen($values["area"]) > 4) {throw new Exception(lang("api_error_1031"), 1031);}
-            $values["telefono"] = keySecureZero($values, "telefono");
-            if ($values["telefono"] == 0) {throw new Exception(lang("api_error_1032"), 1032);}
-            if (strlen($values["telefono"]>8)){throw new Exception(lang("api_error_1032"), 1032);}
-            */
-
             $fields=array(
                 "Circuito" => 1, // 1 circuito largo / valor fijo
                 "Producto" =>$idCanalRegistro,
@@ -55,7 +57,7 @@ class Websites extends MY_Model {
                         $fields["Producto"] = 552; 
                         break;
                     case 14:
-                        $fields["Producto"] = 14; //forzardo por cambio de Alfredo 10/3/2025
+                        $fields["Producto"] = 14;
                         break;
                     case 141:
                         $fields["Producto"] = 241;

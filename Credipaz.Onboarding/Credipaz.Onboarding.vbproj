@@ -144,7 +144,7 @@
     <Content Include="img\wait.gif" />
     <Content Include="img\xlogo.png" />
     <Content Include="head.html" />
-    <Content Include="js\global\TOOLS.js" />
+    <Content Include="js\tools.js" />
     <Content Include="js\pages\get-tokenizar.js" />
     <Content Include="js\pages\get-foto.js" />
     <Content Include="js\pages\msg-ok.js" />
@@ -153,13 +153,13 @@
     <Content Include="js\pages\get-firmar.js" />
     <Content Include="noaccess.html" />
     <Content Include="index.html" />
-    <Content Include="js\global\AJAX.js" />
-    <Content Include="js\global\API.js" />
-    <Content Include="js\global\NMF.js" />
+    <Content Include="js\AJAX_deprecated.js" />
+    <Content Include="js\API_deprecated.js" />
+    <Content Include="js\functions.js" />
     <Content Include="js\pages\idemia-paso-1.js" />
     <Content Include="js\pages\firma-creditos.js" />
     <Content Include="js\pages\idemia-paso-2.js" />
-    <Content Include="js\global\INDEX.js" />
+    <Content Include="js\events.js" />
     <Content Include="js\vendor\atrament.js" />
     <Content Include="js\vendor\blockui.js" />
     <Content Include="js\vendor\bootstrap-4.5.3-dist\css\bootstrap-grid.css" />

@@ -79,6 +79,7 @@ $lang['api_error_1076'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1077'] = "No se ha provisto un valor válido para el parámetro 'idOperatorTask'";
 $lang['api_error_1078'] = "No se ha provisto un valor válido para el parámetro 'Estado'";
 $lang['api_error_1079'] = "No se ha provisto un valor válido para el parámetro 'Segmento'";
+$lang['api_error_1080'] = "No se ha provisto un valor válido para el parámetro 'Id'";
 
 
 $lang['error_100'] = "DB Layer error";
@@ -121,6 +122,7 @@ $lang['error_5117'] = "No se ha podido identificar al usuario.  Por favor vuelva
 $lang['error_5118'] = "El documento no corresponde con un usuario de Mediya.";
 $lang['error_5119'] = "Falta el parámetro 'id_type_post'";
 $lang['error_5120'] = "Falta el parámetro 'id_app'";
+$lang['error_5121'] = "Falta el parámetro 'id_app_mobile'";
 
 $lang['error_5200'] = "No se pueden autenticar estas credenciales";
 $lang['error_5201'] = "No se puede generar el token de autenticación";

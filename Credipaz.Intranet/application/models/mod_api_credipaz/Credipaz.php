@@ -8,6 +8,24 @@ class Credipaz extends MY_Model {
     {
         parent::__construct();
     }
+   	public function obtenerUserAreas($values){
+        try {
+            $values["area"]=keySecureString($values,"area");
+            if ($values["area"] == "") {throw new Exception(lang("api_error_1003"), 1003);}
+            $fields = array("Descripcion" => $area);
+            $ret = API_callAPIfields("/Utilidades/GetRows_Users_LastArea/", $fields);
+            $ret = json_decode($ret, true);
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        }
+        catch(Exception $e) {
+            return logError($e,__METHOD__ );
+        }
+	}
 
     public function iniciarTransaccionPago($values){
         try {

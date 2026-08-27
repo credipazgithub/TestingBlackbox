@@ -7,8 +7,8 @@ oAppFirmaCreditos.onShow = function () {
     setTimeout(function () {
         $(".topMenu").addClass("d-none");
         $("#qrcode").html("").addClass("d-none");
-        _API.UiOnboardingGetRequest({ "id": _AJAX._KEY, "end": "AK" }).then(function (data) {
-            _NMF.onSetSolicitudData(data);
+        _API_deprecated.UiOnboardingGetRequest({ "id": _AJAX_deprecated._KEY, "end": "AK" }).then(function (data) {
+            _F.onSetSolicitudData(data);
             switch (parseInt(data.data.id_type_request)) {
                 case 1: // credito Credipaz
                     $(".btnSeeRequestPagare").removeClass("d-none");
@@ -29,7 +29,7 @@ oAppFirmaCreditos.onShow = function () {
                 case 9: // credito Amutra Hogar
                 case 10: // credito Amutra Consumo
                 case 563: // refinanciacion tarjeta CABAL
-                    switch (parseInt(_NMF._ClientData._solicitudData.id_type_modo_pago)) {
+                    switch (parseInt(_F._ClientData._solicitudData.id_type_modo_pago)) {
                         case 1: // efectivo
                             $(".EfectivoArea").removeClass("d-none");
                             break;
@@ -48,36 +48,36 @@ oAppFirmaCreditos.onShow = function () {
                     sketchpad.recordStrokes = false;
                     $("body").off("click", ".btn-clear-sign").on("click", ".btn-clear-sign", function () {
                         sketchpad.clear();
-                        _NMF._ClientData._solicitudData.img_additional = "";
+                        _F._ClientData._solicitudData.img_additional = "";
                         $(".img-firma").attr("src", "./img/placeholder.png");
                         $(".afirmar").removeClass("d-none");
                         $(".firmado").addClass("d-none");
                     });
                     $("body").off("click", ".btn-ok-sign").on("click", ".btn-ok-sign", function () {
-                        if (!_NMF._ClientData.dirty) {
-                            _NMF.onModalAlert("Control de firma", "Debe firmar la solicitud", "warning");
+                        if (!_F._ClientData.dirty) {
+                            _F.onModalAlert("Control de firma", "Debe firmar la solicitud", "warning");
                             return false;
                         }
-                        _NMF._ClientData._solicitudData.img_additional = sketchpad.toImage();
-                        $(".img-firma").attr("src", _NMF._ClientData._solicitudData.img_additional);
+                        _F._ClientData._solicitudData.img_additional = sketchpad.toImage();
+                        $(".img-firma").attr("src", _F._ClientData._solicitudData.img_additional);
                         $(".msgVerificacion").html("");
                         $(".btn-clear-sign").addClass("d-none");
                         $(".afirmar").addClass("d-none");
                         $(".firmado").removeClass("d-none");
-                        _NMF.onEmitirProducto(_NMF._ClientData._solicitudData.img_additional);
+                        _F.onEmitirProducto(_F._ClientData._solicitudData.img_additional);
                     });
 
-                    sketchpad.addEventListener('dirty', () => _NMF._ClientData.dirty = true);
-                    sketchpad.addEventListener('clean', () => _NMF._ClientData.dirty = false);
+                    sketchpad.addEventListener('dirty', () => _F._ClientData.dirty = true);
+                    sketchpad.addEventListener('clean', () => _F._ClientData.dirty = false);
                     sketchpad.addEventListener('strokestart', function () { });
                     sketchpad.addEventListener('strokeend', function () { });
                     $(".sketchpad").css("border", "solid 1px red");
-                    if (_AJAX._monopage) { $(".btnBack").remove(); }
+                    if (_AJAX_deprecated._monopage) { $(".btnBack").remove(); }
                     break;
                 case 17: // Verificacion de identidad
-                    _AJAX._responseTitle = "¡Gracias por confiar en nosotros!";
-                    _AJAX._responseMessage = "Proceso de verificación de identidad finalizado.";
-                    _NMF.onTryPage(null, "msg-ok");
+                    _AJAX_deprecated._responseTitle = "¡Gracias por confiar en nosotros!";
+                    _AJAX_deprecated._responseMessage = "Proceso de verificación de identidad finalizado.";
+                    _F.onTryPage(null, "msg-ok");
                     break;
                 default:
                     break;
