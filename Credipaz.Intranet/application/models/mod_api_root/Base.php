@@ -165,13 +165,13 @@ class Base extends MY_Model {
                     "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
                     "exists" => false
                 );
-                if (count($ret["records"])==1) {
-                    if (((int)$ret["records"][0]["exists"]==1)) {
-                        $return["exists"]=true;
-                        $return["message"]="El valor ya existe";
-                        unset("names");
-                    }
+                /*
+                if ((int)$ret["records"][0]["exists"]==1)) {
+                    $return["exists"]=true;
+                    $return["message"]="El valor ya existe";
+                    unset("names");
                 }
+                */
             }
             return $return;
         } catch (Exception $e) {
@@ -194,7 +194,6 @@ class Base extends MY_Model {
                 case 5:
                     $url="/Intranet/DatosGeneralesCR/";
                     break;
-                }
             }
 	        $ret=API_callAPIfields($url,$fields);
 	        $ret=json_decode($ret, true);

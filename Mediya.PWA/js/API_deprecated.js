@@ -74,7 +74,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Mediya/Telemedicina/enviarimagenalmedico | {idUser,idChargeCode,raw_data}
+    //Mediya/Telemedicina/enviarImagenAlMedico | {idUser,idChargeCode,raw_data}
 
     UiDelete: function (_json) {
         return new Promise(
@@ -99,7 +99,7 @@ var _API_deprecated = {
                 });
             });
     },
-    //Mediya/Telemedicina/estadosolicitudmobile | {id_transaction}
+    //Mediya/Telemedicina/estadoSolicitudMobile | {id_transaction}
 
     UiGeneratePaycode: function (_json) {
         return new Promise(
@@ -161,7 +161,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Mediya/Telemedicina/comprobantes | {idUser}
+    //Mediya/Telemedicina/obtenerComprobantes | {idUser}
 
     UiRecetasTelemedicina: function (_json) {
         return new Promise(
@@ -173,7 +173,7 @@ var _API_deprecated = {
                 _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Mediya/Telemedicina/mensajes | {idSocio,idChargeCode,idTypeDirection,idTypeItem}
+    //Mediya/Telemedicina/obtenerRecetas | {idSocio,idChargeCode,idTypeDirection,idTypeItem}
 
     UiBuildFormFiserv: function (_json) {
         return new Promise(

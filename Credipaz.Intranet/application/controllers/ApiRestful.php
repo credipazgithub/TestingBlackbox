@@ -124,33 +124,6 @@ class ApiRestful extends MY_Controller {
             $this->output(logError($e, __METHOD__));
         }
     }
-    public function authenticate(){
-        try {
-            $raw=$this->rawInput();
-            if ($raw!=null)  {throw new Exception($raw);}
-            $this->status=$this->init();
-            $id_app=$_POST["id_app"];
-            if (!isset($_POST["id_app"])) {throw new Exception(lang("error_5120"),5120);}
-            if ($id_app==null) {throw new Exception(lang("error_5120"),5120);}
-            if ($id_app=="") {throw new Exception(lang("error_5120"),5120);}
-            if ($id_app=="0") {throw new Exception(lang("error_5120"),5120);}
-            if ($id_app==0) {throw new Exception(lang("error_5120"),5120);}
-
-            if (!isset($_POST["username"])) {throw new Exception(lang("error_5104"),5104);}
-            if (!isset($_POST["password"])) {throw new Exception(lang("error_5105"),5105);}
-            $_POST['function'] = 'authenticate';
-            $_POST['module'] = $this->module;
-            $_POST['model'] = $this->model;
-            $_POST['table'] = $this->table;
-            $_POST['id_type_user'] = "all";
-            $_POST['callsource'] = "api";
-            $_POST['external_operator'] = "1";
-            $this->neocommandTransparent(true);
-        }
-        catch (Exception $e){
-            $this->output(logError($e,__METHOD__ ));
-        }
-    }
     public function authenticateMobile($values)
     {
         try {

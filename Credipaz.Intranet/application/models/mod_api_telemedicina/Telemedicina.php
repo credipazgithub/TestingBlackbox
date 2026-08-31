@@ -365,4 +365,143 @@ class Telemedicina extends MY_Model {
             return logError($e,__METHOD__ );
         }
     }
+    public function marcarMensajeLeido($values){
+        try {
+            $values["Id"] = keySecureNumbers($values, "Id");
+            if ($values["Id"] == "0") {throw new Exception(lang("api_error_1067"), 1067);}
+            $fields = ["Id" => $values["Id"]];
+            $ret = API_callAPIfields("/Telemedicina/MarcarMensajeLeido/", $fields);
+            $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function recetasTelemedicina($values){
+        try {
+            $values["idSocio"] = keySecureNumbers($values, "idSocio");
+            if ($values["idSocio"] == "0") {throw new Exception(lang("api_error_1070"), 1070);}
+            $fields = ["Id_socio" => $values["idSocio"],"Id_clasificacion"=>2,"idTypeItem"=>2];
+            $ret = API_callAPIfields("/Mediya/Mensajes/", $fields);
+            $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+    public function obtenerComprobantes($values){
+        try {
+            $values["idSocio"] = keySecureNumbers($values, "idSocio");
+            if ($values["idSocio"] == "0") {throw new Exception(lang("api_error_1070"), 1070);}
+            $fields = ["Id_socio" => $values["idSocio"]];
+            $ret = API_callAPIfields("/Mediya/ObtenerComprobantes/", $fields);
+            $ret = json_decode($ret, true);
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+	}
+    public function enviarImagenAlMedico($values){
+        try {
+            $values["idChargeCode"] = keySecureNumbers($values, "idChargeCode");
+            if ($values["idChargeCode"] == "0") {throw new Exception(lang("api_error_1073"), 1073);}
+            $values["Raw_data"]=keySecureString($values,"Raw_data");
+            if ($values["Raw_data"] == "") {throw new Exception(lang("api_error_1075"), 1075);}
+            $msg=("Imagen: ".date(FORMAT_DATE_DMYHMS, strtotime($this->now)));
+            $params=[
+                "description"=>$msg,
+                "message"=>$msg,
+                "raw_data"=>$values["Raw_data"],
+                "viewed"=>0,
+                "id_charge_code"=>$values["idChargeCode"],
+                "id_type_item"=>1,
+                "id_type_direction"=>1,
+                "id_operator"=>null,
+                "id_user"=>null,
+                "carbon_copy"=>0,
+                "id_type_vademecum"=>null
+            ];
+            $result = API_callAPIfields("/Mediya/Message", $params);
+            $result = json_decode($result, true);
+            return $result;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function estadoSolicitudMobile($values){
+        try {
+            $values["IdTransaccion"] = keySecureNumbers($values, "IdTransaccion");
+            $values["idSocio"] = keySecureNumbers($values, "idSocio");
+            /*--------------------------------------------------------------*/
+            /*Reorganizar todo en una llamada unica a cpfinancials, que devuelva los datos a utilizar post respuesta*/
+            /*--------------------------------------------------------------*/
+            /*--------------------------------------------------------------*/
+            /*--------------------------------------------------------------*/
+            /*--------------------------------------------------------------*/
+            /*--------------------------------------------------------------*/
+            $paycode=0;
+            $token_meet="";
+            $videoDoctorStatus=0;
+            $videoPatientStatus=0;
+            $request_pictures=0;
+            $tiempo_espera_estimado=5;
+            $id_transaccion = (int) $values["id_transaction"];
+            if ($id_transaccion != 0) {
+                $sql = "UPDATE " . MOD_TELEMEDICINA . "_charges_codes SET code='" . $id_transaccion . "' WHERE id_club_redondo=" . $values["id_club_redondo"] . " AND freezed IS null";
+                $this->execAdHoc($sql);
+            }
+            $eval=$this->get(array("where"=>"id_club_redondo=".$values["id_club_redondo"]." AND freezed IS null"));
+            if ((int)$eval["totalrecords"]!=0){ 
+                $paycode=$eval["data"][0]["id"];
+                $OPERATORS_TASKS=$this->createModel(MOD_TELEMEDICINA,"Operators_tasks","Operators_tasks");
+                if ($eval["data"][0]["id_operator_task"]!="") {
+                   $operator_task=$OPERATORS_TASKS->get(array("where"=>"id=".$eval["data"][0]["id_operator_task"]));
+                   $request_pictures=$operator_task["data"][0]["request_pictures"];
+                }
+                $token_meet=$eval["data"][0]["code"];
+                $videoDoctorStatus=$eval["data"][0]["videoDoctorStatus"];
+                $videoPatientStatus=$eval["data"][0]["videoPatientStatus"];
+                $record=$this->get(array("fields"=>"datediff(second,fum,getdate()) as elapsed","where"=>"id=".$paycode));
+                if ((int)$record["totalrecords"]!=0){
+                    $elapsed=$record["data"][0]["elapsed"];
+                    if ((int)$elapsed>30) {
+                        $this->videoDoctorStatus(array("push"=>"no","token_meet"=>$token_meet,"id_charge_code"=>$paycode,"videoStatus"=>0));
+                        $videoDoctorStatus=0;
+                        $videoPatientStatus=0;
+                    }
+                }
+            }
+			$OPERATORS_TASKS=$this->createModel(MOD_TELEMEDICINA,"Operators_tasks","Operators_tasks");
+
+            $eval=$this->get(array("pagesize"=>"1","fields"=>"*","where"=>"id_club_redondo=".$values["id_club_redondo"],"order"=>"1 desc"));
+			$ot=$OPERATORS_TASKS->get(array("where"=>"code='".$eval["data"][0]["id"]."'"));
+			$id_ot=0;
+            if ((int)$ot["totalrecords"]!=0){$id_ot=$ot["data"][0]["id"];}
+			$ret=array(
+                "code"=>"2000",
+                "status"=>"OK",
+                "paycode"=>$paycode,
+                "token_meet"=>$token_meet,
+                "videoDoctorStatus"=>$videoDoctorStatus,
+                "videoPatientStatus"=>$videoPatientStatus,
+                "request_pictures"=>$request_pictures,
+                "tee"=>$tiempo_espera_estimado,
+                "message"=>"",
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+            );
+            return $ret;
+        }
+        catch(Exception $e){
+            return logError($e,__METHOD__ );
+        }
+    }
+
+
+
+
+
+
 }

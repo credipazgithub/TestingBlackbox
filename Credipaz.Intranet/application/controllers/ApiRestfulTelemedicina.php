@@ -286,4 +286,80 @@ class ApiRestfulTelemedicina extends MY_Controller {
             $this->output(logError($e,__METHOD__ ));
         }
     }
+    public function marcarMensajeLeido(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'marcarMensajeLeido';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function obtenerRecetas(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'obtenerRecetas';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function obtenerComprobantes(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'obtenerComprobantes';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function enviarImagenAlMedico(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'enviarImagenAlMedico';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    public function estadoSolicitudMobile(){
+        try {
+            $raw=$this->rawInput();
+            if ($raw!=null)  {throw new Exception($raw);}
+            $this->status=$this->init();
+            $_POST['function'] = 'estadoSolicitudMobile';
+            $_POST['module'] = $this->module;
+            $_POST['model'] = $this->model;
+            $_POST['table'] = $this->table;
+            $this->neocommand(true);
+        }
+        catch (Exception $e){
+            $this->output(logError($e,__METHOD__ ));
+        }
+    }
+    
 }

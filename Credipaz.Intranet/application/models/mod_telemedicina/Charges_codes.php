@@ -171,22 +171,11 @@ class Charges_codes extends MY_Model {
         try {
 		    if(!isset($values["id_club_redondo"])){$values["id_club_redondo"]=0;}
 		    if($values["id_club_redondo"]==""){$values["id_club_redondo"]=0;}
-            //$recibos=$this->get(
-			//	array(
-			//		"fields"=>"id,created,code_payment,id_club_redondo,especialidad,name_club_redondo,importe_total",
-			//		"where"=>"isnumeric(code_payment)=1 AND id_club_redondo=".$values["id_club_redondo"],
-			//		"order"=>"created DESC",
-			//		"pagesize"=>-1,
-			//		"page"=>-1)
-			//);
-			//$values["NroDocumento"]=32319266;
             $FILES_BASE64=$this->createModel(MOD_BACKEND,"Files_base64","Files_base64");
 			$recibos=$FILES_BASE64->get(array("fields"=>"created,base64_2","where"=>"code='".$values["NroDocumento"]."'","order"=>"created DESC"));
 
             $CLUB_REDONDO=$this->createModel(MOD_EXTERNAL,"NetCoreCPFinancial","NetCoreCPFinancial");
 			$values["origen"]="MEDIYA";
-			//$values["codigo"]=85992;
-			//$values["codigo"]=66800;
 			$values["codigo"]=$values["id_club_redondo"];
 			$facturas=$CLUB_REDONDO->FacturasPorPersona($values);
 			$facturas["data"]=json_decode($facturas["message"],true);

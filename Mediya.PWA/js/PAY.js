@@ -286,7 +286,7 @@ var _PAY = {
             _API_deprecated.UiGeneratePaycode(_jsonChargesCodes).then(function (data) {
                 if (data.status == "OK") {
                     if (_F._session_data.TeleMedConsultasResto != 0) { _F._session_data.TeleMedConsultasResto -= 1; }
-                    _html = ("<b>¡Se ha procesado el pago en forma exitosa! Nº de transacción " + response.apiReference + "</b>");
+                    _html = ("<b>¡Se ha procesado el pago en forma exitosa! Nºde transacción " + response.apiReference + "</b>");
                     _F.onEvalCallStatus({ "id_transaction": _jsonChargesCodes["code"] });
                 } else {
                     _F.onAlert({ "class": "alert-info", "message": data.message });
