@@ -306,7 +306,7 @@ class ApiRestfulTelemedicina extends MY_Controller {
             $raw=$this->rawInput();
             if ($raw!=null)  {throw new Exception($raw);}
             $this->status=$this->init();
-            $_POST['function'] = 'obtenerRecetas';
+            $_POST['function'] = 'recetasTelemedicina';
             $_POST['module'] = $this->module;
             $_POST['model'] = $this->model;
             $_POST['table'] = $this->table;

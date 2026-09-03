@@ -123,4 +123,23 @@ class Lookups extends MY_Model {
         } catch (Exception $e) {
             return logError($e, __METHOD__);
         }
-    }}
+    }
+    public function imagenBeneficio($values){ 
+      try {
+            $values["Id"] = keySecureZero($values, "Id");
+            if ($values["Id"] == 0) {throw new Exception(lang("api_error_1080"), 1080);}
+            $fields = array("Id" => $values["Id"]);
+            $ret = API_callAPIfields("/Mediya/ImagenBeneficio/", $fields);
+            $ret = json_decode($ret, true);
+
+            $merged["code"] = "200";
+            $merged["error"] = "";
+            $merged["status"] = "OK";
+            $merged["timestamp"] = date(FORMAT_DATE);
+            $merged["data"] = $ret["records"];
+            return $merged;
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+}

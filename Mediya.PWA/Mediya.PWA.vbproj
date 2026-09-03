@@ -247,7 +247,6 @@
     <Content Include="includes\Mediya\farmacias.html" />
     <Content Include="includes\Mediya\miscomprobantes.html" />
     <Content Include="includes\Mediya\misrecetas.html" />
-    <Content Include="includes\Mediya\miscupones.html" />
     <Content Include="includes\Comun\exit.html" />
     <Content Include="includes\Comun\logout.html" />
     <Content Include="includes\Comun\login.html" />

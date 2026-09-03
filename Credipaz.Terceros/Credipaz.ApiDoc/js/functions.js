@@ -51,6 +51,9 @@ var _F = {
 		return new Promise(
 			function (resolve, reject) {
 				var _endpoint = $("#endpoint").val();
+				/*
+				modificar para que lea los valores de los controles .form-control
+				*/
 				if ($("#token_authentication").val() != undefined) { _json["token_authentication"] = $("#token_authentication").val(); }
 				if ($("#id_user_active").val() != undefined) { _json["id_user_active"] = $("#id_user_active").val(); }
 				if ($("#id_app").val() != undefined) { _json["id_app"] = $("#id_app").val(); }

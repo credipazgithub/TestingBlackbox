@@ -433,75 +433,15 @@ class Telemedicina extends MY_Model {
     }
     public function estadoSolicitudMobile($values){
         try {
-            $values["IdTransaccion"] = keySecureNumbers($values, "IdTransaccion");
             $values["idSocio"] = keySecureNumbers($values, "idSocio");
-            /*--------------------------------------------------------------*/
-            /*Reorganizar todo en una llamada unica a cpfinancials, que devuelva los datos a utilizar post respuesta*/
-            /*--------------------------------------------------------------*/
-            /*--------------------------------------------------------------*/
-            /*--------------------------------------------------------------*/
-            /*--------------------------------------------------------------*/
-            /*--------------------------------------------------------------*/
-            $paycode=0;
-            $token_meet="";
-            $videoDoctorStatus=0;
-            $videoPatientStatus=0;
-            $request_pictures=0;
-            $tiempo_espera_estimado=5;
-            $id_transaccion = (int) $values["id_transaction"];
-            if ($id_transaccion != 0) {
-                $sql = "UPDATE " . MOD_TELEMEDICINA . "_charges_codes SET code='" . $id_transaccion . "' WHERE id_club_redondo=" . $values["id_club_redondo"] . " AND freezed IS null";
-                $this->execAdHoc($sql);
-            }
-            $eval=$this->get(array("where"=>"id_club_redondo=".$values["id_club_redondo"]." AND freezed IS null"));
-            if ((int)$eval["totalrecords"]!=0){ 
-                $paycode=$eval["data"][0]["id"];
-                $OPERATORS_TASKS=$this->createModel(MOD_TELEMEDICINA,"Operators_tasks","Operators_tasks");
-                if ($eval["data"][0]["id_operator_task"]!="") {
-                   $operator_task=$OPERATORS_TASKS->get(array("where"=>"id=".$eval["data"][0]["id_operator_task"]));
-                   $request_pictures=$operator_task["data"][0]["request_pictures"];
-                }
-                $token_meet=$eval["data"][0]["code"];
-                $videoDoctorStatus=$eval["data"][0]["videoDoctorStatus"];
-                $videoPatientStatus=$eval["data"][0]["videoPatientStatus"];
-                $record=$this->get(array("fields"=>"datediff(second,fum,getdate()) as elapsed","where"=>"id=".$paycode));
-                if ((int)$record["totalrecords"]!=0){
-                    $elapsed=$record["data"][0]["elapsed"];
-                    if ((int)$elapsed>30) {
-                        $this->videoDoctorStatus(array("push"=>"no","token_meet"=>$token_meet,"id_charge_code"=>$paycode,"videoStatus"=>0));
-                        $videoDoctorStatus=0;
-                        $videoPatientStatus=0;
-                    }
-                }
-            }
-			$OPERATORS_TASKS=$this->createModel(MOD_TELEMEDICINA,"Operators_tasks","Operators_tasks");
-
-            $eval=$this->get(array("pagesize"=>"1","fields"=>"*","where"=>"id_club_redondo=".$values["id_club_redondo"],"order"=>"1 desc"));
-			$ot=$OPERATORS_TASKS->get(array("where"=>"code='".$eval["data"][0]["id"]."'"));
-			$id_ot=0;
-            if ((int)$ot["totalrecords"]!=0){$id_ot=$ot["data"][0]["id"];}
-			$ret=array(
-                "code"=>"2000",
-                "status"=>"OK",
-                "paycode"=>$paycode,
-                "token_meet"=>$token_meet,
-                "videoDoctorStatus"=>$videoDoctorStatus,
-                "videoPatientStatus"=>$videoPatientStatus,
-                "request_pictures"=>$request_pictures,
-                "tee"=>$tiempo_espera_estimado,
-                "message"=>"",
-                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
-            );
-            return $ret;
+            if ($values["idSocio"] == "0") {throw new Exception(lang("api_error_1070"), 1070);}
+            $params=["Id_socio"=>$values["idSocio"]];
+            $result = API_callAPIfields("/Telemedicina/EstadoSolicitudMobile", $params);
+            $result = json_decode($result, true);
+            return $result;
         }
         catch(Exception $e){
             return logError($e,__METHOD__ );
         }
     }
-
-
-
-
-
-
 }

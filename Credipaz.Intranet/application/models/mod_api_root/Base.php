@@ -20,7 +20,7 @@ class Base extends MY_Model {
                 "Dni"=>$values["dni"],
                 "Sex"=>$values["sexo"],
                 "Usuario"=>$values["email"],
-                "Area"=>$values["prefijo"],
+                "Area"=>$values["area"],
                 "Telefono"=>$values["telefono"],
                 "Nombre"=>$values["nombre"]
             );
@@ -165,13 +165,13 @@ class Base extends MY_Model {
                     "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
                     "exists" => false
                 );
-                /*
-                if ((int)$ret["records"][0]["exists"]==1)) {
-                    $return["exists"]=true;
-                    $return["message"]="El valor ya existe";
-                    unset("names");
+                if (count($ret["records"])==1) {
+                    if ((int)$ret["records"][0]["exists"]==1) {
+                        $return["exists"]=true;
+                        $return["message"]="El valor ya existe";
+                        unset($return["names"]);
+                    }
                 }
-                */
             }
             return $return;
         } catch (Exception $e) {

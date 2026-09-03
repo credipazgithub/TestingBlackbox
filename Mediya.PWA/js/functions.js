@@ -697,66 +697,6 @@ var _F = {
             }
         });
     },
-    onMisCupones: function () {
-        return new Promise(
-            function (resolve, reject) {
-                try {
-                    _API_deprecated.UiGetCupons({ "dni": _F._auth_user_data.dni, "mode_categoria": "miscupones" }).then(function (data) {
-                        var _html = "";
-                        if (data.status == "OK") {
-                            $.each(data.message.data, function (i, obj) { try { _html += _F.onBuildBeneficioItem(obj, true, true); } catch (err) { } });
-                            if (_html == "") { _html = "<span class='badge badge-info text-center' style='font-size:1rem;width:100%;'>Sin canjes activos</span>"; }
-                            $(".ls-miscupones").html(_html);
-                        }
-                        resolve(data);
-                    }).catch(function (err) {
-                        $(".ls-miscupones").html("");
-                        _F.onModalAlert("Error", JSON.stringify(err), "danger");
-                        reject(err);
-                    });
-                } catch (err) {
-                    reject(err);
-                }
-            });
-    },
-    onVerCanje: function (_this) {
-        try {
-            var obj = JSON.parse(_T.b64_to_utf8(_this.attr("data-record")));
-            //if (obj.message_canje != null && obj.message_canje != "") { _html += "<p>" + obj.message_canje + "</p>"; }
-            //if (obj.des_image != null && obj.des_image != "") { _html += "<img src='" + obj.des_image + "' style='width:100%;' alt='Imagen'/>"; }
-            //if (obj.des_sinopsys != null && obj.des_sinopsys != "") { _html += "<p>" + obj.des_sinopsys + "</p>"; }
-            //if (obj.des_legales != null && obj.des_legales != "") { _html += "<p>" + obj.des_legales + "</p>"; }
-
-            var _html = "<div class='row no-gutters p-1 mt-2 mb-2 align-items-center'>";
-            _html += "      <div class='col-1'>";
-            _html += "         <button class='close closeModal m-0 p-0' data-modal='#modal_cupon' style='opacity:1;'>";
-            _html += "            <i class='material-icons' style='color:grey;font-size:40px;'>chevron_left</i>";
-            _html += "         </button>";
-            _html += "      </div>";
-            _html += "      <div class='col-11'>";
-            _html += "         <div class='row no-gutters p-1' style='border:solid 1px silver;border-radius:10px;'>"
-            _html += $(".item-cupon-" + obj.id).html();
-            _html += "         </div>";
-            _html += "     </div>";
-            _html += "</div>";
-
-            _html += "<div style='font-size:0.8em;'>Ya tenés listo tu cupón: Cód.: " + obj.verification + "</div>";
-            if (obj.qr_code != null && obj.qr_code != "") { _html += "<div class='text-center'><img src='" + obj.qr_code + "' style='width:70%;' alt='QRCode'/></div>"; }
-            var _modal = "<div id='modal_cupon' class='modal fade' style='padding:0px;margin:0px;padding-left:0px;z-index:9999999;width:100vw;height:100vh;'>";
-            _modal += "   <div class='modal-dialog modal-lg' style='padding:0px;margin:0px;padding-left:0px;z-index:9999999;width:100vw;height:100vh;'>";
-            _modal += "      <div class='modal-content' style='z-index:9999999;width:100vw;height:100vh;'>";
-            _modal += "         <div class='modal-body detalle-canje'>" + _html + "</div>";
-            _modal += "         <div class='modal-body result-canje d-none'></div>";
-            _modal += "      </div>";
-            _modal += "   </div>";
-            _modal += "</div>";
-            $("body").append(_modal);
-            $("#modal_cupon").modal({ "show": true, "keyboard": false, "backdrop": "static" });
-            $("#modal_cupon").on('d-none.bs.modal', function () { });
-        } catch (err) {
-            console.log("ERR", err);
-        }
-    },
     onMisRecetas: function (_this) {
         _API_deprecated.UiRecetasTelemedicina({ "id_charge_code": _F._id_charge_code, "request_mode": "actual" })
             .then(function (data) {
