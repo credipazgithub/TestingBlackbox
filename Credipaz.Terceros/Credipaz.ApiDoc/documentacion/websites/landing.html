@@ -1,4 +1,4 @@
-form>
+<form>
     <div class="container-full">
         <h5 class="apiTitle"></h5>
         <p>Permite enviar datos de registro de información por medio de landing pages hacia los sistemas de gestión interna, dado el <b>token_authentication</b> y <b>id_user_active</b>.</p>
@@ -82,21 +82,3 @@ form>
         </div>
     </div>
 </form>
-<script>
-    $("body").off("click", ".btnExec").on("click", ".btnExec", function () {
-        var _json = {
-            "nombre": $("#nombre").val(),
-            "apellido": $("#apellido").val(),
-            "dni": $("#dni").val(),
-            "sexo": $("#sexo").val(),
-            "email": $("#email").val(),
-            "area": $("#area").val(),
-			"telefono": $("#telefono").val(),
-			"idSucursal": $("#idSucursal").val(),
-			"idCanalRegistro": $("#idCanalRegistro").val(),
-            "idOcupacion": $("#idOcupacion").val(),
-            "comercializa": $("#comercializa").val(),
-        };
-        _F.onUiExecute(_json).then(function (data) { });
-    });
-</script>

@@ -240,6 +240,28 @@ var _F = {
         return true;
     },
 
+    onSeeEmitirMediya: function (_this) {
+        _F.onMediyaBuilder().then(function (_data) {
+            _F.onDestroyModal("#requestModal");
+            var _html = "<div class='modal fade' id='requestModal' role='dialog'>";
+            _html += " <div class='modal-dialog modal-lg modal-dialog-centered' role='document'>";
+            _html += "  <div class='modal-content'>";
+            _html += ("    <div class='modal-body'>" + _T.b64_to_utf8(_data) + "</div>");
+            _html += "    <div class='modal-footer font-weight-light'>";
+            _html += "       <button type='button' class='btn-raised btn btn-cancel-request btn-secondary btn-sm'><i class='material-icons'>done</i></span>Cerrar</button>";
+            _html += "    </div>";
+            _html += "  </div>";
+            _html += " </div>";
+            _html += "</div>";
+            $("body").append(_html);
+            $("body").off("click", ".btn-cancel-request").on("click", ".btn-cancel-request", function () {
+                _F.onDestroyModal("#requestModal");
+            });
+            $("#requestModal").modal({ backdrop: true, keyboard: true, show: true });
+        });
+        return true;
+    },
+
     /*
      * Interface step by step validation
      */
@@ -351,6 +373,7 @@ var _F = {
             /*
              * Datos del credito, de la solicitud y entorno
              * */
+            _F._ClientData._solicitudData.emitirMediya = data.data.emitirMediya;
             _F._ClientData._solicitudData.id = data.data.id;
             _F._ClientData._solicitudData.sqIdemia = data.data.SQidemia;
             if (data.data.id_type_modo_pago == null) { data.data.id_type_modo_pago = 0; }
@@ -543,6 +566,38 @@ var _F = {
                         data = _T.tagReplace(data, /\[IMPORTELETRAS\]/g, _T.toCurr(_F._ClientData._solicitudData.importeLetras));
                         data = _T.tagReplace(data, /\[CELULAR\]/g, (_F._ClientData._solicitudData.prefijoTelefono + " " + _F._ClientData._solicitudData.Telefono));
                         data = _T.tagReplace(data, /\[FECHAEMISION\]/g, _F._ClientData._solicitudData.fechaEmisionCompleta);
+                        resolve(_T.utf8_to_b64(data));
+                    } catch (err) {
+                        reject(err);
+                    }
+                });
+            });
+    },
+    onMediyaBuilder: function () {
+        return new Promise(
+            function (resolve, reject) {
+                _AJAX_deprecated._BPAM["Formulario"] = "ADHESIONMEDIYA";
+                _AJAX_deprecated._BPAM["ValueForRetrieve"] = -1;
+                _API_deprecated.UiGetFormulario(_AJAX_deprecated._BPAM).then(function (_ret) {
+                    try {
+                        var data = _T.b64_to_utf8(_ret.message.mensaje);
+                        console.log(data);
+                        /*
+                         * Reemplazar valores en solicitud
+                         * */
+                        data = _T.tagReplace(data, /\[NOMBRE\]/g, _F._ClientData._solicitudData.Nombre + " " + _F._ClientData._solicitudData.Apellido);
+                        data = _T.tagReplace(data, /\[DNI\]/g, _F._ClientData._solicitudData.Documento);
+                        data = _T.tagReplace(data, /\[CUIL\]/g, "");
+                        data = _T.tagReplace(data, /\[EMAIL\]/g, "");
+                        data = _T.tagReplace(data, /\[IDCLIENTE\]/g, "");
+                        data = _T.tagReplace(data, /width:150px;/g, "display:none;");
+                        data = _T.tagReplace(data, /\[FECHAEMISION\]/g, _T.getNow());
+                        data = _T.tagReplace(data, /\[CALLE\]/g, _F._ClientData._solicitudData.Calle);
+                        data = _T.tagReplace(data, /\[NRO\]/g, _F._ClientData._solicitudData.Numero);
+                        data = _T.tagReplace(data, /\[PISODPTO\]/g, _F._ClientData._solicitudData.Piso + " " + _F._ClientData._solicitudData.Departamento);
+                        data = _T.tagReplace(data, /\[LOCALIDAD\]/g, _F._ClientData._solicitudData.Localidad);
+                        data = _T.tagReplace(data, /\[PROVINCIA\]/g, _F._ClientData._solicitudData.ProvinciaDesc);
+                        data = _T.tagReplace(data, /\[CODIGOPOSTAL\]/g, _F._ClientData._solicitudData.CodigoPostal);
                         resolve(_T.utf8_to_b64(data));
                     } catch (err) {
                         reject(err);

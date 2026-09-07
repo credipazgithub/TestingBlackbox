@@ -126,5 +126,4 @@ var _API = {
                 _API.method("mediya/algo",_params).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     }, //2 
-
 };

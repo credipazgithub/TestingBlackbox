@@ -9,6 +9,11 @@ oAppFirmaCreditos.onShow = function () {
         $("#qrcode").html("").addClass("d-none");
         _API_deprecated.UiOnboardingGetRequest({ "id": _AJAX_deprecated._KEY, "end": "AK" }).then(function (data) {
             _F.onSetSolicitudData(data);
+
+           /*Ver link de contrato de alta Mediya*/
+            if (parseInt(_F._ClientData._solicitudData.emitirMediya) == 1) { 
+                $(".btnSeeEmitirMediya").removeClass("d-none");
+            }
             switch (parseInt(data.data.id_type_request)) {
                 case 1: // credito Credipaz
                     $(".btnSeeRequestPagare").removeClass("d-none");

@@ -37,3 +37,6 @@ $("body").off("click", ".btnSeeRequestPagare").on("click", ".btnSeeRequestPagare
 $("body").off("click", ".btnSeeRequestAmutra").on("click", ".btnSeeRequestAmutra", function () {
     _F.onSeeRequestAmutra($(this));
 });
+$("body").off("click", ".btnSeeEmitirMediya").on("click", ".btnSeeEmitirMediya", function () {
+    _F.onSeeEmitirMediya($(this));
+});
