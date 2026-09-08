@@ -382,7 +382,7 @@ class Telemedicina extends MY_Model {
         try {
             $values["idSocio"] = keySecureNumbers($values, "idSocio");
             if ($values["idSocio"] == "0") {throw new Exception(lang("api_error_1070"), 1070);}
-            $fields = ["Id_socio" => $values["idSocio"],"Id_clasificacion"=>2,"idTypeItem"=>2];
+            $fields = ["Id_socio" => $values["idSocio"],"Id_clasificacion"=>2,"Id_type"=>2];
             $ret = API_callAPIfields("/Mediya/Mensajes/", $fields);
             $ret = json_decode($ret, true);
             return $ret;
