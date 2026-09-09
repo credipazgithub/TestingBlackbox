@@ -631,11 +631,10 @@ var _F = {
                             $(".selectName").html(_html);
                         } else {
                             $(".lastStep").removeClass("d-none");
+                            $("body").remove(".clickLog");
+                            $("body").append("<button class='clickLog2' data-step='lastforced'/>");
+                            _F.onActionLogin($(".clickLog2"));
                         }
-                        $("body").remove(".clickLog");
-                        $("body").append("<button class='clickLog2' data-step='lastforced'/>");
-                        _F.onActionLogin($(".clickLog2"));
-
                     });
                 break;
             case "lastforced":

@@ -412,6 +412,7 @@ class Users extends MY_Model
                 $posibles = false;
                 $sql = "SELECT * FROM mod_backend_users WHERE id_type_user=" . $id_type_user . " AND documentNumber='" . $values["documentNumber"] . "' AND password='" . md5($values["password"]) . "'";
             }
+
             $record = $this->getRecordsAdHoc($sql);
 
             switch((int)$values["id_app"]) {
@@ -419,15 +420,16 @@ class Users extends MY_Model
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Credipaz","Credipaz");
                   $r=$MOBILE->firstStepAuth($values);
                   $retNames = $r;
+                  break;
                case 5: // Mediya
                   $MOBILE=$this->createModel(MOD_MOBILE_APPS,"Mediya","Mediya");
                   $r=$MOBILE->firstStepAuth($values);
                   $retNames = $r;
+                  break;
                 default:
                   $retNames = null;
+                  break;
             }
-
-
             if (!isset($record[0]["id"])) {
                 $names = [];
                 if ($posibles) {foreach ($retNames["message"] as $item) {array_push($names, array("name" => $item["Value"], "viable" => 1, "IdSolicitud" => 0));}}
