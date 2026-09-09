@@ -488,9 +488,9 @@ class NetCoreCPFinancial extends MY_Model {
     {
         try {
             $headers = $this->Authenticate();
+            $url = (CPFINANCIALS . "/Credito/EmisionProductoAlt/");
             $fields = array("lat" => $values["lat"], "lng" => $values["lng"],"pdf_solicitud" => $values["pdf_solicitud"],"img_additional" => $values["img_additional"], "IdRequest" => (int) $values["IdRequest"], "sAltaUsuario" => (string) $values["sAltaUsuario"]);
-            $result = API_callAPIfields("/Credito/EmisionProducto/", $fields);
-            $result = json_decode($result, true);
+            $result = $this->callAPI($url, $headers, json_encode($fields));
 
             return array(
                 "code" => "2000",
