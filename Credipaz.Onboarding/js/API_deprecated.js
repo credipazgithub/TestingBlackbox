@@ -15,7 +15,7 @@ var _API_deprecated = {
                 });
             });
     },
-    //Credipaz/funciones/obtenerformulario | {Formulario,ValueForRetrieve,lat,lng,latitude,longitude}
+    //Credipaz/funciones/obtenerformulario
 
     UiFirmarFormulario: function (_json) {
         return new Promise(
@@ -28,7 +28,7 @@ var _API_deprecated = {
                 });
             });
     },
-    //Credipaz/funciones/firmarformulario | {documento,segmento_carpeta_digital,Formulario,pageToAlter,x,y,img_additional}
+    //Credipaz/funciones/firmarformulario
 
     UiOnboardingFinalIdVerification: function (_json) {
         return new Promise(
@@ -40,7 +40,7 @@ var _API_deprecated = {
                 _AJAX_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Credipaz/funciones/finalverificacion | {id}
+    //Credipaz/funciones/finalverificacion
 
     UiOnboardingSaveRequest: function (_json) {
         return new Promise(
@@ -52,7 +52,9 @@ var _API_deprecated = {
                 _AJAX_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Credipaz/funciones/grabarrequest | {id,control_point,img_foto_camara,img_comprobante_servicio,img_comprobante_ingreso,img_dni_frente,img_dni_dorso,raw_verify} [REVISAR DOCUMENTACION]
+    //Credipaz/funciones/grabarrequest
+    //VERIFICAR CON DETALLE DONDE SE USA EL "tokenId" que devuelve la llamda en algunos casos!!!!!
+    //Esto tiene que ver con el circuito externo de control de Idemia y el Renaper
 
     UiOnboardingGetRequest: function (_json) {
         return new Promise(
@@ -63,7 +65,7 @@ var _API_deprecated = {
                 _AJAX_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Credipaz/funciones/obtenerrequest | {id,idtx,decision,externalid,end} [REVISAR DOCUMENTACION]
+    //Credipaz/funciones/obtenerrequest
 
     UiOnboardingFinalRequest: function (_json) {
         return new Promise(
@@ -74,7 +76,7 @@ var _API_deprecated = {
                 _AJAX_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
             });
     },
-    //Credipaz/funciones/finalrequest | {id,lat,lng,pdf_solicitud,img_additional} [REVISAR DOCUMENTACION]
+    //Credipaz/funciones/finalrequest
 
     UiOnboardingTokenizar: function (_json) {
         return new Promise(
@@ -87,5 +89,9 @@ var _API_deprecated = {
                 });
             });
     },
-    //Credipaz/funciones/tokenizartarjeta | {wId,wIdEmpresaOrigen,IdSocio,IdTransaccion,wId_type_medio_cobro,wPreferido,wYY,wMM,wCVV,wDocumento,wNumero,wNombre}
+    //Credipaz/funciones/tokenizartarjeta
+    // esta llamada: var _params = _T.getFormValues(".dbase");
+    // en la funcion que implemta el endpoint, ya arma correctamente los valores de parametro que
+    // requiere el nuevo endpoint, que  los toma de los objetos de clase dbase del html get-tokenizar.html
+    // ver de esos valores que quedan en _params, donde esta todo lo que se necesita
 };

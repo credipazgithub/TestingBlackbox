@@ -8,6 +8,248 @@ class Credipaz extends MY_Model {
     {
         parent::__construct();
     }
+
+    public function Tokenizar($values)
+    {
+        try {
+            $values["wId"] = keySecureZero($values, "wId");
+            if ($values["wId"] == 0) {throw new Exception(lang("api_error_1097"), 1097);}
+            $values["wIdEmpresaOrigen"] = keySecureZero($values, "wIdEmpresaOrigen");
+            if ($values["wIdEmpresaOrigen"] == 0) {throw new Exception(lang("api_error_1098"), 1098);}
+            $values["IdTransaccion"] = keySecureZero($values, "IdTransaccion");
+            if ($values["IdTransaccion"] == 0) {throw new Exception(lang("api_error_1056"), 1056);}
+            $values["wDocumento"] = keySecureZero($values, "wDocumento");
+            if ($values["wDocumento"] == 0) {throw new Exception(lang("api_error_1090"), 1090);}
+            $values["wNumero"] = keySecureZero($values, "wNumero");
+            if ($values["wNumero"] == 0) {throw new Exception(lang("api_error_1089"), 1089);}
+            $values["wCVV"]=keySecureString($values,"wCVV");
+            if ($values["wCVV"] == "") {throw new Exception(lang("api_error_1091"), 1091);}
+            $values["wMM"]=keySecureString($values,"wMM");
+            if ($values["wMM"] == "") {throw new Exception(lang("api_error_1092"), 1092);}
+            $values["wYY"]=keySecureString($values,"wYY");
+            if ($values["wYY"] == "") {throw new Exception(lang("api_error_1093"), 1093);}
+            $values["wId_type_medio_cobro"] = keySecureZero($values, "wId_type_medio_cobro");
+            if ($values["wId_type_medio_cobro"] == 0) {throw new Exception(lang("api_error_1095"), 1095);}
+            $values["IdSocio"] = keySecureValInArray($values, "IdSocio",['0','1']);
+            $values["wPreferido"] = keySecureZero($values, "wPreferido");
+
+            $result = API_callAPIfields("/CardCred/SaveMediosCobro/", $values);
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function finalRequest($values){
+		try {
+            $values["idRequest"] = keySecureZero($values, "idRequest");
+            if ($values["idRequest"] == 0) {throw new Exception(lang("api_error_1086"), 1086);}
+            $values["pdf_solicitud"]=keySecureString($values,"pdf_solicitud");
+            if ($values["pdf_solicitud"] == "") {throw new Exception(lang("api_error_1088"), 1088);}
+            $values["img_additional"]=keySecureString($values,"img_additional");
+            if ($values["img_additional"] == "") {throw new Exception(lang("api_error_1084"), 1084);}
+            $values["lat"]=keySecureString($values,"lat");
+            $values["lng"]=keySecureString($values,"lng");
+
+            $fields = array(
+                "lat" => $values["lat"], 
+                "lng" => $values["lng"],
+                "pdf_solicitud" => $values["pdf_solicitud"],
+                "img_additional" => $values["img_additional"], 
+                "IdRequest" => $values["idRequest"], 
+                "sAltaUsuario" => "onboarding"
+            );
+            $result = API_callAPIfields("/Credito/EmisionProducto/", $fields);
+            $result = json_decode($result, true);
+
+            $idSolicitudCredito = (int) $result["message"]["idSolicitud"];
+            $linkExtract = $result["message"]["link_extract"];
+            $linkCertificate = $result["message"]["link_certificate"];
+            if ($idSolicitudCredito == 0) {throw new Exception(lang("error_10003") . $result["message"]["mensaje"], 10003);}
+            
+            return array(
+                "code"=>"2000",
+                "status"=>"OK",
+				"data"=>$result,
+				"link_extract"=>$linkExtract,
+				"link_certificate"=>$linkCertificate,
+                "message"=>"",
+                "function"=> ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ :ENVIRONMENT),
+            );
+        }
+        catch (Exception $e){
+            return logError($e,__METHOD__ );
+        }
+	}
+    public function obtenerRequest($values){
+		try {	
+            $values["idRequest"] = keySecureZero($values, "idRequest");
+            if ($values["idRequest"] == 0) {throw new Exception(lang("api_error_1086"), 1086);}
+            $values["end"] = keySecureValInArray($values, "end",['AK','NAK']);
+            if ($values["end"] == "") {throw new Exception(lang("api_error_1087"), 1087);}
+
+            $values["idtx"]=keySecureString($values,"idtx");
+            $values["decision"]=keySecureString($values,"decision");
+            $values["externalid"]=keySecureString($values,"externalid");
+
+            $fields = array("idRequest" => $values["idRequest"],"end"=>$values["end"]);
+            if ($values["idtx"]!="") {$fields["idtx"]=$values["idtx"]; }
+            if ($values["decision"]!="") {$fields["decision"]=$values["decision"]; }
+            if ($values["externalid"]!="") {$fields["externalid"]=$values["externalid"]; }
+
+            $ret = API_callAPIfields("/Onboarding/ObtenerRequest/", $fields);
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        }
+        catch (Exception $e){
+			return logError($e,__METHOD__ );
+        }
+	}
+    public function grabarRequest($values){
+		try {	
+            $values["idRequest"] = keySecureZero($values, "idRequest");
+            if ($values["idRequest"] == 0) {throw new Exception(lang("api_error_1086"), 1086);}
+            $values["controlPoint"]=keySecureString($values,"controlPoint");
+            if ($values["controlPoint"] == "") {throw new Exception(lang("api_error_1085"), 1085);}
+            $values["Segmento"]=keySecureValInArray($values, "Segmento",['void','img_dni_frente','img_dni_dorso','img_foto_cara','img_comprobante_ingreso','img_comprobante_servicio']);
+            if ($values["Segmento"] == "") {throw new Exception(lang("api_error_1055"), 1055);}
+            $values["Raw_data"]=keySecureString($values,"Raw_data");
+            $fields = array("idRequest" => $values["idRequest"]);
+            if ($values["Segmento"]!="") {$fields[$values["Segmento"]]=$values["Raw_data"]; }
+            $ret = API_callAPIfields("/Onboarding/GrabarRequest/", $fields);
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+			return $ret;
+        }
+        catch (Exception $e){
+			return logError($e,__METHOD__ );
+        }
+	}
+    public function finalVerificacion($values)
+    {
+        try {
+            $values["Id"] = keySecureNumbers($values, "Id");
+            if ($values["Id"] == 0) {throw new Exception(lang("api_error_1080"), 1080);}
+
+            $fields = array("Id" => $values["Id"]);
+            $ret = API_callAPIfields("/Onboarding/FinalVerificacion/", $fields);
+            $result = json_decode($result, true);
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function firmarFormulario($values)
+    {
+        try 
+        {
+            $values["Format"] = keySecureValInArray($values, "Format",['HTML','PDF']);
+            if ($values["Format"] == "") {throw new Exception(lang("api_error_1081"), 1081);}
+            $values["Formulario"]=keySecureString($values,"Formulario");
+            if ($values["Formulario"] == "") {throw new Exception(lang("api_error_1082"), 1082);}
+            $values["ValueForRetrieve"]=keySecureString($values,"ValueForRetrieve");
+            if ($values["ValueForRetrieve"] == "") {throw new Exception(lang("api_error_1083"), 1083);}
+            $values["img_additional"]=keySecureString($values,"img_additional");
+            if ($values["img_additional"] == "") {throw new Exception(lang("api_error_1084"), 1084);}
+
+            $values["segmento_carpeta_digital"]=keySecureString($values,"segmento_carpeta_digital");
+            $values["pageToAlter"] = keySecureZero($values, "pageToAlter");
+            if ($values["pageToAlter"] == 0) {$values["pageToAlter"] = 1;}
+            $values["x"] = keySecureZero($values, "x");
+            $values["y"] = keySecureZero($values, "y");
+            $values["lat"]=keySecureString($values,"lat");
+            $values["lng"]=keySecureString($values,"lng");
+
+            $fields = array(
+                "Format" => (string) $values["Format"],
+                "Formulario" => (string) $values["Formulario"],
+                "ValueForRetrieve" => (string) $values["ValueForRetrieve"],
+                "Username" => "neodata",
+                "segmento_carpeta_digital"=>(string)$values["segmento_carpeta_digital"],
+                "idEntidad" => 0,
+                "img_additional"=> $values["img_additional"],
+                "pageToAlter" => (int) $values["pageToAlter"],
+                "x" => (int)$values["x"],
+                "y" => (int)$values["y"],
+                "lat" => $values["lat"],
+                "lng" => $values["lng"]
+            );
+            $ret = API_callAPIfields("/Utilidades/FirmarFormulario/", $fields);
+            $result = json_decode($result, true);
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+    public function obtenerFormulario($values)
+    {
+        try {
+            $values["Format"] = keySecureValInArray($values, "Format",['HTML','PDF']);
+            if ($values["Format"] == "") {throw new Exception(lang("api_error_1081"), 1081);}
+            $values["Formulario"]=keySecureString($values,"Formulario");
+            if ($values["Formulario"] == "") {throw new Exception(lang("api_error_1082"), 1082);}
+            $values["ValueForRetrieve"]=keySecureString($values,"ValueForRetrieve");
+            if ($values["ValueForRetrieve"] == "") {throw new Exception(lang("api_error_1083"), 1083);}
+
+            $fields = array(
+                "Format" => (string)$values["Format"],
+                "Formulario" => (string)$values["Formulario"],
+                "ValueForRetrieve" => (string)$values["ValueForRetrieve"],
+                "Username" => "neodata",
+                "idEntidad" => 0
+            );
+            $ret = API_callAPIfields("/Utilidades/TraerFormulario/", $fields);
+            $result = json_decode($result, true);
+
+            return array(
+                "code" => "2000",
+                "status" => "OK",
+                "message" => $result,
+                "function" => ((ENVIRONMENT === 'development' or ENVIRONMENT === 'testing') ? __METHOD__ : ENVIRONMENT),
+                "data" => null,
+                "compressed" => false
+            );
+        } catch (Exception $e) {
+            return logError($e, __METHOD__);
+        }
+    }
+
    	public function obtenerUserAreas($values){
         try {
             $values["area"]=keySecureString($values,"area");
@@ -305,9 +547,7 @@ class Credipaz extends MY_Model {
     {
         try {
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
-            if ($values["NroDocumento"] == 0) {
-                throw new Exception(lang("api_error_1026"), 1026);
-            }
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
 
             $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
@@ -789,15 +1029,10 @@ class Credipaz extends MY_Model {
         try {
             /*aca se devuelven los movmeintos del credito*/
             $values["NroDocumento"] = keySecureZero($values, "NroDocumento");
-            if ($values["NroDocumento"] == 0) {
-                throw new Exception(lang("api_error_1026"), 1026);
-            }
+            if ($values["NroDocumento"] == 0) {throw new Exception(lang("api_error_1026"), 1026);}
             $NroDocumento = (int) $values["NroDocumento"];
-
             $values["Sexo"] = keySecureValInArray($values, "Sexo",['F','M']);
-            if ($values["Sexo"] == "") {
-                throw new Exception(lang("api_error_1002"), 1002);
-            }
+            if ($values["Sexo"] == "") {throw new Exception(lang("api_error_1002"), 1002);}
 
             $fields = array("NroDocumento" => $NroDocumento, "Sexo" => $values["Sexo"]);
             $ret = API_callAPI("/Credito/GetCuotasCredito/", json_encode($fields));

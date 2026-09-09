@@ -175,19 +175,6 @@ var _API_deprecated = {
     },
     //Mediya/Telemedicina/obtenerRecetas
 
-    UiBuildFormFiserv: function (_json) {
-        return new Promise(
-            function (resolve, reject) {
-                _json["function"] = "buildFormFiserv";
-                _json["module"] = "mod_payments";
-                _json["table"] = "payments_fiserv";
-                _json["model"] = "payments_fiserv";
-                _json["method"] = "api.backend/neocommandTransparent"; //method
-                _HTTPREQUEST_deprecated.ExecuteDirect(_json, null).then(function (data) { resolve(data); }).catch(function (err) { reject(err); });
-            });
-    },
-    //Credipaz/funciones/armarformfiserv
-
     UiInitTransactionFiserv: function (_json) {
         return new Promise(
             function (resolve, reject) {

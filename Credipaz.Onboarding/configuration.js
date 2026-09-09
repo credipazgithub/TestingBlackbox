@@ -153,7 +153,13 @@ _AJAX_deprecated.readConfigServers("Intranet").then(function (data) {
     /* toda esta logica controla si se puede o no firma y que acciones tomar en casos 
        particulares de respuesta de Idemia y/o cierre de verificaciones */
     if (_AJAX_deprecated._KEY != 0 && !_AJAX_deprecated._justSign) {
-        var _val = { "id": _AJAX_deprecated._KEY, "idtx": _AJAX_deprecated._idtx, "decision": _AJAX_deprecated._decision, "externalid": _AJAX_deprecated._externalid, "end": "NAK" };
+        var _val = { 
+             "id": _AJAX_deprecated._KEY,
+             "idtx": _AJAX_deprecated._idtx, 
+             "decision": _AJAX_deprecated._decision, 
+             "externalid": _AJAX_deprecated._externalid, 
+             "end": "NAK"
+        };
         _API_deprecated.UiOnboardingGetRequest(_val).then(function (data) {
             /* Asigna los datos obtenidos del request a la estructura interna */
             _F.onSetSolicitudData(data);

@@ -80,6 +80,26 @@ $lang['api_error_1077'] = "No se ha provisto un valor válido para el parámetro
 $lang['api_error_1078'] = "No se ha provisto un valor válido para el parámetro 'Estado'";
 $lang['api_error_1079'] = "No se ha provisto un valor válido para el parámetro 'Segmento'";
 $lang['api_error_1080'] = "No se ha provisto un valor válido para el parámetro 'Id'";
+$lang['api_error_1081'] = "No se ha provisto un valor válido para el parámetro 'Format'";
+$lang['api_error_1082'] = "No se ha provisto un valor válido para el parámetro 'Formulario'";
+$lang['api_error_1083'] = "No se ha provisto un valor válido para el parámetro 'ValueForRetrieve'";
+$lang['api_error_1084'] = "No se ha provisto un valor válido para el parámetro 'img_additional'";
+$lang['api_error_1085'] = "No se ha provisto un valor válido para el parámetro 'controlPoint'";
+$lang['api_error_1086'] = "No se ha provisto un valor válido para el parámetro 'idRequest'";
+$lang['api_error_1087'] = "No se ha provisto un valor válido para el parámetro 'end'";
+$lang['api_error_1088'] = "No se ha provisto un valor válido para el parámetro 'pdf_solicitud'";
+
+
+$lang['api_error_1089'] = "No se ha provisto un valor válido para el parámetro 'wNombre'";
+$lang['api_error_1090'] = "No se ha provisto un valor válido para el parámetro 'wDocumento'";
+$lang['api_error_1091'] = "No se ha provisto un valor válido para el parámetro 'wCVV'";
+$lang['api_error_1092'] = "No se ha provisto un valor válido para el parámetro 'wMM'";
+$lang['api_error_1093'] = "No se ha provisto un valor válido para el parámetro 'wYY'";
+$lang['api_error_1094'] = "No se ha provisto un valor válido para el parámetro 'wPreferido'";
+$lang['api_error_1095'] = "No se ha provisto un valor válido para el parámetro 'wId_type_medio_cobro'";
+$lang['api_error_1096'] = "No se ha provisto un valor válido para el parámetro 'IdSocio'";
+$lang['api_error_1097'] = "No se ha provisto un valor válido para el parámetro 'wId'";
+$lang['api_error_1098'] = "No se ha provisto un valor válido para el parámetro 'wIdEmpresaOrigen'";
 
 
 $lang['error_100'] = "DB Layer error";

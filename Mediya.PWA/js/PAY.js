@@ -3,7 +3,12 @@ var _PAY = {
     _TMR_PAY_TELEMEDICINA: 0,
     _idTransfer_telemedicina: 0,
     _TEST_DNI: 20734796,
-
+    URL_NOTIFY: "",
+    FISERV_STOREID: "",
+    FISERV_SHAREDSECRET: "",
+    FISERV_URL: "",
+    URL_ERROR: "",
+    URL_OK: "",
     /**
      * /
      * ACTIVACION Y PAGOS TELEMEDICINA
@@ -177,17 +182,14 @@ var _PAY = {
                     var _targetFrame = "_blank";
                     var _location = window.location.href;
                     var _json = {
-                        "currency": "032",
                         "total": _total,
                         "dni": _F._auth_user_data.dni,
                         "itemsPagos": JSON.stringify(_F._itemsPagos),
-                        "sandbox": _sandbox,
-                        "visible": _visible,
                         "parentUri": _location
                     };
-                    _API_deprecated.UiBuildFormFiserv(_json).then(function (data) {
-                        data.data += "<iframe id='iframe_fiserv' name='iframe_fiserv' class='iframe_fiserv d-none' src='' frameborder='0' style='height:100vh;width:100%;' />";
-                        $(".body-pago-form").html(data.data).removeClass("d-none");
+                    _PAY.onBuildFormFiserv(_json).then(function (data) {
+                        data += "<iframe id='iframe_fiserv' name='iframe_fiserv' class='iframe_fiserv d-none' src='' frameborder='0' style='height:100vh;width:100%;' />";
+                        $(".body-pago-form").html(data).removeClass("d-none");
                         $(".hrFiserv").addClass("d-none");
                         $("#comments").val(JSON.stringify(_F._itemsPagos));
                         if (_visible == 0) {
@@ -329,5 +331,61 @@ var _PAY = {
         }).catch(function (error) {
             _F.onAlert({ "class": "alert-danger", "message": error.message });
         });
+    },
+    onBuildFormFiserv: function (values) {
+        return new Promise(
+            function (resolve, reject) {
+                try {
+                    var hostURI = _PAY.URL_NOTIFY;
+                    var transactionNotificationURL = _PAY.URL_NOTIFY;
+                    var txndatetime = _T.getToday();
+                    var currency = "032";
+                    var chargetotal = _T.formatChargeTotal(values.total.toString());
+                    if (values.itemsPagos == undefined || values.itemsPagos == null || values.itemsPagos.length == 0) {
+                        values.itemsPagos = [];
+                        var _rec = { "Tipo": "TAR", "Identificacion": (values.dni + " Pago tarjeta"), "Importe": chargetotal, "idTransfer": 0 };
+                        values.itemsPagos.push(_rec);
+                        values.itemsPagos = JSON.stringify(values.itemsPagos);
+                    }
+                    values.itemsPagos = JSON.parse(values.itemsPagos, true);
+                    /* Todo ocurre una vez resuelto el hashing */
+                    var stringToHash = (_PAY.FISERV_STOREID + txndatetime + chargetotal + currency + _PAY.FISERV_SHAREDSECRET);
+                    _T.hash("SHA-256", _T.bin2hex(stringToHash))
+                        .catch(function (err) { reject(err); })
+                        .then(function (extendedHash) {
+                            var html = "";
+                            html += "<form id='checkoutform' method='post' action='" + (_PAY.FISERV_URL + "?" + _T.UUID()) + "' target='iframe_fiserv'>";
+                            html += "   <table class='tbl-fiserv d-none'>";
+                            html += "    <tr><td>hostURI</td><td><input class='dataPost' type='text' id='hostURI' name='hostURI' value='" + _PAY.URL_NOTIFY + "'/></td></tr>";
+                            html += "    <tr><td>parentUri</td><td><input class='dataPost' type='text' id='parentUri' name='parentUri' value='" + values.parentUri + "'/></td></tr>";
+                            html += "    <tr><td>responseFailURL</td><td><input class='dataPost' type='text' id='responseFailURL' name='responseFailURL' value='" + _PAY.URL_ERROR + "'/></td></tr>";
+                            html += "    <tr><td>responseSuccessURL</td><td><input class='dataPost' type='text' id='responseSuccessURL' name='responseSuccessURL' value='" + _PAY.URL_OK + "'/></td></tr>";
+                            html += "    <tr><td>storename</td><td><input class='dataPost' type='text' id='storename' name='storename' value='" + _PAY.FISERV_STOREID + "'/></td></tr>";
+                            html += "    <tr><td>txndatetime</td><td><input class='dataPost' type='text' id='txndatetime' name='txndatetime' value='" + txndatetime + "'/></td></tr>";
+                            html += "    <tr><td>currency</td><td><input class='dataPost' type='text' id='currency' name='currency' value='" + currency + "'/></td></tr>";
+                            html += "    <tr><td>chargetotal</td><td><input class='dataPost' type='text' id='chargetotal' name='chargetotal' value='" + chargetotal + "'/></td></tr>";
+                            html += "    <tr><td>customerid</td><td><input sclass='dataPost' tyle='width:100%;' type='text' id='customerid' name='customerid' value='" + values.itemsPagos[0].Identificacion + "'/></td></tr>";
+                            html += "    <tr><td>hash</td><td><input class='dataPost' type='text' id='hash' name='hash' value='" + extendedHash + "'/></td></tr>";
+                            html += "    <tr><td>mode</td><td><input class='dataPost' type='text' id='mode' name='mode' value='payonly'/></td></tr>";
+                            html += "    <tr><td>comments</td><td><input class='dataPost' type='text' id='comments' name='comments' value=''/></td></tr>";
+                            html += "    <tr><td>numberOfInstallments</td><td><input class='dataPost' type='text' id='numberOfInstallments' name='numberOfInstallments' value='1'/></td></tr>";
+                            html += "    <tr><td>language</td><td><input class='dataPost' type='text' id='language' name='language' value='es_ES'/></td></tr>";
+                            html += "    <tr><td>checkoutoption</td><td><input class='dataPost' type='text' id='checkoutoption' name='checkoutoption' value='classic'/></td></tr>";
+                            html += "    <tr><td>txntype</td><td><input class='dataPost' type='text' id='txntype' name='txntype' value='sale'/></td></tr>";
+                            html += "    <tr><td>timezone</td><td><input class='dataPost' type='text' id='timezone' name='timezone' value='America/Buenos_Aires'/></td></tr>";
+                            html += "    <tr><td>hash_algorithm</td><td><input class='dataPost' type='text' id='hash_algorithm' name='hash_algorithm' value='SHA256'/></td></tr>";
+                            html += "    <tr><td>authenticateTransaction</td><td><input class='dataPost' type='text' id='authenticateTransaction' name='authenticateTransaction' value='false'/></td></tr>";
+                            html += "    <tr><td>mobileMode</td><td><input class='dataPost' type='text' id='mobileMode' name='mobileMode' value='true'/></td></tr>";
+                            html += "    <tr><td>referencedMerchantTransactionID</td><td class='dataPost' style='width:100%;'><input type='text' id='referencedMerchantTransactionID' name='referencedMerchantTransactionID' value=''/></td></tr>";
+                            html += "    <tr><td>paymentMethod</td><td><input class='dataPost paymentMethod' type='text' id='paymentMethod' name='paymentMethod' value=''/></td></tr>";
+                            html += "    <tr><td>trxOrigin</td><td><input class='dataPost' type='text' id='trxOrigin' name='trxOrigin' value='ECI'/></td></tr>";
+                            html += "   </table>";
+                            html += "</form>";
+                            resolve(html);
+                        });
+                } catch (err) {
+                    reject(err);
+                }
+            });
     },
 };

@@ -187,6 +187,21 @@ var _T = {
         if (second < 10) { second = "0" + second; }
         return day + "/" + month + "/" + year + " " + hour + ":" + minute + ":" + second;
     },
+    getToday: function () {
+        var currentDate = new Date();
+        var second = currentDate.getSeconds();
+        var minute = currentDate.getMinutes();
+        var hour = currentDate.getHours();
+        var day = currentDate.getDate();
+        var month = currentDate.getMonth() + 1;
+        var year = currentDate.getFullYear();
+        if (day < 10) { day = "0" + day; }
+        if (month < 10) { month = "0" + month; }
+        if (hour < 10) { hour = "0" + hour; }
+        if (minute < 10) { minute = "0" + minute; }
+        if (second < 10) { second = "0" + second; }
+        return year + ":" + month + ":" + day + "-" + hour + ":" + minute + ":" + second;
+    },
     getNowYYYYMMDD: function () {
         var currentDate = new Date();
         var second = currentDate.getSeconds();
@@ -703,5 +718,24 @@ var _T = {
     },
     capitalizeFirstLetter: function (string) {
         return (string.charAt(0).toUpperCase() + string.toLowerCase().slice(1));
+    },
+    formatChargeTotal: function (str) {
+        var part = str.toString().split(".");
+        return (part[0] + "." + part[1].slice(0, 2));
+    },
+    hash: async function (alg, str) {
+        var msgBuffer = new TextEncoder().encode(str);
+        var hashBuffer = await crypto.subtle.digest(alg, msgBuffer);
+        var hashArray = Array.from(new Uint8Array(hashBuffer));
+        var hashHex = hashArray.map(b => ('00' + b.toString(16)).slice(-2)).join('');
+        return hashHex;
+    },
+    bin2hex: function (str) {
+        var hex = '';
+        for (var i = 0; i < str.length; i++) {
+            var charCode = str.charCodeAt(i);
+            hex += charCode.toString(16).padStart(2, '0');
+        }
+        return hex;
     },
 };

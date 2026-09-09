@@ -53,6 +53,8 @@
 	    $response=trim($response, "\xEF\xBB\xBF");
         $status_code = curl_getinfo($ch, CURLINFO_HTTP_CODE);
         $err=curl_error($ch);
+log_message("error", "RELATED API_callAPIfields Err ".json_encode($status_code,JSON_PRETTY_PRINT));
+
         curl_close($ch);
         return $response;
     }

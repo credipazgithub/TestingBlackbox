@@ -489,8 +489,7 @@ class NetCoreCPFinancial extends MY_Model {
         try {
             $headers = $this->Authenticate();
             $fields = array("lat" => $values["lat"], "lng" => $values["lng"],"pdf_solicitud" => $values["pdf_solicitud"],"img_additional" => $values["img_additional"], "IdRequest" => (int) $values["IdRequest"], "sAltaUsuario" => (string) $values["sAltaUsuario"]);
-            $url = (CPFINANCIALS . "/Credito/EmisionProducto/");
-            $result = $this->callAPI($url, $headers, json_encode($fields));
+            $result = API_callAPIfields("/Credito/EmisionProducto/", $fields);
             $result = json_decode($result, true);
 
             return array(
@@ -1289,8 +1288,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function IdemiaAuth($values)
     {
         try {
-            
-
             $headers = $this->Authenticate();
             $fields = array("modo" => $values["modo"]);
             $url = (CPFINANCIALS . "/Bureau/IdemiaAuth/");
@@ -1346,8 +1343,6 @@ class NetCoreCPFinancial extends MY_Model {
     public function ConsultaValidarVida($values)
     {
         try {
-            
-
             $headers = $this->Authenticate();
             $fields = array(
                 "idRequest" => (int) $values["idRequest"],

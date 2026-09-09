@@ -197,6 +197,12 @@
                         $(".btn-generate-paycode").removeClass("d-none");
 
                         $.getScript(("./js/PAY.js"), function () {
+                            _PAY.URL_NOTIFY = data.URL_NOTIFY;
+                            _PAY.FISERV_STOREID = data.FISERV_STOREID;
+                            _PAY.FISERV_SHAREDSECRET = data.FISERV_SHAREDSECRET;
+                            _PAY.FISERV_URL = data.FISERV_URL;
+                            _PAY.URL_ERROR= data.URL_ERROR;
+                            _PAY.URL_OK= data.URL_OK;
                             $.getScript("./js/PHOTO.js", function () {
                                 var _parameters = _T.onAllUrlParams();
                                 if (_parameters.p != undefined) {
